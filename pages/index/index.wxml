@@ -1,0 +1,163 @@
+<!--index.wxml-->
+<view class="container">
+  <mp-navigation-bar title='团团转' color='#fff' back='true' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <view class="container-top">
+    <!-- <text class="container-title">团团转</text> -->
+    <view class="container-system-gonggao">
+      <view class="container-system-gonggao-left">
+        <image src="../images/gonggao.png" class="system-img"></image>
+        <view class="container-fenge"></view>
+        <!-- <text class="container-fenge-text">10人拼团，7人领红包啦！</text> -->
+        <view class="container-receive-notice-wrapper">
+          <swiper class="receive-notice-swiper" autoplay='true' interval='2000'  duration='1000' circular='true' vertical='true' >
+            <block wx:for="{{noticeData}}" wx:key="index">
+              <swiper-item>
+                <text class="container-fenge-text">{{ item.noticeContent }}</text>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <view class="container-system-gonggao-right">
+        <image src="../images/tips.png" class="system-right-img"></image>
+      </view>
+    </view>
+  </view>
+  <!--轮播图 indicator-dots='false'-->
+  <view class="swiper-wrapper">
+    <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
+      <block wx:for="{{movies}}" wx:key="index">
+        <swiper-item class="swiper-item-wrapper">
+          <image class="swiper-image" src='{{item.bannerAddress}}' mode='aspectFill'></image> 
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--重置小圆点的样式  -->
+    <view class="dots">  
+        <block wx:for="{{movies}}" wx:key="index">  
+            <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
+        </block>  
+    </view> 
+  </view>
+  <view class="container-search-wrapper">
+    <view class="container-receive-wrapper">
+      <swiper class="receive-swiper" autoplay='true' interval='3000'  duration='1000' circular='true' vertical='true' >
+        <block wx:for="{{receiveDatas}}" wx:key="index">
+          <swiper-item>
+            <view class="receive-item">
+              <image class="receive-image" src="{{item.url}}" mode='aspectFill'></image>
+              <text class="receive-name">{{ item.name }}</text>
+              <text class="receive-text">{{ item.text }}</text>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="container-search">
+      <view class="container-serch-content" bindtap="goSearch">
+        <image class="search-icon" src="../images/search.png"></image>
+        <text class="search-placholder">搜索商品</text>
+      </view>
+    </view>
+  </view>
+  <view class="container-goods-wrapper">
+    <view class="goods-item">
+      <view class="goods-item-left">
+        <image class="goods-item-image" src="https://img12.360buyimg.com/n1/jfs/t1/139017/33/4081/130668/5f22c550E781dbf1c/c336f343cca4c65e.jpg"></image>
+        <view class="goods-item-name-price">
+          <view class="goods-item-name">
+            <text class="goods-item-name-title">兰蔻（LANCOME）菁纯精萃水150ml+菁纯面霜（轻盈） 60ml 化妆品套装护肤 保湿滋润 礼盒</text>
+            <text class="goods-item-name-num">库存9999</text>
+          </view>
+          <view class="goods-item-price">
+            <view class="goods-item-price-value">
+              <text class="goods-item-price1">￥</text>
+              <text class="goods-item-price2">888.89</text>
+            </view>
+            <view class="goods-item-time">
+              <image class="goods-item-time-icon" src='../images/clock.png'></image>
+              <text class="goods-item-time-time1">剩余</text>
+              <text class="goods-item-time-time2">6天23时60分</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-item-right">
+        <view class="goods-item-right-top">
+          <view class="goods-item-right-num-people-wrapper">
+            <view class="goods-item-right-num-people">10人拼团</view>
+          </view>
+          <view class="goods-item-right-red">
+            <image class="goods-item-red-icon" src='../images/red-package.png'></image>
+            <text class="goods-item-right-red-num">999.9元</text>
+          </view>
+        </view>
+        <view class="goods-item-right-bottom">
+          <view class="goods-item-right-coupons">用劵拼团</view>
+          <view class="goods-item-right-now">立即拼团</view>
+        </view>
+      </view>
+    </view>
+    <view class="goods-item">
+      <view class="goods-item-left">
+        <image class="goods-item-image" src="https://img12.360buyimg.com/n1/jfs/t1/139017/33/4081/130668/5f22c550E781dbf1c/c336f343cca4c65e.jpg"></image>
+        <view class="goods-item-name-price">
+          <view class="goods-item-name">
+            <text class="goods-item-name-title">兰蔻</text>
+            <text class="goods-item-name-num">库存9999</text>
+          </view>
+          <view class="goods-item-price">
+            <view class="goods-item-price-value">
+              <text class="goods-item-price1">￥</text>
+              <text class="goods-item-price2">888.89</text>
+            </view>
+            <view class="goods-item-time">
+              <image class="goods-item-time-icon" src='../images/clock.png'></image>
+              <text class="goods-item-time-time1">剩余</text>
+              <text class="goods-item-time-time2">6天23时60分</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-item-right">
+        <view class="goods-item-right-top">
+          <view class="goods-item-right-num-people-wrapper">
+            <view class="goods-item-right-num-people">10人拼团</view>
+          </view>
+          <view class="goods-item-right-red">
+            <image class="goods-item-red-icon" src='../images/red-package.png'></image>
+            <text class="goods-item-right-red-num">999.9元</text>
+          </view>
+        </view>
+        <view class="goods-item-right-bottom">
+          <view class="goods-item-right-coupons">用劵拼团</view>
+          <view class="goods-item-right-now">立即拼团</view>
+        </view>
+      </view>
+    </view>
+    <view class="goods-item">
+    </view>
+    <view class="goods-item">
+    </view>
+    <view class="goods-item">
+    </view>
+  </view>
+  <!-- <view class="userinfo">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+  <!-- <mp-loading></mp-loading> -->
+</view>
