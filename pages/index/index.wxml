@@ -61,86 +61,45 @@
     </view>
   </view>
   <view class="container-goods-wrapper">
-    <view class="goods-item">
-      <view class="goods-item-left">
-        <image class="goods-item-image" src="https://img12.360buyimg.com/n1/jfs/t1/139017/33/4081/130668/5f22c550E781dbf1c/c336f343cca4c65e.jpg"></image>
-        <view class="goods-item-name-price">
-          <view class="goods-item-name">
-            <text class="goods-item-name-title">兰蔻（LANCOME）菁纯精萃水150ml+菁纯面霜（轻盈） 60ml 化妆品套装护肤 保湿滋润 礼盒</text>
-            <text class="goods-item-name-num">库存9999</text>
-          </view>
-          <view class="goods-item-price">
-            <view class="goods-item-price-value">
-              <text class="goods-item-price1">￥</text>
-              <text class="goods-item-price2">888.89</text>
+    <block wx:for="{{listData}}" wx:key="index">
+      <view class="goods-item">
+        <view class="goods-item-left">
+          <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image>
+          <view class="goods-item-name-price">
+            <view class="goods-item-name">
+              <text class="goods-item-name-title">{{item.majorName}}</text>
+              <text class="goods-item-name-num">库存{{item.stock}}</text>
             </view>
-            <view class="goods-item-time">
-              <image class="goods-item-time-icon" src='../images/clock.png'></image>
-              <text class="goods-item-time-time1">剩余</text>
-              <text class="goods-item-time-time2">6天23时60分</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="goods-item-right">
-        <view class="goods-item-right-top">
-          <view class="goods-item-right-num-people-wrapper">
-            <view class="goods-item-right-num-people">10人拼团</view>
-          </view>
-          <view class="goods-item-right-red">
-            <image class="goods-item-red-icon" src='../images/red-package.png'></image>
-            <text class="goods-item-right-red-num">999.9元</text>
-          </view>
-        </view>
-        <view class="goods-item-right-bottom">
-          <view class="goods-item-right-coupons">用劵拼团</view>
-          <view class="goods-item-right-now">立即拼团</view>
-        </view>
-      </view>
-    </view>
-    <view class="goods-item">
-      <view class="goods-item-left">
-        <image class="goods-item-image" src="https://img12.360buyimg.com/n1/jfs/t1/139017/33/4081/130668/5f22c550E781dbf1c/c336f343cca4c65e.jpg"></image>
-        <view class="goods-item-name-price">
-          <view class="goods-item-name">
-            <text class="goods-item-name-title">兰蔻</text>
-            <text class="goods-item-name-num">库存9999</text>
-          </view>
-          <view class="goods-item-price">
-            <view class="goods-item-price-value">
-              <text class="goods-item-price1">￥</text>
-              <text class="goods-item-price2">888.89</text>
-            </view>
-            <view class="goods-item-time">
-              <image class="goods-item-time-icon" src='../images/clock.png'></image>
-              <text class="goods-item-time-time1">剩余</text>
-              <text class="goods-item-time-time2">6天23时60分</text>
+            <view class="goods-item-price">
+              <view class="goods-item-price-value">
+                <text class="goods-item-price1">￥</text>
+                <text class="goods-item-price2">{{item.price}}</text>
+              </view>
+              <view class="goods-item-time">
+                <image class="goods-item-time-icon" src='../images/clock.png'></image>
+                <text class="goods-item-time-time1">剩余</text>
+                <text class="goods-item-time-time2">6天23时60分</text>
+              </view>
             </view>
           </view>
         </view>
-      </view>
-      <view class="goods-item-right">
-        <view class="goods-item-right-top">
-          <view class="goods-item-right-num-people-wrapper">
-            <view class="goods-item-right-num-people">10人拼团</view>
+        <view class="goods-item-right">
+          <view class="goods-item-right-top">
+            <view class="goods-item-right-num-people-wrapper">
+              <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
+            </view>
+            <view class="goods-item-right-red">
+              <image class="goods-item-red-icon" src='../images/red-package.png'></image>
+              <text class="goods-item-right-red-num">{{item.price}}元</text>
+            </view>
           </view>
-          <view class="goods-item-right-red">
-            <image class="goods-item-red-icon" src='../images/red-package.png'></image>
-            <text class="goods-item-right-red-num">999.9元</text>
+          <view class="goods-item-right-bottom">
+            <view class="goods-item-right-coupons">用劵拼团</view>
+            <view class="goods-item-right-now">立即拼团</view>
           </view>
         </view>
-        <view class="goods-item-right-bottom">
-          <view class="goods-item-right-coupons">用劵拼团</view>
-          <view class="goods-item-right-now">立即拼团</view>
-        </view>
       </view>
-    </view>
-    <view class="goods-item">
-    </view>
-    <view class="goods-item">
-    </view>
-    <view class="goods-item">
-    </view>
+    </block>
   </view>
   <!-- <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">

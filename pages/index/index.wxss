@@ -186,7 +186,7 @@
 .goods-item {
   display: flex;
   width: 710rpx;
-  height: 250rpx;
+  height: 260rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.03);
   border-radius: 10rpx;
@@ -302,7 +302,8 @@
 .goods-item-right-num-people {
   width: 106rpx;
   height: 32rpx;
-  background: linear-gradient(135deg, #FDAE02 0%, #FE8024 100%);
+  /* background: linear-gradient(135deg, #FDAE02 0%, #FE8024 100%); */
+  background: linear-gradient(90deg, #40DADA 0%, #12B4AD 100%);
   box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.03);
   border-radius: 4rpx;
   font-size: 22rpx;
