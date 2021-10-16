@@ -1,4 +1,10 @@
 <!--pages/my/my.wxml-->
 <view>
-  <text>pages/my/my.wxml</text>
+  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <view class="my-top-wrapper">
+    <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
+  </view>
+  <view class="my-user-avatar">
+    
+  </view>
 </view>

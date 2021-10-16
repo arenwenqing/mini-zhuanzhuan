@@ -1,1 +1,5 @@
 /* pages/my/my.wxss */
+.my-top-wrapper {
+  height: 250rpx;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+}

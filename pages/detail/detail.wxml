@@ -1,0 +1,71 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-wrapper">
+  <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar'></mp-navigation-bar>
+  <view>
+      <swiper class="detail-image-carousel" indicator-active-color='#FA2840' indicator-color="#c1c1c1" indicator-dots='true' autoplay='true' interval='3000'  duration='1000' circular='true' >
+        <block wx:for="{{carousel}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item}}" mode="scaleToFill" class="detail-main-image"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  <!-- <view class="detail-main-image-wrapper">
+    <image src="{{detailData.photoAddress && detailData.photoAddress[0]}}" mode="scaleToFill" class="detail-main-image"></image>
+  </view> -->
+  <view class="detail-name-price-wrapper">
+    <view class="detai-name-price-content">
+      <view class="detail-price">
+        <text>￥</text>
+        <text>{{detailData.price}}</text>
+      </view>
+      <view class="detail-main-title">
+        {{detailData.majorName}}
+      </view>
+      <view class="detail-subtitle-title">{{detailData.minorName}}</view>
+      <view class="detail-num">
+        <view class="detail-num-content">
+          <text>库存：{{detailData.stock}}</text>
+          <text>红包：{{detailData.cashback}}</text>
+        </view>
+        <text>已成团：{{detailData.groupPurchasedCount ? detailData.groupPurchasedCount : 0}}</text>
+      </view>
+      <view class="detail-time">
+        <text class="detail-time-text1">剩余</text>
+        <text class="detail-time-num">24</text>
+        <text class="detail-time-mh">:</text>
+        <text class="detail-time-num">00</text>
+        <text class="detail-time-mh">:</text>
+        <text class="detail-time-num">00</text>
+        <text class="detail-time-text2">结束</text>
+      </view>
+    </view>
+  </view>
+  <view class="detail-brand">
+    <view class="detail-brand-item">
+      <text>品名：</text>
+      <text>{{detailData.majorName}}</text>
+    </view>
+    <view class="detail-brand-item">
+      <text>品牌：</text>
+      <text>{{detailData.brand}}</text>
+    </view>
+    <view class="detail-brand-item">
+      <text>规格：</text>
+      <text>{{detailData.spec}}</text>
+    </view>
+    <view class="detail-brand-item">
+      <text>产地：</text>
+      <text>{{detailData.originPlace}}</text>
+    </view>
+  </view>
+  <view class="detail-image-wrapper">
+    <block wx:for="{{detailData.photoAddress}}" wx:key="index">
+      <image lazy-load="true" src="{{item}}" class="detail-image-item" mode="widthFix"></image>
+    </block>
+  </view>
+  <view class="detail-bottom">
+    <view class="detail-bottom-left">立即拼团</view>
+    <view class="detail-bottom-right">用劵拼团</view>
+  </view>
+</view>

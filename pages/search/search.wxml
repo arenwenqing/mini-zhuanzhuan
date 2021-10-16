@@ -1,2 +1,13 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="search-wrapper">
+  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <view class="search-input-wrapper">
+    <image src='../images/search.png' class="seach-input-icon"></image>
+    <input bindconfirm="seach" confirm-type="search" class="search-input" selection-start="60" placeholder-class='placeholder-class-style' focus="cursor" placeholder="请输入要查找的商品"/>
+  </view>
+  <view wx:if="{{!searchData.length}}">
+    <image src="../images/no-search-min.png" class="no-seach-icon"></image>
+    <text class="no-seach-text">未找到该产品</text>
+  </view>
+  <component-list datalist="{{searchData}}"></component-list>
+</view>

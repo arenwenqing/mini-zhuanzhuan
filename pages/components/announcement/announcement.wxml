@@ -1,0 +1,21 @@
+<!--pages/components/announcement/announcement.wxml-->
+<view>
+  <view class="container-system-gonggao">
+      <view class="container-system-gonggao-left">
+        <image src="/pages/images/gonggao.png" class="system-img {{ centerStyle ? 'system-img-center' : '' }}"></image>
+        <view class="container-fenge {{ centerStyle ? 'container-fenge-center' : '' }}"></view>
+        <view class="container-receive-notice-wrapper">
+          <swiper class="receive-notice-swiper" autoplay='true' interval='2000'  duration='1000' circular='true' vertical='true' >
+            <block wx:for="{{noticeData}}" wx:key="index">
+              <swiper-item>
+                <text class="container-fenge-text">{{ item.noticeContent }}</text>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <view class="container-system-gonggao-right">
+        <image src="/pages/images/tips.png" class="system-right-img {{ centerStyle ? 'system-right-img-center' : '' }}"></image>
+      </view>
+    </view>
+</view>

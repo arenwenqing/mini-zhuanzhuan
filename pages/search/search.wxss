@@ -1,1 +1,43 @@
 /* pages/search/search.wxss */
+.search-wrapper{
+  height: 100vh;
+  background: #f7f7f7;
+  overflow: auto;
+}
+.search-input-wrapper {
+  position: relative;
+}
+.seach-input-icon{
+  display: inline-block;
+  position: absolute;
+  width: 26rpx;
+  height: 26rpx;
+  left: 48rpx;
+  top: 19rpx;
+}
+.search-input{
+  width: 642rpx;
+  height: 60rpx;
+  background: #FFFFFF;
+  border-radius: 36rpx;
+  border: 1rpx solid #DBDBDB;
+  margin: 24rpx auto 0;
+  font-size: 24rpx;
+  padding-left: 60rpx;
+}
+.no-seach-icon {
+  display: block;
+  width: 520rpx;
+  height: 386rpx;
+  margin: 160rpx auto 0rpx;
+}
+.no-seach-text {
+  display: block;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #C0C0C0;
+  line-height: 32rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
