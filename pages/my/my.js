@@ -1,19 +1,51 @@
 
 const domain = 'https://tuanzhzh.com'
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    
+    list: [{
+      icon: '/pages/images/5.png',
+      text: '双倍红包券'
+    }, {
+      icon: '/pages/images/3.png',
+      text: '我的拼团'
+    }, {
+      icon: '/pages/images/4.png',
+      text: '兑换码'
+    }, {
+      icon: '/pages/images/2.png',
+      text: '我的地址'
+    }, {
+      icon: '/pages/images/7.png',
+      text: '我的客服'
+    }, {
+      icon: '/pages/images/1.png',
+      text: '用户协议'
+    }, {
+      icon: '/pages/images/6.png',
+      text: '隐私协议'
+    }],
+    showAvatar: false,
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if (wx.getStorageSync('userInfo')) {
+      this.setData({
+        showAvatar: true,
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+      })
+    } else {
+      this.setData({
+        showAvatar: false
+      })
+    }
   },
 
   /**
@@ -28,9 +60,11 @@ Page({
     wx.getUserProfile({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
+        wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+        console.log(res.userInfo)
         this.setData({
           userInfo: res.userInfo,
-          hasUserInfo: true
+          showAvatar: true
         })
       }
     })

@@ -4,7 +4,26 @@
   <view class="my-top-wrapper">
     <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
   </view>
-  <view class="my-user-avatar">
-    
+  <view class="my-user-message">
+    <view class="my-user-avatar">
+      <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
+      <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
+    </view>
+    <view wx:if="{{showAvatar}}" class="my-user-name">{{userInfo.nickName}}</view>
+    <view wx:else class="my-user-name" bindtap="getUserProfile">注册/登录</view>
+    <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参999999个团</text>
+    <view class="my-user-item-wrapper">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class="my-user-item">
+          <view>
+            <image src="{{item.icon}}" class="my-user-item-icon"></image>
+            <text class="my-user-item-text">{{item.text}}</text>
+            <image wx:if="{{index === 0}}" src="/pages/images/red-tip.png" class="my-user-item-redtip"></image>
+          </view>
+          <text wx:if="{{index === 0}}" class="my-user-item-dobule-red-num">34张</text>
+          <image wx:else src='/pages/images/more.png' class="my-user-item-more"></image>
+        </view>
+      </block>
+    </view>
   </view>
 </view>

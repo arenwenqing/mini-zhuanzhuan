@@ -1,5 +1,109 @@
 /* pages/my/my.wxss */
 .my-top-wrapper {
-  height: 250rpx;
+  height: 300rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+}
+.my-user-message {
+  width: 750rpx;
+  height: 902rpx;
+  background: #FFFFFF;
+  border-radius: 48px 48px 0px 0px;
+  margin-top: -88rpx;
+  position: relative;
+}
+.my-user-avatar{
+  position: absolute;
+  width: 168rpx;
+  height: 168rpx;
+  background: rgba(234, 234, 234, 0.19);
+  box-shadow: 0rpx 26rpx 28rpx 0rpx rgba(134, 134, 134, 0.1);
+  /* opacity: 0.19; */
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -84rpx;
+  top: -78rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-user-avatar-img {
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.my-user-name {
+  width: 426rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #2B375E;
+  text-align: center;
+
+  /* margin-top: 118rpx auto 12rpx; */
+  padding-top: 118rpx;
+  padding-bottom: 12rpx;
+  margin:  0 auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.my-user-tuan-num {
+  display: block;
+  width: 168rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #5F5F5F;
+  line-height: 32rpx;
+  margin: 0 auto;
+}
+.my-user-item-wrapper {
+  margin: 36rpx auto 0;
+}
+.my-user-item {
+  height: 96rpx;
+  border-bottom: 1rpx solid #E6E6E6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.my-user-item-icon {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+  margin-left: 32rpx;
+  vertical-align: middle;
+}
+.my-user-item-text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+}
+.my-user-item-more {
+  display: inline-block;
+  height: 24rpx;
+  width: 24rpx;
+  margin-right: 32rpx;
+}
+.my-user-item-redtip {
+  display: inline-block;
+  height: 24rpx;
+  width: 24rpx;
+  vertical-align: middle;
+  margin-left: 6rpx;
+}
+.my-user-item-dobule-red-num {
+  display: inline-block;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+  margin-right: 32rpx;
 }

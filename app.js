@@ -41,6 +41,15 @@ App({
       },
       fail() {
         // session_key 已经失效，需要重新执行登录流程
+        try {
+          wx.removeStorageSync('userInfo')
+        } catch (error) {
+          wx.showToast({
+            title: error.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
         that.login()
       }
     })
