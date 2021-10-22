@@ -1,0 +1,32 @@
+/* pages/classification/childCpns/menu/menu.wxss */
+.container{
+  width: 148rpx;
+  height: 100%;
+  border-right: 2rpx solid #EFEFEF;
+}
+.menu{
+  height: 100%;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.menu-every-content{
+  width: 148rpx;
+  height: 92rpx;
+  text-align: center;
+  line-height: 92rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666488;
+  background: #FFFFFF;
+  /* margin-bottom: 2rpx; */
+  border-bottom: 2rpx solid #EFEFEF;
+}
+.active{
+  background: #FFDFDF;
+  border-left: 4rpx solid #EC5151;
+  color: #EF0000;
+}

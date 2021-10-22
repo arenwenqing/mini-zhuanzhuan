@@ -1,0 +1,12 @@
+<!--pages/classification/childCpns/top-nav/top-nav.wxml-->
+<view class="container">
+  <scroll-view class='nav' scroll-x="true">
+    <block wx:for="{{navList}}" wx:key="index">
+      <view class='nav-every-content {{index === 0 ? "active" : ""}}'
+        bindtap='onItemClick'
+        data-index="{{index}}">
+        {{item}}
+      </view>
+    </block>
+  </scroll-view>
+</view>

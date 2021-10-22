@@ -1,1 +1,49 @@
 /* pages/classification/classification.wxss */
+.classification-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  background: #F7F7F7;
+}
+.search-input-wrapper {
+  position: relative;
+}
+.seach-input-icon{
+  display: inline-block;
+  position: absolute;
+  width: 26rpx;
+  height: 26rpx;
+  left: 48rpx;
+  top: 42rpx;
+}
+.search-input{
+  width: 642rpx;
+  height: 60rpx;
+  background: #FFFFFF;
+  border-radius: 36rpx;
+  border: 1rpx solid #DBDBDB;
+  margin: 24rpx auto 0;
+  font-size: 24rpx;
+  padding-left: 60rpx;
+}
+.classification-wrapper{
+  display: flex;
+  flex-direction: row;
+  margin-top: 22rpx;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-left: 20rpx;
+  background: #FFFFFF;
+  overflow: hidden;
+}

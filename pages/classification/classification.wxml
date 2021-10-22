@@ -1,4 +1,19 @@
 <!--pages/classification/classification.wxml-->
-<view>
-  <text>pages/classification/classification.wxml</text>
+<view class="classification-container">
+  <mp-navigation-bar
+    title='团团转'
+    color='#fff'
+    background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'
+  />
+  <view class="search-input-wrapper">
+    <image src='../images/search.png' class="seach-input-icon"></image>
+    <input bindconfirm="seach" confirm-type="search" class="search-input" selection-start="60" placeholder-class='placeholder-class-style' placeholder="请输入要查找的商品"/>
+  </view>
+  <view class="classification-wrapper">
+    <menu></menu>
+    <view class="right">
+      <top-nav></top-nav>
+      <main-content datalist="{{listData}}"></main-content>
+    </view>
+  </view>
 </view>

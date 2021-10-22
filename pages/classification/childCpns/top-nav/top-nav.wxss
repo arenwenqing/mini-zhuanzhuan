@@ -1,0 +1,29 @@
+/* pages/classification/childCpns/top-nav/top-nav.wxss */
+.container{
+  width: 100%;
+  height: 70rpx;
+}
+.nav{
+  white-space: nowrap;
+  padding: 20rpx 0;
+}
+.nav-every-content{
+  display: inline-block;
+  /* padding: 6rpx 36rpx; */
+  width: 118rpx;
+  height: 46rpx;
+  text-align: center;
+  line-height: 48rpx;
+  margin-right: 20rpx;
+  background: #F6F6F6;
+  border-radius: 45rpx;
+  border: 1rpx solid #EBEBEB;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #999393;
+}
+.active{
+  background: #FA2840;
+  color: #FFFFFF;
+}

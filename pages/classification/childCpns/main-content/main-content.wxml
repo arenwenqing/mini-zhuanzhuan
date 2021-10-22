@@ -1,0 +1,46 @@
+<!--pages/classification/childCpns/main-content/main-content.wxml-->
+<view class="container">
+  <block wx:for="{{datalist}}" wx:key="index">
+    <view class="goods-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
+      <view class="goods-item-left">
+        <view class="goods-img">
+          <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image> 
+        </view>
+        <view class="goods-item-name-price">
+          <view class="goods-item-name">
+            <text class="goods-item-name-title">{{item.majorName}}</text>
+            <text class="goods-item-name-num">库存{{item.stock}}</text>
+          </view>
+          <view class="goods-item-price">
+            <view class="goods-item-price-value">
+              <text class="goods-item-price1">￥</text>
+              <text class="goods-item-price2">{{item.price}}</text>
+            </view>
+            <view class="goods-item-time">
+              <image class="goods-item-time-icon" src='/pages/images/clock.png'></image>
+              <text class="goods-item-time-time1">剩余</text>
+              <text class="goods-item-time-time2">6天23时60分</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-item-right">
+        <view class="goods-item-right-content">
+          <view class="goods-item-right-top">
+            <view class="goods-item-right-num-people-wrapper">
+              <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
+            </view>
+            <view class="goods-item-right-red">
+              <image class="goods-item-red-icon" src='/pages/images/red-package.png'></image>
+              <text class="goods-item-right-red-num">{{item.cashback ? item.cashback : 0}}元</text>
+            </view>
+          </view>
+          <view class="goods-item-right-bottom">
+            <view class="goods-item-right-coupons">用劵拼团</view>
+            <view class="goods-item-right-now">立即拼团</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
