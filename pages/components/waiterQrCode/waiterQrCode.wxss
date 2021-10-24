@@ -1,0 +1,38 @@
+/* pages/components/waiterQrCode/waiterQrCode.wxss */
+.waiter-qr-code-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.waiter-qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wait-qr-code {
+  width: 400rpx;
+  height: 400rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+}
+.waiter-qr-code-text {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 48rpx;
+  margin-top: 48rpx;
+}
+.waiter-qr-code-close {
+  display: inline-block;
+  width: 52rpx;
+  height: 52rpx;
+  margin-top: 58rpx;
+}

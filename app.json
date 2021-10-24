@@ -6,7 +6,8 @@
     "pages/classification/classification",
     "pages/search/search",
     "pages/detail/detail",
-    "pages/conversionCode/conversionCode"
+    "pages/conversionCode/conversionCode",
+    "pages/shippinAddress/shippinAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -36,7 +36,9 @@ Page({
       key: '7'
     }],
     showAvatar: false,
-    userInfo: {}
+    userInfo: {},
+    visibile: false,
+    tipShow: false
   },
 
   /**
@@ -86,12 +88,30 @@ Page({
   // 点击我的页面 item
   onClickMyGoPage(e) {
     const clickTarget = e.currentTarget.dataset.target
-    if (clickTarget.key === '3') { // 点击兑换码
+    if (clickTarget.key === '1') {
+      // 双倍红包劵
+      this.setData({
+        tipShow: true
+      })
+    } if (clickTarget.key === '3') { // 点击兑换码
       wx.navigateTo({
         url: '/pages/conversionCode/conversionCode',
       })
+    } else if (clickTarget.key === '5') {
+      // 我的客服
+      this.setData({
+        visibile: true
+      })
     }
-    // console.log('---', clickTarget)
+  },
+
+  /**
+   * 关闭提示框
+   */
+  closeTip() {
+    this.setData({
+      tipShow: false
+    })
   },
 
   /**

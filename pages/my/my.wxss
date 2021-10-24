@@ -1,4 +1,8 @@
 /* pages/my/my.wxss */
+.my-page-navigation {
+  z-index: 333;
+  position: relative;
+}
 .my-top-wrapper {
   height: 300rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
@@ -61,7 +65,26 @@
   margin: 0 auto;
 }
 .my-user-item-wrapper {
+  position: relative;
   margin: 36rpx auto 0;
+}
+.my-user-quan-tip {
+  position: absolute;
+  width: 686rpx;
+  height: 290rpx;
+  background: #EE7100;
+  border-radius: 8rpx;
+  left: 50%;
+  margin-left: -343rpx;
+  top: -290rpx;
+}
+.my-user-quan-tip-triangle {
+  display: inline-block;
+  position: absolute;
+  width: 14rpx;
+  height: 8rpx;
+  bottom: -4px;
+  left: 207rpx;
 }
 .my-user-item {
   height: 96rpx;
@@ -106,4 +129,33 @@
   color: #333333;
   line-height: 32rpx;
   margin-right: 32rpx;
+}
+.my-user-quan-tip-wrapper {
+  margin: 24rpx 22rpx 20rpx 16rpx;
+}
+.my-user-quan-text {
+  display: block;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 34rpx;
+  margin-bottom: 30rpx;
+}
+.my-user-quan-text2 {
+  display: block;
+  font-size: 22rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 32rpx;
+  text-align: center;
+}
+.my-user-quan-guanbi {
+  position: absolute;
+  display: inline-block;
+  width: 52rpx;
+  height: 52rpx;
+  right: -22rpx;
+  top: -28rpx;
 }

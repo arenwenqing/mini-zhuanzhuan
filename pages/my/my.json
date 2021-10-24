@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
-    "component-announcement": "/pages/components/announcement/announcement"
+    "component-announcement": "/pages/components/announcement/announcement",
+    "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode"
   }
 }

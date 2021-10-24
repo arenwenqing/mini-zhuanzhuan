@@ -1,6 +1,6 @@
 <!--pages/my/my.wxml-->
 <view>
-  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <view class="my-top-wrapper">
     <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
   </view>
@@ -13,6 +13,16 @@
     <view wx:else class="my-user-name" bindtap="getUserProfile">注册/登录</view>
     <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参999999个团</text>
     <view class="my-user-item-wrapper">
+      <view wx:if="{{tipShow}}" class="my-user-quan-tip">
+        <image src="/pages/images/guanbi.png" class="my-user-quan-guanbi" bindtap="closeTip" />
+        <view class="my-user-quan-tip-wrapper">
+          <text class="my-user-quan-text">1 双倍红包券使用后，若获得红包，则红包金额翻倍；</text>
+          <text class="my-user-quan-text">2 双倍红包券为一次性优惠券，使用即生效，一经成团，无论结果均视为已使用；</text>
+          <text class="my-user-quan-text">3 双倍红包券使用后，可额外减少1名当前成团需要的人数;</text>
+          <text class="my-user-quan-text2">本使用说明的最终解释权归团团转所有</text>
+        </view>
+        <image class="my-user-quan-tip-triangle" src="/pages/images/triangle.png" />
+      </view>
       <block wx:for="{{list}}" wx:key="index">
         <view class="my-user-item" bindtap="onClickMyGoPage" data-target="{{item}}">
           <view>
@@ -26,4 +36,5 @@
       </block>
     </view>
   </view>
+  <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
 </view>
