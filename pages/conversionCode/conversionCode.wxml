@@ -17,6 +17,7 @@
   <!-- 点击领取弹窗 -->
   <mp-dialog
     title="领取"
+    data-dialog="{{'1111'}}"
     show="{{isShowDialog}}"
     buttons="{{[{text: '取消'}, {text: '复制'}]}}"
     bindbuttontap="clickDialogBtn"

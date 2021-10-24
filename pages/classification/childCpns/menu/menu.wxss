@@ -24,6 +24,7 @@
   background: #FFFFFF;
   /* margin-bottom: 2rpx; */
   border-bottom: 2rpx solid #EFEFEF;
+  border-left: 4rpx solid #FFFFFF;
 }
 .active{
   background: #FFDFDF;

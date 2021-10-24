@@ -18,7 +18,8 @@ App({
   // 登录
   login() {
     wx.login({
-      success() {
+      success(res) {
+        wx.setStorageSync('code', res.code)
         // that.getUserProfile()
       },
       fail() {
@@ -37,11 +38,17 @@ App({
     wx.checkSession({
       success () {
         //session_key 未过期，并且在本生命周期一直有效
-        console.log('登录未过期')
+        const code = wx.getStorageSync('code')
+        if (code) { // 有code
+          console.log('登录未过期', code)
+        } else { // 没有code跳转登录
+          // that.login()
+        }
       },
       fail() {
         // session_key 已经失效，需要重新执行登录流程
         try {
+          wx.removeStorageSync('code')
           wx.removeStorageSync('userInfo')
         } catch (error) {
           wx.showToast({

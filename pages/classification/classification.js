@@ -6,7 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        listData: []
+        listData: [],
+        menuList: [],
+        goodsTopType: [],
     },
 
     /**
@@ -17,58 +19,112 @@ Page({
         this.getCategory()
     },
 
+    /**
+     * 接口
+     */
     // 获得商品分类
-    getCategory () {
+    getCategory (parentId='') {
+        wx.showLoading({
+            title: '加载中',
+        })
         wx.request({
-        url: domain + '/mini/product/list',
-        dataType: 'POST',
-        data: {
-            categoryId: '558dde4f59b14548a599cacc18a41c29',
-            inVogue: 1,
-            productName: ''
-        },
-        success: (res) => {
-            console.log('----', res)
-            // this.setData({
-            //     noticeData: res.data.data ? res.data.data : []
-            // })
-        },
-        fail: (err) => {
-            wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-            })
-        }
+            url: domain + '/mini/product/category/list',
+            data: {
+                parentId: parentId,
+            },
+            success: (res) => {
+                if (parentId) { // 分类右侧数据
+                    this.setData({
+                        goodsTopType: res.data.data ? res.data.data : []
+                    }, () => {
+                        const { goodsTopType } = this.data
+                        if (goodsTopType && goodsTopType.length) {
+                            this.getList(goodsTopType[0].id)
+                        } else {
+                            this.setData({ listData:[] })
+                        }
+                    })
+                } else { // 分类左侧menu数据
+                    const hotStyle = [{
+                        id: 'baokuai',
+                        name: '爆款'
+                    }]
+                    this.setData({
+                        goodsTopType: [],
+                        menuList: hotStyle.concat(res.data.data || [])
+                    }, () => {
+                        this.getList()
+                    })
+                }
+            },
+            fail: (err) => {
+                wx.showToast({
+                title: err.data.msg,
+                icon: 'error',
+                duration: 2000
+                })
+            },
+            complete: () => {
+                wx.hideLoading()
+            }
         })
     },
-    // 获取首页列表
-    getList (id) {
-        wx.request({
-        url: domain + '/mini/product/list',
-        data: {
-            categoryId: '',
-            inVogue: 1,
-            productName: ''
-        },
-        success: (res) => {
-            res.data.data && res.data.data.forEach(item => {
-            item.price = (item.price / 100).toFixed(2)
-            })
-            const data = res.data.data.concat(res.data.data)
-            this.setData({
-                // listData: res.data.data ? res.data.data : []
-                listData: data
-            })
-        },
-        fail: (err) => {
-            wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-            })
-        }
+    // 获取爆款列表
+    getList (categoryId='') {
+        wx.showLoading({
+            title: '加载中',
         })
+        wx.request({
+            url: domain + '/mini/product/list',
+            data: {
+                categoryId: categoryId,
+                inVogue: categoryId ? 0 : 1,
+                productName: ''
+            },
+            success: (res) => {
+                res.data.data && res.data.data.forEach(item => {
+                item.price = (item.price / 100).toFixed(2)
+                })
+                this.setData({
+                    listData: res.data.data ? res.data.data : []
+                })
+            },
+            fail: (err) => {
+                wx.showToast({
+                title: err.data.msg,
+                icon: 'error',
+                duration: 2000
+                })
+            },
+            complete: () => {
+                wx.hideLoading()
+            }
+        })
+    },
+
+
+    /**
+     * 方法/函数
+     */
+    // 点击分类搜索
+    goSearch() {
+        wx.navigateTo({
+          url: '/pages/search/search',
+        })
+    },
+    // 点击左侧menu
+    clickMenuItem(e) {
+        const receiveDetail = e.detail
+        if (receiveDetail.name !== '爆款') {
+            this.getCategory(receiveDetail.id)
+        } else { // 爆款
+            this.getCategory()
+        }
+    },
+    // 点击右侧上部bar
+    clickTopBar(e) {
+        const receiveDetail = e.detail
+        this.getList(receiveDetail.id)
     },
 
     /**

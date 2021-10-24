@@ -1,11 +1,12 @@
 <!--pages/classification/childCpns/menu/menu.wxml-->
 <view class="container">
   <scroll-view class='menu' scroll-y="true" enhanced show-scrollbar="false">
-    <block wx:for="{{categories}}" wx:key="index">
-      <view class='menu-every-content {{index === 0 ? "active" : ""}}'
+    <block wx:for="{{menuList}}" wx:key="index">
+      <view class='menu-every-content {{index === currentIndex ? "active" : ""}}'
         bindtap='onMenuItemClick'
+        data-index="{{index}}"
         data-menu-item="{{item}}">
-        {{item}}
+        {{item.name}}
       </view>
     </block>
   </scroll-view>
