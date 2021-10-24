@@ -9,6 +9,7 @@ Page({
         listData: [],
         menuList: [],
         goodsTopType: [],
+        currentTopId: ''
     },
 
     /**

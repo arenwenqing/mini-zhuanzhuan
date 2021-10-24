@@ -1,0 +1,96 @@
+/* pages/mySpellGroup/spell-group-list/spell-group-list.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50rpx;
+}
+.conversion-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 670rpx;
+  height: 160rpx;
+  padding: 20rpx;
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+.goods-item-image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.content-right {
+  flex: 1;
+  margin-left: 20rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #262424;
+  line-height: 40rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.order-number {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 34rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.price-num {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.price {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 34rpx;
+}
+.realpay {
+  margin-right: 20rpx;
+}
+.real-num {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 34rpx;
+}
+.order-status {
+  background: #FFEEED;
+  border-radius: 4rpx;
+  border: 1rpx solid #F2E2E1;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF5951;
+  line-height: 32rpx;
+  margin-right: 20rpx;
+  padding: 0rpx 6rpx;
+}
+.other-describe {
+  background: #F6F6F6;
+  border-radius: 4rpx;
+  border: 1rpx solid #EBEBEB;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 32rpx;
+  padding: 0rpx 6rpx;
+}

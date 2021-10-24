@@ -3,12 +3,12 @@
   <block wx:for="{{datalist}}" wx:key="index">
     <view class="conversion-wrapper">
       <view class="content-left">
-        <image class="goods-item-image" src="https://cdn.tuanzhzh.com/900ebb797ee449ae820dc85576b5bf53/1.jpg"></image>
+        <image class="goods-item-image" src="{{item.thumbnailUrl}}"></image>
         <view class="content-right">
-          <view><text class="goods-item-name-title">敷尔佳积雪草舒缓修护贴 26g*5贴</text></view>
+          <view><text class="goods-item-name-title">{{item.supplierName}}</text></view>
           <view class="content-right-bottom">
-            <text class="goods-item-code">1234567890ABCDEFG</text>
-            <text class="goods-item-time">兑换截止2021年12月10日</text>
+            <text class="goods-item-code">{{item.exchangeCode}}</text>
+            <text class="goods-item-time">兑换截止{{item.endUseTime}}</text>
           </view>
         </view>
       </view>

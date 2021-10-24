@@ -4,14 +4,17 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    datalist: {
+      type: Array,
+      value: []
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    datalist: [1, 2, 3, 4, 5, 6, 7, 8]
+
   },
 
   /**

@@ -1,0 +1,37 @@
+/* pages/mySpellGroup/mySpellGroup.wxss */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #F7F7F7;
+  overflow-y: auto;
+}
+.my-top-wrapper {
+  margin: 8rpx 0rpx;
+}
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 20rpx 0rpx;
+}
+.seach-input-icon{
+  display: inline-block;
+  position: absolute;
+  width: 26rpx;
+  height: 26rpx;
+  left: 44rpx;
+  top: 20rpx;
+}
+.search-input{
+  width: 494rpx;
+  height: 60rpx;
+  background: #FFFFFF;
+  border-radius: 36rpx;
+  border: 1rpx solid #DBDBDB;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  padding-left: 60rpx;
+}
