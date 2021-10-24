@@ -38,7 +38,7 @@ Page({
     showAvatar: false,
     userInfo: {},
     visibile: false,
-    tipShow: false
+    tipShow: false,
   },
 
   /**
@@ -93,7 +93,11 @@ Page({
       this.setData({
         tipShow: true
       })
-    } if (clickTarget.key === '3') { // 点击兑换码
+    } else if (clickTarget.key === '2') { // 我的拼团
+      wx.navigateTo({
+        url: '/pages/mySpellGroup/mySpellGroup',
+      })
+    } else if (clickTarget.key === '3') { // 点击兑换码
       wx.navigateTo({
         url: '/pages/conversionCode/conversionCode',
       })

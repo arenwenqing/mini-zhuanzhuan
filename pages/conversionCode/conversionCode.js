@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    code: '',
     isShowDialog: false,
+    userId: '',
     conversionData: undefined
   },
 
@@ -15,11 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const code = wx.getStorageSync('code')
+    const userId = wx.getStorageSync('userId')
     this.setData({
-      code
+      userId
     }, () => {
-      // this.getConversionList()
+      this.getConversionList(userId)
     })
   },
   onShareAppMessage() {
@@ -32,21 +32,14 @@ Page({
    * 接口
    */
   // 获取兑换码列表
-  getConversionList() {
+  getConversionList(userId) {
     wx.request({
-      url: domain + '/mini/user/session/get',
-      method: 'POST',
-      date: {
-        code: this.data.code,
-        grantType: 'store',
-        grantTypes: ['store'],
-        originUserId: '',
-        originExchangeCode: ''
-      },
+      url: domain + `/mini/user/detail/${userId}`,
+      method: 'GET',
       success: (res) => {
-        // this.setData({
-        //   movies: res.data.data ? res.data.data : []
-        // })
+        this.setData({
+          conversionData: res.data.data.exchangeCodeList ? res.data.data.exchangeCodeList : []
+        })
       },
       fail: (err) => {
         wx.showToast({

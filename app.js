@@ -1,4 +1,5 @@
 // app.js
+const domain = 'https://tuanzhzh.com'
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -17,14 +18,38 @@ App({
 
   // 登录
   login() {
+    const that = this
     wx.login({
       success(res) {
         wx.setStorageSync('code', res.code)
-        // that.getUserProfile()
+        that.getUserId(res.code)
       },
       fail() {
         wx.showToast({
           title: '登录失败',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  // 获取用户ID、openID
+  getUserId(code) {
+    wx.request({
+      url: domain + '/mini/user/session/get',
+      method: 'POST',
+      data: {
+        code: code
+      },
+      success: (res) => {
+        if (res.data.data.userId) {
+          wx.setStorageSync('userId', res.data.data.userId)
+        }
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
           icon: 'error',
           duration: 2000
         })
@@ -42,7 +67,7 @@ App({
         if (code) { // 有code
           console.log('登录未过期', code)
         } else { // 没有code跳转登录
-          // that.login()
+          that.login()
         }
       },
       fail() {
