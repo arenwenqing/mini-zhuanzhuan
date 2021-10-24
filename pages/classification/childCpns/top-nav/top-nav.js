@@ -17,6 +17,12 @@ Component({
     currentIndex: 0
   },
 
+  observers: {
+    'goodsTopType': function(goodsTopType) {
+      this.setData({ currentIndex: 0 })
+    }
+  },
+
   /**
    * 组件的方法列表
    */
