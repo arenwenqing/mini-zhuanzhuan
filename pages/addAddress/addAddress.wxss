@@ -1,0 +1,19 @@
+/* pages/addAddress/addAddress.wxss */
+.add-address-wrapper {
+  background: #F7F7F7;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.add-address-content {
+  width: 710rpx;
+  height: 652rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 20rpx auto 0;
+}
+.add-address-content-wrapper {
+  padding: 16rpx 24rpx 48rpx 24rpx;
+}

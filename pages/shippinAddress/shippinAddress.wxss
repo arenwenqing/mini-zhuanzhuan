@@ -1,1 +1,108 @@
 /* pages/shippinAddress/shippinAddress.wxss */
+.shipping-address-wrapper {
+  background: #F7F7F7;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.shipping-address-content {
+  width: 710rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 20rpx auto 0rpx;
+  padding-bottom: 20rpx;
+  margin-bottom: 185rpx;
+}
+.shipping-address-content-item {
+  position: relative;
+  height: 186rpx;
+  margin: 0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shipping-address-default {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Heavy, PingFang-SC;
+  font-weight: 800;
+  color: #333333;
+  line-height: 34rpx;
+  position: absolute;
+  left: 3rpx;
+}
+.address-delete-icon, .address-detail-icon {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+}
+.shipping-address-content-right {
+  width: 602rpx;
+  border-bottom: 2rpx solid #EBEBEB;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.shipping-address-content-right-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shipping-address-content-1 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #666666;
+  line-height: 34rpx;
+}
+.shipping-address-content-2 {
+  width: 88rpx;
+  height: 32rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+  padding: 0 8rpx;
+  border-radius: 4px;
+  border: 1px solid #6B6B6B;
+}
+.shipping-address-content-3 {
+  font-size: 28rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #262626;
+  line-height: 40rpx;
+  margin: 8rpx 0;
+}
+.shipping-address-content-4 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #666666;
+  line-height: 34rpx;
+  margin-right: 12rpx;
+}
+.shipping-add-address-btn-wrapper {
+  position: fixed;
+  height: 180rpx;
+  background: #F7F7F7;
+  width: 100vw;
+  bottom: 0;
+}
+.shipping-add-address-btn {
+  width: 662rpx;
+  height: 88rpx;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255, 57, 57, 0.5);
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+}

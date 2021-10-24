@@ -1,0 +1,9 @@
+<!--pages/addAddress/addAddress.wxml-->
+<view class="add-address-wrapper">
+  <mp-navigation-bar title='添加收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
+  <view class="add-address-content">
+    <view class="add-address-content-wrapper">
+      <view class="add-address-content-item"></view>
+    </view>
+  </view>
+</view>

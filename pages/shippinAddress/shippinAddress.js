@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    addressData: [1, 2, 3, 4, 5],
+    buttonArray: [{
+      text: '取消'
+    }, {
+      text: '确定'
+    }],
+    deleteDialog: false
   },
 
   /**
@@ -34,6 +40,44 @@ Page({
    */
   onHide: function () {
 
+  },
+
+  /**
+   * 删除地址
+   * @param {*} stringNum 
+   */
+  deleteAddress(a) {
+    console.log(a.currentTarget.dataset.index)
+    this.setData({
+      deleteDialog: true
+    })
+  },
+
+  jiamiPhoneNumber(stringNum) {
+    return stringNum.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
+  },
+
+  /**
+   * 关闭删除确认
+   */
+  closeAddressTip(param) {
+    if (param.detail.index == 0) {
+      console.log('点击了取消')
+    } else {
+      console.log('点击了确定')
+    }
+    this.setData({
+      deleteDialog: false
+    })
+  },
+
+  /**
+   * 添加收货地址
+   */
+  addAddress() {
+    wx.navigateTo({
+      url: `/pages/addAddress/addAddress`,
+    })
   },
 
   /**

@@ -97,6 +97,10 @@ Page({
       wx.navigateTo({
         url: '/pages/conversionCode/conversionCode',
       })
+    } else if (clickTarget.key === '4') {
+      wx.navigateTo({
+        url: '/pages/shippinAddress/shippinAddress',
+      })
     } else if (clickTarget.key === '5') {
       // 我的客服
       this.setData({

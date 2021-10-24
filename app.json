@@ -7,7 +7,8 @@
     "pages/search/search",
     "pages/detail/detail",
     "pages/conversionCode/conversionCode",
-    "pages/shippinAddress/shippinAddress"
+    "pages/shippinAddress/shippinAddress",
+    "pages/addAddress/addAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",
