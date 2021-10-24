@@ -55,8 +55,10 @@ Page({
             res.data.data && res.data.data.forEach(item => {
             item.price = (item.price / 100).toFixed(2)
             })
+            const data = res.data.data.concat(res.data.data)
             this.setData({
-            listData: res.data.data ? res.data.data : []
+                // listData: res.data.data ? res.data.data : []
+                listData: data
             })
         },
         fail: (err) => {

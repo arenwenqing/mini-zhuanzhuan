@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
+    "component-announcement": "/pages/components/announcement/announcement",
+    "conversion-list": "/pages/conversionCode/conversion-list/conversion-list",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black"
+}

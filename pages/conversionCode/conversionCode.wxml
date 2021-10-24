@@ -1,0 +1,24 @@
+<!--pages/conversionCode/conversionCode.wxml-->
+<view class="container">
+  <mp-navigation-bar title='团赚赚' color='#000000' background='#FFFFFF'></mp-navigation-bar>
+  <view class="my-top-wrapper">
+    <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
+  </view>
+  <view class="conversion-img-wrapper">
+    <image src="https://cdn.tuanzhzh.com/banner/banner1.jpeg" class="conversion-img"></image>
+  </view>
+  <!-- 兑换码列表 -->
+  <view class="conversion-list">
+    <conversion-list
+      datalist="{{listData}}"
+      bind:handleGetOperation="handleGetOperation"
+    ></conversion-list>
+  </view>
+  <!-- 点击领取弹窗 -->
+  <mp-dialog
+    title="领取"
+    show="{{isShowDialog}}"
+    buttons="{{[{text: '取消'}, {text: '复制'}]}}"
+    bindbuttontap="clickDialogBtn"
+  ></mp-dialog>
+</view>

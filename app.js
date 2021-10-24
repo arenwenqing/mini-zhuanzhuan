@@ -19,7 +19,7 @@ App({
   login() {
     wx.login({
       success() {
-        that.getUserProfile()
+        // that.getUserProfile()
       },
       fail() {
         wx.showToast({

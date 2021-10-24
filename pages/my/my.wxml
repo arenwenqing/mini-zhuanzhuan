@@ -14,7 +14,7 @@
     <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参999999个团</text>
     <view class="my-user-item-wrapper">
       <block wx:for="{{list}}" wx:key="index">
-        <view class="my-user-item">
+        <view class="my-user-item" bindtap="onClickMyGoPage" data-target="{{item}}">
           <view>
             <image src="{{item.icon}}" class="my-user-item-icon"></image>
             <text class="my-user-item-text">{{item.text}}</text>

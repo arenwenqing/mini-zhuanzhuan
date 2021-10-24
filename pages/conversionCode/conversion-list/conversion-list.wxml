@@ -1,0 +1,31 @@
+<!--pages/conversionCode/conversion-list/conversion-list.wxml-->
+<view class="container">
+  <block wx:for="{{datalist}}" wx:key="index">
+    <view class="conversion-wrapper">
+      <view class="content-left">
+        <image class="goods-item-image" src="https://cdn.tuanzhzh.com/900ebb797ee449ae820dc85576b5bf53/1.jpg"></image>
+        <view class="content-right">
+          <view><text class="goods-item-name-title">敷尔佳积雪草舒缓修护贴 26g*5贴</text></view>
+          <view class="content-right-bottom">
+            <text class="goods-item-code">1234567890ABCDEFG</text>
+            <text class="goods-item-time">兑换截止2021年12月10日</text>
+          </view>
+        </view>
+      </view>
+      <view class="content-operation">
+        <view class="receive-btn" bindtap="clickGetBtn" data-item="{{item}}">领取</view>
+        <view class="correlation-time">
+          <text class="receive-date">2021年10月10日</text>
+          <text class="receive-timer">12点前可领取</text>
+        </view>
+        <!-- <view class="share-btn" bindtap="clickShareBtn" data-item="{{item}}">分享</view> -->
+        <button
+          class="share-btn"
+          open-type="share"
+          style="width: 84rpx; font-size: 22rpx; padding: 0rpx; margin: 0rpx;"
+        >分享</button>
+      </view>
+    </view>
+  </block>
+</view>
+

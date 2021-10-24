@@ -8,25 +8,32 @@ Page({
   data: {
     list: [{
       icon: '/pages/images/5.png',
-      text: '双倍红包券'
+      text: '双倍红包券',
+      key: '1'
     }, {
       icon: '/pages/images/3.png',
-      text: '我的拼团'
+      text: '我的拼团',
+      key: '2'
     }, {
       icon: '/pages/images/4.png',
-      text: '兑换码'
+      text: '兑换码',
+      key: '3'
     }, {
       icon: '/pages/images/2.png',
-      text: '我的地址'
+      text: '我的地址',
+      key: '4'
     }, {
       icon: '/pages/images/7.png',
-      text: '我的客服'
+      text: '我的客服',
+      key: '5'
     }, {
       icon: '/pages/images/1.png',
-      text: '用户协议'
+      text: '用户协议',
+      key: '6'
     }, {
       icon: '/pages/images/6.png',
-      text: '隐私协议'
+      text: '隐私协议',
+      key: '7'
     }],
     showAvatar: false,
     userInfo: {}
@@ -55,19 +62,36 @@ Page({
 
   },
 
+  /**
+   * 接口
+   */
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-        console.log(res.userInfo)
+        console.log('infosx', res)
         this.setData({
           userInfo: res.userInfo,
           showAvatar: true
         })
       }
     })
+  },
+
+  /**
+   * 方法
+   */
+  // 点击我的页面 item
+  onClickMyGoPage(e) {
+    const clickTarget = e.currentTarget.dataset.target
+    if (clickTarget.key === '3') { // 点击兑换码
+      wx.navigateTo({
+        url: '/pages/conversionCode/conversionCode',
+      })
+    }
+    // console.log('---', clickTarget)
   },
 
   /**

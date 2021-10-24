@@ -14,8 +14,8 @@
           </swiper>
         </view>
       </view>
-      <view class="container-system-gonggao-right">
+      <!-- <view class="container-system-gonggao-right">
         <image src="/pages/images/tips.png" class="system-right-img {{ centerStyle ? 'system-right-img-center' : '' }}"></image>
-      </view>
+      </view> -->
     </view>
 </view>
