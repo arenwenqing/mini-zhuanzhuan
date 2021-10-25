@@ -24,7 +24,39 @@
   height: 100%;
   border-radius: 24rpx;
 }
-/* .conversion-list {
-  width: auto;
-  margin: 0 auto;
-} */
+.draw-conversion-code .weui-dialog__title{
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #353535;
+  line-height: 48rpx;
+}
+.draw-conversion-code .weui-dialog__btn_default {
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: 1rpx;
+}
+.draw-conversion-code .weui-dialog__btn_primary {
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #576B95;
+  letter-spacing: 1rpx;
+}
+.draw-conversion-detail {
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #353535;
+  line-height: 48rpx;
+}
+.draw-conversion-code-info {
+  font-size: 34rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FF5951;
+  line-height: 48rpx;
+  margin-top: 22rpx;
+}

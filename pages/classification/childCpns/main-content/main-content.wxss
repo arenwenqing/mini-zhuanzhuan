@@ -148,7 +148,7 @@
   display: inline-block;
   width: 24rpx;
   height: 24rpx;
-  margin-right: 4rpx;
+  margin: 0rpx 4rpx;
 }
 .goods-item-right-red {
   display: flex;

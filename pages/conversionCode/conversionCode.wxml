@@ -16,10 +16,16 @@
   </view>
   <!-- 点击领取弹窗 -->
   <mp-dialog
-    title="领取"
-    data-dialog="{{'1111'}}"
+    ext-class="draw-conversion-code"
+    mask-closable="{{false}}"
+    title="{{activeConversion.useDesc}}"
     show="{{isShowDialog}}"
     buttons="{{[{text: '取消'}, {text: '复制'}]}}"
     bindbuttontap="clickDialogBtn"
-  ></mp-dialog>
+  >
+    <view>
+      <view class="draw-conversion-detail">{{activeConversion.supplierName}}一份</view>
+      <view class="draw-conversion-code-info">兑换码：{{activeConversion.exchangeCode}}</view>
+    </view>
+  </mp-dialog>
 </view>
