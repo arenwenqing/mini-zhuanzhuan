@@ -64,7 +64,8 @@ App({
       success () {
         //session_key 未过期，并且在本生命周期一直有效
         const code = wx.getStorageSync('code')
-        if (code) { // 有code
+        const userId = wx.getStorageSync('userId')
+        if (code && userId) { // 有code和userId
           console.log('登录未过期', code)
         } else { // 没有code跳转登录
           that.login()
