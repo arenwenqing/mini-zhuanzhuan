@@ -1,5 +1,4 @@
-// pages/mySpellGroup/mySpellGroup.js
-const domain = 'https://tuanzhzh.com' 
+// pages/orderDetail/orderDetail.js
 Page({
 
   /**
@@ -13,34 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getOrderList()
-  },
 
-  // 获取拼团列表
-  getOrderList () {
-    wx.showLoading({
-        title: '加载中',
-    })
-    wx.request({
-        url: domain + '/mini/order/list',
-        method: 'POST',
-        data: {
-          productName: '口红',
-          orderStatus: 5
-        },
-        success: (res) => {
-        },
-        fail: (err) => {
-            wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-          })
-        },
-        complete: () => {
-          wx.hideLoading()
-        }
-    })
   },
 
   /**

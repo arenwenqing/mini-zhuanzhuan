@@ -18,6 +18,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    lookOrderDetail(e) {
+      const order = e.currentTarget.dataset.order
+      wx.navigateTo({
+        url: '/pages/orderDetail/orderDetail',
+      })
+    }
   }
 })

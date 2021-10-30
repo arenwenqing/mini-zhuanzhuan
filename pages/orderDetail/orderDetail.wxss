@@ -1,0 +1,36 @@
+/* pages/orderDetail/orderDetail.wxss */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* height: 100vh; */
+  height: calc(100vh - 200rpx);
+  background: #F7F7F7;
+  overflow-y: auto;
+}
+.order-top {
+  width: 710rpx;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  overflow: hidden;
+}
+.bottom-operation-btn {
+  position: fixed;
+  height: 200rpx;
+  bottom: 0;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  background: #F7F7F7;
+}
+.order-content {
+  width: 710rpx;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  overflow: hidden;
+}

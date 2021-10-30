@@ -45,6 +45,7 @@ App({
       success: (res) => {
         if (res.data.data.userId) {
           wx.setStorageSync('userId', res.data.data.userId)
+          wx.setStorageSync('openid', res.data.data.openid)
         }
       },
       fail: (err) => {
@@ -65,7 +66,8 @@ App({
         //session_key 未过期，并且在本生命周期一直有效
         const code = wx.getStorageSync('code')
         const userId = wx.getStorageSync('userId')
-        if (code && userId) { // 有code和userId
+        const openid = wx.getStorageSync('openid')
+        if (code && userId && openid) { // 有code和userId、openid
           console.log('登录未过期', code)
         } else { // 没有code跳转登录
           that.login()

@@ -1,0 +1,17 @@
+<!--pages/orderDetail/childCpns/order-top-intro/order-top-intro.wxml-->
+<view class="container">
+  <image class="order-image" src="https://cdn.tuanzhzh.com/900ebb797ee449ae820dc85576b5bf53/1.jpg"></image>
+  <view class="order-content">
+    <view class="order-title">珂雰天然山羊乳提炼皂120g小红书 ko天然山羊乳提炼皂雰天然山羊乳提炼皂120g小红乳提炼皂雰</view>
+    <view class="order-desc">
+      <view class="order-price-num">
+        <text class="order-price">12.99元</text>
+        <text class="order-num">数量：1</text>
+      </view>
+      <view>
+        <text class="order-current-status status">待发货</text>
+        <text class="order-current-status deliver-time">48小时发货</text>
+      </view>
+    </view>
+  </view>
+</view>

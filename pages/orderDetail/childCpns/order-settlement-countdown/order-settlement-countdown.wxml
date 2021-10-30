@@ -1,0 +1,15 @@
+<!--pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown.wxml-->
+<view class="container">
+  <view class="content-top">
+    <text class="content-top-title">参团成功，拼团倒计时24:00:00</text>
+    <text class="content-top-cont">请于05:00内付款</text>
+  </view>
+  <view class="content-address">
+    <view class="province-city">
+      <text class="province-city-title">北京市北京市朝阳区望京街道</text>
+      <text class="icon">></text>
+    </view>
+    <view class="detail-address"></view>
+    <view class="name-phone"></view>
+  </view>
+</view>

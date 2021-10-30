@@ -1,7 +1,7 @@
 <!--pages/mySpellGroup/spell-group-list/spell-group-list.wxml-->
 <view class="container">
   <block wx:for="{{datalist}}" wx:key="index">
-    <view class="conversion-wrapper">
+    <view class="conversion-wrapper" data-order="item" bindtap="lookOrderDetail">
       <image class="goods-item-image" src="https://cdn.tuanzhzh.com/900ebb797ee449ae820dc85576b5bf53/1.jpg"></image>
       <view class="content-right">
         <view class="title">可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心</view>

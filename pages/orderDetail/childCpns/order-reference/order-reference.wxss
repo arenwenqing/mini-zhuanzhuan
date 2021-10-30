@@ -1,0 +1,57 @@
+/* pages/orderDetail/childCpns/order-reference/order-reference.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20rpx 24rpx;
+}
+.serial-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.serial-number-content {
+  display: flex;
+}
+.serial-title {
+  font-size: 20rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 28rpx;
+}
+.serial-content {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #101010;
+  line-height: 28rpx;
+}
+.copy {
+  width: 60rpx;
+  height: 32rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #6B6B6B;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+  margin-left: 16rpx;
+  text-align: center;
+}
+.num-cont {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #101010;
+  line-height: 28rpx;
+}
+.order-num , .order-price {
+  margin-bottom: 8rpx;
+  height: 34rpx;
+}
+.pack-specification {
+  margin-bottom: 3rpx;
+}
