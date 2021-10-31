@@ -1,4 +1,4 @@
-// pages/orderDetail/childCpns/order-top-intro/order-top-intro.js
+// pages/orderDetail/childCpns/order-more-image/order-more-image.js
 Component({
   /**
    * 组件的属性列表

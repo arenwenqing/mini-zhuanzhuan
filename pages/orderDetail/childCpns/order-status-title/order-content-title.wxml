@@ -1,0 +1,19 @@
+<!--pages/orderDetail/childCpns/order-status-title/order-content-title.wxml-->
+<view class="container">
+  <view class="order-content-title">支付成功，拼团倒计时</view>
+  <!-- 待收货，据成团还差XX人，剩余XX：XX：XX结束 -->
+  <view>
+    <view class="according-number-groups">
+      <text>据成团还差<text class="lack-group-number">9</text>人</text>
+    </view>
+    <view class="remaining-end-time">
+      <text>剩余</text>
+      <text class="end-time">24</text>
+      <text>:</text>
+      <text class="end-time">00</text>
+      <text>:</text>
+      <text class="end-time">00</text>
+      <text>结束</text>
+    </view>
+  </view>
+</view>

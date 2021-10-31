@@ -4,14 +4,17 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    orderListData: {
+      type: Array,
+      value: []
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    datalist: [1, 2, 3, 4, 5, 6, 7, 8]
+
   },
 
   /**
@@ -21,7 +24,7 @@ Component({
     lookOrderDetail(e) {
       const order = e.currentTarget.dataset.order
       wx.navigateTo({
-        url: '/pages/orderDetail/orderDetail',
+        url: '/pages/orderDetail/orderDetail?orderId=' + order.orderId,
       })
     }
   }

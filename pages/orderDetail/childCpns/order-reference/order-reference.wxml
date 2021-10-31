@@ -3,16 +3,16 @@
   <view class="serial-number order-num">
     <text class="serial-title">订单编号：</text>
     <view class="serial-number-content">
-      <text class="serial-content">ABCDEFGHIJKLMN-001</text>
+      <text class="serial-content">{{orderData.orderId}}</text>
       <text class="copy">复制</text>
     </view>
   </view>
   <view class="serial-number order-price">
     <text class="serial-title">订单金额：</text>
-    <text class="num-cont">999.99元</text>
+    <text class="num-cont">{{orderData.orderPrice / 100}}元</text>
   </view>
   <view class="serial-number pack-specification">
     <text class="serial-title">包装规格：</text>
-    <text class="num-cont">10双</text>
+    <text class="num-cont">{{orderData.spec}}</text>
   </view>
 </view>

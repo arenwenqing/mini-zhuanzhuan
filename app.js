@@ -1,5 +1,6 @@
 // app.js
 const domain = 'https://tuanzhzh.com'
+import './utils/protoExtension'
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -46,6 +47,8 @@ App({
         if (res.data.data.userId) {
           wx.setStorageSync('userId', res.data.data.userId)
           wx.setStorageSync('openid', res.data.data.openid)
+          this.globalData.userId = res.data.data.userId
+          this.globalData.openid = res.data.data.openid
         }
       },
       fail: (err) => {
@@ -91,6 +94,8 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userId: '',
+    openid: ''
   }
 })

@@ -1,4 +1,5 @@
 // pages/mySpellGroup/mySpellGroup.js
+const app = getApp()
 const domain = 'https://tuanzhzh.com' 
 Page({
 
@@ -6,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderListData: []
   },
 
   /**
@@ -24,11 +25,18 @@ Page({
     wx.request({
         url: domain + '/mini/order/list',
         method: 'POST',
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
+        },
         data: {
-          productName: '口红',
-          orderStatus: 5
+          productName: '',
+          orderStatus: -1
         },
         success: (res) => {
+          this.setData({
+            orderListData: res.data.data || []
+          })
         },
         fail: (err) => {
             wx.showToast({
