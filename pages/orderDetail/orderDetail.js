@@ -6,8 +6,8 @@
  * 4:已支付
  * 
  */
-const domain = 'https://tuanzhzh.com'
-import { getOrderDetail } from './network'
+// import { getOrderDetail, getPayId } from './network'
+import API from './network'
 Page({
 
   /**
@@ -28,7 +28,7 @@ Page({
   },
   // 获取订单详情
   getOrderDetail(orderId) {
-    getOrderDetail({
+    API.getOrderDetail({
       orderId
     }).then(res => {
       this.setData({
@@ -42,85 +42,34 @@ Page({
         duration: 2000
       })
     })
-    // wx.showLoading({
-    //     title: '加载中',
-    // })
-    // wx.request({
-    //     url: domain +  `/mini/order/detail/${orderId}`,
-    //     method: 'GET',
-    //     header: {
-    //       openid: wx.getStorageSync('openid'),
-    //       userid: wx.getStorageSync('userId')
-    //     },
-    //     success: (res) => {
-    //       this.setData({
-    //         orderData: res.data.data || [],
-    //         orderStatusCode: res.data.data.orderStatus.code
-    //       })
-    //     },
-    //     fail: (err) => {
-    //       wx.showToast({
-    //         title: err.data.msg,
-    //         icon: 'error',
-    //         duration: 2000
-    //       })
-    //     },
-    //     complete: () => {
-    //       wx.hideLoading()
-    //     }
-    // })
   },
 
   // 点击微信支付/再拼一次/确认收货
   clickPerationBtn(e) {
     this.getPayId()
-    // wx.requestPayment({
-    //   timeStamp: '',
-    //   nonceStr: '',
-    //   package: '',
-    //   signType: 'MD5',
-    //   paySign: '',
-    //   success (res) { },
-    //   fail (res) { }
-    // })
   },
 
+  // 支付
   getPayId() {
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-        url: domain +  '/mini/order/pay',
-        method: 'POST',
-        header: {
-          openid: wx.getStorageSync('openid'),
-          userid: wx.getStorageSync('userId')
-        },
-        data: {
-          orderId: this.data.orderData.orderId,
-          receiveAddressId: this.data.orderData.receiveAddress.addressId
-        },
-        success: (res) => {
-          wx.requestPayment({
-            ...res.data.data,
-            timeStamp: res.data.data.timestamp,
-            nonceStr: res.data.data.nonce_str,
-            success (res) { },
-            fail (res) {
-              debugger
-            }
-          })
-        },
-        fail: (err) => {
-          wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-          })
-        },
-        complete: () => {
-          wx.hideLoading()
+    API.getPayId({
+      orderId: this.data.orderData.orderId,
+      receiveAddressId: this.data.orderData.receiveAddress.addressId
+    }).then(res => {
+      wx.requestPayment({
+        ...res.data.data,
+        timeStamp: res.data.data.timestamp,
+        nonceStr: res.data.data.nonce_str,
+        success (res) { },
+        fail (res) {
+          debugger
         }
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
     })
   },
 

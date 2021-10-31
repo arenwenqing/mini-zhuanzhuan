@@ -1,8 +1,8 @@
 /**
  * 网络请求
  */
-const baseURL = 'https://tuanzhzh.com' 
-const request = (options, isLoading) => {
+const baseURL = 'https://tuanzhzh.com'
+export const request = (options, isLoading) => {
   if (isLoading) {
     wx.showLoading({
       title: '数据加载中ing',
