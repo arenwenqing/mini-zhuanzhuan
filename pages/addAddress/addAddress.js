@@ -134,6 +134,7 @@ Page({
    * 更新地址
    */
   saveAddress() {
+    wx.showLoading('加载中')
     wx.request({
       url: domain + '/mini/user/address/upload',
       method: 'POST',
@@ -151,14 +152,18 @@ Page({
           province: this.data.provinceObjValue.code,
           provinceName: this.data.provinceObjValue.name,
           receivePhoneNum: this.data.receivePhone,
-          receiveUsername: this.data.receiveUsername
+          receiveUsername: this.data.receivePeople
         }],
         userId: wx.getStorageSync('userId')
       },
       success: res => {
-        console.log(res)
+        wx.hideLoading()
+        wx.navigateTo({
+          url: `/pages/shippinAddress/shippinAddress`,
+        })
       },
       fail: err => {
+        wx.hideLoading()
         wx.showToast({
           title: err.data.msg,
           icon: 'error',

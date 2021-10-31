@@ -47,6 +47,7 @@ App({
         if (res.data.data.userId) {
           wx.setStorageSync('userId', res.data.data.userId)
           wx.setStorageSync('openid', res.data.data.openid)
+          wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
           this.globalData.userId = res.data.data.userId
           this.globalData.openid = res.data.data.openid
         }

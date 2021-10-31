@@ -11,18 +11,18 @@
         </view>
         <view class="shipping-address-content-right" bindtap="addAddress">
           <view class="shipping-address-content-right-item">
-            <text wx:if="{{index === 0}}" class="shipping-address-default">默认</text>
-            <view class="shipping-address-content-1">河北省廊坊市三河市燕郊镇</view>
-            <view wx:if="{{index !== 0}}" class="shipping-address-content-2">设为默认</view>
+            <text wx:if="{{item.isDefault}}" class="shipping-address-default">默认</text>
+            <view class="shipping-address-content-1">{{item.provinceName + item.cityName + item.districtName}}</view>
+            <view wx:if="{{!item.isDefault}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="setDefault">设为默认</view>
           </view>
           <view class="shipping-address-content-right-item">
-            <view class="shipping-address-content-3">理想新城1区35号楼2单元1004</view>
+            <view class="shipping-address-content-3">{{item.detail}}</view>
             <image class="address-detail-icon" src='/pages/images/address-detail-icon.png' />
           </view>
           <view class="shipping-address-content-right-item">
             <view>
-              <text class="shipping-address-content-4">任文庆</text>
-              <text class="shipping-address-content-4">{ jiamiPhoneNumber('18515934837') }</text>
+              <text class="shipping-address-content-4">{{item.receiveUsername}}</text>
+              <text class="shipping-address-content-4">{{ item.receivePhoneNum }}</text>
             </view>
           </view>
         </view>

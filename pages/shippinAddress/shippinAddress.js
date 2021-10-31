@@ -1,11 +1,11 @@
 // pages/shippinAddress/shippinAddress.js
+const domain = 'https://tuanzhzh.com'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    addressData: [1, 2, 3, 4, 5],
+    addressData: [],
     buttonArray: [{
       text: '取消'
     }, {
@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
   },
 
   /**
@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserDetail()
   },
 
   /**
@@ -40,6 +40,67 @@ Page({
    */
   onHide: function () {
 
+  },
+
+  /**
+   * 获取用户详情取出地址列表
+   */
+  getUserDetail () {
+    wx.showLoading('加载中')
+    wx.request({
+      url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
+      success: res => {
+        let tempArray = res.data.data.addressList
+        const index = tempArray.findIndex(item => item.isDefault)
+        if (index !== -1) {
+          const deleteArray = tempArray.splice(index, 1)
+          tempArray = deleteArray.concat(tempArray)
+        }
+        tempArray.forEach(item => {
+          item.receivePhoneNum = this.jiamiPhoneNumber(item.receivePhoneNum)
+        })
+        this.setData({
+          addressData: tempArray
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  /**
+   * 设为默认地址
+   */
+  setDefault(e) {
+    const addressObj = e.currentTarget.dataset.data
+    addressObj.isDefault = true
+    wx.request({
+      url: domain + '/mini/user/submit',
+      method: 'POST',
+      data: {
+        userId: wx.getStorageSync('userId'),
+        wxUser: wx.getStorageSync('wxUser'),
+        addressList: [addressObj]
+      },
+      success: res => {
+        this.getUserDetail()
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   /**
