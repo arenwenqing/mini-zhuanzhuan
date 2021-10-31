@@ -66,7 +66,7 @@ App({
   checkLogin() {
     var that = this
     wx.checkSession({
-      success () {
+      success (res) {
         //session_key 未过期，并且在本生命周期一直有效
         const code = wx.getStorageSync('code')
         const userId = wx.getStorageSync('userId')
