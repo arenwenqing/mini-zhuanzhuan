@@ -3,9 +3,11 @@
  * orderStatus---code
  * 0:未支付-商品结算
  * 1:已取消（超时未支付）-已取消
+ * 4:已支付
  * 
  */
-const domain = 'https://tuanzhzh.com' 
+const domain = 'https://tuanzhzh.com'
+import { getOrderDetail } from './network'
 Page({
 
   /**
@@ -26,33 +28,47 @@ Page({
   },
   // 获取订单详情
   getOrderDetail(orderId) {
-    wx.showLoading({
-        title: '加载中',
+    getOrderDetail({
+      orderId
+    }).then(res => {
+      this.setData({
+        orderData: res.data.data || [],
+        orderStatusCode: res.data.data.orderStatus.code
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
     })
-    wx.request({
-        url: domain +  `/mini/order/detail/${orderId}`,
-        method: 'GET',
-        header: {
-          openid: wx.getStorageSync('openid'),
-          userid: wx.getStorageSync('userId')
-        },
-        success: (res) => {
-          this.setData({
-            orderData: res.data.data || [],
-            orderStatusCode: res.data.data.orderStatus.code
-          })
-        },
-        fail: (err) => {
-          wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-          })
-        },
-        complete: () => {
-          wx.hideLoading()
-        }
-    })
+    // wx.showLoading({
+    //     title: '加载中',
+    // })
+    // wx.request({
+    //     url: domain +  `/mini/order/detail/${orderId}`,
+    //     method: 'GET',
+    //     header: {
+    //       openid: wx.getStorageSync('openid'),
+    //       userid: wx.getStorageSync('userId')
+    //     },
+    //     success: (res) => {
+    //       this.setData({
+    //         orderData: res.data.data || [],
+    //         orderStatusCode: res.data.data.orderStatus.code
+    //       })
+    //     },
+    //     fail: (err) => {
+    //       wx.showToast({
+    //         title: err.data.msg,
+    //         icon: 'error',
+    //         duration: 2000
+    //       })
+    //     },
+    //     complete: () => {
+    //       wx.hideLoading()
+    //     }
+    // })
   },
 
   // 点击微信支付/再拼一次/确认收货
@@ -74,21 +90,25 @@ Page({
       title: '加载中',
     })
     wx.request({
-        url: domain +  '/mini/biz/pay/submit',
-        method: 'GET',
+        url: domain +  '/mini/order/pay',
+        method: 'POST',
         header: {
           openid: wx.getStorageSync('openid'),
           userid: wx.getStorageSync('userId')
         },
+        data: {
+          orderId: this.data.orderData.orderId,
+          receiveAddressId: this.data.orderData.receiveAddress.addressId
+        },
         success: (res) => {
           wx.requestPayment({
-            timeStamp: '',
-            nonceStr: '',
-            package: res.data.data.payId,
-            signType: 'MD5',
-            paySign: '',
+            ...res.data.data,
+            timeStamp: res.data.data.timestamp,
+            nonceStr: res.data.data.nonce_str,
             success (res) { },
-            fail (res) { }
+            fail (res) {
+              debugger
+            }
           })
         },
         fail: (err) => {
