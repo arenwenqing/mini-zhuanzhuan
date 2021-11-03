@@ -1,4 +1,5 @@
 // pages/shippinAddress/shippinAddress.js
+import { request } from '../../service/index'
 const domain = 'https://tuanzhzh.com'
 Page({
   /**
@@ -11,7 +12,8 @@ Page({
     }, {
       text: '确定'
     }],
-    deleteDialog: false
+    deleteDialog: false,
+    addressObj: {}
   },
 
   /**
@@ -107,10 +109,10 @@ Page({
    * 删除地址
    * @param {*} stringNum 
    */
-  deleteAddress(a) {
-    console.log(a.currentTarget.dataset.index)
+  deleteAddress(item) {
     this.setData({
-      deleteDialog: true
+      deleteDialog: true,
+      addressObj: item.currentTarget.dataset.datas
     })
   },
 
@@ -126,9 +128,28 @@ Page({
       console.log('点击了取消')
     } else {
       console.log('点击了确定')
+      this.deleteAddressOption(this.data.addressObj)
     }
     this.setData({
       deleteDialog: false
+    })
+  },
+
+  /**
+   * 删除地址
+   */
+  deleteAddressOption(obj) {
+    request({
+      url: `/mini/user/address/delete?addressId=${obj.addressId}`,
+      method: 'DELETE'
+    }, true).then(res => {
+      this.getUserDetail()
+    }, err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
     })
   },
 
