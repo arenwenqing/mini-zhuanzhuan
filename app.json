@@ -9,7 +9,8 @@
     "pages/conversionCode/conversionCode",
     "pages/shippinAddress/shippinAddress",
     "pages/addAddress/addAddress",
-    "pages/mySpellGroup/mySpellGroup"
+    "pages/mySpellGroup/mySpellGroup",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

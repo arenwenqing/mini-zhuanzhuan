@@ -8,7 +8,8 @@ Page({
   data: {
     isShowDialog: false,
     userId: '',
-    conversionData: undefined
+    conversionData: [],
+    activeConversion: undefined
   },
 
   /**
@@ -59,19 +60,19 @@ Page({
     const detail = e.detail
     this.setData({
       isShowDialog: true,
-      conversionData: detail
+      activeConversion: detail
     })
   },
   clickDialogBtn(e) {
     // index: 0取消按钮，1复制按钮
     const { index, item } = e.detail
-    const currentConversionData = this.data.conversionData // 当前点击的兑换码数据
+    const currentConversionData = this.data.activeConversion // 当前点击的兑换码数据
     if (index === 0) { // 取消
       this.setData({isShowDialog: false})
     } else {
       this.setData({isShowDialog: false}, () => {
         wx.setClipboardData({
-          data: `${currentConversionData}`,
+          data: `${currentConversionData.exchangeCode}`,
           success (res) {},
           fail(err) {}
         })

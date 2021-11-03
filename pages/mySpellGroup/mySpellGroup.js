@@ -1,18 +1,54 @@
 // pages/mySpellGroup/mySpellGroup.js
+const app = getApp()
+const domain = 'https://tuanzhzh.com' 
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    orderListData: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getOrderList()
+  },
 
+  // 获取拼团列表
+  getOrderList () {
+    wx.showLoading({
+        title: '加载中',
+    })
+    wx.request({
+        url: domain + '/mini/order/list',
+        method: 'POST',
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
+        },
+        data: {
+          productName: '',
+          orderStatus: -1
+        },
+        success: (res) => {
+          this.setData({
+            orderListData: res.data.data || []
+          })
+        },
+        fail: (err) => {
+            wx.showToast({
+            title: err.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        },
+        complete: () => {
+          wx.hideLoading()
+        }
+    })
   },
 
   /**

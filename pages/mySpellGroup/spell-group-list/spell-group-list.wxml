@@ -1,20 +1,20 @@
 <!--pages/mySpellGroup/spell-group-list/spell-group-list.wxml-->
 <view class="container">
-  <block wx:for="{{datalist}}" wx:key="index">
-    <view class="conversion-wrapper">
-      <image class="goods-item-image" src="https://cdn.tuanzhzh.com/900ebb797ee449ae820dc85576b5bf53/1.jpg"></image>
+  <block wx:for="{{orderListData}}" wx:key="index">
+    <view class="conversion-wrapper" data-order="{{item}}" bindtap="lookOrderDetail">
+      <image class="goods-item-image" src="{{item.product.photoAddress[0]}}"></image>
       <view class="content-right">
-        <view class="title">可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心可爱小背心</view>
-        <view class="order-number">订单号：ABCDEFG2104242254210001-1abcdefg</view>
+        <view class="title">{{item.product.majorName}}</view>
+        <view class="order-number">订单号：{{item.orderId}}</view>
         <view class="price-num">
           <view class="price">
-            <text class="realpay">999.19元</text>
-            <text>红包29.99元</text>
+            <text class="realpay">{{item.orderPrice / 100}}元</text>
+            <text>红包{{item.cashback / 100}}元</text>
           </view>
-          <view class="real-num">数量：1</view>
+          <view class="real-num">数量：{{item.product.numToProduct}}</view>
         </view>
         <view>
-          <text class="order-status">待发货</text>
+          <text class="order-status">{{item.orderStatus.name}}</text>
           <text class="other-describe">48小时发货</text>
         </view>
       </view>

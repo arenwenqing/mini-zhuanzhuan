@@ -9,6 +9,6 @@
     <input confirm-type="search" class="search-input" selection-start="60" placeholder-class='placeholder-class-style' placeholder="请输入要查找的商品"/>
   </view>
   <view class="spell-group-list">
-    <spell-group-list></spell-group-list>
+    <spell-group-list orderListData="{{orderListData}}"></spell-group-list>
   </view>
 </view>

@@ -1,0 +1,38 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="container">
+  <mp-navigation-bar title='团赚赚' color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <!-- 上部分模块 -->
+  <view class="order-top">
+    <order-top-intro orderData="{{orderData}}"></order-top-intro>
+    <order-reference orderData="{{orderData}}"></order-reference>
+  </view>
+  <!-- 下部分模块 -->
+  <view class="order-content">
+    <!-- 商品结算页-参团成功，拼团倒计时 code:0 展示-->
+    <order-settlement-countdown wx:if="{{orderStatusCode === 0}}" orderData="{{orderData}}"></order-settlement-countdown>
+
+    <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->
+    <order-content-title></order-content-title>
+
+    <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
+    <view class="group-title-hint">你已取消订单，欢迎再次参团</view>
+
+    <!-- 图片展示 -->
+    <order-more-image orderData="{{orderData}}"></order-more-image>
+
+    <!-- 已成团数 -->
+    <view class="have-to-make">已成{{orderData.product.numToGroup}}团</view>
+  
+    <!-- 申请退款/退货 -->
+    <view class="apply-refund">
+      <text class="apply-refund-title">商品退款或退货</text>
+      <view class="refund-operation-btn">
+        <view class="reimburse">申请退款</view>
+        <view class="sales-return">申请退货</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <operation-guide class="bottom-operation-btn" bindclickOperationBtn="clickPerationBtn"></operation-guide>
+</view>

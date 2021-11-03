@@ -31,8 +31,9 @@
               <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
             </view>
             <view class="goods-item-right-red">
-              <image class="goods-item-red-icon" src='/pages/images/red-package.png'></image>
-              <text class="goods-item-right-red-num">{{item.cashback ? item.cashback : 0}}元</text>
+              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
+              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
+              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
             </view>
           </view>
           <view class="goods-item-right-bottom">

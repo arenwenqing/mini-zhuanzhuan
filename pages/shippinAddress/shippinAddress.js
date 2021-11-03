@@ -1,24 +1,26 @@
 // pages/shippinAddress/shippinAddress.js
+import { request } from '../../service/index'
+const domain = 'https://tuanzhzh.com'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    addressData: [1, 2, 3, 4, 5],
+    addressData: [],
     buttonArray: [{
       text: '取消'
     }, {
       text: '确定'
     }],
-    deleteDialog: false
+    deleteDialog: false,
+    addressObj: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
   },
 
   /**
@@ -32,7 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserDetail()
   },
 
   /**
@@ -43,13 +45,74 @@ Page({
   },
 
   /**
+   * 获取用户详情取出地址列表
+   */
+  getUserDetail () {
+    wx.showLoading('加载中')
+    wx.request({
+      url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
+      success: res => {
+        let tempArray = res.data.data.addressList
+        const index = tempArray.findIndex(item => item.isDefault)
+        if (index !== -1) {
+          const deleteArray = tempArray.splice(index, 1)
+          tempArray = deleteArray.concat(tempArray)
+        }
+        tempArray.forEach(item => {
+          item.receivePhoneNum = this.jiamiPhoneNumber(item.receivePhoneNum)
+        })
+        this.setData({
+          addressData: tempArray
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  /**
+   * 设为默认地址
+   */
+  setDefault(e) {
+    const addressObj = e.currentTarget.dataset.data
+    addressObj.isDefault = true
+    wx.request({
+      url: domain + '/mini/user/submit',
+      method: 'POST',
+      data: {
+        userId: wx.getStorageSync('userId'),
+        wxUser: wx.getStorageSync('wxUser'),
+        addressList: [addressObj]
+      },
+      success: res => {
+        this.getUserDetail()
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  /**
    * 删除地址
    * @param {*} stringNum 
    */
-  deleteAddress(a) {
-    console.log(a.currentTarget.dataset.index)
+  deleteAddress(item) {
     this.setData({
-      deleteDialog: true
+      deleteDialog: true,
+      addressObj: item.currentTarget.dataset.datas
     })
   },
 
@@ -65,6 +128,7 @@ Page({
       console.log('点击了取消')
     } else {
       console.log('点击了确定')
+      this.deleteAddressOption(this.data.addressObj)
     }
     this.setData({
       deleteDialog: false
@@ -72,11 +136,30 @@ Page({
   },
 
   /**
+   * 删除地址
+   */
+  deleteAddressOption(obj) {
+    request({
+      url: `/mini/user/address/delete?addressId=${obj.addressId}`,
+      method: 'DELETE'
+    }, true).then(res => {
+      this.getUserDetail()
+    }, err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
+    })
+  },
+
+  /**
    * 添加收货地址
    */
-  addAddress() {
+  addAddress(e) {
+    const id = e.currentTarget.dataset.addressid
     wx.navigateTo({
-      url: `/pages/addAddress/addAddress`,
+      url: `/pages/addAddress/addAddress?addressId=${id}`,
     })
   },
 

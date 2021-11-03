@@ -110,7 +110,7 @@ Page({
     // 点击分类搜索
     goSearch() {
         wx.navigateTo({
-          url: '/pages/search/search',
+          url: '/pages/search/search?type=' + '分类',
         })
     },
     // 点击左侧menu

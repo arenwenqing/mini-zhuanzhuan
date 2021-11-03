@@ -1,0 +1,44 @@
+/* pages/orderDetail/childCpns/order-status-title/order-content-title.wxss */
+.container {
+  text-align: center;
+}
+.order-content-title {
+  font-size: 40rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #101010;
+  line-height: 56rpx;
+  text-align: center;
+}
+.according-number-groups {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #101010;
+  line-height: 44rpx;
+  margin-top: 8rpx;
+}
+.lack-group-number {
+  color: #FF0000;
+}
+.remaining-end-time {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #101010;
+  line-height: 44rpx;
+  margin: 16rpx 0rpx;
+}
+.end-time {
+  width: 60rpx;
+  height: 48rpx;
+  background: #333333;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 48rpx;
+  padding: 2rpx 10rpx;
+  margin: 0rpx 12rpx;
+}

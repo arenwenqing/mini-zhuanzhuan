@@ -1,0 +1,20 @@
+<!--pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown.wxml-->
+<view class="container">
+  <!-- 拼团倒计时 -->
+  <view class="content-top">
+    <text class="content-top-title">参团成功，拼团倒计时{{groupEndTime}}</text>
+    <text class="content-top-cont">请于{{orderData.payTimeout}}:00内付款</text>
+  </view>
+  <!-- 收货地址 -->
+  <view class="content-address" bindtap="clickGoAddress">
+    <view class="province-city">
+      <text class="province-city-title">{{orderData.receiveAddress.provinceName + orderData.receiveAddress.cityName + orderData.receiveAddress.districtName}}</text>
+      <image class="icon" src="/pages/images/address-detail-icon.png"></image>
+    </view>
+    <view class="detail-address">{{orderData.receiveAddress.detail}}</view>
+    <view class="name-phone">
+      <text>{{orderData.receiveAddress.receiveUsername}}</text>
+      <text class="phone-num">{{orderData.receiveAddress.receivePhoneNum}}</text>
+    </view>
+  </view>
+</view>

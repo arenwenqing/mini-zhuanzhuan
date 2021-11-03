@@ -6,13 +6,13 @@
       <view class="add-address-content-item">
         <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
           <text class="add-address-item-title add-address-title1">收货人</text>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <input class="weui-input" value="{{receivePeople}}" bindinput="receivePeopleChange" placeholder="请输入姓名" placeholder-class='add-address-placeholder-style' />
         </view>
       </view>
       <view class="add-address-content-item">
         <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
           <text class="add-address-item-title">联系电话</text>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <input class="weui-input address-value-style" value="{{receivePhone}}" bindinput="receivePhoneChange" placeholder-class='add-address-placeholder-style' type="idcard" placeholder="请输入电话"/>
         </view>
       </view>
       <view class="add-address-content-item">
@@ -21,7 +21,9 @@
             <text>省</text>
             <text>份</text>
           </view>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <picker class="weui-input" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" mode="selector" range-key="name">
+            <input class="weui-input address-value-style" placeholder-class='add-address-placeholder-style' value="{{provinceObjValue.name}}" placeholder="请选择省份" />
+          </picker>
         </view>
       </view>
       <view class="add-address-content-item">
@@ -30,7 +32,10 @@
             <text>市</text>
             <text>级</text>
           </view>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <view wx:if="{{!provinceObjValue.name}}" catchtap="checkProvince" class="weui-input add-address-placeholder-style">请选择市级</view>
+          <picker wx:else class="weui-input" bindchange="cityLevelPickerChange" value="{{cityIndex}}" range="{{cityArray}}" mode="selector" range-key="name">
+            <input class="weui-input address-value-style" placeholder-class='add-address-placeholder-style' value="{{cityObjValue.name}}" placeholder="请输入市级" bindfocus="cityFocus" />
+          </picker>
         </view>
       </view>
       <view class="add-address-content-item">
@@ -39,15 +44,23 @@
             <text>地</text>
             <text>区</text>
           </view>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <view wx:if="{{!cityObjValue.name}}" catchtap="checkCity" class="weui-input add-address-placeholder-style">请选择地区</view>
+          <picker wx:else class="weui-input" bindchange="areaLevelPickerChange" value="{{areaIndex}}" range="{{areaArray}}" mode="selector" range-key="name">
+            <input class="weui-input address-value-style"  placeholder-class='add-address-placeholder-style' value="{{areaObjValue.name}}" placeholder="请输入地区"/>
+          </picker>
         </view>
       </view>
       <view class="add-address-content-item">
         <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
           <text class="add-address-item-title">街道地址</text>
-          <input class="weui-input" placeholder="请输入姓名"/>
+          <input class="weui-input address-value-style" value="{{detailAddress}}" bindinput="detailAddressChange" placeholder-class='add-address-placeholder-style' placeholder="请输入地址" />
         </view>
       </view>
     </view>
   </view>
+  <view class="'add-address-default">
+    <text class="add-address-default-text">设置为默认地址</text>
+    <switch class="add-address-default-switch" checked="{{switchChecked}}" bindchange="switch1Change"/>
+  </view>
+  <view class="add-address-btn" catchtap="saveAddress">保存</view>
 </view>

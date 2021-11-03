@@ -1,0 +1,98 @@
+/* pages/orderDetail/orderDetail.wxss */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* height: 100vh; */
+  height: calc(100vh - 200rpx);
+  background: #F7F7F7;
+  overflow-y: auto;
+}
+.order-top {
+  width: 710rpx;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  overflow: hidden;
+}
+.bottom-operation-btn {
+  position: fixed;
+  height: 200rpx;
+  bottom: 0;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  background: #F7F7F7;
+}
+.order-content {
+  width: 662rpx;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  padding: 32rpx 24rpx;
+  overflow: hidden;
+}
+.group-title-hint {
+  font-size: 40rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #101010;
+  line-height: 56rpx;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+.have-to-make {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 28rpx;
+  text-align: center;
+}
+.apply-refund {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 32rpx;
+  align-items: center;
+}
+.apply-refund-title {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+}
+.refund-operation-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.reimburse {
+  width: 120rpx;
+  height: 48rpx;
+  border-radius: 45rpx;
+  border: 1px solid #6B6B6B;
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 48rpx;
+  text-align: center;
+}
+.sales-return {
+  width: 120rpx;
+  height: 48rpx;
+  border-radius: 45rpx;
+  border: 1px solid #6B6B6B;
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 48rpx;
+  text-align: center;
+  margin-left: 16rpx;
+}

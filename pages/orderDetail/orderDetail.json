@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
+    "order-top-intro": "/pages/orderDetail/childCpns/order-top-intro/order-top-intro",
+    "order-reference": "/pages/orderDetail/childCpns/order-reference/order-reference",
+    "operation-guide": "/pages/orderDetail/childCpns/operation-guide/operation-guide",
+    "order-settlement-countdown": "/pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown",
+    "order-content-title": "/pages/orderDetail/childCpns/order-status-title/order-content-title",
+    "order-more-image": "/pages/orderDetail/childCpns/order-more-image/order-more-image"
+  },
+  "navigationStyle": "custom"
+}

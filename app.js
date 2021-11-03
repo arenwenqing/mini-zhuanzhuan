@@ -1,5 +1,6 @@
 // app.js
 const domain = 'https://tuanzhzh.com'
+import './utils/protoExtension'
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -45,6 +46,10 @@ App({
       success: (res) => {
         if (res.data.data.userId) {
           wx.setStorageSync('userId', res.data.data.userId)
+          wx.setStorageSync('openid', res.data.data.openid)
+          wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
+          this.globalData.userId = res.data.data.userId
+          this.globalData.openid = res.data.data.openid
         }
       },
       fail: (err) => {
@@ -61,10 +66,12 @@ App({
   checkLogin() {
     var that = this
     wx.checkSession({
-      success () {
+      success (res) {
         //session_key 未过期，并且在本生命周期一直有效
         const code = wx.getStorageSync('code')
-        if (code) { // 有code
+        const userId = wx.getStorageSync('userId')
+        const openid = wx.getStorageSync('openid')
+        if (code && userId && openid) { // 有code和userId、openid
           console.log('登录未过期', code)
         } else { // 没有code跳转登录
           that.login()
@@ -88,6 +95,8 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userId: '',
+    openid: ''
   }
 })
