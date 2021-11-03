@@ -3,7 +3,51 @@
   <mp-navigation-bar title='添加收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <view class="add-address-content">
     <view class="add-address-content-wrapper">
-      <view class="add-address-content-item"></view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title add-address-title1">收货人</text>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title">联系电话</text>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title add-address-title2">
+            <text>省</text>
+            <text>份</text>
+          </view>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title  add-address-title2">
+            <text>市</text>
+            <text>级</text>
+          </view>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title  add-address-title2">
+            <text>地</text>
+            <text>区</text>
+          </view>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title">街道地址</text>
+          <input class="weui-input" placeholder="请输入姓名"/>
+        </view>
+      </view>
     </view>
   </view>
 </view>

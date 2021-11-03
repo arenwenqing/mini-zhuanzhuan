@@ -17,3 +17,29 @@
 .add-address-content-wrapper {
   padding: 16rpx 24rpx 48rpx 24rpx;
 }
+.add-address-content-item {
+  height: 96rpx;
+  border-bottom: 1rpx solid #E6E6E6;
+  display: flex;
+}
+.add-address-item-title {
+  display: inline-block;
+  width: 145rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+  margin-right: 32rpx;
+}
+.add-address-item-title-wrapper {
+  padding: 0;
+  width: 100%;
+}
+.add-address-title1 {
+  letter-spacing: 12rpx;
+}
+.add-address-title2 {
+  display: flex;
+  justify-content: space-between;
+}
