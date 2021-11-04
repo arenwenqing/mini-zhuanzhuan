@@ -65,7 +65,7 @@
     </block>
   </view>
   <view class="detail-bottom">
-    <view class="detail-bottom-left">立即拼团</view>
-    <view class="detail-bottom-right">用劵拼团</view>
+    <view class="detail-bottom-left" catchtap="immediateSpellGroup">立即拼团</view>
+    <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view>
   </view>
 </view>
