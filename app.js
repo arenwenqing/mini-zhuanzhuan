@@ -45,11 +45,13 @@ App({
       },
       success: (res) => {
         if (res.data.data.userId) {
-          wx.setStorageSync('userId', res.data.data.userId)
-          wx.setStorageSync('openid', res.data.data.openid)
-          wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
-          this.globalData.userId = res.data.data.userId
-          this.globalData.openid = res.data.data.openid
+          const data = res.data.data
+          wx.setStorageSync('userId', data.userId)
+          wx.setStorageSync('openid', data.openid)
+          wx.setStorageSync('wxUser', JSON.stringify(data.wxUser))
+          wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
+          this.globalData.userId = data.userId
+          this.globalData.openid = data.openid
         }
       },
       fail: (err) => {

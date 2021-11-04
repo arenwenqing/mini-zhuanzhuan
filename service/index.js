@@ -5,7 +5,7 @@ const baseURL = 'https://tuanzhzh.com'
 export const request = (options, isLoading) => {
   if (isLoading) {
     wx.showLoading({
-      title: '数据加载中ing',
+      title: '加载中',
     })
   }
 

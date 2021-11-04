@@ -1,4 +1,4 @@
 <!--pages/orderDetail/childCpns/operation-guide/operation-guide.wxml-->
 <view class="container" bindtap="clickOperationBtn">
-  <text>开发中。。。</text>
+  <text>{{bottomBtnName}}</text>
 </view>

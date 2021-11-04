@@ -30,6 +30,7 @@ class Apis {
   getPayId({ orderId, receiveAddressId }) {
     return request({
       url: '/mini/order/pay',
+      method: 'POST',
       data: {
         orderId,
         receiveAddressId
