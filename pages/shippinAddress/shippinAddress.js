@@ -89,10 +89,11 @@ Page({
       method: 'POST',
       data: {
         userId: wx.getStorageSync('userId'),
-        wxUser: wx.getStorageSync('wxUser'),
+        wxUser: JSON.parse(wx.getStorageSync('wxUser')),
         addressList: [addressObj]
       },
       success: res => {
+        wx.setStorageSync('addressId', addressObj.addressId)
         this.getUserDetail()
       },
       fail: (err) => {
