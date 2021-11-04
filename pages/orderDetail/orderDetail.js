@@ -5,6 +5,8 @@
  * 1:已取消（超时未支付）-已取消
  * 4:已支付
  * 
+ * 
+ * 
  */
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
@@ -14,8 +16,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderData: {},
-    orderStatusCode: undefined,
+    orderData: {}, // 订单数据
+    orderStatusCode: undefined, // 订单状态
+    topTitle: '团赚赚', // 订单详情中顶部标题
+    bottomBtnName: '再拼一次',
   },
 
   /**
@@ -31,9 +35,21 @@ Page({
     API.getOrderDetail({
       orderId
     }).then(res => {
+      const data = res.data.data
+      let topTitle = '团赚赚'
+      let bottomBtnName = '再拼一次'
+      if (data.orderStatus.code === 0) { // 未支付
+        topTitle = '商品结算'
+        bottomBtnName = '微信支付'
+      } else {
+        topTitle = '团赚赚'
+        bottomBtnName = '再拼一次'
+      }
       this.setData({
-        orderData: res.data.data || [],
-        orderStatusCode: res.data.data.orderStatus.code
+        orderData: data || {},
+        orderStatusCode: data.orderStatus.code,
+        topTitle: topTitle,
+        bottomBtnName
       })
     }).catch(err => {
       wx.showToast({
@@ -59,9 +75,9 @@ Page({
         ...res.data.data,
         timeStamp: res.data.data.timestamp,
         nonceStr: res.data.data.nonce_str,
-        success (res) { },
+        success (res) {
+        },
         fail (res) {
-          debugger
         }
       })
     }).catch(err => {
