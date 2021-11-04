@@ -156,9 +156,10 @@ Page({
   /**
    * 添加收货地址
    */
-  addAddress() {
+  addAddress(e) {
+    const id = e.currentTarget.dataset.addressid
     wx.navigateTo({
-      url: `/pages/addAddress/addAddress`,
+      url: `/pages/addAddress/addAddress?addressId=${id}`,
     })
   },
 

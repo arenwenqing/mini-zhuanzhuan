@@ -9,7 +9,7 @@
         <view class="shipping-address-content-left">
           <image class="address-delete-icon"  src='/pages/images/address-delete.png' data-datas="{{item}}" data-index="{{index}}" catchtap="deleteAddress" />
         </view>
-        <view class="shipping-address-content-right" bindtap="addAddress">
+        <view class="shipping-address-content-right" data-addressId="{{item.addressId}}" bindtap="addAddress">
           <view class="shipping-address-content-right-item">
             <text wx:if="{{item.isDefault}}" class="shipping-address-default">默认</text>
             <view class="shipping-address-content-1">{{item.provinceName + item.cityName + item.districtName}}</view>

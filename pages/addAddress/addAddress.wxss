@@ -37,7 +37,7 @@
   width: 100%;
 }
 .add-address-title1 {
-  letter-spacing: 12rpx;
+  letter-spacing: 10.8rpx;
 }
 .add-address-title2 {
   display: flex;

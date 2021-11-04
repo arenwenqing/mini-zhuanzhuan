@@ -37,7 +37,55 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
+    if (options.addressId) {
+      // 调用获取地址详情的接口
+      this.getAddressDetail(options.addressId)
+    }
     this.getProvince('', 1)
+  },
+
+  /**
+   * 获取地址详情
+   * @param {*} parentCode 
+   */
+  getAddressDetail(id) {
+    wx.request({
+      url: domain +'/mini/user/address/detail',
+      data: {
+        addressId: id
+      },
+      success: res => {
+        const detailData = res.data.data
+        this.setData({
+          receivePeople: detailData.receiveUsername,
+          receivePhone: detailData.receivePhoneNum,
+          provinceObjValue: {
+            name: detailData.provinceName,
+            code: detailData.province
+          },
+          cityObjValue: {
+            name: detailData.cityName,
+            code: detailData.city
+          },
+          areaObjValue: {
+            name: detailData.districtName,
+            code: detailData.district
+          },
+          switchChecked: detailData.isDefault,
+          detailAddress: detailData.detail
+        }, () => {
+          this.getProvince(detailData.province, 2)
+          this.getProvince(detailData.city, 3)
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   /**
@@ -86,7 +134,11 @@ Page({
   bindPickerChange(e) {
     this.setData({
       index: e.detail.value,
-      provinceObjValue: this.data.array[e.detail.value]
+      provinceObjValue: this.data.array[e.detail.value],
+      cityObjValue: {
+        name: '',
+        code: ''
+      }
     })
     this.getProvince(this.data.array[e.detail.value].code, 2)
   },
@@ -98,7 +150,11 @@ Page({
   cityLevelPickerChange(e) {
     this.setData({
       cityIndex: e.detail.value,
-      cityObjValue: this.data.cityArray[e.detail.value]
+      cityObjValue: this.data.cityArray[e.detail.value],
+      areaObjValue: {
+        name: '',
+        code: ''
+      }
     })
     this.getProvince(this.data.cityArray[e.detail.value].code, 3)
   },
