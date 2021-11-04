@@ -136,6 +136,7 @@
 }
 .detail-image-wrapper {
   margin-top: 16rpx;
+  margin-bottom: 170rpx;
 }
 .detail-image-item {
   border: none;
