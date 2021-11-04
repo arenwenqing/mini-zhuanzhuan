@@ -21,7 +21,7 @@
     <order-more-image wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-more-image>
 
     <!-- 已成团数 -->
-    <view class="have-to-make">已成{{orderData.product.numToGroup}}团</view>
+    <view wx:if="{{orderStatusCode !== 0}}" class="have-to-make">已成{{orderData.product.numToGroup}}团</view>
   
     <!-- 申请退款/退货 -->
     <!-- <view class="apply-refund">

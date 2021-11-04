@@ -1,3 +1,4 @@
+import { submitProductGetOrderId } from '../../../../utils/globalFun'
 Component({
   /**
    * 组件的属性列表
@@ -27,6 +28,17 @@ Component({
       wx.navigateTo({
         url: `../detail/detail?productId=${productId}&name=${name}`,
       })
-    }
+    },
+
+    // 用劵拼团
+    useCouponsSpellGroup(e) {
+      const productId = e.currentTarget.dataset.productid
+      submitProductGetOrderId(productId, 1)
+    },
+    // 立即拼团
+    immediateSpellGroup(e) {
+      const productId = e.currentTarget.dataset.productid
+      submitProductGetOrderId(productId, 0)
+    },
   }
 })
