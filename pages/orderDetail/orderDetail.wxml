@@ -34,5 +34,9 @@
   </view>
 
   <!-- 底部操作按钮 -->
-  <operation-guide class="bottom-operation-btn" bottomBtnName="{{bottomBtnName}} "bindclickOperationBtn="clickPerationBtn"></operation-guide>
+  <operation-guide
+    class="bottom-operation-btn"
+    bottomBtnName="{{bottomBtnName}}"
+    bindclickOperationBtn="clickPerationBtn"
+  />
 </view>

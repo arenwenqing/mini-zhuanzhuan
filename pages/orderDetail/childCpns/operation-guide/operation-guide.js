@@ -7,7 +7,7 @@ Component({
     bottomBtnName: {
       type: String,
       value: ''
-    }
+    },
   },
 
   /**
@@ -21,6 +21,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 按钮包括(微信支付、再拼一次)
     clickOperationBtn(e) {
       this.triggerEvent('clickOperationBtn', {}, {})
     },

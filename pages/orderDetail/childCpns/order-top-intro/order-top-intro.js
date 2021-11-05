@@ -21,6 +21,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 跳转商品详情
+    skipDetail(e) {
+      console.log('-----', this.data)
+      const { orderData } = this.data
+      const productId = orderData?.product?.productId || ''
+      const name = orderData?.product?.majorName || ''
+      if (!productId || !name) return
+      wx.navigateTo({
+        url: `/pages/detail/detail?productId=${productId}&name=${name}`,
+      })
+    }
   }
 })

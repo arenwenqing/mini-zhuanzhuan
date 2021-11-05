@@ -62,7 +62,15 @@ Page({
 
   // 点击微信支付/再拼一次/确认收货
   clickPerationBtn(e) {
-    this.getPayId()
+    const { orderStatusCode } = this.data
+    // 根据订单状态进行相应操作
+    if (orderStatusCode === 0) { // 未支付
+      console.log('0/未支付', orderStatusCode)
+      // 调取微信支付弹窗
+      this.getPayId()
+    } else {
+      console.log('1/已取消(超时未支付)', orderStatusCode)
+    }
   },
 
   // 支付

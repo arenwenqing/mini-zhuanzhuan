@@ -21,6 +21,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    copyOrderId(e) {
+      if (!this.data.orderData.orderId) return
+      wx.setClipboardData({
+        data: `${this.data.orderData.orderId}`,
+        success (res) {},
+        fail(err) {}
+      })
+    }
   }
 })
