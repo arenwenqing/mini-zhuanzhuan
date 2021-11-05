@@ -68,8 +68,11 @@ Page({
       console.log('0/未支付', orderStatusCode)
       // 调取微信支付弹窗
       this.getPayId()
-    } else {
+    } else if (orderStatusCode === 1) {
       console.log('1/已取消(超时未支付)', orderStatusCode)
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
     }
   },
 
