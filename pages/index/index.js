@@ -35,6 +35,7 @@ Page({
     this.getIndexBanner()
     this.getNotice()
     this.getRedPackageMessage()
+    console.log('app=', app)
   },
 
   // 最新领红包信息

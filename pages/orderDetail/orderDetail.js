@@ -20,6 +20,7 @@ Page({
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
     bottomBtnName: '再拼一次',
+    currentStatus: 0
   },
 
   /**
@@ -49,7 +50,8 @@ Page({
         orderData: data || {},
         orderStatusCode: data.orderStatus.code,
         topTitle: topTitle,
-        bottomBtnName
+        bottomBtnName,
+        currentStatus: data.orderStatus.code
       })
     }).catch(err => {
       wx.showToast({

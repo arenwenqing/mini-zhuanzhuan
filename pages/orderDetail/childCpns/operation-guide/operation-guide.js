@@ -7,6 +7,10 @@ Component({
     bottomBtnName: {
       type: String,
       value: ''
+    },
+    currentStatus: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -14,7 +18,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    
   },
 
   /**
