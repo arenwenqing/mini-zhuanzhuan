@@ -5,7 +5,8 @@
       <image class="top-img" src="{{orderData.product.photoAddress[0]}}"></image>
       <text class="top-img-desc">{{orderData.product.majorName}}</text>
     </view>
-    <view class="double-wrapper">
+    <!-- 双倍红包劵 -->
+    <view wx:if="{{orderData.doubleQuotaCount === 1}}" class="double-wrapper">
       <image class="double-img" src="/pages/images/double-red.png"></image>
     </view>
   </view>

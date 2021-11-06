@@ -16,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orderId: '',
     orderData: {}, // 订单数据
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
@@ -27,7 +28,11 @@ Page({
    */
   onLoad: function (options) {
     if (options?.orderId) {
-      this.getOrderDetail(options.orderId)
+      this.setData({
+        orderId: options.orderId
+      }, () => {
+        this.getOrderDetail(options.orderId)
+      })
     }
   },
   // 获取订单详情
@@ -82,14 +87,10 @@ Page({
       orderId: this.data.orderData.orderId,
       receiveAddressId: this.data.orderData.receiveAddress.addressId
     }).then(res => {
-      wx.requestPayment({
+      this.startPay({
         ...res.data.data,
         timeStamp: res.data.data.timestamp,
         nonceStr: res.data.data.nonce_str,
-        success (res) {
-        },
-        fail (res) {
-        }
       })
     }).catch(err => {
       wx.showToast({
@@ -97,6 +98,33 @@ Page({
         icon: 'error',
         duration: 2000
       })
+    })
+  },
+
+  // 微信支付弹窗
+  startPay(data) {
+    const _this = this
+    wx.requestPayment({
+      ...data,
+      success (res) {
+        console.log('支付成功', res)
+        _this.getOrderDetail(_this.data.orderId)
+      },
+      fail (res) {
+        wx.showModal({
+          title: '支付失败',
+          confirmText: '重新支付',
+          // content: '这是一个模态弹窗',
+          success (res) {
+            if (res.confirm) {
+              _this.startPay(data)
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+        
+      }
     })
   },
 
