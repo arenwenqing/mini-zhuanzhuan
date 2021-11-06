@@ -21,7 +21,7 @@
     <order-more-image wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-more-image>
 
     <!-- 已成团数 -->
-    <view class="have-to-make">已成{{orderData.product.numToGroup}}团</view>
+    <view class="have-to-make" wx:if="{{currentStatus !== 0}}">已成{{orderData.product.numToGroup}}团</view>
   
     <!-- 申请退款/退货 -->
     <!-- <view class="apply-refund">
@@ -34,5 +34,11 @@
   </view>
 
   <!-- 底部操作按钮 -->
-  <operation-guide class="bottom-operation-btn" bottomBtnName="{{bottomBtnName}} "bindclickOperationBtn="clickPerationBtn"></operation-guide>
+  <operation-guide
+    class="bottom-operation-btn"
+    bottomBtnName="{{bottomBtnName}}"
+    bindclickOperationBtn="clickPerationBtn"
+    bindcountdown="onCountDown"
+    currentStatus="{{currentStatus}}"
+  />
 </view>

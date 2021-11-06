@@ -1,5 +1,5 @@
 <!--pages/orderDetail/childCpns/order-top-intro/order-top-intro.wxml-->
-<view class="container">
+<view class="container" catchtap="skipDetail">
   <image class="order-image" src="{{orderData.product.photoAddress[0]}}"></image>
   <view class="order-content">
     <view class="order-title">{{orderData.product.majorName}}</view>

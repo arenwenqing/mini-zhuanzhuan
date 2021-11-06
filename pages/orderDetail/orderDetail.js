@@ -28,6 +28,7 @@ Page({
    */
   onLoad: function (options) {
     if (options?.orderId) {
+      this.orderId = options.orderId
       this.getOrderDetail(options.orderId)
     }
   },
@@ -62,9 +63,28 @@ Page({
     })
   },
 
+  /**
+   * 倒计时结束时自动调用的函数
+   * @param {*} e
+   */
+  onCountDown(e) {
+    this.getOrderDetail(this.orderId)
+  },
+
   // 点击微信支付/再拼一次/确认收货
   clickPerationBtn(e) {
-    this.getPayId()
+    const { orderStatusCode } = this.data
+    // 根据订单状态进行相应操作
+    if (orderStatusCode === 0) { // 未支付
+      console.log('0/未支付', orderStatusCode)
+      // 调取微信支付弹窗
+      this.getPayId()
+    } else if (orderStatusCode === 1) {
+      console.log('1/已取消(超时未支付)', orderStatusCode)
+      wx.switchTab({
+        url: '/pages/classification/classification',
+      })
+    }
   },
 
   // 支付
