@@ -31,9 +31,9 @@
               <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
             </view>
             <view class="goods-item-right-red">
-              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
-              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
-              <image class="goods-item-red-icon" src='https://cdn.tuanzhzh.com/bf3782749c1d494e9143284c89659c61/1.jpg'></image>
+              <block wx:if="{{item.coproductList && item.coproductList.length}}" wx:for="{{item.coproductList}}" wx:for-item="itemName" wx:for-index="idx" wx:key="idx">
+                <image class="goods-item-red-icon" src="{{itemName.photoAddress[0]}}"></image>
+              </block>
             </view>
           </view>
           <view class="goods-item-right-bottom">

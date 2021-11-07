@@ -10,11 +10,11 @@
       <image class="double-img" src="/pages/images/double-red.png"></image>
     </view>
   </view>
-  <view class="bottom-img-wrapper">
-    <block wx:for="{{[1, 2, 3]}}" wx:key="index">
+  <view class="bottom-img-wrapper" wx:if="{{orderData.product.coproductList && orderData.product.coproductList.length}}">
+    <block wx:for="{{orderData.product.coproductList}}" wx:key="index">
       <view class="detail-img-content">
-        <image class="detail-img" src="{{orderData.product.photoAddress[0]}}"></image>
-        <text class="detail-img-desc">{{orderData.product.majorName}}</text>
+        <image class="detail-img" src="{{item.photoAddress[0]}}"></image>
+        <text class="detail-img-desc">{{item.coproductName}}</text>
       </view>
     </block>
   </view>

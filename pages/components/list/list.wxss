@@ -138,14 +138,14 @@
 }
 .goods-item-red-icon {
   display: inline-block;
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 4rpx;
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 8rpx;
 }
 .goods-item-right-red {
   display: flex;
   align-items: center;
-  margin-top: 10rpx;
+  margin-top: 12rpx;
   justify-content: flex-end;
 }
 .goods-item-right-top {
