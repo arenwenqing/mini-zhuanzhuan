@@ -39,6 +39,7 @@ Page({
     })
     if (options.addressId) {
       // 调用获取地址详情的接口
+      this.addressId = options.addressId
       this.getAddressDetail(options.addressId)
     }
     this.getProvince('', 1)
@@ -196,7 +197,7 @@ Page({
       method: 'POST',
       data: {
         addressList: [{
-          addressId: '',
+          addressId: this.addressId !== 'undefined' ? this.addressId : '',
           city: this.data.cityObjValue.code,
           cityName: this.data.cityObjValue.name,
           detail: this.data.detailAddress,
