@@ -35,3 +35,22 @@
   margin-left: 20rpx;
   padding-left: 60rpx;
 }
+.order-list-no {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 160rpx;
+}
+.no-order-icon {
+  width: 520rpx;
+  height: 380rpx;
+  margin-bottom: 20rpx;
+}
+.no-order-text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #C0C0C0;
+  line-height: 32rpx;
+  text-align: center;
+}

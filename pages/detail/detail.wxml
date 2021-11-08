@@ -26,10 +26,22 @@
       <view class="detail-num">
         <view class="detail-num-content">
           <text>库存：{{detailData.stock}}</text>
+          <!-- <text>红包：{{detailData.cashback}}</text> -->
+          <text>已成团：{{detailData.groupPurchasedCount ? detailData.groupPurchasedCount : 0}}</text>
+        </view>
+        <view class="goods-item-right-red">
+          <block wx:if="{{detailData.coproductList && detailData.coproductList.length}}" wx:for="{{detailData.coproductList}}" wx:for-item="itemName" wx:for-index="idx" wx:key="idx">
+            <image class="goods-item-red-icon" src="{{itemName.photoAddress[0]}}"></image>
+          </block>
+        </view>
+      </view>
+      <!-- <view class="detail-num">
+        <view class="detail-num-content">
+          <text>库存：{{detailData.stock}}</text>
           <text>红包：{{detailData.cashback}}</text>
         </view>
         <text>已成团：{{detailData.groupPurchasedCount ? detailData.groupPurchasedCount : 0}}</text>
-      </view>
+      </view> -->
       <view class="detail-time">
         <text class="detail-time-text1">剩余</text>
         <text class="detail-time-num">24</text>

@@ -7,18 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderListData: []
+    orderListData: [],
+    searchWidth: '494rpx'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getOrderList()
+    // this.getOrderList()
   },
 
   // 获取拼团列表
-  getOrderList () {
+  getOrderList (productName) {
     wx.showLoading({
         title: '加载中',
     })
@@ -30,7 +31,7 @@ Page({
           userid: wx.getStorageSync('userId')
         },
         data: {
-          productName: '',
+          productName: productName || '',
           orderStatus: -1
         },
         success: (res) => {
@@ -51,6 +52,22 @@ Page({
     })
   },
 
+  // 搜索框聚焦
+  inputFocus() {
+    this.setData({
+      searchWidth: '650rpx'
+    })
+  },
+  inputBlur() {
+    this.setData({
+      searchWidth: '494rpx'
+    })
+  },
+  seach(e) {
+    const value = e.detail.value.trim() ? e.detail.value.trim() : ''
+    this.getOrderList(value)
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -62,7 +79,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getOrderList()
   },
 
   /**
