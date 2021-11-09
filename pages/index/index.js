@@ -38,8 +38,8 @@ Page({
     console.log('app=', app)
   },
 
-  onUnload() {
-    debugger
+  reloadFunction() {
+    console.log(this.selectComponent('#myLuckBag'))
   },
 
   // 最新领红包信息

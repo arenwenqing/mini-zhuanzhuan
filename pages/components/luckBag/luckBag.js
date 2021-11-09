@@ -64,7 +64,7 @@ Component({
       this.setData({
         visible: false
       })
-      this.onLoad()
+      this.triggerEvent('reloadfunction', {}, {})
     },
     clickLuck() {
       this.setData({
