@@ -1,13 +1,10 @@
-// pages/orderDetail/childCpns/order-status-title/order-content-title.js
+// pages/orderDetail/childCpns/order-express-info/order-express-info.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    orderData: {
-      type: Object,
-      value: {}
-    }
+
   },
 
   /**

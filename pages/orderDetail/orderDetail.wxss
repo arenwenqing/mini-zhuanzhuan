@@ -96,3 +96,20 @@
   text-align: center;
   margin-left: 16rpx;
 }
+.comfort-red-envelope {
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #101010;
+  line-height: 44rpx;
+  text-align: center;
+  margin: 16rpx 0rpx;
+}
+.order-outbound {
+  font-size: 28rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #262626;
+  line-height: 40rpx;
+  text-align: center;
+}

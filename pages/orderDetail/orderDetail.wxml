@@ -4,6 +4,15 @@
   <!-- 上部分模块 -->
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
+    <!-- 获取安慰红包 -->
+    <view class="comfort-red-envelope">
+      获得安慰红包<text style="color: #eb392a;">99.99</text>元
+    </view>
+    <!-- 订单已出库提示 -->
+    <view class="order-outbound">
+      您的订单已出库，正在打包中
+    </view>
+    <order-express-info></order-express-info>
     <order-reference orderData="{{orderData}}"></order-reference>
   </view>
   <!-- 下部分模块 -->
@@ -12,10 +21,10 @@
     <order-settlement-countdown wx:if="{{orderStatusCode === 0}}" orderData="{{orderData}}"></order-settlement-countdown>
 
     <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->
-    <order-content-title wx:if="{{orderStatusCode === 4}}"></order-content-title>
+    <order-content-title wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-content-title>
 
     <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
-    <view class="group-title-hint" wx:if="{{orderStatusCode === 1}}">你已取消订单，欢迎再次参团</view>
+    <view class="group-title-hint">{{orderStatusDescName}}</view>
 
     <!-- 图片展示 -->
     <order-more-image wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-more-image>
@@ -24,13 +33,13 @@
     <view wx:if="{{orderStatusCode !== 0}}" class="have-to-make">已成{{orderData.product.numToGroup}}团</view>
   
     <!-- 申请退款/退货 -->
-    <!-- <view class="apply-refund">
+    <view class="apply-refund">
       <text class="apply-refund-title">商品退款或退货</text>
       <view class="refund-operation-btn">
-        <view class="reimburse">申请退款</view>
-        <view class="sales-return">申请退货</view>
+        <view class="reimburse" catchtap="reimburse">申请退款</view>
+        <view class="sales-return" catchtap="salesReturn">申请退货</view>
       </view>
-    </view> -->
+    </view>
   </view>
 
   <!-- 底部操作按钮 -->
