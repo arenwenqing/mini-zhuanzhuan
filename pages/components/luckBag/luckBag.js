@@ -12,10 +12,28 @@ Component({
     hide: function () {
       if (this.initval) {
         clearInterval(this.initval)
+        this.initval = null
       }
     },
     show: function() {
-
+      // 在这个方法里执行轮询操作
+      if (!this.initval) {
+        this.initval = setInterval(() => {
+          request({
+            url: '/mini/order/listNonStatusConfirmed',
+            method: 'POST'
+          }).then(res => {
+            if (!res.data.length && !this.data.visible) {
+              this.setData({
+                visible: true,
+                showStatic: true
+              })
+            }
+          }, err => {
+            console.log(err)
+          })
+        }, 5000)
+      }
     }
   },
   
@@ -26,23 +44,7 @@ Component({
       }
     },
     ready: function() {
-      // 在这个方法里执行轮询操作
-      const that = this
-      if (!this.initval) {
-        this.initval = setInterval(() => {
-          request({
-            url: '/mini/order/listNonStatusConfirmed',
-            method: 'POST'
-          }).then(res => {
-            console.log(res)
-            // this.setData({
-            //   visible: true
-            // })
-          }, err => {
-            console.log(err)
-          })
-        }, 5000)
-      }
+
     }
   },
 
@@ -50,13 +52,24 @@ Component({
    * 组件的初始数据
    */
   data: {
-    visible: false
+    visible: false,
+    showStatic: true
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    closeLuck() {
+      this.setData({
+        visible: false
+      })
+      this.onLoad()
+    },
+    clickLuck() {
+      this.setData({
+        showStatic: false
+      })
+    }
   }
 })

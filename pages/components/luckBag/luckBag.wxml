@@ -1,6 +1,12 @@
 <!--pages/components/luckBag/luckBag.wxml-->
 <view wx:if="{{visible}}" class="luck-bag-wrapper">
-  <view class="luck-bag-content">
-    <image class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
+  <view class="luck-bag-content-wrapper" catchtap="clickLuck">
+    <image src='/pages/images/guanbi.png' catchtap="closeLuck" class="luck-close" />
+    <view class="luck-bag-content">
+      <image wx:if="{{showStatic}}" class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
+      <image wx:else class='luck-bag-dynamic' src='https://cdn.tuanzhzh.com/luck-big.gif' />
+      <text wx:if="{{showStatic}}" class="luck-bag-text">点击福袋有惊喜</text>
+      <view wx:if="{{showStatic}}" class="point point-flicker"></view>
+    </view>
   </view>
 </view>

@@ -11,8 +11,91 @@
   justify-content: center;
   align-items: center;
 }
+.luck-bag-content-wrapper {
+  display: flex;
+  width: 630rpx;
+  height: 920rpx;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.luck-bag-content {
+  position: relative;
+}
 .luck-bag-image {
   display: inline-block;
   width: 274rpx;
   height: 278rpx;
+}
+.luck-bag-text {
+  display: block;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 44rpx;
+  text-align: center;
+  margin-top: 54rpx;
+}
+.luck-close {
+  display: inline-block;
+  width: 52rpx;
+  height: 52rpx;
+  position: absolute;
+  top: -25rpx;
+  right: -31rpx;
+}
+.point {
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #fff;
+  position: relative;
+  border-radius: 50%;
+  opacity: 0.5;
+  position: absolute;
+  bottom: 154rpx;
+  right: -20rpx;
+}
+/* 设置动画前颜色 */
+.point-flicker:after {
+  background-color: #FFFFFF;
+}
+
+/* 设置动画后颜色 */
+.point-flicker:before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+/* 设置动画 */
+.point-flicker:before,
+.point-flicker:after {
+  content: '';
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50rpx;
+  margin-top: -50rpx;
+  border-radius: 50%;
+  animation: warn 1s ease-out 0s infinite;
+}
+@keyframes warn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+.luck-bag-dynamic {
+  display: inline-block;
+  width: 630rpx;
+  height: 920rpx;
 }

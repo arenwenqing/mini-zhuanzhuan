@@ -38,6 +38,10 @@ Page({
     console.log('app=', app)
   },
 
+  onUnload() {
+    debugger
+  },
+
   // 最新领红包信息
   getRedPackageMessage() {
     wx.request({
