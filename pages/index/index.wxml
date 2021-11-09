@@ -62,4 +62,5 @@
     </block>
   </view> -->
   <!-- <mp-loading></mp-loading> -->
+  <luckBag></luckBag>
 </view>

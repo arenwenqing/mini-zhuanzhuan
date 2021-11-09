@@ -73,13 +73,12 @@ Page({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-        console.log('infosx', res)
         this.setData({
           userInfo: res.userInfo,
           showAvatar: true
         })
       }
-    })
+    })  
   },
 
   /**

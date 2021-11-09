@@ -1,4 +1,5 @@
 <!--pages/orderDetail/childCpns/operation-guide/operation-guide.wxml-->
 <view class="container" bindtap="clickOperationBtn">
   <text>{{bottomBtnName}}</text>
+  <text wx:if="{{currentStatus === 0}}" class="container-countdown">{{countTime}}</text>
 </view>

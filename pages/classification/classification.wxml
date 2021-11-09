@@ -16,4 +16,5 @@
       <main-content datalist="{{listData}}"></main-content>
     </view>
   </view>
+  <luckBag></luckBag>
 </view>

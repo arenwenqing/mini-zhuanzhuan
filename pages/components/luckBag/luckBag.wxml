@@ -1,0 +1,6 @@
+<!--pages/components/luckBag/luckBag.wxml-->
+<view wx:if="{{visible}}" class="luck-bag-wrapper">
+  <view class="luck-bag-content">
+    <image class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
+  </view>
+</view>

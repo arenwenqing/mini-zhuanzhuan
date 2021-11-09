@@ -35,6 +35,7 @@ Page({
     this.getIndexBanner()
     this.getNotice()
     this.getRedPackageMessage()
+    console.log('app=', app)
   },
 
   // 最新领红包信息
@@ -154,5 +155,12 @@ Page({
     this.setData({
       currentSwiper: e.detail.current
     })
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

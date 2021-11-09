@@ -26,6 +26,7 @@ Page({
     orderData: {}, // 订单数据
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
+    currentStatus: 0,
     bottomBtnName: '再拼一次', // 订单详情底部操作按钮
     orderStatusDescName: '', // 订单状态提示文案
 
@@ -36,6 +37,8 @@ Page({
    */
   onLoad: function (options) {
     if (options?.orderId) {
+      // this.orderId = options.orderId
+      this.getOrderDetail(options.orderId)
       this.setData({
         orderId: options.orderId
       }, () => {
@@ -94,6 +97,7 @@ Page({
         orderStatusCode: data.orderStatus.code,
         topTitle: topTitle,
         bottomBtnName,
+        currentStatus: data.orderStatus.code,
         orderStatusDescName
       })
     }).catch(err => {
@@ -105,6 +109,14 @@ Page({
     })
   },
 
+  /**
+   * 倒计时结束时自动调用的函数
+   * @param {*} e
+   */
+  onCountDown(e) {
+    this.getOrderDetail(this.data.orderId)
+  },
+
   // 点击微信支付/再拼一次/确认收货
   clickPerationBtn(e) {
     const { orderStatusCode } = this.data
@@ -113,10 +125,10 @@ Page({
       console.log('0/未支付', orderStatusCode)
       // 调取微信支付弹窗
       this.getPayId()
-    } else if (orderStatusCode === 1) {
-      console.log('1/已取消(超时未支付)', orderStatusCode)
+    } else if (orderStatusCode === 1 || orderStatusCode === 4) {
+      // console.log('1/已取消(超时未支付)', orderStatusCode)
       wx.switchTab({
-        url: '/pages/index/index',
+        url: '/pages/classification/classification',
       })
     }
   },
@@ -162,8 +174,7 @@ Page({
               console.log('用户点击取消')
             }
           }
-        })
-        
+        })       
       }
     })
   },

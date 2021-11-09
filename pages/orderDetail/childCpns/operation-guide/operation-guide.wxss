@@ -13,3 +13,6 @@
   text-align: center;
   margin: 20rpx auto 0rpx;
 }
+.container-countdown {
+  margin-left: 10rpx;
+}
