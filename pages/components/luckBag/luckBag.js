@@ -35,9 +35,9 @@ Component({
             method: 'POST'
           }).then(res => {
             console.log(res)
-            this.setData({
-              visible: true
-            })
+            // this.setData({
+            //   visible: true
+            // })
           }, err => {
             console.log(err)
           })
