@@ -26,14 +26,10 @@ Page({
     orderData: {}, // 订单数据
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
-<<<<<<< HEAD
-    bottomBtnName: '再拼一次',
-    currentStatus: 0
-=======
+    currentStatus: 0,
     bottomBtnName: '再拼一次', // 订单详情底部操作按钮
     orderStatusDescName: '', // 订单状态提示文案
 
->>>>>>> cd62c009d3d6342fcf66edad56662591e66874de
   },
 
   /**
@@ -101,11 +97,8 @@ Page({
         orderStatusCode: data.orderStatus.code,
         topTitle: topTitle,
         bottomBtnName,
-<<<<<<< HEAD
-        currentStatus: data.orderStatus.code
-=======
+        currentStatus: data.orderStatus.code,
         orderStatusDescName
->>>>>>> cd62c009d3d6342fcf66edad56662591e66874de
       })
     }).catch(err => {
       wx.showToast({
