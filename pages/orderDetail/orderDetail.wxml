@@ -5,14 +5,16 @@
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
     <!-- 获取安慰红包 -->
-    <view class="comfort-red-envelope">
+    <view wx:if="{{showComfortMoney}}" class="comfort-red-envelope">
       获得安慰红包<text style="color: #eb392a;">99.99</text>元
     </view>
     <!-- 订单已出库提示 -->
-    <view class="order-outbound">
+    <view wx:if="{{showHaveOutbound}}" class="order-outbound">
       您的订单已出库，正在打包中
     </view>
-    <order-express-info></order-express-info>
+    <!-- 已发货，快递信息 -->
+    <order-express-info wx:if="{{showExpressInfo}}"></order-express-info>
+    <!-- 订单编号、订单金额、包装规格 -->
     <order-reference orderData="{{orderData}}"></order-reference>
   </view>
   <!-- 下部分模块 -->
@@ -24,20 +26,20 @@
     <order-content-title wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-content-title>
 
     <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
-    <view class="group-title-hint">{{orderStatusDescName}}</view>
+    <view wx:if="{{showOrderStatusDescName}}" class="group-title-hint">{{orderStatusDescName}}</view>
 
     <!-- 图片展示 -->
-    <order-more-image wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-more-image>
+    <order-more-image wx:if="{{showImage}}" orderData="{{orderData}}"></order-more-image>
 
     <!-- 已成团数 -->
     <view class="have-to-make" wx:if="{{currentStatus !== 0}}">已成{{orderData.product.numToGroup}}团</view>
   
     <!-- 申请退款/退货 -->
-    <view class="apply-refund">
+    <view wx:if="{{showReimburseAndSalesReturn}}" class="apply-refund">
       <text class="apply-refund-title">商品退款或退货</text>
       <view class="refund-operation-btn">
         <view class="reimburse" catchtap="reimburse">申请退款</view>
-        <view class="sales-return" catchtap="salesReturn">申请退货</view>
+        <view wx:if="{{!showOnlyReimburse}}" class="sales-return" catchtap="salesReturn">申请退货</view>
       </view>
     </view>
   </view>

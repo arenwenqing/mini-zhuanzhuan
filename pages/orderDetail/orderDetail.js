@@ -1,17 +1,17 @@
 // pages/orderDetail/orderDetail.js
 /**
- * orderStatus---code
+ * orderStatus---code----订单状态
  * 0:未支付-商品结算
  * 1:已取消（超时未支付）-已取消
  * 2:已取消（成团人数不足）-未成团
+ * 3:支付确认中
  * 4:已支付-待成团
  * 7:已成团-待发货
- * 
- * 3:
- * 5:待收货-已出库
- * 6:待收货-待收货(有快递信息)
- * 
- * 
+ * 8:商品待收货
+ * 9:商品已签收
+ * 10:商品已回收
+ * 11:支付失败
+ * 12:商品已出库
  * 
  */
 // import { getOrderDetail, getPayId } from './network'
@@ -27,8 +27,16 @@ Page({
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
     currentStatus: 0,
-    bottomBtnName: '再拼一次', // 订单详情底部操作按钮
-    orderStatusDescName: '', // 订单状态提示文案
+    bottomBtnName: '再拼一次',       // 订单详情底部操作按钮
+    orderStatusDescName: '',        // 订单状态提示文案
+    showComfortMoney: false,        // 是否展示安慰红包
+    showExpressInfo: false,         // 是否展示快递信息
+    showHaveOutbound: false,        // 是否展示订单已出库提示
+    showOrderStatusDescName: false, // 是否展示订单状态的描述文案（恭喜恭喜/您已取消/本团未成团）
+    showImage: false,               // 是否展示获得商品图片
+    showReimburseAndSalesReturn: false, // 是否展示退款/退货
+    showOnlyReimburse: false,       // 是否只显示退款
+
 
   },
 
@@ -56,39 +64,95 @@ Page({
       let topTitle = '团赚赚'
       let bottomBtnName = '再拼一次'
       let orderStatusDescName = ''
-      if (data.orderStatus.code === 0) { // 未支付
+      if (data.orderStatus.code === 0) { // 未支付-商品结算
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
         orderStatusDescName = ''
-      } else if (data.orderStatus.code === 1) {
+      } else if (data.orderStatus.code === 1) { // 已取消（超时未支付）-已取消
         topTitle = '已取消'
         bottomBtnName = '再拼一次'
         orderStatusDescName = '你已取消订单，欢迎再次参团'
-      } else if (data.orderStatus.code === 2) {
+        this.setData({
+          showOrderStatusDescName: true
+        })
+      } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团
         topTitle = '未成团'
         bottomBtnName = '再拼一次'
         orderStatusDescName = '本团未成团，欢迎再次参团'
-      } else if (data.orderStatus.code === 3) {
+        this.setData({
+          showOrderStatusDescName: true
+        })
+      } else if (data.orderStatus.code === 3) { // 支付确认中
+        topTitle = '商品结算'
+        bottomBtnName = '微信支付'
+        orderStatusDescName = '支付确认中，请您尽快付款'
+        this.setData({
+          showOrderStatusDescName: true
+        })
+      } else if (data.orderStatus.code === 4) { // 已支付-待成团
+        topTitle = '待成团'
+        bottomBtnName = '再拼一次'
+        orderStatusDescName = ''
+        this.setData({
+          showImage: true
+        })
+      } else if (data.orderStatus.code === 7) { // 已成团-待发货
         topTitle = '待发货'
         bottomBtnName = '再拼一次'
         orderStatusDescName = commonOrGoodOrder
-      } else if (data.orderStatus.code === 4) {
-        topTitle = '待成团'
+        this.setData({
+          showOrderStatusDescName: true,
+          showImage: true,
+          showReimburseAndSalesReturn: true,
+          showOnlyReimburse: true
+        })
+      } else if (data.orderStatus.code === 8) { // 商品待收货
+        topTitle = '待收货'
+        // bottomBtnName = '再拼一次'
+        bottomBtnName = '确认收货'
+        orderStatusDescName = commonOrGoodOrder
+        this.setData({
+          showExpressInfo: true,
+          showComfortMoney: true,
+          showOrderStatusDescName: true,
+          showImage: true,
+          showReimburseAndSalesReturn: true,
+          showOnlyReimburse: false
+        })
+      } else if (data.orderStatus.code === 9) { // 商品已签收
+        topTitle = '已签收'
         bottomBtnName = '再拼一次'
-        orderStatusDescName = ''
-      } else if (data.orderStatus.code === 5) {
-        topTitle = '待成团'
+        orderStatusDescName = commonOrGoodOrder
+        this.setData({
+          showExpressInfo: true,
+          showComfortMoney: true,
+          showOrderStatusDescName: true,
+          showImage: true,
+          showReimburseAndSalesReturn: true,
+          showOnlyReimburse: false
+        })
+      } else if (data.orderStatus.code === 10) { // 商品已回收
+        topTitle = '已退货'
         bottomBtnName = '再拼一次'
-        orderStatusDescName = ''
-      } else if (data.orderStatus.code === 6) {
-        topTitle = '待成团'
+        orderStatusDescName = '您已退货，欢迎再次参团'
+        this.setData({
+          showOrderStatusDescName: true,
+        })
+      } else if (data.orderStatus.code === 11) { // 支付失败
+        topTitle = '待支付'
+        bottomBtnName = '微信支付'
+        orderStatusDescName = '支付失败，请重新支付'
+        this.setData({
+          showOrderStatusDescName: true,
+        })
+      } else if (data.orderStatus.code === 12) { // 商品已出库
+        topTitle = '已出库'
         bottomBtnName = '再拼一次'
-        orderStatusDescName = ''
-      } else if (data.orderStatus.code === 7) {
-        topTitle = '待成团'
-        bottomBtnName = '再拼一次'
-        orderStatusDescName = ''
-      } else {
+        orderStatusDescName = commonOrGoodOrder
+        this.setData({
+          showHaveOutbound: true,
+        })
+      } else { // 其他
         topTitle = '团赚赚'
         bottomBtnName = '再拼一次'
       }
