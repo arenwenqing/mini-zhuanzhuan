@@ -23,7 +23,7 @@ Component({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
           }).then(res => {
-            if (!res.data.length && !this.data.visible) {
+            if (res.data.length && !this.data.visible) {
               this.setData({
                 visible: true,
                 showStatic: true
@@ -32,7 +32,7 @@ Component({
           }, err => {
             console.log(err)
           })
-        }, 5000)
+        }, 3000)
       }
     }
   },
@@ -53,7 +53,9 @@ Component({
    */
   data: {
     visible: false,
-    showStatic: true
+    showStatic: true,
+    showAgain: false,
+    highQuality: false
   },
 
   /**
@@ -62,7 +64,8 @@ Component({
   methods: {
     closeLuck() {
       this.setData({
-        visible: false
+        visible: false,
+        showAgain: false
       })
       this.triggerEvent('reloadfunction', {}, {})
     },
@@ -70,6 +73,11 @@ Component({
       this.setData({
         showStatic: false
       })
+      setTimeout(() => {
+        this.setData({
+          showAgain: true
+        })
+      }, 1000)
     }
   }
 })

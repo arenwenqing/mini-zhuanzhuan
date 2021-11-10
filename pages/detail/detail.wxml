@@ -80,4 +80,5 @@
     <view class="detail-bottom-left" catchtap="immediateSpellGroup">立即拼团</view>
     <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view>
   </view>
+  <luckBag></luckBag>
 </view>

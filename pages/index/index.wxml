@@ -62,5 +62,5 @@
     </block>
   </view> -->
   <!-- <mp-loading></mp-loading> -->
-  <luckBag bindreloadfunction="reloadFunction" id='myLuckBag'></luckBag>
+  <luckBag></luckBag>
 </view>

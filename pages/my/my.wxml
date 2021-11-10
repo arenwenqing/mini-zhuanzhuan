@@ -36,5 +36,6 @@
       </block>
     </view>
   </view>
+  <luckBag></luckBag>
   <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
 </view>

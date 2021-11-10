@@ -32,7 +32,7 @@ Component({
   methods: {
     clickGoAddress(e) {
       wx.navigateTo({
-        url: '/pages/shippinAddress/shippinAddress',
+        url: '/pages/shippinAddress/shippinAddress?from=orderDetail',
       })
     }
   }

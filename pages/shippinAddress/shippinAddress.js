@@ -13,18 +13,16 @@ Page({
       text: '确定'
     }],
     deleteDialog: false,
-    addressObj: {}
+    addressObj: {},
+    fromSource: undefined
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let pages = getCurrentPages()
-    console.log(pages)
-    let lastPage = pages[pages.length-2]
-    lastPage.setData({
-      renwenqing: '任文庆真帅'
+    this.setData({
+      fromSource: options.from
     })
   },
 
@@ -80,6 +78,18 @@ Page({
       complete: () => {
         wx.hideLoading()
       }
+    })
+  },
+
+  /**
+   * 选择地址
+   * @param {*} e 
+   */
+  choiceAddress(e) {
+    const addressObj = e.currentTarget.dataset.data
+    wx.setStorageSync('addressId', addressObj.addressId)
+    wx.navigateBack({
+      delta: 1
     })
   },
 

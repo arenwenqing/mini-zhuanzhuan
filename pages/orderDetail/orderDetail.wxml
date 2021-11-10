@@ -52,4 +52,5 @@
     bindcountdown="onCountDown"
     currentStatus="{{currentStatus}}"
   />
+  <luckBag></luckBag>
 </view>

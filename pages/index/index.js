@@ -38,10 +38,6 @@ Page({
     console.log('app=', app)
   },
 
-  reloadFunction() {
-    console.log(this.selectComponent('#myLuckBag'))
-  },
-
   // 最新领红包信息
   getRedPackageMessage() {
     wx.request({
