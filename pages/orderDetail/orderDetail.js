@@ -302,6 +302,7 @@ Page({
    */
   onShow: function () {
     console.log(wx.getStorageSync('addressId'))
+    // 如果有，根据addressId,重新获取新的地址
   },
 
   /**
