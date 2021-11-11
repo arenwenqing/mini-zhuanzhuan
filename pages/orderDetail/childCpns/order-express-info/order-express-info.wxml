@@ -1,2 +1,23 @@
 <!--pages/orderDetail/childCpns/order-express-info/order-express-info.wxml-->
-<text>快递信息开发中....</text>
+<view class="container">
+  <view class="express-wrapper">
+    <view class="express-desc">
+      <text class="express-desc-title">快递</text>
+      <text>：</text>
+    </view>
+    <view class="express-right">
+      <view class="one-row">
+        <view class="express-num">
+          <text class="express-num-name">王八羔子快递啊</text>
+          <text>99999999999</text>
+        </view>
+        <view class="copy">复制</view>
+      </view>
+      <view class="two-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
+      <view class="three-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
+      <view class="operation-icon">
+        <image class="operation-icon" src="../../../images/look-express-all.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

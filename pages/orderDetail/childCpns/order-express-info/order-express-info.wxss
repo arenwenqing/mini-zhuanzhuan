@@ -1,1 +1,72 @@
 /* pages/orderDetail/childCpns/order-express-info/order-express-info.wxss */
+.container {
+  margin: 0rpx 24rpx;
+  padding: 20rpx 0rpx;
+  border-bottom: 2rpx solid #EBEBEB;
+  overflow: hidden;
+}
+.express-wrapper {
+  display: flex;
+}
+.express-desc {
+  font-size: 20rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 28rpx;
+  margin-right: 20rpx;
+}
+.express-desc-title {
+  display: inline-block;
+  width: 76rpx;
+  text-align: justify;
+  text-align-last:justify;
+  text-justify:distribute-all-lines; 
+}
+.express-right {
+  display: flex;
+  flex-direction: column;
+  width: 542rpx;
+  font-size: 20rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #333333;
+  /* line-height: 28rpx; */
+}
+.one-row {
+  display: flex;
+  justify-content: space-between
+}
+.express-num {
+  font-weight: 400;
+  color: #101010;
+}
+.express-num-name {
+  margin-right: 12rpx;
+}
+.copy {
+  width: 60rpx;
+  height: 32rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #6B6B6B;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 32rpx;
+  margin-left: 16rpx;
+  text-align: center;
+}
+.operation-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin: auto;
+}
+.two-row, .three-row {
+  line-height: 32rpx;
+}
+.two-row {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
