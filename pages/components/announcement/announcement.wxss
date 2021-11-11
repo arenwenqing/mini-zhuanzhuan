@@ -46,7 +46,7 @@
 }
 .receive-notice-swiper {
   height: 40rpx !important;
-  margin-top: 15rpx;
+  margin-top: 10rpx;
 }
 .container-system-gonggao-right {
   margin-right: 24rpx;
