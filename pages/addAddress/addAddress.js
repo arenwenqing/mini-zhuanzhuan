@@ -37,7 +37,7 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
-    if (options.addressId) {
+    if (options.addressId !== 'undefined') {
       // 调用获取地址详情的接口
       this.addressId = options.addressId
       this.getAddressDetail(options.addressId)
