@@ -8,13 +8,13 @@
   <!-- 收货地址 -->
   <view class="content-address" bindtap="clickGoAddress">
     <view class="province-city">
-      <text class="province-city-title">{{orderData.receiveAddress.provinceName + orderData.receiveAddress.cityName + orderData.receiveAddress.districtName}}</text>
+      <text class="province-city-title">{{addressInfo.provinceName + addressInfo.cityName + addressInfo.districtName}}</text>
       <image class="icon" src="/pages/images/address-detail-icon.png"></image>
     </view>
-    <view class="detail-address">{{orderData.receiveAddress.detail}}</view>
+    <view class="detail-address">{{addressInfo.detail}}</view>
     <view class="name-phone">
-      <text>{{orderData.receiveAddress.receiveUsername}}</text>
-      <text class="phone-num">{{orderData.receiveAddress.receivePhoneNum}}</text>
+      <text>{{addressInfo.receiveUsername}}</text>
+      <text class="phone-num">{{addressInfo.receivePhoneNum}}</text>
     </view>
   </view>
 </view>

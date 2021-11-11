@@ -21,10 +21,17 @@
   <!-- 下部分模块 -->
   <view class="order-content">
     <!-- 商品结算页-参团成功，拼团倒计时 code:0 展示-->
-    <order-settlement-countdown wx:if="{{orderStatusCode === 0}}" orderData="{{orderData}}"></order-settlement-countdown>
+    <order-settlement-countdown
+      wx:if="{{orderStatusCode === 0}}"
+      orderData="{{orderData}}"
+      addressInfo="{{addressInfo}}"
+    ></order-settlement-countdown>
 
     <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->
-    <order-content-title wx:if="{{orderStatusCode === 4}}" orderData="{{orderData}}"></order-content-title>
+    <order-content-title
+      wx:if="{{orderStatusCode === 4}}"
+      orderData="{{orderData}}"
+    ></order-content-title>
 
     <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
     <view wx:if="{{showOrderStatusDescName}}" class="group-title-hint">{{orderStatusDescName}}</view>

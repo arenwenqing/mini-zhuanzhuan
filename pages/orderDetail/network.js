@@ -1,23 +1,5 @@
 import { request } from './../../service/index.js'
 
-// // 获取订单详情
-// export const getOrderDetail = ({ orderId }) => {
-//   return request({
-//     url: `/mini/order/detail/${orderId}`
-//   }, true)
-// }
-
-// // 调取微信支付
-// export const getPayId = ({ orderId, receiveAddressId }) => {
-//   return request({
-//     url: '/mini/order/pay',
-//     data: {
-//       orderId,
-//       receiveAddressId
-//     }
-//   }, true)
-// }
-
 class Apis {
   // 获取订单详情
   getOrderDetail({ orderId }) {
@@ -36,6 +18,17 @@ class Apis {
         receiveAddressId
       }
     }, true)
+  }
+
+  // 获取收货地址
+  getAddressInfo({ addressId }) {
+    return request({
+      url: '/mini/user/address/detail',
+      method: 'GET',
+      data: {
+        addressId
+      }
+    }, false)
   }
 }
 

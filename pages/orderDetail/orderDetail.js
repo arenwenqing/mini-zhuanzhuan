@@ -24,6 +24,7 @@ Page({
   data: {
     orderId: '',
     orderData: {}, // 订单数据
+    addressInfo: {}, // 收货地址信息
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
     currentStatus: 0,
@@ -302,6 +303,20 @@ Page({
    */
   onShow: function () {
     console.log(wx.getStorageSync('addressId'))
+    const addressId = wx.getStorageSync('addressId')
+    if (addressId) {
+      API.getAddressInfo({ addressId }).then(res => {
+        this.setData({
+          addressInfo: res.data.data || {}
+        })
+      }).catch(err => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      })
+    }
     // 如果有，根据addressId,重新获取新的地址
   },
 
