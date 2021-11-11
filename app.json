@@ -11,7 +11,8 @@
     "pages/addAddress/addAddress",
     "pages/mySpellGroup/mySpellGroup",
     "pages/orderDetail/orderDetail",
-    "pages/userAgreement/userAgreement"
+    "pages/userAgreement/userAgreement",
+    "pages/privacyAgreement/privacyAgreement"
   ],
   "window": {
     "backgroundTextStyle": "light",
