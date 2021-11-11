@@ -7,6 +7,10 @@ Component({
     orderData: {
       type: Object,
       value: {}
+    },
+    addressInfo: {
+      type: Object,
+      value: {}
     }
   },
 
