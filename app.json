@@ -10,7 +10,8 @@
     "pages/shippinAddress/shippinAddress",
     "pages/addAddress/addAddress",
     "pages/mySpellGroup/mySpellGroup",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/userAgreement/userAgreement"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -48,8 +49,7 @@
       }
     ]
   },
-  "usingComponents": {
-  },
+  "usingComponents": {},
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -13,8 +13,10 @@
       您的订单已出库，正在打包中
     </view>
     <!-- 已发货，快递信息 -->
-    <!-- <order-express-info wx:if="{{showExpressInfo}}"></order-express-info> -->
-    <order-express-info></order-express-info>
+    <order-express-info
+      wx:if="{{showExpressInfo && orderData.express.expressNumber}}" orderData="{{orderData}}"
+    ></order-express-info>
+    <!-- <order-express-info orderData="{{orderData}}"></order-express-info> -->
     <!-- 订单编号、订单金额、包装规格 -->
     <order-reference orderData="{{orderData}}"></order-reference>
   </view>

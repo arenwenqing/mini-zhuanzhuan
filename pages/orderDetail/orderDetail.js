@@ -47,7 +47,7 @@ Page({
   onLoad: function (options) {
     if (options?.orderId) {
       // this.orderId = options.orderId
-      this.getOrderDetail(options.orderId)
+      // this.getOrderDetail(options.orderId)
       this.setData({
         orderId: options.orderId
       }, () => {
