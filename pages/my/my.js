@@ -110,9 +110,9 @@ Page({
         visibile: true
       })
     } else if (clickTarget.key === '6') { // 用户协议
-      // wx.navigateTo({
-      //   url: '/pages/userAgreement/userAgreement',
-      // })
+      wx.navigateTo({
+        url: '/pages/userAgreement/userAgreement',
+      })
     }
   },
 
