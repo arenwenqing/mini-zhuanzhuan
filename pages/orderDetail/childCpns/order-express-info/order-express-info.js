@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    orderData: {
+      type: Object,
+      value: {}
+    }
   },
 
   /**
@@ -18,6 +21,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    copyOrderId(e) {
+      if (!this.data.orderData.express.expressNumber) return
+      wx.setClipboardData({
+        data: `${this.data.orderData.express.expressNumber}`,
+        success (res) {},
+        fail(err) {}
+      })
+    }
   }
 })

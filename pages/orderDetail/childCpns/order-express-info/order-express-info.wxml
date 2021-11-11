@@ -8,10 +8,10 @@
     <view class="express-right">
       <view class="one-row">
         <view class="express-num">
-          <text class="express-num-name">王八羔子快递啊</text>
-          <text>99999999999</text>
+          <text class="express-num-name">{{orderData.express.expressCompany}}</text>
+          <text>{{orderData.express.expressNumber}}</text>
         </view>
-        <view class="copy">复制</view>
+        <view class="copy" catchtap="copyOrderId">复制</view>
       </view>
       <view class="two-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
       <view class="three-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
