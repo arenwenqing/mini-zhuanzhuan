@@ -63,4 +63,5 @@
     <switch class="add-address-default-switch" checked="{{switchChecked}}" bindchange="switch1Change"/>
   </view>
   <view class="add-address-btn" catchtap="saveAddress">保存</view>
+  <luckBag></luckBag>
 </view>

@@ -301,7 +301,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(wx.getStorageSync('addressId'))
+    // 如果有，根据addressId,重新获取新的地址
   },
 
   /**

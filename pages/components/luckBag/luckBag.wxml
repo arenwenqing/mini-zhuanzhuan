@@ -1,6 +1,27 @@
 <!--pages/components/luckBag/luckBag.wxml-->
 <view wx:if="{{visible}}" class="luck-bag-wrapper">
-  <view class="luck-bag-content">
-    <image class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
+  <view class="luck-bag-content-wrapper" catchtap="clickLuck">
+    <image src='/pages/images/guanbi.png' catchtap="closeLuck" class="luck-close" />
+    <view class="luck-bag-content">
+      <image wx:if="{{showStatic}}" class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
+      <image wx:else class='luck-bag-dynamic' src='https://cdn.tuanzhzh.com/luck-big2.gif' />
+      <view wx:if="{{showAgain}}" class="luck-bag-gongxi-content">
+        <view wx:if="{{highQuality}}">
+          <image src='/pages/images/gongxi.png' class="luck-bag-gongxi" />
+          <view class="luck-bag-gongxi-text">获得【优质商品】</view>
+        </view>
+        <view wx:else>
+          <image src='/pages/images/baoqian.png' class="luck-bag-baoqian" />
+          <view class="luck-bag-gongxi-text">获得【普通商品】</view>
+          <view class="luck-bag-double-content">
+            <view class="luck-bag-red-package">【1.5】元红包</view>
+            <image src='/pages/images/shuangbei.png' class="luck-bag-double-icon" />
+          </view>
+        </view>
+      </view>
+      <text wx:if="{{showStatic}}" class="luck-bag-text">点击福袋有惊喜</text>
+      <view wx:if="{{showStatic}}" class="point point-flicker"></view>
+      <view wx:if="{{showAgain}}" class="luck-bag-btn">再拼一次</view>
+    </view>
   </view>
 </view>

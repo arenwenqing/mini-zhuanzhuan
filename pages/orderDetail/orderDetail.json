@@ -7,7 +7,8 @@
     "order-settlement-countdown": "/pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown",
     "order-content-title": "/pages/orderDetail/childCpns/order-status-title/order-content-title",
     "order-more-image": "/pages/orderDetail/childCpns/order-more-image/order-more-image",
-    "order-express-info": "/pages/orderDetail/childCpns/order-express-info/order-express-info"
+    "order-express-info": "/pages/orderDetail/childCpns/order-express-info/order-express-info",
+    "luckBag": "/pages/components/luckBag/luckBag"
   },
   "navigationStyle": "custom"
 }
