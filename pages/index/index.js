@@ -13,15 +13,7 @@ Page({
     movies: [],
     noticeData: [],
     currentSwiper: 0,
-    receiveDatas: [{
-      url: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.jj20.com%2Fup%2Fallimg%2F911%2F042516130027%2F160425130027-6.jpg&refer=http%3A%2F%2Fpic.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1636608359&t=38fd77f1f5de333868ec84d5c30431fd',
-      name: 'xxxahai',
-      text: '刚刚领取了12.99元'
-    }, {
-      url: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.jj20.com%2Fup%2Fallimg%2F911%2F042516130027%2F160425130027-6.jpg&refer=http%3A%2F%2Fpic.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1636608359&t=38fd77f1f5de333868ec84d5c30431fd',
-      name: '哈哈',
-      text: '刚刚领取了129元'
-    }],
+    receiveDatas: [],
     listData: []
   },
   // 事件处理函数
@@ -46,7 +38,12 @@ Page({
         num: 10
       },
       success: (res) => {
-        console.log(res.data)
+        res.data.data.forEach(item => {
+          item.cashback = (item.cashback / 100).toFixed(2)
+        })
+        this.setData({
+          receiveDatas: res.data.data
+        })
       },
       fail: (err) => {
         wx.showToast({

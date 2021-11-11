@@ -96,3 +96,7 @@
   left: 50%;
   margin-left: -331rpx;
 }
+.weui-input-picker-style {
+  display: flex;
+  align-items: center;
+}

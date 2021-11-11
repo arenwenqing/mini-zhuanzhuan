@@ -26,7 +26,9 @@ Component({
             if (res.data.length && !this.data.visible) {
               this.setData({
                 visible: true,
-                showStatic: true
+                showStatic: true,
+                highQuality: !res.data[0].coproductId,
+                luckData: res.data[0]
               })
             }
           }, err => {
@@ -55,7 +57,8 @@ Component({
     visible: false,
     showStatic: true,
     showAgain: false,
-    highQuality: false
+    highQuality: false,
+    luckData: {}
   },
 
   /**

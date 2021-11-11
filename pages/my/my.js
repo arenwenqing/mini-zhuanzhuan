@@ -39,6 +39,7 @@ Page({
     userInfo: {},
     visibile: false,
     tipShow: false,
+    doubleNum: 0
   },
 
   /**
@@ -129,7 +130,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.request({
+      url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
+      success: res => {
+        let tempArray = res.data.data.addressList
+        this.setData({
+          doubleNum: res.data.data.doubleQuotaList.length
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
