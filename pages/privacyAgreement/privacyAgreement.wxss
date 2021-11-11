@@ -1,4 +1,3 @@
-/* pages/userAgreement/userAgreement.wxss */
 .user-agreement-wrapper {
   font-size: 28rpx;
   font-family: PingFangSC-Semibold, PingFang SC;
