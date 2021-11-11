@@ -56,6 +56,35 @@ Page({
       })
     }
   },
+
+  // 签收接口
+  signFor() {
+    wx.request({
+      url: domain + `/mini/order/confirmDelivered/${wx.getStorageSync('orderId')}`,
+      success: (res) => {
+        if (res.data.code === 0) {
+          this.getOrderDetail(wx.getStorageSync('orderId'))
+        }
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: msg => {
+        if (msg.data.code !== 0) {
+          wx.showToast({
+            title: msg.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+
   // 获取订单详情
   getOrderDetail(orderId) {
     API.getOrderDetail({
@@ -198,7 +227,11 @@ Page({
       })
     } else if (orderStatusCode === 8) {
       // 确认收货需要重新请求一下商品详情接口
-      this.getOrderDetail(wx.getStorageSync('orderId'))
+      this.signFor()
+    } else {
+      wx.switchTab({
+        url: '/pages/classification/classification',
+      })
     }
   },
 

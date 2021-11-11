@@ -45,39 +45,7 @@ Component({
   methods: {
     // 按钮包括(微信支付、再拼一次)
     clickOperationBtn(e) {
-      // this.triggerEvent('clickOperationBtn', {}, {})
-      // 确认收货
-      if (e.currentTarget.dataset.code === 8) {
-        this.signFor()
-      }
-    },
-    
-    // 签收接口
-    signFor() {
-      wx.request({
-        url: domain + `/mini/order/confirmDelivered/${wx.getStorageSync('orderId')}`,
-        success: (res) => {
-          if (res.data.code === 0) {
-            this.triggerEvent('clickOperationBtn', {}, {})
-          }
-        },
-        fail: (err) => {
-          wx.showToast({
-            title: err.data.msg,
-            icon: 'error',
-            duration: 2000
-          })
-        },
-        complete: msg => {
-          if (msg.data.code !== 0) {
-            wx.showToast({
-              title: msg.data.msg,
-              icon: 'error',
-              duration: 2000
-            })
-          }
-        }
-      })
+      this.triggerEvent('clickOperationBtn', {}, {})
     },
 
     transformTime(num) {

@@ -22,7 +22,7 @@ Component({
           request({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
-          }).then(res => {
+          }, false).then(res => {
             if (res.data.length && !this.data.visible) {
               this.setData({
                 visible: true,
