@@ -27,9 +27,9 @@
         <block wx:for="{{receiveDatas}}" wx:key="index">
           <swiper-item>
             <view class="receive-item">
-              <image class="receive-image" src="{{item.url}}" mode='aspectFill'></image>
-              <text class="receive-name">{{ item.name }}</text>
-              <text class="receive-text">{{ item.text }}</text>
+              <image class="receive-image" src="{{item.payUserAvatarUrl}}" mode='aspectFill'></image>
+              <text class="receive-name">{{ item.payUsername }}</text>
+              <text class="receive-text">刚刚领取了{{ item.cashback }}元</text>
             </view>
           </swiper-item>
         </block>

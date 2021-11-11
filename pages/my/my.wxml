@@ -30,7 +30,7 @@
             <text class="my-user-item-text">{{item.text}}</text>
             <image wx:if="{{index === 0}}" src="/pages/images/red-tip.png" class="my-user-item-redtip"></image>
           </view>
-          <text wx:if="{{index === 0}}" class="my-user-item-dobule-red-num">34张</text>
+          <text wx:if="{{index === 0}}" class="my-user-item-dobule-red-num">{{doubleNum}}张</text>
           <image wx:else src='/pages/images/more.png' class="my-user-item-more"></image>
         </view>
       </block>

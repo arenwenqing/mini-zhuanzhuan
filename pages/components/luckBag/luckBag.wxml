@@ -14,8 +14,8 @@
           <image src='/pages/images/baoqian.png' class="luck-bag-baoqian" />
           <view class="luck-bag-gongxi-text">获得【普通商品】</view>
           <view class="luck-bag-double-content">
-            <view class="luck-bag-red-package">【1.5】元红包</view>
-            <image src='/pages/images/shuangbei.png' class="luck-bag-double-icon" />
+            <view class="luck-bag-red-package">【{{luckData.cashback}}】元红包</view>
+            <image wx:if="{{luckData.rewardDoubleQuotaCount}}" src='/pages/images/shuangbei.png' class="luck-bag-double-icon" />
           </view>
         </view>
       </view>

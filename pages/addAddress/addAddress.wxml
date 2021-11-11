@@ -22,7 +22,8 @@
             <text>份</text>
           </view>
           <picker class="weui-input" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" mode="selector" range-key="name">
-            <input class="weui-input address-value-style" placeholder-class='add-address-placeholder-style' value="{{provinceObjValue.name}}" placeholder="请选择省份" />
+            <text class="weui-input address-value-style">请选择省份</text>
+            <!-- <input class="weui-input address-value-style" placeholder-class='add-address-placeholder-style' value="{{provinceObjValue.name}}" placeholder="请选择省份" /> -->
           </picker>
         </view>
       </view>
