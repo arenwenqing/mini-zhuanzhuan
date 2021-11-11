@@ -21,7 +21,7 @@
       </view>
       <text wx:if="{{showStatic}}" class="luck-bag-text">点击福袋有惊喜</text>
       <view wx:if="{{showStatic}}" class="point point-flicker"></view>
-      <view wx:if="{{showAgain}}" class="luck-bag-btn">再拼一次</view>
+      <view wx:if="{{showAgain}}" catchtap="againPin" class="luck-bag-btn">再拼一次</view>
     </view>
   </view>
 </view>

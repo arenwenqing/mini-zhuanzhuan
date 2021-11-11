@@ -34,7 +34,7 @@ Component({
           }, err => {
             console.log(err)
           })
-        }, 3000)
+        }, 1000 * 20)
       }
     }
   },
@@ -70,7 +70,6 @@ Component({
         visible: false,
         showAgain: false
       })
-      this.triggerEvent('reloadfunction', {}, {})
     },
     clickLuck() {
       this.setData({
@@ -81,6 +80,16 @@ Component({
           showAgain: true
         })
       }, 1000)
+    },
+    againPin() {
+      this.setData({
+        visible: false,
+        showAgain: false
+      }, () => {
+        wx.switchTab({
+          url: '/pages/classification/classification',
+        })
+      })
     }
   }
 })

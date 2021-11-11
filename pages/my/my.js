@@ -39,7 +39,8 @@ Page({
     userInfo: {},
     visibile: false,
     tipShow: false,
-    doubleNum: 0
+    doubleNum: 0,
+    noticeData: []
   },
 
   /**
@@ -56,6 +57,7 @@ Page({
         showAvatar: false
       })
     }
+    this.getNotice()
   },
 
   /**
@@ -123,6 +125,25 @@ Page({
   closeTip() {
     this.setData({
       tipShow: false
+    })
+  },
+
+  // 获得系统公告列表
+  getNotice () {
+    wx.request({
+      url: domain + '/mini/system/notice',
+      success: (res) => {
+        this.setData({
+          noticeData: res.data.data ? res.data.data : []
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
     })
   },
 

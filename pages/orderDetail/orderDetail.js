@@ -51,6 +51,7 @@ Page({
       this.setData({
         orderId: options.orderId
       }, () => {
+        wx.setStorageSync('orderId', options.orderId)
         this.getOrderDetail(options.orderId)
       })
     }
@@ -195,6 +196,9 @@ Page({
       wx.switchTab({
         url: '/pages/classification/classification',
       })
+    } else if (orderStatusCode === 8) {
+      // 确认收货需要重新请求一下商品详情接口
+      this.getOrderDetail(wx.getStorageSync('orderId'))
     }
   },
 
@@ -302,7 +306,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(wx.getStorageSync('addressId'))
     const addressId = wx.getStorageSync('addressId')
     if (addressId) {
       API.getAddressInfo({ addressId }).then(res => {
