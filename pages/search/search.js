@@ -43,8 +43,11 @@ Page({
       },
       method: 'GET',
       success: (res) => {
+        res.data.data && res.data.data.forEach(item => {
+          item.price = (item.price / 100).toFixed(2)
+        })
         this.setData({
-          searchData: res.data.data
+          searchData: res.data.data ? res.data.data : []
         })
       },
       fail: (err) => {
