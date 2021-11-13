@@ -7,7 +7,7 @@
     <block wx:for="{{addressData}}" wx:key="index">
       <view class="shipping-address-content-item">
         <view class="shipping-address-content-left">
-          <image class="address-delete-icon"  src='/pages/images/address-delete.png' data-datas="{{item}}" data-index="{{index}}" catchtap="deleteAddress" />
+          <image wx:if="{{addressData.length > 1 && !item.isDefault}}" class="address-delete-icon"  src='/pages/images/address-delete.png' data-datas="{{item}}" data-index="{{index}}" catchtap="deleteAddress" />
         </view>
         <view class="shipping-address-content-right" data-addressId="{{item.addressId}}" bindtap="addAddress">
           <view class="shipping-address-content-right-item">

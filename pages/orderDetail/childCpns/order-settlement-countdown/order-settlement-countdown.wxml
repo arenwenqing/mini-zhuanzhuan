@@ -8,7 +8,8 @@
   <!-- 收货地址 -->
   <view class="content-address" bindtap="clickGoAddress">
     <view class="province-city">
-      <text class="province-city-title">{{addressInfo.provinceName + addressInfo.cityName + addressInfo.districtName}}</text>
+      <text wx:if="{{addressInfo.provinceName}}" class="province-city-title">{{addressInfo.provinceName + addressInfo.cityName + addressInfo.districtName}}</text>
+      <text wx:else class="province-city-title">请添加收货地址</text>
       <image class="icon" src="/pages/images/address-detail-icon.png"></image>
     </view>
     <view class="detail-address">{{addressInfo.detail}}</view>
