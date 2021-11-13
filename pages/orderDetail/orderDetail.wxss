@@ -112,4 +112,5 @@
   color: #262626;
   line-height: 40rpx;
   text-align: center;
+  margin-top: 20rpx;
 }

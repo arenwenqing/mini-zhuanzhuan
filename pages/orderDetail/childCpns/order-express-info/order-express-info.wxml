@@ -13,9 +13,9 @@
         </view>
         <view class="copy" catchtap="copyOrderId">复制</view>
       </view>
-      <view class="two-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
-      <view class="three-row">qwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffsqwertyuiopasdfghjklzcvbnmbknsffs</view>
-      <view class="operation-icon">
+      <view class="{{isLookMove ? 'show-move' : 'two-row'}}">{{orderData.express.expressStatus}}</view>
+      <view class="{{isLookMove ? 'show-move' : 'three-row'}}">{{orderData.express.expressDesc}}</view>
+      <view wx:if="{{!isLookMove}}" class="operation-move" catchtap="lookMoveExpressInfo">
         <image class="operation-icon" src="../../../images/look-express-all.png"></image>
       </view>
     </view>

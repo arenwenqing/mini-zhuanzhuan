@@ -182,7 +182,9 @@ Page({
         bottomBtnName = '再拼一次'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
+          showOrderStatusDescName: true,
           showHaveOutbound: true,
+          showImage: true
         })
       } else { // 其他
         topTitle = '团赚赚'
