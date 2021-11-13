@@ -4,7 +4,7 @@
     <image src='/pages/images/guanbi.png' catchtap="closeLuck" class="luck-close" />
     <view class="luck-bag-content">
       <image wx:if="{{showStatic}}" class="luck-bag-image" src='https://cdn.tuanzhzh.com/luck-big.png' />
-      <image wx:else class='luck-bag-dynamic' src='https://cdn.tuanzhzh.com/luck-big2.gif' />
+      <image wx:else class='luck-bag-dynamic' src='https://cdn.tuanzhzh.com/fudai3.gif' />
       <view wx:if="{{showAgain}}" class="luck-bag-gongxi-content">
         <view wx:if="{{highQuality}}">
           <image src='/pages/images/gongxi.png' class="luck-bag-gongxi" />

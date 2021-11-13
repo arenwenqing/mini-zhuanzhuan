@@ -85,6 +85,7 @@
 .receive-item {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 .receive-swiper {
   height: 70rpx !important;
@@ -104,13 +105,22 @@
   line-height: 34rpx;
   display: inline-block;
   margin: 0 16rpx 0 8rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 160rpx;
+  overflow: hidden;
 }
 .receive-text {
+  display: inline-block;
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #5F5F5F;
   line-height: 34rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 200rpx;
+  overflow: hidden;
 }
 .container-serch-content {
   display: flex;

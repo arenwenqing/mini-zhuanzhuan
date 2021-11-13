@@ -27,7 +27,8 @@ Page({
     areaObjValue: {
       name: '',
       code: ''
-    }
+    },
+    addressLength: 0
   },
 
   /**
@@ -41,6 +42,11 @@ Page({
       // 调用获取地址详情的接口
       this.addressId = options.addressId
       this.getAddressDetail(options.addressId)
+    }
+    if (options.addressLength) {
+      this.setData({
+        addressLength: Number(options.addressLength)
+      })
     }
     this.getProvince('', 1)
   },
@@ -204,7 +210,7 @@ Page({
           district: this.data.areaObjValue.code,
           districtName: this.data.areaObjValue.name,
           // fullAddress: ,
-          isDefault: this.data.switchChecked,
+          isDefault: this.data.addressLength === 0 ? true : this.data.switchChecked,
           // postcode: ,
           province: this.data.provinceObjValue.code,
           provinceName: this.data.provinceObjValue.name,

@@ -7,6 +7,14 @@ import API from '../service/apis'
 // 提交订单获取订单id(orderid)
 // isUseRoll 是否用劵， 1用劵，0非用劵
 export const submitProductGetOrderId = (productId, isUseRoll) => {
+  if (!wx.getStorageSync('userId')) {
+    wx.showToast({
+      title: '请先登录',
+      icon: 'error',
+      duration: 2000
+    })
+    return
+  }
   API.sumbitProduct({
     productId,
     doubleQuotaCount: isUseRoll,

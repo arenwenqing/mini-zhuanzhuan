@@ -15,6 +15,9 @@
 .module {
   margin: 32rpx 0rpx;
 }
-.module-title {
+.module-title-fege {
+  height: 10rpx;
+}
+.module-title, .module-title-bolder {
   font-weight: bold;
 }

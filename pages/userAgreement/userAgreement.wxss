@@ -19,3 +19,6 @@
 .module-title {
   font-weight: bold;
 }
+.module-title-rule {
+  font-weight: bold;
+}

@@ -40,23 +40,14 @@ Page({
     visibile: false,
     tipShow: false,
     doubleNum: 0,
-    noticeData: []
+    noticeData: [],
+    groupPurchasedCount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (wx.getStorageSync('userInfo')) {
-      this.setData({
-        showAvatar: true,
-        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
-      })
-    } else {
-      this.setData({
-        showAvatar: false
-      })
-    }
     this.getNotice()
   },
 
@@ -65,6 +56,51 @@ Page({
    */
   onReady: function () {
 
+  },
+
+   // 登录
+   login() {
+    const that = this
+    wx.login({
+      success(res) {
+        wx.setStorageSync('code', res.code)
+        that.getUserId(res.code)
+      },
+      fail() {
+        wx.showToast({
+          title: '登录失败',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  // 获取用户ID、openID
+  getUserId(code) {
+    wx.request({
+      url: domain + '/mini/user/session/get',
+      method: 'POST',
+      data: {
+        code: code
+      },
+      success: (res) => {
+        if (res.data.data.userId) {
+          const data = res.data.data
+          wx.setStorageSync('userId', data.userId)
+          wx.setStorageSync('openid', data.openid)
+          wx.setStorageSync('wxUser', JSON.stringify(data.wxUser))
+          wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
+        }
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   /**
@@ -80,8 +116,12 @@ Page({
           userInfo: res.userInfo,
           showAvatar: true
         })
+        this.login()
+      },
+      fail: err => {
+        console.log(err)
       }
-    })  
+    })
   },
 
   /**
@@ -155,12 +195,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (wx.getStorageSync('userInfo')) {
+      this.setData({
+        showAvatar: true,
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+      })
+    } else {
+      this.setData({
+        showAvatar: false
+      })
+    }
     wx.request({
       url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
       success: res => {
         let tempArray = res.data.data.addressList
         this.setData({
-          doubleNum: res.data.data.doubleQuotaList.length
+          doubleNum: res.data.data.doubleQuotaList.length,
+          groupPurchasedCount: res.data.data.groupPurchasedCount
         })
       },
       fail: (err) => {

@@ -11,7 +11,7 @@
     </view>
     <view wx:if="{{showAvatar}}" class="my-user-name">{{userInfo.nickName}}</view>
     <view wx:else class="my-user-name" bindtap="getUserProfile">注册/登录</view>
-    <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参999999个团</text>
+    <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text>
     <view class="my-user-item-wrapper">
       <view wx:if="{{tipShow}}" class="my-user-quan-tip">
         <image src="/pages/images/guanbi.png" class="my-user-quan-guanbi" bindtap="closeTip" />

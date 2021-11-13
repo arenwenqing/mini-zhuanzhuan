@@ -63,6 +63,7 @@
   color: #5F5F5F;
   line-height: 32rpx;
   margin: 0 auto;
+  text-align: center;
 }
 .my-user-item-wrapper {
   position: relative;
