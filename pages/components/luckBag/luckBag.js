@@ -39,7 +39,7 @@ Component({
           }, err => {
             console.log(err)
           })
-        }, 1000 * 5)
+        }, 1000 * 20)
       }
     }
   },
