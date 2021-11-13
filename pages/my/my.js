@@ -40,7 +40,8 @@ Page({
     visibile: false,
     tipShow: false,
     doubleNum: 0,
-    noticeData: []
+    noticeData: [],
+    groupPurchasedCount: 0
   },
 
   /**
@@ -209,7 +210,8 @@ Page({
       success: res => {
         let tempArray = res.data.data.addressList
         this.setData({
-          doubleNum: res.data.data.doubleQuotaList.length
+          doubleNum: res.data.data.doubleQuotaList.length,
+          groupPurchasedCount: res.data.data.groupPurchasedCount
         })
       },
       fail: (err) => {

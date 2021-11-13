@@ -107,7 +107,7 @@
   margin: 0 16rpx 0 8rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 160rpx;
+  max-width: 160rpx;
   overflow: hidden;
 }
 .receive-text {

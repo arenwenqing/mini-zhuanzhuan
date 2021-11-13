@@ -16,6 +16,7 @@
  */
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
+const domain = 'https://tuanzhzh.com'
 Page({
 
   /**

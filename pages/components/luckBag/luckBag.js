@@ -23,18 +23,23 @@ Component({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
           }, false).then(res => {
-            if (res.data.length && !this.data.visible) {
+            wx.showToast({
+              title: String(res.data.data.length),
+              icon: 'none',
+              duration: 2000
+            })
+            if (res.data.data.length && !this.data.visible) {
               this.setData({
                 visible: true,
                 showStatic: true,
-                highQuality: !res.data[0].coproductId,
-                luckData: res.data[0]
+                highQuality: !res.data.data[0].coproductId,
+                luckData: res.data.data[0]
               })
             }
           }, err => {
             console.log(err)
           })
-        }, 1000 * 20)
+        }, 1000 * 5)
       }
     }
   },
