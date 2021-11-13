@@ -60,3 +60,6 @@
 .system-right-img-center {
   margin-top: 39rpx;
 }
+.receive-notice-swiper-center {
+  margin-top: 22rpx;
+}

@@ -10,6 +10,7 @@
   <!-- 兑换码列表 -->
   <view class="conversion-list">
     <conversion-list
+      isEndGetTime="{{isEndGetTime}}"
       datalist="{{conversionData}}"
       bind:handleGetOperation="handleGetOperation"
     ></conversion-list>

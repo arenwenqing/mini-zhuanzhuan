@@ -13,10 +13,13 @@
         </view>
       </view>
       <view class="content-operation">
-        <view class="receive-btn" bindtap="clickGetBtn" data-item="{{item}}">领取</view>
+        <view class="receive-btn {{isEndGetTime ? 'end-collect' : ''}}"
+          bindtap="clickGetBtn"
+          data-item="{{item}}"
+        >领取</view>
         <view class="correlation-time">
-          <text class="receive-date">2021年10月10日</text>
-          <text class="receive-timer">12点前可领取</text>
+          <text class="receive-date">{{item.endCollect}}</text>
+          <text class="receive-timer">{{item.specificCanGetTime}} 前可领取</text>
         </view>
         <!-- <view class="share-btn" bindtap="clickShareBtn" data-item="{{item}}">分享</view> -->
         <button

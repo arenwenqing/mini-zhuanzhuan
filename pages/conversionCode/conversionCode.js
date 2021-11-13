@@ -9,7 +9,8 @@ Page({
     isShowDialog: false,
     userId: '',
     conversionData: [],
-    activeConversion: undefined
+    activeConversion: undefined,
+    isEndGetTime: false, // 是否过领取时间
   },
 
   /**
@@ -38,8 +39,23 @@ Page({
       url: domain + `/mini/user/detail/${userId}`,
       method: 'GET',
       success: (res) => {
+        let isEndGetTime = false
+        res.data.data.exchangeCodeList && res.data.data.exchangeCodeList.forEach(item => {
+          // startUseTime endUseTime endCollectTime
+          const start = new Date(item.startUseTime)
+          const end = new Date(item.endUseTime)
+          const endCollect = new Date(item.endCollectTime)
+          const current = new Date()
+          if (current > endCollect) {
+            isEndGetTime = true
+          }
+          item.endCollect = endCollect.format('yyyy年MM月dd日')
+          item.specificCanGetTime = endCollect.format('hh:mm')
+          item.endUseTime = end.format('yyyy年MM月dd日')
+        })
         this.setData({
-          conversionData: res.data.data.exchangeCodeList ? res.data.data.exchangeCodeList : []
+          conversionData: res.data.data.exchangeCodeList ? res.data.data.exchangeCodeList : [],
+          isEndGetTime: isEndGetTime
         })
       },
       fail: (err) => {

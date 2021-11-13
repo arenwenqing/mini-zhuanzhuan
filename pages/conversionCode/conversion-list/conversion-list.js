@@ -7,6 +7,10 @@ Component({
     datalist: {
       type: Array,
       value: []
+    },
+    isEndGetTime: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -25,25 +29,12 @@ Component({
     // 点击领取按钮
     clickGetBtn(e) {
       const itemData = e.currentTarget.dataset.item
-
-      this.triggerEvent('handleGetOperation', itemData, {})
-      // wx.showModal({
-      //   title: '请前往森海赛尔京东旗舰店联系客服领取',
-      //   confirmText: '复制',
-      //   content: `<view>ok</view>`,
-      //   success (res) {
-      //     if (res.confirm) {
-      //       console.log('用户点击确定')
-      //     } else if (res.cancel) {
-      //       console.log('用户点击取消')
-      //     }
-      //   }
-      // })      
+       // 超过领取时间，禁止领取
+      if (this.data.isEndGetTime) return
+      this.triggerEvent('handleGetOperation', itemData, {}) 
     },
     // 点击分享按钮
     clickShareBtn(e) {
-      const itemData = e.currentTarget.dataset.item
-      console.log('=====')
       wx.showShareMenu({
         withShareTicket: true,
         menus: ['shareAppMessage', 'shareTimeline']

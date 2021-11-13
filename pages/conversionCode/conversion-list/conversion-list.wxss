@@ -119,3 +119,8 @@
   line-height: 40rpx;
   text-align: center;
 }
+.end-collect {
+  color: rgba(0, 0, 0, 0.3);
+  background-color: #F7F7F7;
+  border: 1rpx solid rgba(0, 0, 0, 0.2);
+}

@@ -5,7 +5,13 @@
         <image src="/pages/images/gonggao.png" class="system-img {{ centerStyle ? 'system-img-center' : '' }}"></image>
         <view class="container-fenge {{ centerStyle ? 'container-fenge-center' : '' }}"></view>
         <view class="container-receive-notice-wrapper">
-          <swiper class="receive-notice-swiper" autoplay='true' interval='2000'  duration='1000' circular='true' vertical='true' >
+          <swiper
+            class="receive-notice-swiper {{ centerStyle ? 'receive-notice-swiper-center' : ''}}" autoplay='true'
+            interval='2000'
+            duration='1000'
+            circular='true'
+            vertical='true'
+          >
             <block wx:for="{{noticeData}}" wx:key="index">
               <swiper-item>
                 <text class="container-fenge-text">{{ item.noticeContent }}</text>
