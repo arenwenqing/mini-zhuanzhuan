@@ -23,12 +23,14 @@
   border-radius: 24rpx;
 }
 .waiter-qr-code-text {
+  display: block;
   font-size: 36rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
   line-height: 48rpx;
   margin-top: 48rpx;
+  width: 384rpx;
 }
 .waiter-qr-code-close {
   display: inline-block;
