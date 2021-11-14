@@ -4,9 +4,9 @@
   <!-- 上部分模块 -->
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
-    <!-- 获取安慰红包 -->
-    <view wx:if="{{showComfortMoney}}" class="comfort-red-envelope">
-      获得安慰红包<text style="color: #eb392a;">99.99</text>元
+    <!-- 获取安慰红包 注意：获得普通商品才展示，优质商品不展示 -->
+    <view wx:if="{{showComfortMoney && isCommonOrder}}" class="comfort-red-envelope">
+      获得安慰红包<text style="color: #eb392a;">{{orderData.cashback / 100}}</text>元
     </view>
     <!-- 订单已出库提示 -->
     <view wx:if="{{showHaveOutbound}}" class="order-outbound">

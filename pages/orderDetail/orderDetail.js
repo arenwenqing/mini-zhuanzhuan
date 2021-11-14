@@ -24,6 +24,7 @@ Page({
    */
   data: {
     isVisibleCallServicer: false, // 是否显示联系客服二维码弹窗
+    isCommonOrder: false, // 是否获得普通商品
     orderId: '',
     orderData: {}, // 订单数据
     addressInfo: {}, // 收货地址信息
@@ -196,7 +197,9 @@ Page({
         topTitle: topTitle,
         bottomBtnName,
         currentStatus: data.orderStatus.code,
+        isCommonOrder: res.data.data.coproduct ? true : false,
         orderStatusDescName
+
       })
     }).catch(err => {
       wx.showToast({

@@ -8,14 +8,14 @@
     <view class="express-right">
       <view class="one-row">
         <view class="express-num">
-          <text class="express-num-name">{{orderData.express.expressCompany}}</text>
-          <text>{{orderData.express.expressNumber}}</text>
+          <text class="express-num-name">{{orderData.express.expressCompany || ''}}</text>
+          <text>{{orderData.express.expressNumber || ''}}</text>
         </view>
-        <view class="copy" catchtap="copyOrderId">复制</view>
+        <view wx:if="{{orderData.express.expressNumber}}" class="copy" catchtap="copyOrderId">复制</view>
       </view>
-      <view class="{{isLookMove ? 'show-move' : 'two-row'}}">{{orderData.express.expressStatus}}</view>
-      <view class="{{isLookMove ? 'show-move' : 'three-row'}}">{{orderData.express.expressDesc}}</view>
-      <view wx:if="{{!isLookMove}}" class="operation-move" catchtap="lookMoveExpressInfo">
+      <view wx:if="{{orderData.express.expressStatus}}" class="{{isLookMove ? 'show-move' : 'two-row'}}">{{orderData.express.expressStatus}}</view>
+      <view wx:if="{{orderData.express.expressDesc}}" class="{{isLookMove ? 'show-move' : 'three-row'}}">{{orderData.express.expressDesc}}</view>
+      <view wx:if="{{!isLookMove && orderData.express.expressNumber}}" class="operation-move" catchtap="lookMoveExpressInfo">
         <image class="operation-icon" src="../../../images/look-express-all.png"></image>
       </view>
     </view>
