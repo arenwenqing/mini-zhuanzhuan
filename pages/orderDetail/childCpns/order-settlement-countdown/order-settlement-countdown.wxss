@@ -64,3 +64,7 @@
 .phone-num {
   margin-left: 12rpx;
 }
+.content-top-pin-coundown {
+  display: inline-block;
+  width: 200rpx;
+}

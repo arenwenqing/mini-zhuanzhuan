@@ -10,7 +10,10 @@ Page({
     detailData: {},
     carousel: [],
     title: '',
-    productId: ''
+    productId: '',
+    hours: '00',
+    minutes: '00',
+    seconds: '00'
   },
 
   /**
@@ -38,6 +41,11 @@ Page({
           carousel: res.data.data.photoAddress ? [res.data.data.photoAddress.shift()]: [],
           productId: res.data?.data?.productId
         })
+        if (!this.interal) {
+          this.interal = setInterval(() => {
+            this.transformHour(res.data.data.offlineTime - new Date().getTime())
+          }, 1000)
+        }
       },
       fail: (err) => {
         wx.showToast({
@@ -61,39 +69,47 @@ Page({
     submitProductGetOrderId(this.data.productId, 0)
   },
 
-  // 提交订单获取订单id(orderid)
-  // isUseRoll 是否用劵， 1用劵，0非用劵
-  // submitProductGetOrderId(productId, isUseRoll) {
-  //   API.sumbitProduct({
-  //     productId,
-  //     doubleQuotaCount: isUseRoll,
-  //     payUserId: wx.getStorageSync('userId') || '',
-  //     receiveAddressId: wx.getStorageSync('addressId') || ''
-  //   }).then(res => {
-  //     const data = res.data.data
-  //     if (data.submitSuccess) { // 提交订单成功
-  //       console.log('提交订单失败', data.submitMsg)
-  //       const orderId = data?.order?.orderId || ''
-  //       // 跳转订单详情页
-  //       wx.navigateTo({
-  //         url: '/pages/orderDetail/orderDetail?orderId=' + orderId
-  //       })
-  //     } else { // 提交订单失败
-  //       console.log('提交订单失败', data.submitMsg)
-  //       wx.showToast({
-  //         title: data.submitMsg,
-  //         icon: 'none',
-  //         duration: 2000
-  //       })
-  //     }
-  //   }).catch(err => {
-  //     wx.showToast({
-  //       title: err.data.msg,
-  //       icon: 'error',
-  //       duration: 2000
-  //     })
-  //   })
-  // },
+  // 转化成小时
+  transformHour(num) {
+    if (num <= 0) {
+      clearInterval(this.interal)
+      return
+    }
+    const hours = String(num / 1000 / 60 / 60).split('.')
+    if (hours.length === 1) {
+      this.setData({
+        hours: hours.length > 1 ? hours : `0${hours}`
+      })
+    } else {
+      this.setData({
+        hours: hours[0].length > 1 ? hours[0] : `0${hours[0]}`
+      })
+      this.transformMinutes(`0.${hours[1]}`)
+    }
+  },
+
+  // 转化成分钟
+  transformMinutes(num) {
+    let m = String(num * 60).split('.')
+    if (m.length === 1) {
+      this.setData({
+        minutes: m.length > 1 ? m : `0${m}`
+      })
+    } else {
+      this.setData({
+        minutes: m[0].length > 1 ? m[0] : `0${m[0]}`
+      })
+      this.transformTime(`0.${m[1]}`)
+    }
+  },
+
+  // 转化成秒
+  transformTime(num) {
+    let s = Math.round(num * 60)
+    this.setData({
+      seconds: String(s).length > 1 ? s : `0${s}`
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

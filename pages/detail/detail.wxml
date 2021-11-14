@@ -44,11 +44,11 @@
       </view> -->
       <view class="detail-time">
         <text class="detail-time-text1">剩余</text>
-        <text class="detail-time-num">24</text>
+        <text class="detail-time-num">{{hours}}</text>
         <text class="detail-time-mh">:</text>
-        <text class="detail-time-num">00</text>
+        <text class="detail-time-num">{{minutes}}</text>
         <text class="detail-time-mh">:</text>
-        <text class="detail-time-num">00</text>
+        <text class="detail-time-num">{{seconds}}</text>
         <text class="detail-time-text2">结束</text>
       </view>
     </view>
