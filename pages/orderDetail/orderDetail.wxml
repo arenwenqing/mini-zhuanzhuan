@@ -50,7 +50,9 @@
     <view wx:if="{{showReimburseAndSalesReturn}}" class="apply-refund">
       <text class="apply-refund-title">商品退款或退货</text>
       <view class="refund-operation-btn">
-        <view class="reimburse" catchtap="reimburse">申请退款</view>
+        <view class="reimburse"
+        wx:if="{{!showOnlySalesReturn}}"
+        catchtap="reimburse">申请退款</view>
         <view wx:if="{{!showOnlyReimburse}}" class="sales-return" catchtap="salesReturn">申请退货</view>
       </view>
     </view>

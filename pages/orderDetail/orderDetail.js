@@ -40,6 +40,7 @@ Page({
     showImage: false,               // 是否展示获得商品图片
     showReimburseAndSalesReturn: false, // 是否展示退款/退货
     showOnlyReimburse: false,       // 是否只显示退款
+    showOnlySalesReturn: false,       // 是否只显示退货
   },
 
   /**
@@ -149,7 +150,7 @@ Page({
           showOrderStatusDescName: true,
           showImage: true,
           showReimburseAndSalesReturn: true,
-          showOnlyReimburse: false
+          showOnlySalesReturn: true
         })
       } else if (data.orderStatus.code === 9) { // 商品已签收
         topTitle = '已签收'
@@ -161,7 +162,7 @@ Page({
           showOrderStatusDescName: true,
           showImage: true,
           showReimburseAndSalesReturn: true,
-          showOnlyReimburse: false
+          showOnlySalesReturn: true
         })
       } else if (data.orderStatus.code === 10) { // 商品已回收
         topTitle = '已退货'
@@ -184,6 +185,7 @@ Page({
         this.setData({
           showOrderStatusDescName: true,
           showReimburseAndSalesReturn: true,
+          showOnlySalesReturn: true,
           showHaveOutbound: true,
           showImage: true
         })
@@ -332,22 +334,37 @@ Page({
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
-          wx.showModal({
-            title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
-            cancelText: '联系客服',
-            confirmText: '不退了',
-            // content: '这是一个模态弹窗',
-            success (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-                _this.setData({
-                  isVisibleCallServicer: true
-                })
-              }
+          API.reimburse({ orderId: _this.data.orderId }).then(res => {
+            if (res.data.code !== 0) { // 退款失败
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'error',
+                duration: 2000
+              })
             }
+          }).catch(err => {
+            wx.showToast({
+              title: err.data.msg,
+              icon: 'error',
+              duration: 2000
+            })
           })
+          // wx.showModal({
+          //   title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
+          //   cancelText: '联系客服',
+          //   confirmText: '不退了',
+          //   // content: '这是一个模态弹窗',
+          //   success (res) {
+          //     if (res.confirm) {
+          //       console.log('用户点击确定')
+          //     } else if (res.cancel) {
+          //       console.log('用户点击取消')
+          //       _this.setData({
+          //         isVisibleCallServicer: true
+          //       })
+          //     }
+          //   }
+          // })
         }
       }
     })
