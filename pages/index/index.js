@@ -23,12 +23,16 @@ Page({
   //   })
   // },
   onLoad() {
+  },
+
+  onShow: function () {
     this.getList()
     this.getIndexBanner()
     this.getNotice()
     this.getRedPackageMessage()
     console.log('app=', app)
   },
+
 
   // 最新领红包信息
   getRedPackageMessage() {
