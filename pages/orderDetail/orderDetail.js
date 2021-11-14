@@ -334,37 +334,58 @@ Page({
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
-          API.reimburse({ orderId: _this.data.orderId }).then(res => {
-            if (res.data.code !== 0) { // 退款失败
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'error',
-                duration: 2000
-              })
+          wx.showModal({
+            title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
+            cancelText: '联系客服',
+            confirmText: '不退了',
+            // content: '这是一个模态弹窗',
+            success (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+                _this.setData({
+                  isVisibleCallServicer: true
+                })
+              }
             }
-          }).catch(err => {
-            wx.showToast({
-              title: err.data.msg,
-              icon: 'error',
-              duration: 2000
-            })
           })
-          // wx.showModal({
-          //   title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
-          //   cancelText: '联系客服',
-          //   confirmText: '不退了',
-          //   // content: '这是一个模态弹窗',
-          //   success (res) {
-          //     if (res.confirm) {
-          //       console.log('用户点击确定')
-          //     } else if (res.cancel) {
-          //       console.log('用户点击取消')
-          //       _this.setData({
-          //         isVisibleCallServicer: true
+
+
+          // if (_this.data.isCommonOrder) { // 普通商品
+          //   API.reimburse({ orderId: _this.data.orderId }).then(res => {
+          //     if (res.data.code !== 0) { // 退款失败
+          //       wx.showToast({
+          //         title: res.data.msg,
+          //         icon: 'error',
+          //         duration: 2000
           //       })
           //     }
-          //   }
-          // })
+          //   }).catch(err => {
+          //     wx.showToast({
+          //       title: err.data.msg,
+          //       icon: 'error',
+          //       duration: 2000
+          //     })
+          //   })
+          // } else { // 优质商品
+          //   wx.showModal({
+          //     title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
+          //     cancelText: '联系客服',
+          //     confirmText: '不退了',
+          //     // content: '这是一个模态弹窗',
+          //     success (res) {
+          //       if (res.confirm) {
+          //         console.log('用户点击确定')
+          //       } else if (res.cancel) {
+          //         console.log('用户点击取消')
+          //         _this.setData({
+          //           isVisibleCallServicer: true
+          //         })
+          //       }
+          //     }
+          //   })
+          // }
         }
       }
     })
