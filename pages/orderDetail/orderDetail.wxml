@@ -65,4 +65,7 @@
     currentStatus="{{currentStatus}}"
   />
   <luckBag></luckBag>
+
+  <!-- 联系客服二维码弹窗 -->
+  <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
 </view>

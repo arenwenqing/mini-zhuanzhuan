@@ -9,11 +9,11 @@
 }
 .nav-every-content{
   display: inline-block;
-  /* padding: 6rpx 36rpx; */
-  width: 118rpx;
+  padding: 6rpx 24rpx;
+  /* width: 118rpx; */
   height: 46rpx;
   text-align: center;
-  line-height: 48rpx;
+  line-height: 46rpx;
   margin-right: 20rpx;
   background: #F6F6F6;
   border-radius: 45rpx;

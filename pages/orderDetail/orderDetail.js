@@ -23,6 +23,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isVisibleCallServicer: false, // 是否显示联系客服二维码弹窗
     orderId: '',
     orderData: {}, // 订单数据
     addressInfo: {}, // 收货地址信息
@@ -38,8 +39,6 @@ Page({
     showImage: false,               // 是否展示获得商品图片
     showReimburseAndSalesReturn: false, // 是否展示退款/退货
     showOnlyReimburse: false,       // 是否只显示退款
-
-
   },
 
   /**
@@ -183,6 +182,7 @@ Page({
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
+          showReimburseAndSalesReturn: true,
           showHaveOutbound: true,
           showImage: true
         })
@@ -286,16 +286,32 @@ Page({
 
   // 申请退货
   salesReturn() {
+    const _this = this
     wx.showModal({
-      title: `联系客服申请退货【${this.data.orderData?.product.majorName}】`,
-      cancelText: '联系客服',
+      title: `是否申请退货【${this.data.orderData?.product.majorName}】`,
+      cancelText: '申请退货',
       confirmText: '不退了',
       // content: '这是一个模态弹窗',
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          wx.showModal({
+            title: `联系客服申请退货【${_this.data.orderData?.product.majorName}】`,
+            cancelText: '联系客服',
+            confirmText: '不退了',
+            // content: '这是一个模态弹窗',
+            success (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+                _this.setData({
+                  isVisibleCallServicer: true
+                })
+              }
+            }
+          })
         }
       }
     })
@@ -323,6 +339,9 @@ Page({
                 console.log('用户点击确定')
               } else if (res.cancel) {
                 console.log('用户点击取消')
+                _this.setData({
+                  isVisibleCallServicer: true
+                })
               }
             }
           })

@@ -156,7 +156,7 @@ Page({
       wx.navigateTo({
         url: '/pages/userAgreement/userAgreement',
       })
-    } else if (clickTarget.key === '7') { // 用户协议
+    } else if (clickTarget.key === '7') { // 隐私协议
       wx.navigateTo({
         url: '/pages/privacyAgreement/privacyAgreement',
       })
