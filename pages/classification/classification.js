@@ -79,7 +79,7 @@ Page({
             url: domain + '/mini/product/list',
             data: {
                 categoryId: categoryId,
-                inVogue: categoryId ? 0 : 1,
+                inVogue: categoryId ? -1 : 1,
                 productName: ''
             },
             success: (res) => {

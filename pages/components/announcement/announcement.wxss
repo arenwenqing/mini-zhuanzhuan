@@ -45,7 +45,7 @@
   text-align: left;
 }
 .receive-notice-swiper {
-  height: 40rpx !important;
+  height: 44rpx !important;
   margin-top: 10rpx;
 }
 .container-system-gonggao-right {
@@ -61,5 +61,5 @@
   margin-top: 39rpx;
 }
 .receive-notice-swiper-center {
-  margin-top: 22rpx;
+  margin-top: 21rpx;
 }

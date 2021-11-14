@@ -8,7 +8,8 @@ Page({
    */
   data: {
     orderListData: [],
-    searchWidth: '494rpx'
+    searchWidth: '494rpx',
+    noticeData: []
   },
 
   /**
@@ -16,6 +17,25 @@ Page({
    */
   onLoad: function (options) {
     // this.getOrderList()
+  },
+
+  // 获得系统公告列表
+  getNotice () {
+    wx.request({
+      url: domain + '/mini/system/notice',
+      success: (res) => {
+        this.setData({
+          noticeData: res.data.data ? res.data.data : []
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   // 获取拼团列表
@@ -80,6 +100,7 @@ Page({
    */
   onShow: function () {
     this.getOrderList()
+    this.getNotice()
   },
 
   /**

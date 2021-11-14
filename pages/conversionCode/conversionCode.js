@@ -11,6 +11,11 @@ Page({
     conversionData: [],
     activeConversion: undefined,
     isEndGetTime: false, // 是否过领取时间
+    noticeData: []
+  },
+
+  onShow: function () {
+    this.getNotice()
   },
 
   /**
@@ -28,6 +33,25 @@ Page({
     return {
       path: '/pages/index/index'
     }
+  },
+
+  // 获得系统公告列表
+  getNotice () {
+    wx.request({
+      url: domain + '/mini/system/notice',
+      success: (res) => {
+        this.setData({
+          noticeData: res.data.data ? res.data.data : []
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   /**
