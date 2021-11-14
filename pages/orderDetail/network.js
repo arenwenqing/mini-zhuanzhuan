@@ -30,6 +30,14 @@ class Apis {
       }
     }, false)
   }
+
+  // 申请退款
+  reimburse({ orderId }) {
+    return request({
+      url: `/mini/order/refund/${orderId}`,
+      method: 'GET'
+    }, true)
+  }
 }
 
 export default new Apis()
