@@ -23,11 +23,6 @@ Component({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
           }, false).then(res => {
-            // wx.showToast({
-            //   title: String(res.data.data.length),
-            //   icon: 'none',
-            //   duration: 2000
-            // })
             if (res.data.data.length && !this.data.visible) {
               this.setData({
                 visible: true,
@@ -35,6 +30,7 @@ Component({
                 highQuality: !res.data.data[0].coproductId,
                 luckData: res.data.data[0]
               })
+              this.suerLuckBag(res.data.data[0].orderId)
             }
           }, err => {
             console.log(err)
@@ -70,6 +66,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 每弹一次福袋，调用一下确定接口
+    suerLuckBag(id) {
+      request({
+        url: `/mini/order/statusToConfirmed/${id}`,
+        method: 'POST'
+      }).then(res => {
+        console.log(res)
+      })
+    },
     closeLuck() {
       this.setData({
         visible: false,

@@ -1,6 +1,6 @@
 <!--pages/conversionCode/conversionCode.wxml-->
 <view class="container">
-  <mp-navigation-bar title='团赚赚' color='#000000' background='#FFFFFF'></mp-navigation-bar>
+  <mp-navigation-bar title='兑换码' color='#000000' background='#FFFFFF'></mp-navigation-bar>
   <view class="my-top-wrapper">
     <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
   </view>

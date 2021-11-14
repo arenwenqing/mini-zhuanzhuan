@@ -8,11 +8,11 @@
     </view>
     <view class="remaining-end-time">
       <text>剩余</text>
-      <text class="end-time">24</text>
+      <text class="end-time">{{hours}}</text>
       <text>:</text>
-      <text class="end-time">00</text>
+      <text class="end-time">{{minutes}}</text>
       <text>:</text>
-      <text class="end-time">00</text>
+      <text class="end-time">{{seconds}}</text>
       <text>结束</text>
     </view>
   </view>

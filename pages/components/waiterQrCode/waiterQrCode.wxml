@@ -1,7 +1,7 @@
 <!--pages/components/waiterQrCode/waiterQrCode.wxml-->
 <view wx:if="{{visibile}}" class="waiter-qr-code-wrapper">
   <view class="waiter-qr-content">
-    <image show-menu-by-longpress="true" src='https://cdn.tuanzhzh.com/biz/biz-qrCode.png' class="wait-qr-code" />
+    <image show-menu-by-longpress="true" src='https://cdn.tuanzhzh.com/system/custom/WechatIMG1192.png' class="wait-qr-code" />
     <text class="waiter-qr-code-text">请长按图片保存，使用微信扫一扫联系团团转客服</text>
     <image src="/pages/images/guanbi.png" class="waiter-qr-code-close" bindtap="closeQrCode" />
   </view>
