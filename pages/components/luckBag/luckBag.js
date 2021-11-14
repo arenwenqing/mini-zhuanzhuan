@@ -23,11 +23,11 @@ Component({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
           }, false).then(res => {
-            wx.showToast({
-              title: String(res.data.data.length),
-              icon: 'none',
-              duration: 2000
-            })
+            // wx.showToast({
+            //   title: String(res.data.data.length),
+            //   icon: 'none',
+            //   duration: 2000
+            // })
             if (res.data.data.length && !this.data.visible) {
               this.setData({
                 visible: true,

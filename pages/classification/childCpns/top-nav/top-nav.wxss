@@ -10,7 +10,7 @@
 .nav-every-content{
   display: inline-block;
   /* padding: 6rpx 36rpx; */
-  width: 118rpx;
+  /* width: 118rpx; */
   height: 46rpx;
   text-align: center;
   line-height: 48rpx;
@@ -22,6 +22,7 @@
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #999393;
+  padding: 0 15rpx;
 }
 .active{
   background: #FA2840;
