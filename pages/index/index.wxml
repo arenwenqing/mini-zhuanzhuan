@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
   <view class="container-top">
     <!-- <text class="container-title">团团转</text> -->
     <component-announcement noticeData="{{noticeData}}"></component-announcement>

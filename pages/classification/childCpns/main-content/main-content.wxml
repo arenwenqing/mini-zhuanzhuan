@@ -1,6 +1,6 @@
 <!--pages/classification/childCpns/main-content/main-content.wxml-->
 <view class="container">
-  <block wx:for="{{datalist}}" wx:key="index">
+  <block wx:for="{{listData}}" wx:key="index">
     <view class="goods-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
       <view class="goods-item-left">
         <view class="goods-img">
@@ -19,7 +19,7 @@
             <view class="goods-item-time">
               <image class="goods-item-time-icon" src='/pages/images/clock.png'></image>
               <text class="goods-item-time-time1">剩余</text>
-              <text class="goods-item-time-time2">6天23时60分</text>
+              <text class="goods-item-time-time2">{{item.time}}</text>
             </view>
           </view>
         </view>

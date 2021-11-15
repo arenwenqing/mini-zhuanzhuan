@@ -42,10 +42,15 @@ Page({
         num: 10
       },
       success: (res) => {
-        const reg = /(?<=.)./g
         res.data.data.forEach(item => {
           item.cashback = (item.cashback / 100).toFixed(2)
-          item.payUsername = item.payUsername?.replace(reg, '*')
+          const arr = item.payUsername? item.payUsername.split('') : []
+          arr.forEach((list, i) => {
+            if (i !== 0) {
+              arr[i] = '*'
+            }
+          })
+          item.payUsername = arr.join('')
         })
         this.setData({
           receiveDatas: res.data.data

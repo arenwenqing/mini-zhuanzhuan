@@ -1,6 +1,6 @@
 <!--pages/components/list/list.wxml-->
 <view class="container-goods-wrapper">
-    <block wx:for="{{datalist}}" wx:key="index">
+    <block wx:for="{{listData}}" wx:key="index">
       <view class="goods-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="goods-item-left">
           <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image>
@@ -17,7 +17,7 @@
               <view class="goods-item-time">
                 <image class="goods-item-time-icon" src='/pages/images/clock.png'></image>
                 <text class="goods-item-time-time1">剩余</text>
-                <text class="goods-item-time-time2">6天23时60分</text>
+                <text class="goods-item-time-time2">{{item.time}}</text>
               </view>
             </view>
           </view>

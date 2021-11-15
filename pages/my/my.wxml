@@ -1,6 +1,6 @@
 <!--pages/my/my.wxml-->
 <view>
-  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
+  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <view class="my-top-wrapper">
     <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
   </view>

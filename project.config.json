@@ -22,9 +22,9 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": false,
-    "useApiHostProcess": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -42,7 +42,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.20.0",
+  "libVersion": "2.20.2",
   "appid": "wxb48e40dbe585c7f2",
   "projectname": "miniprogram-tuantuan",
   "debugOptions": {

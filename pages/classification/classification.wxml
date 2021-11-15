@@ -3,6 +3,7 @@
   <mp-navigation-bar
     title='团团转'
     color='#fff'
+    back="{{false}}"
     background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'
   />
   <view class="search-input-wrapper">

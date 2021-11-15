@@ -44,7 +44,7 @@
     <order-more-image wx:if="{{showImage}}" orderData="{{orderData}}"></order-more-image>
 
     <!-- 已成团数 -->
-    <view class="have-to-make" wx:if="{{currentStatus !== 0}}">已成{{orderData.product.numToGroup}}团</view>
+    <view class="have-to-make" wx:if="{{currentStatus !== 0}}">已成{{orderData.product.groupPurchasedCount}}团</view>
   
     <!-- 申请退款/退货 -->
     <view wx:if="{{showReimburseAndSalesReturn}}" class="apply-refund">

@@ -40,11 +40,12 @@ Page({
     this.getUserDetail()
   },
 
+
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
@@ -67,6 +68,9 @@ Page({
         this.setData({
           addressData: tempArray
         })
+        if (tempArray.length === 1) {
+          wx.setStorageSync('addressId', tempArray[0].addressId)
+        }
       },
       fail: (err) => {
         wx.showToast({
@@ -159,6 +163,9 @@ Page({
       url: `/mini/user/address/delete?addressId=${obj.addressId}`,
       method: 'DELETE'
     }, true).then(res => {
+      if (wx.getStorageSync('addressId') === obj.addressId) {
+        wx.removeStorageSync('addressId')
+      }
       this.getUserDetail()
     }, err => {
       wx.showToast({
