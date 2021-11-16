@@ -17,6 +17,7 @@
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
 const domain = 'https://tuanzhzh.com'
+const app = getApp()
 Page({
 
   /**
@@ -97,6 +98,13 @@ Page({
       let topTitle = '团赚赚'
       let bottomBtnName = '再拼一次'
       let orderStatusDescName = ''
+      if (data.payDeadline !== -1) {
+        app.globalData.payDeadline = data.payDeadline
+      }
+      if (data.confirmDeliveredDeadline != -1) {
+        app.globalData.confirmDeliveredDeadline = data.confirmDeliveredDeadline
+      }
+
       if (data.orderStatus.code === 0) { // 未支付-商品结算
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
@@ -247,7 +255,7 @@ Page({
   getPayId() {
     API.getPayId({
       orderId: this.data.orderData.orderId,
-      receiveAddressId: this.data.orderData.receiveAddress.addressId
+      receiveAddressId: wx.getStorageSync('addressId')
     }).then(res => {
       this.startPay({
         ...res.data.data,

@@ -58,6 +58,32 @@ Page({
 
   },
 
+  // 上传个人信息
+  uploadUserMessage(obj) {
+    wx.request({
+      url: domain + '/mini/user/submit',
+      method: 'POST',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        userId: wx.getStorageSync('userId'),
+        wxUser: obj,
+      },
+      success: res => {
+        console.log(res)
+      },
+      fail: err => {
+        wx.showToast({
+          title: '信息更新失败',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+
    // 登录
    login() {
     const that = this
@@ -89,8 +115,10 @@ Page({
           const data = res.data.data
           wx.setStorageSync('userId', data.userId)
           wx.setStorageSync('openid', data.openid)
-          wx.setStorageSync('wxUser', JSON.stringify(data.wxUser))
+          wx.setStorageSync('wxUser', JSON.stringify(this.data.userInfo))
           wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
+          this.uploadUserMessage(this.data.userInfo)
+          this.getMessage()
         }
       },
       fail: (err) => {
@@ -191,20 +219,8 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    if (wx.getStorageSync('userInfo')) {
-      this.setData({
-        showAvatar: true,
-        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
-      })
-    } else {
-      this.setData({
-        showAvatar: false
-      })
-    }
+  // 获取信息接口
+  getMessage() {
     wx.request({
       url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
       success: res => {
@@ -225,6 +241,23 @@ Page({
         wx.hideLoading()
       }
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if (wx.getStorageSync('userInfo')) {
+      this.setData({
+        showAvatar: true,
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+      })
+    } else {
+      this.setData({
+        showAvatar: false
+      })
+    }
+    this.getMessage()
   },
 
   /**

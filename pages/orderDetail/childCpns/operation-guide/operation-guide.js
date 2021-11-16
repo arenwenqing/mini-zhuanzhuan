@@ -1,5 +1,6 @@
 // pages/orderDetail/childCpns/operation-guide/operation-guide.js
 const domain = 'https://tuanzhzh.com'
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -14,21 +15,42 @@ Component({
       value: 0
     }
   },
+  observers: {
+    "currentStatus": function(data) {
+      if (data === 0 && app.globalData.payDeadline) {
+        let count = app.globalData.payDeadline - new Date().getTime()
+        if (!this.inter) {
+          this.inter = setInterval(() => {
+            if (count <= 0) {
+              clearInterval(this.inter)
+              this.triggerEvent('countdown', {}, {})
+              return
+            }
+            count -= 1000
+            this.transformTime(count)
+          }, 1200)
+        }
+      }
+    }
+  },
 
   lifetimes: {
     ready: function () {
-      let count = 1000 * 60 * 5
-      if (!this.inter) {
-        this.inter = setInterval(() => {
-          if (count === 0) {
-            clearInterval(this.inter)
-            this.triggerEvent('countdown', {}, {})
-            return
-          }
-          count -= 1000
-          this.transformTime(count)
-        }, 1200)
-      }
+      // 1000 * 60 * 5
+      // console.log(app.globalData.payDeadline)
+      // debugger
+      // let count = wx.getStorageSync('payDeadline') * 1 - new Date().getTime()
+      // if (!this.inter) {
+      //   this.inter = setInterval(() => {
+      //     if (count === 0) {
+      //       clearInterval(this.inter)
+      //       this.triggerEvent('countdown', {}, {})
+      //       return
+      //     }
+      //     count -= 1000
+      //     this.transformTime(count)
+      //   }, 1200)
+      // }
     }
   },
 
@@ -36,7 +58,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    countTime: '05:00'
+    countTime: ''
   },
 
   /**
