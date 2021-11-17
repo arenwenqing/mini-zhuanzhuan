@@ -46,4 +46,5 @@
         </view>
       </view>
     </block>
+    <dialog showDialog="{{showDialog}}"></dialog>
   </view>

@@ -135,6 +135,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    const currentTime = new Date().getTime()
+    return {
+      title: '团团转-有红包的盲盒团购',
+      imageUrl: 'https://cdn.tuanzhzh.com/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB5%E6%AF%944.png',
+      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    }
   }
 })

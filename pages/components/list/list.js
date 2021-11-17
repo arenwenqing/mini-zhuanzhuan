@@ -16,6 +16,7 @@ Component({
    */
   data: {
     listData: [],
+    showDialog: false
   },
 
   observers: {
@@ -81,16 +82,22 @@ Component({
       })
     },
 
+    // 展示dialog
+    showDialog: function() {
+      this.setData({
+        showDialog: true
+      })
+    },
+
     // 用劵拼团
     useCouponsSpellGroup(e) {
       const productId = e.currentTarget.dataset.productid
-      submitProductGetOrderId(productId, 1)
+      submitProductGetOrderId(productId, 1, this.showDialog.bind(this))
     },
     // 立即拼团
     immediateSpellGroup(e) {
       const productId = e.currentTarget.dataset.productid
       submitProductGetOrderId(productId, 0)
     }
-
   }
 })

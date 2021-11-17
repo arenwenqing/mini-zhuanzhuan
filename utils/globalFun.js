@@ -6,7 +6,7 @@ import API from '../service/apis'
 
 // 提交订单获取订单id(orderid)
 // isUseRoll 是否用劵， 1用劵，0非用劵
-export const submitProductGetOrderId = (productId, isUseRoll) => {
+export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
   if (!wx.getStorageSync('userId')) {
     wx.showToast({
       title: '请先登录',
@@ -31,11 +31,18 @@ export const submitProductGetOrderId = (productId, isUseRoll) => {
       })
     } else { // 提交订单失败
       console.log('提交订单失败', data.submitMsg)
-      wx.showToast({
-        title: data.submitMsg,
-        icon: 'none',
-        duration: 2000
-      })
+      if (res.data.code === -2) {
+        // 双倍劵没了
+        if (typeof cb === 'function') {
+          cb()
+        }
+      } else {
+        wx.showToast({
+          title: data.submitMsg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
     }
   }).catch(err => {
     wx.showToast({

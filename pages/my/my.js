@@ -48,6 +48,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.options = options
     this.getNotice()
   },
 
@@ -117,11 +118,54 @@ Page({
           wx.setStorageSync('openid', data.openid)
           wx.setStorageSync('wxUser', JSON.stringify(this.data.userInfo))
           wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
-          this.uploadUserMessage(this.data.userInfo)
+          this.sessionGet()
+          // this.uploadUserMessage(this.data.userInfo)
           this.getMessage()
         }
       },
       fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  // 根据登录code获取wx身份会话信息，并同时校验、上传用户数据
+  sessionGet() {
+    console.log('测试=', {
+      code: wx.getStorageSync('code'),
+      ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
+      ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
+      ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
+    })
+    wx.request({
+      url: domain + '/mini/user/session/get',
+      method: 'POST',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        code: wx.getStorageSync('code'),
+        ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
+        ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
+        ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
+      },
+      success: res => {
+        if (res.data.code === 0) {
+          this.uploadUserMessage(this.data.userInfo)
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
+      fail: err => {
         wx.showToast({
           title: err.data.msg,
           icon: 'error',
@@ -292,6 +336,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    const currentTime = new Date().getTime()
+    return {
+      title: '团团转-有红包的盲盒团购',
+      imageUrl: 'https://cdn.tuanzhzh.com/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB5%E6%AF%944.png',
+      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    }
   }
 })

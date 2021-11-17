@@ -14,7 +14,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    listData: []
+    listData: [],
+    showDialog: false
   },
 
   observers: {
@@ -46,6 +47,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 展示dialog
+    showDialog: function() {
+      this.setData({
+        showDialog: true
+      })
+    },
     // 转化成小时
     transformHour(num) {
       if (num <= 0) {
@@ -82,7 +89,7 @@ Component({
     // 用劵拼团
     useCouponsSpellGroup(e) {
       const productId = e.currentTarget.dataset.productid
-      submitProductGetOrderId(productId, 1)
+      submitProductGetOrderId(productId, 1, this.showDialog.bind(this))
     },
     // 立即拼团
     immediateSpellGroup(e) {
