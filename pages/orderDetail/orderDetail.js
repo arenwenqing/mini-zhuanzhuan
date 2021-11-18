@@ -144,6 +144,7 @@ Page({
         this.setData({
           showOrderStatusDescName: true,
           showImage: true,
+          showComfortMoney: true,
           showReimburseAndSalesReturn: true,
           showOnlyReimburse: true
         })
@@ -178,6 +179,7 @@ Page({
         orderStatusDescName = '您已退货，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true,
+          showComfortMoney: true,
         })
       } else if (data.orderStatus.code === 11) { // 支付失败
         topTitle = '待支付'
@@ -194,6 +196,7 @@ Page({
           showOrderStatusDescName: true,
           showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true,
+          showComfortMoney: true,
           showHaveOutbound: true,
           showImage: true
         })

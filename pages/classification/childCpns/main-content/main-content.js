@@ -28,19 +28,19 @@ Component({
         this.setData({
           listData: data
         })
-        if (!this.interal) {
-          this.interal = setInterval(() => {
-            data.forEach(list => {
-              this.transformHour(list.offlineTime - new Date().getTime())
-              list.time = `${this.hours}时${this.minutes}分`
-            })
-            this.setData({
-              listData: data
-            })
-          }, 1000 * 60)
-        }
+        // if (!this.interal) {
+        //   this.interal = setInterval(() => {
+        //     data.forEach(list => {
+        //       this.transformHour(list.offlineTime - new Date().getTime())
+        //       list.time = `${this.hours}时${this.minutes}分`
+        //     })
+        //     this.setData({
+        //       listData: data
+        //     })
+        //   }, 1000 * 60)
+        // }
       }
-    }
+    },
   },
 
   /**
