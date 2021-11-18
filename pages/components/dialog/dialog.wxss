@@ -33,6 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .dialog-btn-style {
   border: none !important;

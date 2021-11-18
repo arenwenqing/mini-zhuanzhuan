@@ -5,12 +5,12 @@
     <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
   </view>
   <view class="my-user-message">
-    <view class="my-user-avatar">
+    <view class="my-user-avatar" catchtap="getUserProfile">
       <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
       <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
     </view>
-    <view wx:if="{{showAvatar}}" class="my-user-name">{{userInfo.nickName}}</view>
-    <view wx:else class="my-user-name" bindtap="getUserProfile">注册/登录</view>
+    <view wx:if="{{showAvatar}}"  class="my-user-name">{{userInfo.nickName}}</view>
+    <view wx:else class="my-user-name" catchtap="getUserProfile">注册/登录</view>
     <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text>
     <view class="my-user-item-wrapper">
       <view wx:if="{{tipShow}}" class="my-user-quan-tip">

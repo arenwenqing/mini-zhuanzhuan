@@ -3,11 +3,12 @@
   <view class="dialog-content">
     <view class="dialog-content-main">
       <text>您的双倍红包券已经用完啦</text>
+      <text>分享可以得到一张双倍红包券</text>
     </view>
     <view class="dialog-content-bottom">
-      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">不要了</button>
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">单倍拼团</button>
       <view class="dialog-btn-style-fenge"></view>
-      <button type="default" open-type="share" class="dialog-btn-style" plain="false" catchtap="closeDialog">分享</button>
+      <button type="default" open-type="share" class="dialog-btn-style" plain="false" catchtap="closeDialog">分享得劵</button>
     </view>
   </view>
 </view>

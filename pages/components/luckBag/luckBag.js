@@ -1,5 +1,6 @@
 // pages/components/luckBag/luckBag.js
 import { request } from '../../../service/index'
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -17,45 +18,14 @@ Component({
     },
     show: function() {
       // 在这个方法里执行轮询操作
-      // if (!this.initval) {
-      //   this.initval = setInterval(() => {
-      //     request({
-      //       url: '/mini/order/listNonStatusConfirmed',
-      //       method: 'POST'
-      //     }, false).then(res => {
-      //       if (res.data.data.length && !this.data.visible) {
-      //         res.data.data[0].cashback = String(res.data.data[0].cashback / 100).toFixed(2)
-      //         this.setData({
-      //           visible: true,
-      //           showStatic: true,
-      //           highQuality: !res.data.data[0].coproductId,
-      //           luckData: res.data.data[0]
-      //         })
-      //         this.suerLuckBag(res.data.data[0].orderId)
-      //       }
-      //     }, err => {
-      //       console.log(err)
-      //     })
-      //   }, 1000 * 20)
-      // }
-    }
-  },
-  
-  lifetimes: {
-    detached: function() {
-      // if (this.initval) {
-      //   clearInterval(this.initval)
-      // }
-    },
-    ready: function() {
-      let luckBagInteral = wx.getStorageSync('luckBagInteral')
-      if (!luckBagInteral) {
-        luckBagInteral = setInterval(() => {
+      // app.globalData.luckBagInteral = null
+      if (!app.globalData.luckBagInteral) {
+        this.initval = setInterval(() => {
           request({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
           }, false).then(res => {
-            if (res.data.data?.length && !this.data.visible) {
+            if (res.data.data.length && !this.data.visible) {
               res.data.data[0].cashback = String(res.data.data[0].cashback / 100).toFixed(2)
               this.setData({
                 visible: true,
@@ -69,8 +39,41 @@ Component({
             console.log(err)
           })
         }, 1000 * 20)
-        wx.setStorageSync('luckBagInteral', luckBagInteral)
+        app.globalData.luckBagInteral =  this.initval
       }
+    }
+  },
+  
+  lifetimes: {
+    detached: function() {
+      // if (this.initval) {
+      //   clearInterval(this.initval)
+      // }
+    },
+    ready: function() {
+      // let luckBagInteral = wx.getStorageSync('luckBagInteral')
+      // if (!luckBagInteral) {
+      //   luckBagInteral = setInterval(() => {
+      //     request({
+      //       url: '/mini/order/listNonStatusConfirmed',
+      //       method: 'POST'
+      //     }, false).then(res => {
+      //       if (res.data.data?.length && !this.data.visible) {
+      //         res.data.data[0].cashback = String(res.data.data[0].cashback / 100).toFixed(2)
+      //         this.setData({
+      //           visible: true,
+      //           showStatic: true,
+      //           highQuality: !res.data.data[0].coproductId,
+      //           luckData: res.data.data[0]
+      //         })
+      //         this.suerLuckBag(res.data.data[0].orderId)
+      //       }
+      //     }, err => {
+      //       console.log(err)
+      //     })
+      //   }, 1000 * 20)
+      //   wx.setStorageSync('luckBagInteral', luckBagInteral)
+      // }
     }
   },
 
