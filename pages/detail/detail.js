@@ -13,7 +13,8 @@ Page({
     productId: '',
     hours: '00',
     minutes: '00',
-    seconds: '00'
+    seconds: '00',
+    showDialog: false
   },
 
   /**
@@ -24,6 +25,13 @@ Page({
       title: options.name
     })
     this.getDetail(options.productId)
+  },
+
+  // 展示dialog
+  showDialog: function() {
+    this.setData({
+      showDialog: true
+    })
   },
 
   // 获取商品详情
@@ -62,7 +70,7 @@ Page({
 
   // 用劵拼团
   useCouponsSpellGroup(e) {
-    submitProductGetOrderId(this.data.productId, 1)
+    submitProductGetOrderId(this.data.productId, 1, this.showDialog.bind(this))
   },
   // 立即拼团
   immediateSpellGroup(e) {

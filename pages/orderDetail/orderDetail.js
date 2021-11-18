@@ -285,8 +285,13 @@ Page({
     wx.requestPayment({
       ...data,
       success (res) {
-        console.log('支付成功', res)
-        _this.getOrderDetail(_this.data.orderId)
+        wx.showLoading({
+          title: '加载中',
+        })
+        setTimeout(() => {
+          _this.getOrderDetail(_this.data.orderId)
+          wx.hideLoading()
+        }, 1500)
       },
       fail (res) {
         wx.showModal({

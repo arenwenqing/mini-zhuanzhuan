@@ -109,7 +109,10 @@ Page({
       url: domain + '/mini/user/session/get',
       method: 'POST',
       data: {
-        code: code
+        code: code,
+        ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
+        ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
+        ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
       },
       success: (res) => {
         if (res.data.data.userId) {
@@ -118,8 +121,8 @@ Page({
           wx.setStorageSync('openid', data.openid)
           wx.setStorageSync('wxUser', JSON.stringify(this.data.userInfo))
           wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
-          this.sessionGet()
-          // this.uploadUserMessage(this.data.userInfo)
+          // this.sessionGet()
+          this.uploadUserMessage(this.data.userInfo)
           this.getMessage()
         }
       },

@@ -81,4 +81,5 @@
     <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view>
   </view>
   <luckBag></luckBag>
+  <dialog showDialog="{{showDialog}}"></dialog>
 </view>

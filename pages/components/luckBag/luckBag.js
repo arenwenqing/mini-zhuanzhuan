@@ -48,8 +48,9 @@ Component({
       // }
     },
     ready: function() {
-      if (!this.interal) {
-        this.interal = setInterval(() => {
+      let luckBagInteral = wx.getStorageSync('luckBagInteral')
+      if (!luckBagInteral) {
+        luckBagInteral = setInterval(() => {
           request({
             url: '/mini/order/listNonStatusConfirmed',
             method: 'POST'
@@ -68,6 +69,7 @@ Component({
             console.log(err)
           })
         }, 1000 * 20)
+        wx.setStorageSync('luckBagInteral', luckBagInteral)
       }
     }
   },
