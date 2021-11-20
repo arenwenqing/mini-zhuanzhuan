@@ -29,6 +29,7 @@
       wx:if="{{orderStatusCode === 0}}"
       orderData="{{orderData}}"
       addressInfo="{{addressInfo}}"
+      id="orderSettlement"
     ></order-settlement-countdown>
 
     <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->

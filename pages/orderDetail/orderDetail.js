@@ -221,8 +221,9 @@ Page({
         currentStatus: data.orderStatus.code,
         isCommonOrder: res.data.data.coproduct ? true : false,
         orderStatusDescName
-
       })
+      const orderSettlementObj = this.selectComponent('#orderSettlement')
+      orderSettlementObj.countDownTime(data.groupOrder?.groupEndTime)
     }).catch(err => {
       wx.showToast({
         title: err.data.msg,
