@@ -9,7 +9,8 @@
     "order-more-image": "/pages/orderDetail/childCpns/order-more-image/order-more-image",
     "order-express-info": "/pages/orderDetail/childCpns/order-express-info/order-express-info",
     "luckBag": "/pages/components/luckBag/luckBag",
-    "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode"
+    "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   },
   "navigationStyle": "custom"
 }

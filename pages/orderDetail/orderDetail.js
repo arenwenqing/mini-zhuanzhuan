@@ -42,6 +42,12 @@ Page({
     showReimburseAndSalesReturn: false, // 是否展示退款/退货
     showOnlyReimburse: false,       // 是否只显示退款
     showOnlySalesReturn: false,       // 是否只显示退货
+    buttonArray: [{
+      text: '不添加'
+    }, {
+      text: '去添加'
+    }],
+    addAddressDialog: false 
   },
 
   /**
@@ -49,8 +55,6 @@ Page({
    */
   onLoad: function (options) {
     if (options?.orderId) {
-      // this.orderId = options.orderId
-      // this.getOrderDetail(options.orderId)
       this.setData({
         orderId: options.orderId
       }, () => {
@@ -98,11 +102,16 @@ Page({
       let topTitle = '团赚赚'
       let bottomBtnName = '再拼一次'
       let orderStatusDescName = ''
-      if (data.payDeadline !== -1) {
+      if (data.payDeadline !== -1 && data.orderStatus.code === 0) {
         app.globalData.payDeadline = data.payDeadline
+        const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
+        bottomBtnComponentObj.payDownTime(data.payDeadline)
       }
-      if (data.confirmDeliveredDeadline != -1) {
+
+      if (data.confirmDeliveredDeadline != -1 && data.orderStatus.code === 8) {
         app.globalData.confirmDeliveredDeadline = data.confirmDeliveredDeadline
+        const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
+        bottomBtnComponentObj.shippinTimeFun(data.confirmDeliveredDeadline)
       }
 
       if (data.orderStatus.code === 0) { // 未支付-商品结算
@@ -224,6 +233,24 @@ Page({
   },
 
   /**
+   * 添加地址确认
+   */
+  closeAddressTip(param) {
+    if (param.detail.index == 0) {
+      console.log('点击了取消')
+    } else {
+      console.log('点击了确定')
+      // this.deleteAddressOption(this.data.addressObj)
+      wx.navigateTo({
+        url: '/pages/shippinAddress/shippinAddress?from=orderDetail',
+      })
+    }
+    this.setData({
+      addAddressDialog: false
+    })
+  },
+
+  /**
    * 倒计时结束时自动调用的函数
    * @param {*} e
    */
@@ -256,6 +283,12 @@ Page({
 
   // 支付
   getPayId() {
+    if (!wx.getStorageSync('addressId')) {
+      this.setData({
+        addAddressDialog: true
+      })
+      return
+    }
     API.getPayId({
       orderId: this.data.orderData.orderId,
       receiveAddressId: wx.getStorageSync('addressId')
@@ -277,14 +310,6 @@ Page({
   // 微信支付弹窗
   startPay(data) {
     const _this = this
-    if (!wx.getStorageSync('addressId')) {
-      wx.showToast({
-        title: '请添加地址',
-        icon: 'error',
-        duration: 2000
-      })
-      return
-    }
     wx.requestPayment({
       ...data,
       success (res) {

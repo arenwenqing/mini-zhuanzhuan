@@ -60,6 +60,7 @@
 
   <!-- 底部操作按钮 -->
   <operation-guide
+    id='bottomBtn'
     class="bottom-operation-btn"
     bottomBtnName="{{bottomBtnName}}"
     bindclickOperationBtn="clickPerationBtn"
@@ -68,6 +69,8 @@
   />
   <luckBag></luckBag>
 
+  <mp-dialog title="添加收货地址" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{addAddressDialog}}">
+  </mp-dialog>
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
 </view>

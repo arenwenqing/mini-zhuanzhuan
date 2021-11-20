@@ -26,7 +26,7 @@ Component({
             method: 'POST'
           }, false).then(res => {
             if (res.data.data.length && !this.data.visible) {
-              res.data.data[0].cashback = String(res.data.data[0].cashback / 100).toFixed(2)
+              res.data.data[0].cashback = Number(res.data.data[0].cashback / 100).toFixed(2)
               this.setData({
                 visible: true,
                 showStatic: true,

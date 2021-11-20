@@ -33,20 +33,21 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 24rpx 0rpx 4rpx 0rpx;
+  align-items: center;
 }
 .province-city-title {
-  font-size: 24rpx;
+  font-size: 30rpx;
   font-family: PingFang-SC-Medium, PingFang-SC;
   font-weight: 500;
   color: #666666;
   line-height: 34rpx;
 }
 .icon {
-  width: 32rpx;
-  height: 32rpx;
+  width: 42rpx;
+  height: 42rpx;
 }
 .detail-address {
-  font-size: 28rpx;
+  font-size: 33rpx;
   font-family: PingFang-SC-Bold, PingFang-SC;
   font-weight: bold;
   color: #262626;
@@ -54,7 +55,7 @@
   margin: 4rpx 0rpx;
 }
 .name-phone {
-  font-size: 24rpx;
+  font-size: 33rpx;
   font-family: PingFang-SC-Medium, PingFang-SC;
   font-weight: 500;
   color: #666666;

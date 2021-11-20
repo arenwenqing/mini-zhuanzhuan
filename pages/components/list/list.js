@@ -44,6 +44,11 @@ Component({
     }
   },
 
+  pageLifetimes: {
+    show: function() {
+    }
+  },
+
   /**
    * 组件的方法列表
    */
