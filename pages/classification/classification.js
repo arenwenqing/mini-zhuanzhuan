@@ -83,12 +83,31 @@ Page({
                 productName: ''
             },
             success: (res) => {
+                if (!res.data.data || !res.data.data.length) {
+                    this.setData({
+                        listData: []
+                    })
+                    return
+                }
                 res.data.data && res.data.data.forEach(item => {
-                item.price = (item.price / 100).toFixed(2)
+                    this.transformHour(item.offlineTime - new Date().getTime())
+                    item.time = `${this.hours}时${this.minutes}分`
+                    item.price = (item.price / 100).toFixed(2)
                 })
                 this.setData({
                     listData: res.data.data ? res.data.data : []
                 })
+                 if (!this.interal) {
+                  this.interal = setInterval(() => {
+                    res.data.data.forEach(list => {
+                      this.transformHour(list.offlineTime - new Date().getTime())
+                      list.time = `${this.hours}时${this.minutes}分`
+                    })
+                    this.setData({
+                      listData: res.data.data ? res.data.data : []
+                    })
+                  }, 1000 * 60)
+                }
             },
             fail: (err) => {
                 wx.showToast({
@@ -127,6 +146,31 @@ Page({
         const receiveDetail = e.detail
         this.getList(receiveDetail.id)
     },
+
+    // 转化成小时
+    transformHour(num) {
+        if (num <= 0) {
+            clearInterval(this.interal)
+            return
+        }
+        const hours = String(num / 1000 / 60 / 60).split('.')
+        if (hours.length === 1) {
+            this.hours = hours.length > 1 ? hours : `0${hours}`
+        } else {
+            this.hours = hours[0].length > 1 ? hours[0] : `0${hours[0]}`
+            this.transformMinutes(`0.${hours[1]}`)
+        }
+        },
+    
+        // 转化成分钟
+        transformMinutes(num) {
+        let m = String(num * 60).split('.')
+        if (m.length === 1) {
+            this.minutes = m.length > 1 ? m : `0${m}`
+        } else {
+            this.minutes = m[0].length > 1 ? m[0] : `0${m[0]}`
+        }
+        },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -21,10 +21,10 @@ Component({
   observers: {
     datalist: function(data) {
       if (data.length) {
-        data.forEach(list => {
-          this.transformHour(list.offlineTime - new Date().getTime())
-          list.time = `${this.hours}时${this.minutes}分`
-        })
+        // data.forEach(list => {
+        //   this.transformHour(list.offlineTime - new Date().getTime())
+        //   list.time = `${this.hours}时${this.minutes}分`
+        // })
         this.setData({
           listData: data
         })
