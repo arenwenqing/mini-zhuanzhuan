@@ -223,7 +223,7 @@ Page({
         orderStatusDescName
       })
       const orderSettlementObj = this.selectComponent('#orderSettlement')
-      orderSettlementObj.countDownTime(data.groupOrder?.groupEndTime)
+      orderSettlementObj?.countDownTime(data.groupOrder?.groupEndTime)
     }).catch(err => {
       wx.showToast({
         title: err.data.msg,
@@ -243,7 +243,7 @@ Page({
       console.log('点击了确定')
       // this.deleteAddressOption(this.data.addressObj)
       wx.navigateTo({
-        url: '/pages/shippinAddress/shippinAddress?from=orderDetail',
+        url: '/pages/addAddress/addAddress?from=orderDetail',
       })
     }
     this.setData({

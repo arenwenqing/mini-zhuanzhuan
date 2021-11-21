@@ -6,7 +6,12 @@
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
     <!-- 获取安慰红包 注意：获得普通商品才展示，优质商品不展示 -->
     <view wx:if="{{showComfortMoney && isCommonOrder}}" class="comfort-red-envelope">
-      获得安慰红包<text style="color: #eb392a;">{{orderData.cashback / 100}}</text>元
+      <viwe>已为您退还差价<text style="color: #eb392a;">{{orderData.coRefundAmount / 100}}</text>元</viwe>
+      <view>
+        获得安慰红包
+        <text style="color: #eb392a;">{{orderData.cashback / 100}}</text>元
+        <text wx:if="{{orderData.doubleQuotaCount === 1}}" style="color: #eb392a;">X2</text>
+      </view>
     </view>
     <!-- 订单已出库提示 -->
     <view wx:if="{{showHaveOutbound}}" class="order-outbound">

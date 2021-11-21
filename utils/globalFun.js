@@ -2,8 +2,8 @@
  * 全局公用请求逻辑
  */
 import API from '../service/apis'
-
-
+const domain = 'https://tuanzhzh.com'
+const app = getApp()
 // 提交订单获取订单id(orderid)
 // isUseRoll 是否用劵， 1用劵，0非用劵
 export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
@@ -50,5 +50,109 @@ export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
       icon: 'error',
       duration: 2000
     })
+  })
+}
+
+// 获取微信用户信息
+export const getUserProfile = (e) => {
+ // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+ wx.showLoading({
+   title: '加载中',
+ })
+ setTimeout(() => {
+   wx.hideLoading()
+ }, 500)
+ wx.getUserProfile({
+   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+   success: (res) => {
+     wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+    //  this.setData({
+    //    userInfo: res.userInfo,
+    //    showAvatar: true
+    //  })
+    //  this.login()
+    login()
+   },
+   fail: err => {
+     console.log(err)
+   }
+ })
+}
+
+// 登录
+function login() {
+  const that = this
+  wx.login({
+    success(res) {
+      wx.setStorageSync('code', res.code)
+      getUserId(res.code)
+    },
+    fail() {
+      wx.showToast({
+        title: '登录失败',
+        icon: 'error',
+        duration: 2000
+      })
+    }
+  })
+}
+
+
+// 获取用户ID、openID
+function getUserId(code) {
+  wx.request({
+    url: domain + '/mini/user/session/get',
+    method: 'POST',
+    data: {
+      code: code,
+      ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
+      ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
+      ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
+    },
+    success: (res) => {
+      if (res.data.data.userId) {
+        const data = res.data.data
+        wx.setStorageSync('userId', data.userId)
+        wx.setStorageSync('openid', data.openid)
+        wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
+        wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
+        // this.sessionGet()
+        uploadUserMessage(res.data.data.wxUser)
+        // this.getMessage()
+      }
+    },
+    fail: (err) => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
+    }
+  })
+}
+
+// 上传个人信息
+function uploadUserMessage(obj) {
+  wx.request({
+    url: domain + '/mini/user/submit',
+    method: 'POST',
+    header: {
+      openid: wx.getStorageSync('openid'),
+      userid: wx.getStorageSync('userId')
+    },
+    data: {
+      userId: wx.getStorageSync('userId'),
+      wxUser: obj,
+    },
+    success: res => {
+      console.log(res)
+    },
+    fail: err => {
+      wx.showToast({
+        title: '信息更新失败',
+        icon: 'error',
+        duration: 2000
+      })
+    }
   })
 }
