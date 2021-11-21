@@ -1,6 +1,6 @@
 <!--pages/classification/childCpns/main-content/main-content.wxml-->
 <view class="container">
-  <block wx:for="{{listData}}" wx:key="index">
+  <block wx:for="{{datalist}}" wx:key="index">
     <view class="goods-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
       <view class="goods-item-left">
         <view class="goods-img">
