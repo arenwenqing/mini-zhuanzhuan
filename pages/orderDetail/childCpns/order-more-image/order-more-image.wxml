@@ -6,8 +6,8 @@
       <text class="top-img-desc">{{orderData.product.majorName}}</text>
     </view>
     <!-- 双倍红包劵 -->
-    <view wx:if="{{orderData.doubleQuotaCount === 1}}" class="double-wrapper">
-      <image class="double-img" src="/pages/images/double-red.png"></image>
+    <view wx:if="{{orderData.doubleQuotaCount === 1 && !orderData.coproduct}}" class="double-wrapper">
+      <image class="double-img" src="/pages/images/shuangbei-guoqi.png"></image>
     </view>
   </view>
   <view class="bottom-img-wrapper" wx:if="{{orderData.product.coproductList && orderData.product.coproductList.length}}">

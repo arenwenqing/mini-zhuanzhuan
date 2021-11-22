@@ -51,6 +51,12 @@ Page({
     this.getProvince('', 1)
   },
 
+  backPage() {
+    wx.redirectTo({
+      url: '/pages/shippinAddress/shippinAddress',
+    })
+  },
+
   /**
    * 获取地址详情
    * @param {*} parentCode 
@@ -221,7 +227,7 @@ Page({
       },
       success: res => {
         wx.hideLoading()
-        wx.navigateTo({
+        wx.redirectTo({
           url: `/pages/shippinAddress/shippinAddress`,
         })
       },

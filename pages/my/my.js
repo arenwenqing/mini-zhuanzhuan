@@ -59,152 +59,18 @@ Page({
 
   },
 
-  // 上传个人信息
-  // uploadUserMessage(obj) {
-  //   wx.request({
-  //     url: domain + '/mini/user/submit',
-  //     method: 'POST',
-  //     header: {
-  //       openid: wx.getStorageSync('openid'),
-  //       userid: wx.getStorageSync('userId')
-  //     },
-  //     data: {
-  //       userId: wx.getStorageSync('userId'),
-  //       wxUser: obj,
-  //     },
-  //     success: res => {
-  //       console.log(res)
-  //     },
-  //     fail: err => {
-  //       wx.showToast({
-  //         title: '信息更新失败',
-  //         icon: 'error',
-  //         duration: 2000
-  //       })
-  //     }
-  //   })
-  // },
-
-  //  // 登录
-  //  login() {
-  //   const that = this
-  //   wx.login({
-  //     success(res) {
-  //       wx.setStorageSync('code', res.code)
-  //       that.getUserId(res.code)
-  //     },
-  //     fail() {
-  //       wx.showToast({
-  //         title: '登录失败',
-  //         icon: 'error',
-  //         duration: 2000
-  //       })
-  //     }
-  //   })
-  // },
-
-  // 获取用户ID、openID
-  // getUserId(code) {
-  //   wx.request({
-  //     url: domain + '/mini/user/session/get',
-  //     method: 'POST',
-  //     data: {
-  //       code: code,
-  //       ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
-  //       ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
-  //       ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
-  //     },
-  //     success: (res) => {
-  //       if (res.data.data.userId) {
-  //         const data = res.data.data
-  //         wx.setStorageSync('userId', data.userId)
-  //         wx.setStorageSync('openid', data.openid)
-  //         wx.setStorageSync('wxUser', JSON.stringify(this.data.userInfo))
-  //         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
-  //         // this.sessionGet()
-  //         this.uploadUserMessage(this.data.userInfo)
-  //         this.getMessage()
-  //       }
-  //     },
-  //     fail: (err) => {
-  //       wx.showToast({
-  //         title: err.data.msg,
-  //         icon: 'error',
-  //         duration: 2000
-  //       })
-  //     }
-  //   })
-  // },
-
-  // 根据登录code获取wx身份会话信息，并同时校验、上传用户数据
-  // sessionGet() {
-  //   console.log('测试=', {
-  //     code: wx.getStorageSync('code'),
-  //     ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
-  //     ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
-  //     ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
-  //   })
-  //   wx.request({
-  //     url: domain + '/mini/user/session/get',
-  //     method: 'POST',
-  //     header: {
-  //       openid: wx.getStorageSync('openid'),
-  //       userid: wx.getStorageSync('userId')
-  //     },
-  //     data: {
-  //       code: wx.getStorageSync('code'),
-  //       ...(app.globalData.originUserId ? { originUserId: app.globalData.originUserId } : {}),
-  //       ...(app.globalData.originExchangeCode ? { originExchangeCode: app.globalData.originExchangeCode } : {}),
-  //       ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
-  //     },
-  //     success: res => {
-  //       if (res.data.code === 0) {
-  //         this.uploadUserMessage(this.data.userInfo)
-  //       } else {
-  //         wx.showToast({
-  //           title: res.data.msg,
-  //           icon: 'error',
-  //           duration: 2000
-  //         })
-  //       }
-  //     },
-  //     fail: err => {
-  //       wx.showToast({
-  //         title: err.data.msg,
-  //         icon: 'error',
-  //         duration: 2000
-  //       })
-  //     }
-  //   })
-  // },
-
   /**
    * 获取微信用户信息
    */
   getUserProfile(e) {
     if (this.data.showAvatar) return
-    getUserProfile()
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
-    // setTimeout(() => {
-    //   wx.hideLoading()
-    // }, 500)
-    // wx.getUserProfile({
-    //   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-    //   success: (res) => {
-    //     wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       showAvatar: true
-    //     })
-    //     this.login()
-    //   },
-    //   fail: err => {
-    //     console.log(err)
-    //   }
-    // })
+    getUserProfile(() => {
+      this.setData({
+        userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+        showAvatar: true
+      })
+      this.getMessage()
+    })
   },
 
   /**
@@ -302,10 +168,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('userInfo')) {
+    if (wx.getStorageSync('wxUser')) {
       this.setData({
         showAvatar: true,
-        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+        userInfo: JSON.parse(wx.getStorageSync('wxUser'))
       })
     } else {
       this.setData({

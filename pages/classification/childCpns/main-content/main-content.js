@@ -1,4 +1,4 @@
-import { submitProductGetOrderId } from '../../../../utils/globalFun'
+import { submitProductGetOrderId, getUserProfile } from '../../../../utils/globalFun'
 Component({
   /**
    * 组件的属性列表
@@ -15,30 +15,21 @@ Component({
    */
   data: {
     listData: [],
-    showDialog: false
+    showDialog: false,
+    deleteDialog: false,
+    buttonArray: [{
+      text: '随便看看'
+    }, {
+      text: '注册/登录'
+    }]
   },
 
   observers: {
     datalist: function(data) {
       if (data.length) {
-        // data.forEach(list => {
-        //   this.transformHour(list.offlineTime - new Date().getTime())
-        //   list.time = `${this.hours}时${this.minutes}分`
-        // })
         this.setData({
           listData: data
         })
-        // if (!this.interal) {
-        //   this.interal = setInterval(() => {
-        //     data.forEach(list => {
-        //       this.transformHour(list.offlineTime - new Date().getTime())
-        //       list.time = `${this.hours}时${this.minutes}分`
-        //     })
-        //     this.setData({
-        //       listData: data
-        //     })
-        //   }, 1000 * 60)
-        // }
       }
     },
   },
@@ -47,11 +38,31 @@ Component({
    * 组件的方法列表
    */
   methods: {
+     /**
+     * 关闭删除确认
+     */
+    closeAddressTip(param) {
+      if (param.detail.index == 0) {
+        console.log('点击了取消')
+      } else {
+        // this.deleteAddressOption(this.data.addressObj)
+        getUserProfile()
+      }
+      this.setData({
+        deleteDialog: false
+      })
+    },
     // 展示dialog
     showDialog: function() {
-      this.setData({
-        showDialog: true
-      })
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+      } else {
+        this.setData({
+          showDialog: true
+        })
+      }
     },
     // 转化成小时
     transformHour(num) {
@@ -94,7 +105,11 @@ Component({
     // 立即拼团
     immediateSpellGroup(e) {
       const productId = e.currentTarget.dataset.productid
-      submitProductGetOrderId(productId, 0)
+      submitProductGetOrderId(productId, 0, () => {
+        this.setData({
+          deleteDialog: true
+        })
+      })
     },
   }
 })

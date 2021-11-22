@@ -8,11 +8,7 @@ const app = getApp()
 // isUseRoll 是否用劵， 1用劵，0非用劵
 export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
   if (!wx.getStorageSync('userId')) {
-    wx.showToast({
-      title: '请先登录',
-      icon: 'error',
-      duration: 2000
-    })
+    cb && cb()
     return
   }
   API.sumbitProduct({
@@ -54,38 +50,33 @@ export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
 }
 
 // 获取微信用户信息
-export const getUserProfile = (e) => {
+export const getUserProfile = (cb) => {
  // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
  wx.showLoading({
    title: '加载中',
  })
- setTimeout(() => {
-   wx.hideLoading()
- }, 500)
- wx.getUserProfile({
-   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-   success: (res) => {
-     wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-    //  this.setData({
-    //    userInfo: res.userInfo,
-    //    showAvatar: true
-    //  })
-    //  this.login()
-    login()
-   },
-   fail: err => {
-     console.log(err)
-   }
+  setTimeout(() => {
+    wx.hideLoading()
+  }, 500)
+  wx.getUserProfile({
+  desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+  success: (res) => {
+    // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+    login(cb)
+  },
+  fail: err => {
+    console.log(err)
+  }
  })
 }
 
 // 登录
-function login() {
+function login(cb) {
   const that = this
   wx.login({
     success(res) {
       wx.setStorageSync('code', res.code)
-      getUserId(res.code)
+      getUserId(res.code, cb)
     },
     fail() {
       wx.showToast({
@@ -99,7 +90,7 @@ function login() {
 
 
 // 获取用户ID、openID
-function getUserId(code) {
+function getUserId(code, cb) {
   wx.request({
     url: domain + '/mini/user/session/get',
     method: 'POST',
@@ -117,6 +108,7 @@ function getUserId(code) {
         wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()
+        cb && cb()
         uploadUserMessage(res.data.data.wxUser)
         // this.getMessage()
       }

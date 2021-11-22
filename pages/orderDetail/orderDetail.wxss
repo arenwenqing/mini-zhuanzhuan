@@ -44,6 +44,14 @@
   text-align: center;
   margin-bottom: 32rpx;
 }
+.group-title-hint-subtitle {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #9F9F9F;
+  line-height: 34rpx;
+  margin-top: 8rpx;
+}
 .have-to-make {
   font-size: 20rpx;
   font-family: PingFangSC-Regular, PingFang SC;

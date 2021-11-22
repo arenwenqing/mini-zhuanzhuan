@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-import { submitProductGetOrderId } from '../../utils/globalFun.js'
+import { submitProductGetOrderId, getUserProfile } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
 Page({
 
@@ -14,7 +14,13 @@ Page({
     hours: '00',
     minutes: '00',
     seconds: '00',
-    showDialog: false
+    showDialog: false,
+    deleteDialog: false,
+    buttonArray: [{
+      text: '随便看看'
+    }, {
+      text: '注册/登录'
+    }]
   },
 
   /**
@@ -27,11 +33,32 @@ Page({
     this.getDetail(options.productId)
   },
 
+  /**
+   * 关闭删除确认
+   */
+  closeAddressTip(param) {
+    if (param.detail.index == 0) {
+      console.log('点击了取消')
+    } else {
+      // this.deleteAddressOption(this.data.addressObj)
+      getUserProfile()
+    }
+    this.setData({
+      deleteDialog: false
+    })
+  },
+
   // 展示dialog
   showDialog: function() {
-    this.setData({
-      showDialog: true
-    })
+    if (!wx.getStorageSync('userId')) {
+      this.setData({
+        deleteDialog: true
+      })
+    } else {
+      this.setData({
+        showDialog: true
+      })
+    }
   },
 
   // 获取商品详情
@@ -74,7 +101,11 @@ Page({
   },
   // 立即拼团
   immediateSpellGroup(e) {
-    submitProductGetOrderId(this.data.productId, 0)
+    submitProductGetOrderId(this.data.productId, 0, () => {
+      this.setData({
+        deleteDialog: true
+      })
+    })
   },
 
   // 转化成小时

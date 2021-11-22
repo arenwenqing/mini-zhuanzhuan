@@ -39,7 +39,6 @@ Page({
     console.log('app=', app)
   },
 
-
   // 最新领红包信息
   getRedPackageMessage() {
     wx.request({

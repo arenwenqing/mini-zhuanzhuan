@@ -38,13 +38,13 @@
 }
 .double-wrapper {
   position: absolute;
-  width: 160rpx;
-  height: 160rpx;
-  right: 0;
+  width: 120rpx;
+  height: 120rpx;
+  right: 53rpx;
 }
 .double-img {
-  width: 160rpx;
-  height: 160rpx;
+  width: 120rpx;
+  height: 120rpx;
 }
 .bottom-img-wrapper {
   display: flex;
