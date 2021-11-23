@@ -68,8 +68,9 @@ Component({
     },
 
     clickGoAddress(e) {
+      app.globalData.addressFrom = 'orderDetail'
       wx.navigateTo({
-        url: '/pages/shippinAddress/shippinAddress?from=orderDetail',
+        url: '/pages/shippinAddress/shippinAddress',
       })
     },
     // 转化成小时

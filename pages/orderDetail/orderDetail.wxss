@@ -105,13 +105,18 @@
   margin-left: 16rpx;
 }
 .comfort-red-envelope {
+  display: flex;
   font-size: 32rpx;
   font-family: PingFangSC-Semibold, PingFang SC;
   font-weight: 600;
   color: #101010;
   line-height: 44rpx;
   text-align: center;
-  margin: 16rpx 0rpx;
+  margin: 16rpx 0rpx 0rpx 0rpx;
+  align-items: center;
+}
+.red-envelope-content {
+  justify-content: center;
 }
 .order-outbound {
   font-size: 28rpx;
@@ -121,4 +126,26 @@
   line-height: 40rpx;
   text-align: center;
   margin-top: 20rpx;
+}
+.double-red-package {
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 6rpx;
+  margin-left: 10rpx;
+}
+/* .putong-price-description {
+  margin-left: 24rpx;
+} */
+.double-icon-class {
+  display: inline-block;
+  width: 102rpx;
+  height: 70rpx;
+}
+.putong-anwei-redpacke {
+  display: flex;
+  align-items: center;
+}
+.redpacke-center {
+  justify-content: center;
 }

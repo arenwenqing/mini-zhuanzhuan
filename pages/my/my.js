@@ -1,6 +1,6 @@
 import { getUserProfile } from '../../utils/globalFun'
 const domain = 'https://tuanzhzh.com'
-// const app = getApp()
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -93,6 +93,7 @@ Page({
         url: '/pages/conversionCode/conversionCode',
       })
     } else if (clickTarget.key === '4') {
+      app.globalData.addressFrom = undefined
       wx.navigateTo({
         url: '/pages/shippinAddress/shippinAddress',
       })

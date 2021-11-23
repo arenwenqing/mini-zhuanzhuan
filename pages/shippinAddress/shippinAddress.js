@@ -1,6 +1,7 @@
 // pages/shippinAddress/shippinAddress.js
 import { request } from '../../service/index'
 const domain = 'https://tuanzhzh.com'
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -21,9 +22,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      fromSource: options.from
-    })
+    // this.setData({
+    //   fromSource: options.from
+    // })
   },
 
   /**
@@ -38,6 +39,9 @@ Page({
    */
   onShow: function () {
     this.getUserDetail()
+    this.setData({
+      fromSource: app.globalData.addressFrom
+    })
   },
 
 
