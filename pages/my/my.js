@@ -41,7 +41,13 @@ Page({
     tipShow: false,
     doubleNum: 0,
     noticeData: [],
-    groupPurchasedCount: 0
+    groupPurchasedCount: 0,
+    buttonArray: [{
+      text: '随便看看'
+    }, {
+      text: '注册/登录'
+    }],
+    deleteDialog: false
   },
 
   /**
@@ -58,6 +64,26 @@ Page({
   onReady: function () {
 
   },
+
+  /**
+     * 关闭删除确认
+     */
+    closeAddressTip(param) {
+      if (param.detail.index == 0) {
+        console.log('点击了取消')
+      } else {
+        getUserProfile(() => {
+          this.setData({
+            userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+            showAvatar: true
+          })
+          this.getMessage()
+        })
+      }
+      this.setData({
+        deleteDialog: false
+      })
+    },
 
   /**
    * 获取微信用户信息
@@ -85,19 +111,43 @@ Page({
         tipShow: true
       })
     } else if (clickTarget.key === '2') { // 我的拼团
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+        return
+      }
       wx.navigateTo({
         url: '/pages/mySpellGroup/mySpellGroup',
       })
     } else if (clickTarget.key === '3') { // 点击兑换码
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+        return
+      }
       wx.navigateTo({
         url: '/pages/conversionCode/conversionCode',
       })
     } else if (clickTarget.key === '4') {
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+        return
+      }
       app.globalData.addressFrom = undefined
       wx.navigateTo({
         url: '/pages/shippinAddress/shippinAddress',
       })
     } else if (clickTarget.key === '5') {
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+        return
+      }
       // 我的客服
       this.setData({
         visibile: true

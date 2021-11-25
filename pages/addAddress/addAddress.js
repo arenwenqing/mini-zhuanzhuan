@@ -203,6 +203,14 @@ Page({
    * 更新地址
    */
   saveAddress() {
+    if (!this.data.cityObjValue.code || !this.data.provinceObjValue.code || !this.data.areaObjValue.code || !this.data.detailAddress || !this.data.receivePhone || !this.data.receivePeople) {
+      wx.showToast({
+        title: '请完善信息',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     wx.showLoading('加载中')
     wx.request({
       url: domain + '/mini/user/address/upload',

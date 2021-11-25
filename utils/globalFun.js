@@ -61,7 +61,7 @@ export const getUserProfile = (cb) => {
   wx.getUserProfile({
   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
   success: (res) => {
-    // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+    wx.setStorageSync('wxUser', JSON.stringify(res.userInfo))
     login(cb)
   },
   fail: err => {
@@ -105,11 +105,11 @@ function getUserId(code, cb) {
         const data = res.data.data
         wx.setStorageSync('userId', data.userId)
         wx.setStorageSync('openid', data.openid)
-        wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
+        // wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()
         cb && cb()
-        uploadUserMessage(res.data.data.wxUser)
+        uploadUserMessage(JSON.parse(wx.getStorageSync('wxUser')))
         // this.getMessage()
       }
     },
