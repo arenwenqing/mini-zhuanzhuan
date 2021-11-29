@@ -185,7 +185,10 @@ Page({
    */
   addAddress(e) {
     const id = e.currentTarget.dataset.addressid
-    wx.redirectTo({
+    // wx.redirectTo({
+    //   url: `/pages/addAddress/addAddress?addressId=${id}&addressLength=${this.data.addressData.length}`,
+    // })
+    wx.navigateTo({
       url: `/pages/addAddress/addAddress?addressId=${id}&addressLength=${this.data.addressData.length}`,
     })
   },

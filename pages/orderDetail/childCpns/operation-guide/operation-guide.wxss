@@ -10,10 +10,13 @@
   font-weight: bold;
   color: #FFFFFF;
   line-height: 88rpx;
-  text-align: center;
+  /* text-align: center; */
   margin: 20rpx auto 0rpx;
+  display: flex;
+  justify-content: center;
 }
 .container-countdown {
   margin-left: 10rpx;
-  width: 244rpx;
+  width: 84rpx;
+  display: inline-block;
 }
