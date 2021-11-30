@@ -196,10 +196,10 @@ Page({
     wx.request({
       url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
       success: res => {
-        let tempArray = res.data.data.addressList
+        // let tempArray = res.data.data?.addressList
         this.setData({
-          doubleNum: res.data.data.doubleQuotaList.length,
-          groupPurchasedCount: res.data.data.groupPurchasedCount
+          doubleNum: res.data.data?.doubleQuotaList.length,
+          groupPurchasedCount: res.data.data?.groupPurchasedCount
         })
       },
       fail: (err) => {

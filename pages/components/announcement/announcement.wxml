@@ -13,7 +13,7 @@
             vertical='true'
           >
             <block wx:for="{{noticeData}}" wx:key="index">
-              <swiper-item>
+              <swiper-item class="container-swipter-item">
                 <text class="container-fenge-text">{{ item.noticeContent }}</text>
               </swiper-item>
             </block>

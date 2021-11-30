@@ -35,6 +35,7 @@
 .add-address-item-title-wrapper {
   padding: 0;
   width: 100%;
+  display: flex;
 }
 .add-address-title1 {
   letter-spacing: 10.8rpx;
@@ -42,6 +43,7 @@
 .add-address-title2 {
   display: flex;
   justify-content: space-between;
+  width: 144rpx;
 }
 .add-address-default {
   width: 710rpx;
@@ -99,4 +101,11 @@
 .weui-input-picker-style {
   display: flex;
   align-items: center;
+}
+.add-style2 {
+  display: block;
+  width: 500rpx;
+}
+.add-style3 {
+  width: 654rpx;
 }

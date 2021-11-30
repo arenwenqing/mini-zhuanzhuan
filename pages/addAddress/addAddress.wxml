@@ -22,8 +22,8 @@
             <text>份</text>
           </view>
           <picker class="weui-input weui-input-picker-style" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" mode="selector" range-key="name">
-            <text wx:if="{{!provinceObjValue.name}}" class="weui-input add-address-placeholder-style">请选择省份</text>
-            <text wx:else class="weui-input address-value-style add-address-placeholder-style">{{provinceObjValue.name}}</text>
+            <text wx:if="{{!provinceObjValue.name}}" class="weui-input add-address-placeholder-style add-style2">请选择省份</text>
+            <text wx:else class="weui-input address-value-style add-address-placeholder-style add-style2">{{provinceObjValue.name}}</text>
           </picker>
         </view>
       </view>
@@ -33,10 +33,10 @@
             <text>市</text>
             <text>级</text>
           </view>
-          <view wx:if="{{!provinceObjValue.name}}" catchtap="checkProvince" class="weui-input add-address-placeholder-style">请选择市级</view>
+          <view wx:if="{{!provinceObjValue.name}}" catchtap="checkProvince" class="weui-input add-address-placeholder-style add-style3">请选择市级</view>
           <picker wx:else class="weui-input weui-input-picker-style" bindchange="cityLevelPickerChange" value="{{cityIndex}}" range="{{cityArray}}" mode="selector" range-key="name">
-            <text class="add-address-placeholder-style" wx:if="{{!cityObjValue.name}}">请选择市级</text>
-            <text class="address-value-style"  wx:else>{{cityObjValue.name}}</text>
+            <text class="add-address-placeholder-style add-style2" wx:if="{{!cityObjValue.name}}">请选择市级</text>
+            <text class="address-value-style add-style2"  wx:else>{{cityObjValue.name}}</text>
           </picker>
         </view>
       </view>
@@ -46,10 +46,10 @@
             <text>地</text>
             <text>区</text>
           </view>
-          <view wx:if="{{!cityObjValue.name}}" catchtap="checkCity" class="weui-input add-address-placeholder-style">请选择地区</view>
+          <view wx:if="{{!cityObjValue.name}}" catchtap="checkCity" class="weui-input add-address-placeholder-style add-style3">请选择地区</view>
           <picker wx:else class="weui-input weui-input-picker-style" bindchange="areaLevelPickerChange" value="{{areaIndex}}" range="{{areaArray}}" mode="selector" range-key="name">
-            <text class="add-address-placeholder-style" wx:if="{{!areaObjValue.name}}">请选择地区</text>
-            <text class="address-value-style" wx:else>{{areaObjValue.name}}</text>
+            <text class="add-address-placeholder-style add-style2" wx:if="{{!areaObjValue.name}}">请选择地区</text>
+            <text class="address-value-style add-style2" wx:else>{{areaObjValue.name}}</text>
           </picker>
         </view>
       </view>

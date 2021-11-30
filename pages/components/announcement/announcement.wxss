@@ -41,7 +41,7 @@
 }
 .container-receive-notice-wrapper {
   height: 30rpx;
-  width: 230rpx;
+  width: 500rpx;
   text-align: left;
 }
 .receive-notice-swiper {
@@ -62,4 +62,11 @@
 }
 .receive-notice-swiper-center {
   margin-top: 21rpx;
+}
+.container-swipter-item {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
