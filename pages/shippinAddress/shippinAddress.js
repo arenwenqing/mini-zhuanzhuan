@@ -95,7 +95,8 @@ Page({
    */
   choiceAddress(e) {
     const addressObj = e.currentTarget.dataset.data
-    wx.setStorageSync('addressId', addressObj.addressId)
+    // wx.setStorageSync('addressId', addressObj.addressId)
+    app.globalData.choiceAddressId = addressObj.addressId
     wx.navigateBack({
       delta: 1
     })
@@ -220,7 +221,7 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '团团转-有红包的盲盒团购',
+      title: '有红包的盲盒团购-限时48小时领取',
       imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }

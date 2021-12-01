@@ -14,7 +14,7 @@
             <text wx:if="{{item.isDefault}}" class="shipping-address-default">默认</text>
             <view class="shipping-address-content-1">{{item.provinceName + item.cityName + item.districtName}}</view>
             <view wx:if="{{!item.isDefault && !fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="setDefault">设为默认</view>
-            <view wx:if="{{!item.isDefault && fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="choiceAddress">选择地址</view>
+            <view wx:if="{{fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="choiceAddress">选择地址</view>
           </view>
           <view class="shipping-address-content-right-item">
             <view class="shipping-address-content-3">{{item.detail}}</view>

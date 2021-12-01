@@ -337,7 +337,7 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '团团转-有红包的盲盒团购',
+      title: '有红包的盲盒团购-限时48小时领取',
       imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
