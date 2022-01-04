@@ -1,9 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <!-- <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' ext-class='index-top-bar'></mp-navigation-bar> -->
-  <view class='index-top-bar'>
-    <text class="top-bar-title">团团转</text>
-  </view>
+  <navigationBar></navigationBar>
   <view class="container-top">
   </view>
   <!--轮播图 indicator-dots='false'-->

@@ -1,0 +1,19 @@
+<!--pages/components/navigationBar/navigationBar.wxml-->
+<!-- <view class='index-top-bar'>
+  <text class="top-bar-title">团团转</text>
+</view> -->
+
+<!--navigationBar.wxml-->
+<view class="navigation-container" style="{{'height: ' + navigationBarAndStatusBarHeight}}">
+    <!--空白来占位状态栏-->
+    <view class="navigation-status" style="{{'height: ' + statusBarHeight}}"></view>
+    <!--自定义导航栏-->
+    <view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
+        <view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}">
+          团团转
+        </view> 
+        <view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>
+    </view>    
+</view>
+<!--空白占位fixed空出的位置-->
+<view style="{{'height: ' + navigationBarAndStatusBarHeight}}; background: #ffffff"></view>

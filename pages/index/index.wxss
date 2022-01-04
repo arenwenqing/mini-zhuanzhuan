@@ -3,21 +3,7 @@
   z-index: 333;
   position: relative;
 }
-.index-top-bar {
-  width: 100vw;
-  height: 176rpx;
-  background-image: url('https://cdn.tuanzhzh.com/top_bg1.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.top-bar-title {
-  color: #fff;
-  position: relative;
-  top: 30rpx;
-}
+
 .container {
   background: linear-gradient(180deg, #FFF8EF 0%, #FFDCD3 100%);
   position: fixed;
@@ -30,10 +16,11 @@
 .container-top {
   width: 100vw;
   height: 224rpx;
-  background-image: url('https://cdn.tuanzhzh.com/top_bg2.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
   border: none;
+  margin-top: -1rpx;
+  padding: 0;
+  font-size: 0;
 }
 .container-title {
   font-size: 34rpx;
@@ -50,11 +37,15 @@
   margin-top: -121rpx;
   height: auto;
   position: relative;
-  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(61, 3, 0, 0.37);
+  height: 276rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  /* box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(61, 3, 0, 0.37); */
+  border: none;
 }
-
 .swiper-item-wrapper {
-  background: red;
+  width: 710rpx;
+  height: 276rpx;
   border-radius: 24rpx;
 }
 
@@ -62,6 +53,7 @@
   display: block;
   width: 710rpx;
   height: 276rpx;
+  border-radius: 24rpx;
 }
 
 /*用来包裹所有的小圆点  */

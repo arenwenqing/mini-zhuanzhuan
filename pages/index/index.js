@@ -124,7 +124,7 @@ Page({
       success: (res) => {
         const s = res.data.data.concat([], res.data.data)
         this.setData({
-          movies: s // res.data.data ? res.data.data : []
+          movies: res.data.data ? res.data.data : []
         })
       },
       fail: (err) => {
