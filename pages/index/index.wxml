@@ -1,9 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <!-- <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' ext-class='index-top-bar'></mp-navigation-bar> -->
+  <view class='index-top-bar'>
+    <text class="top-bar-title">团团转</text>
+  </view>
   <view class="container-top">
-    <!-- <text class="container-title">团团转</text> -->
-    <component-announcement noticeData="{{noticeData}}"></component-announcement>
   </view>
   <!--轮播图 indicator-dots='false'-->
   <view class="swiper-wrapper">
@@ -17,7 +18,7 @@
     <!--重置小圆点的样式  -->
     <view class="dots">  
         <block wx:for="{{movies}}" wx:key="index">  
-            <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
+          <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
         </block>  
     </view> 
   </view>
@@ -62,5 +63,4 @@
     </block>
   </view> -->
   <!-- <mp-loading></mp-loading> -->
-  <luckBag></luckBag>
 </view>

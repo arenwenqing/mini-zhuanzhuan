@@ -122,8 +122,9 @@ Page({
     wx.request({
       url: domain + '/mini/system/bannerAddress',
       success: (res) => {
+        const s = res.data.data.concat([], res.data.data)
         this.setData({
-          movies: res.data.data ? res.data.data : []
+          movies: s // res.data.data ? res.data.data : []
         })
       },
       fail: (err) => {

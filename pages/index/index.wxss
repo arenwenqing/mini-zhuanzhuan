@@ -3,8 +3,23 @@
   z-index: 333;
   position: relative;
 }
+.index-top-bar {
+  width: 100vw;
+  height: 176rpx;
+  background-image: url('https://cdn.tuanzhzh.com/top_bg1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-bar-title {
+  color: #fff;
+  position: relative;
+  top: 30rpx;
+}
 .container {
-  background: #F7F7F7;
+  background: linear-gradient(180deg, #FFF8EF 0%, #FFDCD3 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -13,12 +28,12 @@
   overflow-y: auto;
 }
 .container-top {
-  width: 750rpx;
-  height: 250rpx;
-  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
-  border-radius: 0rpx 0rpx 24rpx 24rpx;
-  position: relative;
-  text-align: center;
+  width: 100vw;
+  height: 224rpx;
+  background-image: url('https://cdn.tuanzhzh.com/top_bg2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
 }
 .container-title {
   font-size: 34rpx;
@@ -32,17 +47,21 @@
 .swiper-wrapper {
   width: 710rpx;
   margin: 0 auto;
-  margin-top: -181rpx;
+  margin-top: -121rpx;
   height: auto;
-  position: relative; 
+  position: relative;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(61, 3, 0, 0.37);
+}
+
+.swiper-item-wrapper {
+  background: red;
+  border-radius: 24rpx;
 }
 
 .swiper-image {
   display: block;
   width: 710rpx;
   height: 276rpx;
-  border-radius: 24rpx;
-  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(61, 3, 0, 0.37);
 }
 
 /*用来包裹所有的小圆点  */
@@ -61,7 +80,7 @@
   height: 12rpx;   
   border-radius: 50%;
   margin-right: 12rpx;
-  background-color: #C1C1C1;
+  background-color: #FFB5A3;
 }  
 /*选中以后的小圆点样式  */
 .active{  
