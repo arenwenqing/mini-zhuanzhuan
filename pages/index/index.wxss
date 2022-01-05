@@ -39,8 +39,6 @@
   position: relative;
   height: 276rpx;
   border-radius: 24rpx;
-  overflow: hidden;
-  /* box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(61, 3, 0, 0.37); */
   border: none;
 }
 .swiper-item-wrapper {
@@ -54,6 +52,7 @@
   width: 710rpx;
   height: 276rpx;
   border-radius: 24rpx;
+  box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(61, 3, 0, 0.37);
 }
 
 /*用来包裹所有的小圆点  */
@@ -64,7 +63,7 @@
   flex-direction: row;
   position: absolute;
   left: 320rpx;
-  bottom: -40rpx;
+  bottom: -50rpx;
 }  
 /*未选中时的小圆点样式 */
 .dot{  
@@ -82,12 +81,13 @@
 }
 .container-search-wrapper {
   width: 710rpx;
-  margin: 40rpx auto 0rpx;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 60rpx;
   overflow: hidden;
+  position: relative;
+  top: 25rpx;
 }
 .container-receive-wrapper {
   height: 60rpx;
@@ -112,7 +112,7 @@
   font-size: 24rpx;
   font-family: PingFang-SC-Bold, PingFang-SC;
   font-weight: bold;
-  color: #262424;
+  color: #fff;
   line-height: 34rpx;
   display: inline-block;
   margin: 0 16rpx 0 8rpx;
@@ -126,7 +126,7 @@
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #5F5F5F;
+  color: #fff;
   line-height: 34rpx;
   white-space: nowrap;
   text-overflow: ellipsis;

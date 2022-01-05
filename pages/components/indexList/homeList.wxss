@@ -1,0 +1,61 @@
+/* pages/components/homeList/homeList.wxss */
+.home-list-wrapper {
+  width: 710rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 55rpx;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.left {
+  width: 348rpx;
+}
+.right {
+  width: 348rpx;
+}
+.list-item {
+  width: 348rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 16px 0px rgba(255, 49, 49, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+  float: left;
+}
+.list-item-img-wrapper {
+  position: relative;
+  width: 348rpx;
+  height: 348rpx;
+}
+.goods-item-image {
+  display: inline-block;
+  width: 348rpx;
+  height: 348rpx;
+}
+.goods-red-mark {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 64rpx;
+  width: 348rpx;
+}
+.list-item-goods-title {
+  margin: 12rpx 0;
+}
+.goods-title {
+  display: block;
+  width: 316rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #262424;
+  text-shadow: 0rpx 0rpx 16rpx rgba(255, 49, 49, 0.06);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+ -webkit-box-orient: vertical;
+}

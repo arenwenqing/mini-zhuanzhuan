@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
-    "component-list": "/pages/components/list/list",
+    "home-list": "/pages/components/indexList/homeList",
     "navigationBar": "/pages/components/navigationBar/navigationBar"
   },
   "navigationStyle": "custom"

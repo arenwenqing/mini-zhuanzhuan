@@ -84,8 +84,22 @@ Page({
         res.data.data && res.data.data.forEach(item => {
           item.price = (item.price / 100).toFixed(2)
         })
+        let s = []
+        for (let i = 0; i < 10; i++) {
+          s = s.concat(res.data.data)
+        }
+        const left = []
+        const right= []
+        s.forEach((item, i) => {
+          if (i % 2) {
+            right.push(item)
+          } else {
+            left.push(item)
+          }
+        })
+        console.log({left, right} )
         this.setData({
-          listData: res.data.data ? res.data.data : []
+          listData: {left, right} // res.data.data ? res.data.data : []
         })
       },
       fail: (err) => {

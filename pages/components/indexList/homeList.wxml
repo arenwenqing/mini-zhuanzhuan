@@ -1,0 +1,30 @@
+<!--pages/components/homeList/homeList.wxml-->
+<view class="home-list-wrapper">
+  <view class="left">
+    <block wx:for="{{dataObj.left}}" wx:key="index">
+      <view class="list-item">
+        <view class="list-item-img-wrapper">
+          <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image>
+          <image class="goods-red-mark" src='https://cdn.tuanzhzh.com/img-mark.png'></image>
+        </view>
+        <view class="list-item-goods-title">
+          <text class="goods-title">{{item.majorName}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="right">
+    <block wx:for="{{dataObj.right}}" wx:key="index">
+      <view class="list-item">
+        <view class="list-item-img-wrapper">
+          <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image>
+          <image class="goods-red-mark" src='https://cdn.tuanzhzh.com/img-mark.png'></image>
+        </view>
+        <view class="list-item-goods-title">
+          <text class="goods-title">{{item.majorName}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>
