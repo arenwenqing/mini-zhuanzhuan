@@ -29,30 +29,82 @@
 .detai-name-price-content {
   padding: 24rpx 34rpx 32rpx 24rpx;
 }
-.detail-price text:nth-child(1) {
-  font-size: 32rpx;
-  font-family: PingFangSC-Semibold, PingFang SC;
-  font-weight: 600;
-  color: #FF0C00;
-  line-height: 44rpx;
-  margin-right: 4rpx;
+.detail-price {
+  width: 684rpx;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 auto;
 }
-.detail-price text:nth-child(2) {
-  font-size: 48rpx;
-  font-family: PingFangSC-Semibold, PingFang SC;
-  font-weight: 600;
-  color: #FF0C00;
-  line-height: 66prx;
+.detail-current-price {
+  margin-right: 32rpx;
+}
+.detail-current-price text:nth-child(1) {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 50rpx;
+}
+.detail-current-price text:nth-child(2) {
+  font-size: 60rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 84rpx;
+}
+.detail-current-price text:nth-child(3) {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 50rpx;
+  margin-right: 8rpx;
+}
+.detail-current-price text:nth-child(4) {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #DD0A00;
+  line-height: 28rpx;
+}
+.detail-old-price  text:nth-child(1) {
+  font-size: 28rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #BBBBBB;
+  line-height: 40rpx;
+}
+.detail-old-price  text:nth-child(2) {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #BBBBBB;
+  line-height: 44rpx;
+  text-decoration: line-through;
+}
+.detail-old-price  text:nth-child(3) {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #BBBBBB;
+  line-height: 28rpx;
+  margin-left: 6rpx;
 }
 .detail-main-title {
+  width: 684rpx;
   font-size: 32rpx;
   font-family: PingFangSC-Semibold, PingFang SC;
   font-weight: 600;
   color: #262424;
   line-height: 44rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .detail-subtitle-title {
-  width: 380rpx;
+  width: 684rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -162,7 +214,7 @@
   justify-content: center;
 }
 .detail-bottom-left {
-  width: 320rpx;
+  width: 662rpx;
   height: 88rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
   box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255, 57, 57, 0.5);
@@ -171,12 +223,12 @@
   font-family: PingFang-SC-Bold, PingFang-SC;
   font-weight: bold;
   color: #FFFFFF;
-  line-height: 88rpx;
+  line-height: 44rpx;
+  margin-top: 26rpx;
   text-align: center;
-  margin-right: 30rpx;
-  margin-top: 16rpx;
+  line-height: 88rpx;
 }
-.detail-bottom-right {
+/* .detail-bottom-right {
   width: 320rpx;
   height: 88rpx;
   background: linear-gradient(86deg, #FEAA32 0%, #FE8732 100%);
@@ -189,7 +241,7 @@
   line-height: 88rpx;
   text-align: center;
   margin-top: 16rpx;
-}
+} */
 .goods-item-red-icon {
   display: inline-block;
   width: 60rpx;

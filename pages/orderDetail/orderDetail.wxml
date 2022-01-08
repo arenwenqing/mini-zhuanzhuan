@@ -20,13 +20,23 @@
     <view wx:if="{{showHaveOutbound}}" class="order-outbound">
       您的订单已出库，正在打包中
     </view>
+    <!-- <order-express-info
+      wx:if="{{showExpressInfo}}" orderData="{{orderData}}"
+    ></order-express-info> -->
+    <!--订单的地址信息展示-->
+    <view wx:if="{{orderStatusDescName !== ''}}" class="detail-address-message">
+      <view class="detail-address-item">
+        {{orderData.receiveAddress.provinceName + orderData.receiveAddress.cityName +  orderData.receiveAddress.districtName + orderData.receiveAddress.detail}}
+      </view>
+      <view class="detail-address-item">
+        <text class="detail-address-item-name">{{orderData.receiveAddress.receiveUsername}}</text>
+        <text>{{orderData.receiveAddress.receivePhoneNum}}</text>
+      </view>
+    </view>
     <!-- 已发货，快递信息 -->
     <order-express-info
       wx:if="{{showExpressInfo && orderData.express.expressNumber}}" orderData="{{orderData}}"
     ></order-express-info>
-    <!-- <order-express-info
-      wx:if="{{showExpressInfo}}" orderData="{{orderData}}"
-    ></order-express-info> -->
     <!-- 订单编号、订单金额、包装规格 -->
     <order-reference orderData="{{orderData}}"></order-reference>
   </view>
@@ -41,30 +51,32 @@
     ></order-settlement-countdown>
 
     <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->
-    <order-content-title
+    <!-- <order-content-title
       wx:if="{{orderStatusCode === 4}}"
       orderData="{{orderData}}"
-    ></order-content-title>
+    ></order-content-title> -->
 
     <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
     <view wx:if="{{showOrderStatusDescName}}" class="group-title-hint">
       <view>{{orderStatusDescName}}</view>
-      <view class="group-title-hint-subtitle" wx:if="{{orderData.doubleQuotaCount === 1 && !orderData.coproduct}}">您的双倍红包券已失效</view>
     </view>
-    <!-- 图片展示 -->
-    <order-more-image wx:if="{{showImage}}" orderData="{{orderData}}"></order-more-image>
 
-    <!-- 已成团数 -->
-    <view class="have-to-make" wx:if="{{currentStatus !== 0}}">已成{{orderData.product.groupPurchasedCount}}团</view>
+    <!--展示红包的相关逻辑-->
+    <view wx:if="{{ orderStatusCode === 7 && orderStatusDescName === '' }}" class="redpacke-show">
+      <image src="https://cdn.tuanzhzh.com/big-package.png" class="red-image"></image>
+      <image src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image>
+      <image src="https://cdn.tuanzhzh.com/double-btn.png" class="double-btn"></image>
+    </view>
   
-    <!-- 申请退款/退货 -->
-    <view wx:if="{{showReimburseAndSalesReturn}}" class="apply-refund">
-      <text class="apply-refund-title">商品退款或退货</text>
+    <!-- 申请退货逻辑 -->
+    <view wx:if="{{showReimburseAndSalesReturn && orderStatusDescName !== '' }}" class="apply-refund">
+      <text class="apply-refund-title">商品退货</text>
       <view class="refund-operation-btn">
-        <view class="reimburse"
+        <!-- <view class="reimburse"
         wx:if="{{!showOnlySalesReturn}}"
-        catchtap="reimburse">申请退款</view>
-        <view wx:if="{{!showOnlyReimburse}}" class="sales-return" catchtap="salesReturn">申请退货</view>
+        wx:if="{{!showOnlyReimburse}}" // 退货的逻辑
+        catchtap="reimburse">申请退款</view> -->
+        <view class="sales-return" catchtap="salesReturn">申请退货</view>
       </view>
     </view>
   </view>
@@ -78,7 +90,6 @@
     bindcountdown="onCountDown"
     currentStatus="{{currentStatus}}"
   />
-  <luckBag></luckBag>
 
   <mp-dialog title="添加收货地址" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{addAddressDialog}}">
   </mp-dialog>

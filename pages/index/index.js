@@ -14,7 +14,8 @@ Page({
     noticeData: [],
     currentSwiper: 0,
     receiveDatas: [],
-    listData: []
+    listData: [],
+    contentHeight: 0,
   },
   // 事件处理函数
   // bindViewTap() {
@@ -29,6 +30,14 @@ Page({
       app.globalData.originExchangeCode = options.originExchangeCode
     }
     app.globalData.originTimestamp = options.originTimestamp
+    let query = wx.createSelectorQuery()
+      query.select('.container-top').boundingClientRect(rect=>{
+        let height = rect.height;
+        console.log(height)
+        this.setData({
+          contentHeight: wx.getStorageSync('windowHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
+        })
+      }).exec()
   },
 
   onShow: function () {

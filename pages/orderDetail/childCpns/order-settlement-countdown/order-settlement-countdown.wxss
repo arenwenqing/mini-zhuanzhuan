@@ -52,7 +52,7 @@
   font-weight: bold;
   color: #262626;
   line-height: 40rpx;
-  margin: 4rpx 0rpx;
+  margin: 5rpx 0rpx;
 }
 .name-phone {
   font-size: 33rpx;

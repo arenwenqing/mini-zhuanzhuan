@@ -32,7 +32,7 @@ Page({
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
     currentStatus: 0,
-    bottomBtnName: '再拼一次',       // 订单详情底部操作按钮
+    bottomBtnName: '再次购买',       // 订单详情底部操作按钮
     orderStatusDescName: '',        // 订单状态提示文案
     showComfortMoney: false,        // 是否展示安慰红包
     showExpressInfo: false,         // 是否展示快递信息
@@ -98,9 +98,9 @@ Page({
       orderId
     }).then(res => {
       const data = res.data.data
-      const commonOrGoodOrder = res.data.data.coproduct ? '很遗憾，您获得了普通商品' : '恭喜恭喜，您获得了优质商品！'
+      const commonOrGoodOrder = !res.data.data.coproduct ? '恭喜恭喜，您获得商品！' : '' //todo
       let topTitle = '团赚赚'
-      let bottomBtnName = '再拼一次'
+      let bottomBtnName = '再次购买'
       let orderStatusDescName = ''
       if (data.payDeadline !== -1 && data.orderStatus.code === 0) {
         app.globalData.payDeadline = data.payDeadline
@@ -120,14 +120,14 @@ Page({
         orderStatusDescName = ''
       } else if (data.orderStatus.code === 1) { // 已取消（超时未支付）-已取消
         topTitle = '已取消'
-        bottomBtnName = '再拼一次'
-        orderStatusDescName = '你已取消订单，欢迎再次参团'
+        bottomBtnName = '再次购买'
+        orderStatusDescName = '您已取消订单，欢迎再次购买'
         this.setData({
           showOrderStatusDescName: true
         })
       } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团
         topTitle = '未成团'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = '本团未成团，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true
@@ -141,14 +141,14 @@ Page({
         })
       } else if (data.orderStatus.code === 4) { // 已支付-待成团
         topTitle = '待成团'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = ''
         this.setData({
           showImage: true
         })
       } else if (data.orderStatus.code === 7) { // 已成团-待发货
         topTitle = '待发货'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
@@ -159,7 +159,7 @@ Page({
         })
       } else if (data.orderStatus.code === 8) { // 商品待收货
         topTitle = '待收货'
-        // bottomBtnName = '再拼一次'
+        // bottomBtnName = '再次购买'
         bottomBtnName = '确认收货'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
@@ -172,7 +172,7 @@ Page({
         })
       } else if (data.orderStatus.code === 9) { // 商品已签收
         topTitle = '已签收'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showExpressInfo: true,
@@ -184,7 +184,7 @@ Page({
         })
       } else if (data.orderStatus.code === 10) { // 商品已回收
         topTitle = '已退货'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = '您已退货，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true,
@@ -199,7 +199,7 @@ Page({
         })
       } else if (data.orderStatus.code === 12) { // 商品已出库
         topTitle = '已出库'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
@@ -211,7 +211,7 @@ Page({
         })
       } else { // 其他
         topTitle = '团赚赚'
-        bottomBtnName = '再拼一次'
+        bottomBtnName = '再次购买'
       }
       this.setData({
         orderData: data || {},
@@ -259,7 +259,7 @@ Page({
     this.getOrderDetail(this.data.orderId)
   },
 
-  // 点击微信支付/再拼一次/确认收货
+  // 点击微信支付/再次购买/确认收货
   clickPerationBtn(e) {
     const { orderStatusCode } = this.data
     // 根据订单状态进行相应操作

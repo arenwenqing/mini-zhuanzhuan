@@ -2,13 +2,45 @@
 <view class="home-list-wrapper">
   <view class="left">
     <block wx:for="{{dataObj.left}}" wx:key="index">
-      <view class="list-item">
+      <view class="list-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="list-item-img-wrapper">
           <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image>
           <image class="goods-red-mark" src='https://cdn.tuanzhzh.com/img-mark.png'></image>
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
+        </view>
+        <view class="list-item-tags">
+          <view class="tag-item">
+            <text class="tag-item-text">劲爆价格</text>
+          </view>
+          <view class="tag-item">
+            <text class="tag-item-text">销量榜首</text>
+          </view>
+          <view class="tag-item">
+            <text class="tag-item-text">春季活动</text>
+          </view>
+        </view>
+        <view class="list-item-price">
+          <view class="price-left">
+            <view>
+              <text class="current-price-style">￥</text>
+              <text class="current-price-style">98.</text>
+              <text class="current-price-style">60</text>
+            </view>
+            <view class="current-price-text">
+              团团转价（7.5折）
+            </view>
+          </view>
+          <view class="price-right">
+            <view class="old-price-wrapper">
+              <text class="old-price-style-dollar">￥</text>
+              <text class="old-price-style">100.90</text>
+            </view>
+            <view class="old-price-text">
+              <text>市场价格</text>
+            </view>
+          </view>
         </view>
       </view>
     </block>
@@ -22,6 +54,17 @@
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
+        </view>
+        <view class="list-item-tags">
+          <view class="tag-item">
+            <text class="tag-item-text">劲爆</text>
+          </view>
+          <view class="tag-item">
+            <text class="tag-item-text">销量高</text>
+          </view>
+          <view class="tag-item">
+            <text class="tag-item-text">最便宜</text>
+          </view>
         </view>
       </view>
     </block>

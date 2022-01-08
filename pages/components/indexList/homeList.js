@@ -23,6 +23,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 跳转详情
+    skipDetail(e) {
+      const productId = e.currentTarget.dataset.productid
+      const name = e.currentTarget.dataset.name
+      wx.navigateTo({
+        url: `../detail/detail?productId=${productId}&name=${name}`,
+      })
+    }
   }
 })

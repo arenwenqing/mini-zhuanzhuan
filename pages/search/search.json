@@ -2,7 +2,6 @@
   "component": true,
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
-    "component-list": "/pages/components/list/list",
-    "luckBag": "/pages/components/luckBag/luckBag"
+    "component-list": "/pages/components/list/list"
   }
 }

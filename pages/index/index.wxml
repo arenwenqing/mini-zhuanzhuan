@@ -18,40 +18,24 @@
       </view>
     </view>
   </view>
-  <!--轮播图 indicator-dots='false'-->
-  <view class="swiper-wrapper">
-    <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
-      <block wx:for="{{movies}}" wx:key="index">
-        <swiper-item class="swiper-item-wrapper">
-          <image class="swiper-image" src='{{item.bannerAddress}}' mode='aspectFill'></image> 
-        </swiper-item>
-      </block>
-    </swiper>
-    <!--重置小圆点的样式  -->
-    <view class="dots">  
-        <block wx:for="{{movies}}" wx:key="index">  
-          <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
-        </block>  
-    </view> 
+  <view style="{{'height: ' + contentHeight}}" class="home-content-wrapper">
+    <view class="home-content-top"></view>
+    <!--轮播图 indicator-dots='false'-->
+    <view class="swiper-wrapper">
+      <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
+        <block wx:for="{{movies}}" wx:key="index">
+          <swiper-item class="swiper-item-wrapper">
+            <image class="swiper-image" src='{{item.bannerAddress}}' mode='aspectFill'></image> 
+          </swiper-item>
+        </block>
+      </swiper>
+      <!--重置小圆点的样式  -->
+      <view class="dots">  
+          <block wx:for="{{movies}}" wx:key="index">  
+            <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
+          </block>  
+      </view> 
+    </view>
+    <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
   </view>
-  <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
-  
-  <!-- <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view> -->
-  <!-- <mp-loading></mp-loading> -->
 </view>

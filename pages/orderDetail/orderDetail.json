@@ -5,10 +5,7 @@
     "order-reference": "/pages/orderDetail/childCpns/order-reference/order-reference",
     "operation-guide": "/pages/orderDetail/childCpns/operation-guide/operation-guide",
     "order-settlement-countdown": "/pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown",
-    "order-content-title": "/pages/orderDetail/childCpns/order-status-title/order-content-title",
-    "order-more-image": "/pages/orderDetail/childCpns/order-more-image/order-more-image",
     "order-express-info": "/pages/orderDetail/childCpns/order-express-info/order-express-info",
-    "luckBag": "/pages/components/luckBag/luckBag",
     "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode",
     "mp-dialog": "weui-miniprogram/dialog/dialog"
   },

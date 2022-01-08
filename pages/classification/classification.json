@@ -5,8 +5,7 @@
     "component-announcement": "/pages/components/announcement/announcement",
     "menu": "/pages/classification/childCpns/menu/menu",
     "top-nav": "/pages/classification/childCpns/top-nav/top-nav",
-    "main-content": "/pages/classification/childCpns/main-content/main-content",
-    "luckBag": "/pages/components/luckBag/luckBag"
+    "main-content": "/pages/classification/childCpns/main-content/main-content"
   },
   "navigationStyle": "custom"
 }

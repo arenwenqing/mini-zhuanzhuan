@@ -17,24 +17,34 @@
   <view class="detail-name-price-wrapper">
     <view class="detai-name-price-content">
       <view class="detail-price">
-        <text>￥</text>
-        <text>{{detailData.price}}</text>
+        <view class="detail-current-price">
+          <text>￥</text>
+          <text>69.</text>
+          <!-- <text>{{detailData.price}}</text> -->
+          <text>90</text>
+          <text>团团转价（7折）</text>
+        </view>
+        <view class="detail-old-price">
+          <text>￥</text>
+          <text>100.99</text>
+          <text>市场价格</text>
+        </view>
       </view>
       <view class="detail-main-title">
         {{detailData.majorName}}
       </view>
-      <view class="detail-subtitle-title">{{detailData.minorName}}</view>
+      <view class="detail-subtitle-title">{{detailData.minorName}}分纷纷</view>
       <view class="detail-num">
         <view class="detail-num-content">
           <text>库存：{{detailData.stock}}</text>
           <!-- <text>红包：{{detailData.cashback}}</text> -->
-          <text>已成团：{{detailData.groupPurchasedCount ? detailData.groupPurchasedCount : 0}}</text>
+          <!-- <text>已成团：{{detailData.groupPurchasedCount ? detailData.groupPurchasedCount : 0}}</text> -->
         </view>
-        <view class="goods-item-right-red">
+        <!-- <view class="goods-item-right-red">
           <block wx:if="{{detailData.coproductList && detailData.coproductList.length}}" wx:for="{{detailData.coproductList}}" wx:for-item="itemName" wx:for-index="idx" wx:key="idx">
             <image class="goods-item-red-icon" src="{{itemName.photoAddress[0]}}"></image>
           </block>
-        </view>
+        </view> -->
       </view>
       <!-- <view class="detail-num">
         <view class="detail-num-content">
@@ -79,8 +89,8 @@
   </view>
   <view class="detail-bottom">
     <view class="detail-bottom-left" catchtap="immediateSpellGroup">立即拼团</view>
-    <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view>
+    <!-- <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view> -->
   </view>
-  <luckBag></luckBag>
+  <!-- <luckBag></luckBag> -->
   <dialog showDialog="{{showDialog}}"></dialog>
 </view>

@@ -6,29 +6,44 @@
       <view class="goods-item-left">
         <view class="goods-img">
           <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image> 
+          <image class="goods-item-active" src="https://cdn.tuanzhzh.com/img-mark.png"></image>
         </view>
         <view class="goods-item-name-price">
           <view class="goods-item-name">
             <text class="goods-item-name-title">{{item.majorName}}</text>
             <text class="goods-item-name-num">库存{{item.stock}}</text>
+            <view class="list-item-tags">
+              <view class="tag-item">
+                <text class="tag-item-text">劲爆价格</text>
+              </view>
+              <view class="tag-item">
+                <text class="tag-item-text">销量榜首</text>
+              </view>
+              <view class="tag-item">
+                <text class="tag-item-text">春季活动</text>
+              </view>
+            </view>
           </view>
           <view class="goods-item-price">
             <view class="goods-item-price-value">
-              <text class="goods-item-price1">￥</text>
-              <text class="goods-item-price2">{{item.price}}</text>
+              <text>￥</text>
+              <!--{{item.price}}-->
+              <text>89.</text>
+              <text>69</text>
+              <text>￥</text>
+              <text>99.70</text>
             </view>
             <view class="goods-item-time">
-              <image class="goods-item-time-icon" src='/pages/images/clock.png'></image>
-              <text class="goods-item-time-time1">剩余</text>
-              <text class="goods-item-time-time2">{{item.time}}</text>
+              <text>团团转价（5.6折）</text>
+              <text>市场价格</text>
             </view>
           </view>
         </view>
       </view>
-      <view class="goods-item-right">
+      <!-- <view class="goods-item-right">
         <view class="goods-item-right-content">
           <view class="goods-item-right-top">
-            <view class="goods-item-right-num-people-wrapper">
+            <!-- <view class="goods-item-right-num-people-wrapper">
               <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
             </view>
             <view class="goods-item-right-red">
@@ -42,7 +57,7 @@
             <view class="goods-item-right-now" data-productid="{{item.productId}}" catchtap="immediateSpellGroup">立即拼团</view>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
   </block>
   <dialog showDialog="{{showDialog}}"></dialog>

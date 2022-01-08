@@ -15,7 +15,7 @@
 }
 .container-top {
   width: 100vw;
-  height: 224rpx;
+  height: 110rpx;
   background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
   border: none;
   margin-top: -1rpx;
@@ -34,7 +34,7 @@
 .swiper-wrapper {
   width: 710rpx;
   margin: 0 auto;
-  margin-top: -121rpx;
+  /* margin-top: -121rpx; */
   height: auto;
   position: relative;
   height: 276rpx;
@@ -53,6 +53,18 @@
   height: 276rpx;
   border-radius: 24rpx;
   box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(61, 3, 0, 0.37);
+}
+.home-content-wrapper {
+  position: relative;
+  overflow: auto;
+}
+.home-content-top {
+  width: 750rpx;
+  height: 200rpx;
+  background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
+  border: none;
+  margin-top: -1rpx;
+  position: absolute;
 }
 
 /*用来包裹所有的小圆点  */

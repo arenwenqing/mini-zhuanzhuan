@@ -16,5 +16,4 @@
     <image src="../images/no-order-list.png" class="no-order-icon"></image>
     <text class="no-order-text">暂无订单</text>
   </view>
-  <luckBag></luckBag>
 </view>

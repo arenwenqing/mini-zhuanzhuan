@@ -10,5 +10,4 @@
     <text class="no-seach-text">未找到该产品</text>
   </view>
   <component-list datalist="{{searchData}}"></component-list>
-  <luckBag></luckBag>
 </view>

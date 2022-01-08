@@ -15,24 +15,26 @@ App({
     //   }
     // })
     this.checkLogin()
-    const { statusBarHeight, platform } = wx.getSystemInfoSync()
+    const { statusBarHeight, platform, windowHeight } = wx.getSystemInfoSync()
     const { top, height } = wx.getMenuButtonBoundingClientRect()
-
+    console.log(wx.getSystemInfoSync())
     // 状态栏高度
     wx.setStorageSync('statusBarHeight', statusBarHeight)
     // 胶囊按钮高度 一般是32 如果获取不到就使用32
     wx.setStorageSync('menuButtonHeight', height ? height : 32)
-    
+    // 可使用窗口的高度
+    wx.setStorageSync('windowHeight', windowHeight)
+
     // 判断胶囊按钮信息是否成功获取
     if (top && top !== 0 && height && height !== 0) {
-        const navigationBarHeight = (top - statusBarHeight) * 2 + height
-        // 导航栏高度
-        wx.setStorageSync('navigationBarHeight', navigationBarHeight)
+      const navigationBarHeight = (top - statusBarHeight) * 2 + height
+      // 导航栏高度
+      wx.setStorageSync('navigationBarHeight', navigationBarHeight)
     } else {
-        wx.setStorageSync(
-          'navigationBarHeight',
-          platform === 'android' ? 48 : 40
-        )
+      wx.setStorageSync(
+        'navigationBarHeight',
+        platform === 'android' ? 48 : 40
+      )
     }
   },
 
@@ -55,7 +57,7 @@ App({
         // session_key 已经失效，需要重新执行登录流程
         console.log('未登录')
         try {
-          wx.clearStorage()
+          // wx.clearStorage()
         } catch (error) {
           wx.showToast({
             title: error.data.msg,
