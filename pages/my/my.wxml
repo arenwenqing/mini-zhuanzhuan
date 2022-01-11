@@ -3,7 +3,7 @@
   <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
   <view class="my-top-wrapper">
-    <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
+    <!-- <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement> -->
   </view>
   <view class="my-user-message">
     <view class="my-user-avatar" catchtap="getUserProfile">
@@ -12,7 +12,7 @@
     </view>
     <view wx:if="{{showAvatar}}"  class="my-user-name">{{userInfo.nickName}}</view>
     <view wx:else class="my-user-name" catchtap="getUserProfile">注册/登录</view>
-    <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text>
+    <!-- <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text> -->
     <view class="my-user-item-wrapper">
       <view wx:if="{{tipShow}}" class="my-user-quan-tip">
         <image src="/pages/images/guanbi.png" class="my-user-quan-guanbi" bindtap="closeTip" />

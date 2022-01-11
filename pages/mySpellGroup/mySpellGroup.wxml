@@ -2,7 +2,7 @@
 <view class="container">
   <mp-navigation-bar title='我的拼团' color='#000000' background='#FFFFFF'></mp-navigation-bar>
   <view class="my-top-wrapper">
-    <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement>
+    <!-- <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement> -->
   </view>
   <view class="search-input-wrapper">
     <image src='../images/search.png' class="seach-input-icon"></image>

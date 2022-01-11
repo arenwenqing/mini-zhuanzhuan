@@ -40,25 +40,7 @@
           </view>
         </view>
       </view>
-      <!-- <view class="goods-item-right">
-        <view class="goods-item-right-content">
-          <view class="goods-item-right-top">
-            <!-- <view class="goods-item-right-num-people-wrapper">
-              <view class="goods-item-right-num-people">{{item.numToGroup}}人拼团</view>
-            </view>
-            <view class="goods-item-right-red">
-              <block wx:if="{{item.coproductList && item.coproductList.length}}" wx:for="{{item.coproductList}}" wx:for-item="itemName" wx:for-index="idx" wx:key="idx">
-                <image class="goods-item-red-icon" src="{{itemName.photoAddress[0]}}"></image>
-              </block>
-            </view>
-          </view>
-          <view class="goods-item-right-bottom">
-            <view class="goods-item-right-coupons" data-productid="{{item.productId}}" catchtap="useCouponsSpellGroup">用劵拼团</view>
-            <view class="goods-item-right-now" data-productid="{{item.productId}}" catchtap="immediateSpellGroup">立即拼团</view>
-          </view>
-        </view>
-      </view> -->
     </view>
   </block>
-  <dialog showDialog="{{showDialog}}"></dialog>
+  <!-- <dialog showDialog="{{showDialog}}"></dialog> -->
 </view>

@@ -60,7 +60,7 @@
 }
 .goods-item-price {
   width: 356rpx;
-  margin-top: 10rpx;
+  margin-top: 5rpx;
 }
 .goods-item-price-value {
   display: flex;

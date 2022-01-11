@@ -4,7 +4,7 @@
   position: relative;
 }
 .my-top-wrapper {
-  height: 300rpx;
+  height: 240rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
 }
 .my-user-message {
