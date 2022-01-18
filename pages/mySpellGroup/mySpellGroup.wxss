@@ -17,6 +17,34 @@
   position: relative;
   margin: 20rpx 0rpx;
 }
+.scroll-view_H {
+  position: relative;
+  width: 730rpx;
+  white-space: nowrap;
+  height: 88rx;
+  margin: 20rpx 0;
+  overflow: hidden;
+  left: 20rpx;
+}
+.status-red {
+  background: #FA2840 !important;
+  color: #fff !important;
+}
+.label-order-status {
+  display: inline-block;
+  width: 120rpx;
+  height: 48rpx;
+  background: #FFFFFF;
+  border-radius: 45rpx;
+  border: 1rpx solid #EBEBEB;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 48rpx;
+  margin-right: 20rpx;
+  text-align: center;
+}
 .seach-input-icon{
   display: inline-block;
   position: absolute;

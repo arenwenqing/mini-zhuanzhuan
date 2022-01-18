@@ -9,7 +9,30 @@ Page({
   data: {
     orderListData: [],
     searchWidth: '494rpx',
-    noticeData: []
+    noticeData: [],
+    labelArray: [{
+      text: '全部',
+      value: 0
+    }, {
+      text: '已发货',
+      value: 1
+    }, {
+      text: '代发货',
+      value: 2
+    }, {
+      text: '待签收',
+      value: 3
+    }, {
+      text: '已签收',
+      value: 4
+    }, {
+      text: '已退货',
+      value: 5
+    }, {
+      text: '中红包',
+      value: 6
+    }],
+    activeIndex: 0
   },
 
   /**
@@ -20,23 +43,23 @@ Page({
   },
 
   // 获得系统公告列表
-  getNotice () {
-    wx.request({
-      url: domain + '/mini/system/notice',
-      success: (res) => {
-        this.setData({
-          noticeData: res.data.data ? res.data.data : []
-        })
-      },
-      fail: (err) => {
-        wx.showToast({
-          title: err.data.msg,
-          icon: 'error',
-          duration: 2000
-        })
-      }
-    })
-  },
+  // getNotice () {
+  //   wx.request({
+  //     url: domain + '/mini/system/notice',
+  //     success: (res) => {
+  //       this.setData({
+  //         noticeData: res.data.data ? res.data.data : []
+  //       })
+  //     },
+  //     fail: (err) => {
+  //       wx.showToast({
+  //         title: err.data.msg,
+  //         icon: 'error',
+  //         duration: 2000
+  //       })
+  //     }
+  //   })
+  // },
 
   // 获取拼团列表
   getOrderList (productName) {
@@ -72,6 +95,13 @@ Page({
     })
   },
 
+  clickStatus(e) {
+    console.log(e)
+    this.setData({
+      activeIndex:  e.currentTarget.dataset.index
+    })
+  },
+
   // 搜索框聚焦
   inputFocus() {
     this.setData({
@@ -100,7 +130,7 @@ Page({
    */
   onShow: function () {
     this.getOrderList()
-    this.getNotice()
+    // this.getNotice()
   },
 
   /**
