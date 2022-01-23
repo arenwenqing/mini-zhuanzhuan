@@ -9,7 +9,7 @@
     <input bindconfirm="seach" bindfocus="inputFocus" bindblur="inputBlur" confirm-type="search" class="search-input" selection-start="60" placeholder-class='placeholder-class-style' placeholder="请输入要查找的商品" />
   </view> -->
   <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll">
-    <view wx:for="{{labelArray}}" wx:key="index" data-index="{{index}}" bindtap="clickStatus" class="label-order-status {{activeIndex == index ? 'status-red' : ''}}">{{item.text}}</view>
+    <view wx:for="{{labelArray}}" wx:key="index" data-value="{{item.value}}" data-index="{{index}}" bindtap="clickStatus" class="label-order-status {{activeIndex == index ? 'status-red' : ''}}">{{item.text}}</view>
   </scroll-view>
 
   <view wx:if="{{orderListData && orderListData.length}}" class="spell-group-list">

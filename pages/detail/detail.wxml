@@ -19,21 +19,21 @@
       <view class="detail-price">
         <view class="detail-current-price">
           <text>￥</text>
-          <text>69.</text>
+          <text>{{detailData.price}}.</text>
           <!-- <text>{{detailData.price}}</text> -->
-          <text>90</text>
-          <text>团团转价（7折）</text>
+          <text>{{detailData.priceDot}}</text>
+          <text>团团转价（{{detailData.discount}}折）</text>
         </view>
         <view class="detail-old-price">
           <text>￥</text>
-          <text>100.99</text>
+          <text>{{detailData.marketPrice}}</text>
           <text>市场价格</text>
         </view>
       </view>
       <view class="detail-main-title">
         {{detailData.majorName}}
       </view>
-      <view class="detail-subtitle-title">{{detailData.minorName}}分纷纷</view>
+      <view class="detail-subtitle-title">{{detailData.minorName}}</view>
       <view class="detail-num">
         <view class="detail-num-content">
           <text>库存：{{detailData.stock}}</text>
@@ -83,7 +83,7 @@
     </view>
   </view>
   <view class="detail-image-wrapper">
-    <block wx:for="{{detailData.photoAddress}}" wx:key="index">
+    <block wx:for="{{detailData.detailPhotoAddress}}" wx:key="index">
       <image lazy-load="true" src="{{item}}" class="detail-image-item" mode="widthFix"></image>
     </block>
   </view>

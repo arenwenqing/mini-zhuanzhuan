@@ -1,0 +1,7 @@
+<!--pages/activity/index.wxml-->
+<view>
+  <mp-navigation-bar title="团团转" background="#fff" back='true' ext-class='detail-top-bar'></mp-navigation-bar>
+  <view>
+    <image class="showImage" src="{{showUrl}}"></image>
+  </view>
+</view>

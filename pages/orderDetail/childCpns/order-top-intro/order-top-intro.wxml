@@ -1,12 +1,12 @@
 <!--pages/orderDetail/childCpns/order-top-intro/order-top-intro.wxml-->
 <view class="container" catchtap="skipDetail">
-  <image class="order-image" src="{{orderData.product.photoAddress[0]}}"></image>
+  <image class="order-image" src="{{orderData.product.headPhotoAddress[0]}}"></image>
   <view class="order-content">
     <view class="order-title">{{orderData.product.majorName}}</view>
     <view class="order-desc">
       <view class="order-price-num">
         <text class="order-price">{{orderData.orderPrice / 100}}元</text>
-        <text class="order-num">数量：{{orderData.product.numToProduct}}</text>
+        <text class="order-num">数量：1</text>
       </view>
       <view>
         <text class="order-current-status status">{{orderData.orderStatus.name}}</text>

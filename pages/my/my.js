@@ -15,10 +15,6 @@ Page({
       text: '我的拼团',
       key: '2'
     }, {
-      icon: '/pages/images/4.png',
-      text: '兑换码',
-      key: '3'
-    }, {
       icon: '/pages/images/2.png',
       text: '我的地址',
       key: '4'
@@ -266,8 +262,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

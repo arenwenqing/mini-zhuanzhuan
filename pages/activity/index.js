@@ -1,18 +1,25 @@
-// pages/userAgreement/userAgreement.js
+// pages/activity/index.js
+let map = {
+  1: 'https://cdn.tuanzhzh.com/banner/activity-detail.png',
+  2: 'https://cdn.tuanzhzh.com/banner/butie.png',
+  3: 'https://cdn.tuanzhzh.com/banner/stop-detail.jpg'
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    showUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      showUrl: map[options.id]
+    })
   },
 
   /**
@@ -61,11 +68,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    const currentTime = new Date().getTime()
-    return {
-      title: '给你一个拿双倍现金补贴的机会',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
-    }
+
   }
 })

@@ -5,7 +5,7 @@
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
     <!-- 获取安慰红包 注意：获得普通商品才展示，优质商品不展示 -->
-    <view wx:if="{{showComfortMoney && isCommonOrder}}" class="comfort-red-envelope {{ orderData.doubleQuotaCount === 1 ? '' : 'red-envelope-content' }}">
+    <!-- <view wx:if="{{showComfortMoney && isCommonOrder}}" class="comfort-red-envelope {{ orderData.doubleQuotaCount === 1 ? '' : 'red-envelope-content' }}">
       <image class="double-red-package" wx:if="{{orderData.doubleQuotaCount === 1}}" src='/pages/images/double-red.png'></image>
       <view>
         <view class="putong-anwei-redpacke {{rderData.doubleQuotaCount === 1 ? '' : 'redpacke-center'}}">
@@ -15,14 +15,12 @@
         </view>
         <viwe class="putong-price-description">已为您退还差价<text style="color: #eb392a;">{{orderData.coRefundAmount / 100}}</text>元</viwe>
       </view>
-    </view>
+    </view> -->
     <!-- 订单已出库提示 -->
     <view wx:if="{{showHaveOutbound}}" class="order-outbound">
       您的订单已出库，正在打包中
     </view>
-    <!-- <order-express-info
-      wx:if="{{showExpressInfo}}" orderData="{{orderData}}"
-    ></order-express-info> -->
+    
     <!--订单的地址信息展示-->
     <view wx:if="{{orderStatusDescName !== ''}}" class="detail-address-message">
       <view class="detail-address-item">
@@ -44,7 +42,7 @@
   <view class="order-content">
     <!-- 商品结算页-参团成功，拼团倒计时 code:0 展示-->
     <order-settlement-countdown
-      wx:if="{{orderStatusCode === 0}}"
+      wx:if="{{orderStatusCode === 101}}"
       orderData="{{orderData}}"
       addressInfo="{{addressInfo}}"
       id="orderSettlement"
@@ -62,10 +60,21 @@
     </view>
 
     <!--展示红包的相关逻辑-->
-    <view wx:if="{{ orderStatusCode === 7 && orderStatusDescName === '' }}" class="redpacke-show">
-      <image src="https://cdn.tuanzhzh.com/big-package.png" class="red-image"></image>
-      <image src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image>
-      <image src="https://cdn.tuanzhzh.com/double-btn.png" class="double-btn"></image>
+    <view wx:if="{{ orderStatusCode === 301 }}" class="redpacke-show">
+      <view class="redpacke-show-img">
+        <image src="https://cdn.tuanzhzh.com/share/1%402x.png" class="red-image"></image>
+        <text class="redpacke-show-text">您获得红包</text>
+        <view class="redpacke-show-price">
+          <text>{{getRedPackeNum}}</text>
+          <text class="redpacke-price2">元</text>
+        </view>
+        <view class="redpacke-show-explain">红包将于5分钟内到微信零钱</view>
+      </view>
+      <image wx:if="{{orderData.cashbackCount === 2}}" src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image>
+      <button type="default" open-type="share" class="share-btn-style">
+        <image src="https://cdn.tuanzhzh.com/double-btn.png" class="double-btn"></image>
+      </button>
+      <text class="redpacke-share-sm">分享链接1小时内有效</text>
     </view>
   
     <!-- 申请退货逻辑 -->

@@ -25,7 +25,7 @@
       <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
         <block wx:for="{{movies}}" wx:key="index">
           <swiper-item class="swiper-item-wrapper">
-            <image class="swiper-image" src='{{item.bannerAddress}}' mode='aspectFill'></image> 
+            <image class="swiper-image" bindtap="skipBannerDetail" data-value="{{item.value}}" src='{{item.name}}' mode='aspectFill'></image> 
           </swiper-item>
         </block>
       </swiper>

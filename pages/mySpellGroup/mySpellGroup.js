@@ -12,25 +12,25 @@ Page({
     noticeData: [],
     labelArray: [{
       text: '全部',
-      value: 0
-    }, {
-      text: '已发货',
-      value: 1
-    }, {
-      text: '代发货',
-      value: 2
-    }, {
-      text: '待签收',
-      value: 3
-    }, {
-      text: '已签收',
-      value: 4
-    }, {
-      text: '已退货',
-      value: 5
+      value: -1
     }, {
       text: '中红包',
-      value: 6
+      value: 301
+    }, {
+      text: '已取消',
+      value: 204
+    }, {
+      text: '待发货',
+      value: 501
+    }, {
+      text: '待签收',
+      value: 502
+    }, {
+      text: '已签收',
+      value: 503
+    }, {
+      text: '已退货',
+      value: 512
     }],
     activeIndex: 0
   },
@@ -62,7 +62,7 @@ Page({
   // },
 
   // 获取拼团列表
-  getOrderList (productName) {
+  getOrderList (productName, code) {
     wx.showLoading({
         title: '加载中',
     })
@@ -75,9 +75,12 @@ Page({
         },
         data: {
           productName: productName || '',
-          orderStatus: -1
+          orderStatus: code
         },
         success: (res) => {
+          res.data.data?.forEach(item => {
+            item.orderPrice = (item.orderPrice / 100).toFixed(2)
+          })
           this.setData({
             orderListData: res.data.data || []
           })
@@ -100,6 +103,7 @@ Page({
     this.setData({
       activeIndex:  e.currentTarget.dataset.index
     })
+    this.getOrderList('', e.currentTarget.dataset.value)
   },
 
   // 搜索框聚焦
@@ -129,7 +133,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getOrderList()
+    this.getOrderList('', -1)
     // this.getNotice()
   },
 
@@ -167,8 +171,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

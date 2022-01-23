@@ -92,7 +92,11 @@ Page({
                 res.data.data && res.data.data.forEach(item => {
                     this.transformHour(item.offlineTime - new Date().getTime())
                     item.time = `${this.hours}时${this.minutes}分`
-                    item.price = (item.price / 100).toFixed(2)
+                    // item.price = (item.price / 100).toFixed(2)
+                    const a = (item.price / 100).toFixed(2)
+                    item.price = String(a).split('.')[0]
+                    item.priceDot = String(a).split('.')[1]
+                    item.marketPrice = (item.marketPrice / 100).toFixed(2)
                 })
                 this.setData({
                     listData: res.data.data ? res.data.data : []
@@ -221,8 +225,8 @@ Page({
     onShareAppMessage: function () {
         const currentTime = new Date().getTime()
         return {
-          title: '有红包的盲盒团购-限时48小时领取',
-          imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+          title: '给你一个拿双倍现金补贴的机会',
+          imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
           path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
         }
     }

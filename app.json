@@ -12,7 +12,8 @@
     "pages/mySpellGroup/mySpellGroup",
     "pages/orderDetail/orderDetail",
     "pages/userAgreement/userAgreement",
-    "pages/privacyAgreement/privacyAgreement"
+    "pages/privacyAgreement/privacyAgreement",
+    "pages/activity/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -44,7 +44,10 @@ Page({
       method: 'GET',
       success: (res) => {
         res.data.data && res.data.data.forEach(item => {
-          item.price = (item.price / 100).toFixed(2)
+          const a = (item.price / 100).toFixed(2)
+          item.price = String(a).split('.')[0]
+          item.priceDot = String(a).split('.')[1]
+          item.marketPrice = (item.marketPrice / 100).toFixed(2)
         })
         this.setData({
           searchData: res.data.data ? res.data.data : []

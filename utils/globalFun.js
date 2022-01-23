@@ -13,7 +13,7 @@ export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
   }
   API.sumbitProduct({
     productId,
-    doubleQuotaCount: isUseRoll,
+    // doubleQuotaCount: isUseRoll,
     payUserId: wx.getStorageSync('userId') || '',
     receiveAddressId: wx.getStorageSync('addressId') || ''
   }).then(res => {

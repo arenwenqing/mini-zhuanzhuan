@@ -221,8 +221,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

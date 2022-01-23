@@ -5,22 +5,16 @@
       <view class="goods-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="goods-item-left">
           <view class="goods-img">
-            <image class="goods-item-image" src="{{item.photoAddress[0]}}"></image> 
-            <image class="goods-item-active" src="https://cdn.tuanzhzh.com/img-mark.png"></image>
+            <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image> 
+            <image wx:if="{{item.isBlindBox}}" class="goods-item-active" src="https://cdn.tuanzhzh.com/img-mark.png"></image>
           </view>
           <view class="goods-item-name-price">
             <view class="goods-item-name">
               <text class="goods-item-name-title">{{item.majorName}}</text>
               <text class="goods-item-name-num">库存{{item.stock}}</text>
               <view class="list-item-tags">
-                <view class="tag-item">
-                  <text class="tag-item-text">劲爆价格</text>
-                </view>
-                <view class="tag-item">
-                  <text class="tag-item-text">销量榜首</text>
-                </view>
-                <view class="tag-item">
-                  <text class="tag-item-text">春季活动</text>
+                <view class="tag-item" wx:for="{{item.productLabelList}}" wx:key="index" wx:for-item="itemData">
+                  <text class="tag-item-text">{{itemData}}</text>
                 </view>
               </view>
             </view>
@@ -28,13 +22,13 @@
               <view class="goods-item-price-value">
                 <text>￥</text>
                 <!--{{item.price}}-->
-                <text>89.</text>
-                <text>69</text>
+                <text>{{item.pirce}}.</text>
+                <text>{{item.priceDot}}</text>
                 <text>￥</text>
-                <text>99.70</text>
+                <text>{{item.marketPrice}}</text>
               </view>
               <view class="goods-item-time">
-                <text>团团转价（5.6折）</text>
+                <text>团团转价（{{item.discount}}折）</text>
                 <text>市场价格</text>
               </view>
             </view>

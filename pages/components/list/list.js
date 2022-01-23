@@ -20,12 +20,8 @@ Component({
   observers: {
     datalist: function(data) {
       if (data.length) {
-        let arr = []
-        for(let i = 0; i < 10; i++) {
-          arr = arr.concat([], data)
-        }
         this.setData({
-          listData: arr // data
+          listData: data
         })
       }
     }

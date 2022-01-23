@@ -10,7 +10,16 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
-    movies: [],
+    movies: [{
+      name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
+      value: 1
+    }, {
+      name: 'https://cdn.tuanzhzh.com/banner/activity-banner.png',
+      value: 2
+    }, {
+      name: 'https://cdn.tuanzhzh.com/banner/stop-banner.png',
+      value: 3
+    }],
     noticeData: [],
     currentSwiper: 0,
     receiveDatas: [],
@@ -42,10 +51,33 @@ Page({
 
   onShow: function () {
     this.getList()
-    this.getIndexBanner()
-    this.getNotice()
+    // banner先写死
+    // this.getIndexBanner()
+    // this.getNotice()
     this.getRedPackageMessage()
     console.log('app=', app)
+  },
+
+  skipBannerDetail(e) {
+    switch (e.currentTarget.dataset.value) {
+      case 1:
+        wx.navigateTo({
+          url: `/pages/activity/index?id=1`,
+        })
+        break;
+      case 2:
+        wx.navigateTo({
+          url: `/pages/activity/index?id=2`,
+        })
+        break;
+      case 3:
+        wx.navigateTo({
+          url: `/pages/activity/index?id=3`,
+        })
+        break;
+      default:
+        break;
+    }
   },
 
   // 最新领红包信息
@@ -87,26 +119,30 @@ Page({
       data: {
         categoryId: '',
         inVogue: 1,
-        productName: ''
+        productName: '',
+        containsSellOut: 0 // 是否包含售罄商品（0: 不包含，适用首页，1: 包含）
       },
       success: (res) => {
         res.data.data && res.data.data.forEach(item => {
-          item.price = (item.price / 100).toFixed(2)
+          const a = (item.price / 100).toFixed(2)
+          item.price = String(a).split('.')[0]
+          item.priceDot = String(a).split('.')[1]
+          item.marketPrice = (item.marketPrice / 100).toFixed(2)
         })
-        let s = []
-        for (let i = 0; i < 10; i++) {
-          s = s.concat(res.data.data)
-        }
+        console.log(res.data.data)
+        // let s = []
+        // for (let i = 0; i < 10; i++) {
+        //   s = s.concat(res.data.data)
+        // }
         const left = []
         const right= []
-        s.forEach((item, i) => {
+        res.data.data.forEach((item, i) => {
           if (i % 2) {
             right.push(item)
           } else {
             left.push(item)
           }
         })
-        console.log({left, right} )
         this.setData({
           listData: {left, right} // res.data.data ? res.data.data : []
         })
@@ -200,8 +236,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

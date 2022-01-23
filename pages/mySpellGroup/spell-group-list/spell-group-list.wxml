@@ -1,16 +1,16 @@
 <!--pages/mySpellGroup/spell-group-list/spell-group-list.wxml-->
 <view class="container">
   <block wx:for="{{orderListData}}" wx:key="index">
-    <view wx:if="{{ index % 2 === 0}}" class="conversion-wrapper" data-order="{{item}}" bindtap="lookOrderDetail">
-      <image class="goods-item-image" src="{{item.product.photoAddress[0]}}"></image>
+    <view wx:if="{{item.orderStatus.code !== 301}}" class="conversion-wrapper" data-order="{{item}}" bindtap="lookOrderDetail">
+      <image class="goods-item-image" src="{{item.product.headPhotoAddress[0]}}"></image>
       <view class="content-right">
         <view class="title">{{item.product.majorName}}</view>
         <view class="order-number">订单号：{{item.orderId}}</view>
         <view class="price-num">
           <view class="price">
-            <text class="realpay">{{item.orderPrice / 100}}元</text>
+            <text class="realpay">{{item.orderPrice}}元</text>
           </view>
-          <view class="real-num">数量：{{item.product.numToProduct}}</view>
+          <view class="real-num">数量：1</view>
         </view>
         <view class="mark-order-status">
           <text class="order-status">{{item.orderStatus.name}}</text>
@@ -18,20 +18,20 @@
         </view>
       </view>
     </view>
-    <view wx:else  class="conversion-wrapper conversion-wrapper-red">
+    <view wx:if="{{item.orderStatus.code === 301}}"  class="conversion-wrapper conversion-wrapper-red">
       <image class="goods-item-image" src="https://cdn.tuanzhzh.com/red.png"></image>
       <view class="content-right content-right-red">
         <view class="title title-red">{{item.product.majorName}}</view>
         <view class="order-number">订单号：{{item.orderId}}</view>
         <view class="price-num">
           <view class="price price-red">
-            <text class="realpay">{{item.orderPrice / 100}}元</text>
+            <text class="realpay">{{item.cashbackPr}}元</text>
           </view>
         </view>
         <view class="mark-order-status">
           <text class="order-status order-status-red">{{item.orderStatus.name}}</text>
         </view>
-        <image class="goods-item-image-red" src="https://cdn.tuanzhzh.com/red-doulbe.png"></image>
+        <image wx:if="{{item.doubleQuotaCount}}" class="goods-item-image-red" src="https://cdn.tuanzhzh.com/red-doulbe.png"></image>
       </view>
     </view>
   </block>

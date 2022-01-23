@@ -1,18 +1,19 @@
 // pages/orderDetail/orderDetail.js
 /**
  * orderStatus---code----订单状态
- * 0:未支付-商品结算
- * 1:已取消（超时未支付）-已取消
+ * 101 0:未支付-商品结算
+ * 204 1:已取消（超时未支付）-已取消
  * 2:已取消（成团人数不足）-未成团
- * 3:支付确认中
- * 4:已支付-待成团
- * 7:已成团-待发货
- * 8:商品待收货
- * 9:商品已签收
- * 10:商品已回收
- * 11:支付失败
+ * 201 3:支付确认中
+ * 202 4:已支付-待成团
+ * 501 7:已成团-待发货
+ * 502 8:商品待收货
+ * 503 9:商品已签收
+ * 512 10:商品已回收
+ * 203 11:支付失败
  * 12:商品已出库
- * 
+ * 301 红包已发放
+ * 511 商品退货中
  */
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
@@ -47,7 +48,8 @@ Page({
     }, {
       text: '去添加'
     }],
-    addAddressDialog: false 
+    addAddressDialog: false,
+    getRedPackeNum: 0
   },
 
   /**
@@ -98,55 +100,60 @@ Page({
       orderId
     }).then(res => {
       const data = res.data.data
-      const commonOrGoodOrder = !res.data.data.coproduct ? '恭喜恭喜，您获得商品！' : '' //todo
+      // data.orderStatus.code = 502
+      const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '恭喜恭喜，您获得商品！' : '' //todo
       let topTitle = '团赚赚'
       let bottomBtnName = '再次购买'
       let orderStatusDescName = ''
-      if (data.payDeadline !== -1 && data.orderStatus.code === 0) {
+      if (data.orderStatus.code === 301) {
+        this.setData({
+          getRedPackeNum: data.cashback ? (data.cashback / 100).toFixed(2) : 0
+        })
+      }
+      if (data.payDeadline !== -1 && data.orderStatus.code === 101) {
         app.globalData.payDeadline = data.payDeadline
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
         bottomBtnComponentObj.payDownTime(data.payDeadline)
       }
-
-      if (data.confirmDeliveredDeadline != -1 && data.orderStatus.code === 8) {
+      if (data.confirmDeliveredDeadline != -1 && data.orderStatus.code === 502) {
         app.globalData.confirmDeliveredDeadline = data.confirmDeliveredDeadline
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
         bottomBtnComponentObj.shippinTimeFun(data.confirmDeliveredDeadline)
       }
 
-      if (data.orderStatus.code === 0) { // 未支付-商品结算
+      if (data.orderStatus.code === 101) { // 未支付-商品结算
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
         orderStatusDescName = ''
-      } else if (data.orderStatus.code === 1) { // 已取消（超时未支付）-已取消
+      } else if (data.orderStatus.code === 204) { // 已取消（超时未支付）-已取消
         topTitle = '已取消'
         bottomBtnName = '再次购买'
         orderStatusDescName = '您已取消订单，欢迎再次购买'
         this.setData({
           showOrderStatusDescName: true
         })
-      } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团
+      } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团 这个状态没有了
         topTitle = '未成团'
         bottomBtnName = '再次购买'
         orderStatusDescName = '本团未成团，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true
         })
-      } else if (data.orderStatus.code === 3) { // 支付确认中
+      } else if (data.orderStatus.code === 201) { // 支付确认中
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
         orderStatusDescName = '支付确认中，请您尽快付款'
         this.setData({
           showOrderStatusDescName: true
         })
-      } else if (data.orderStatus.code === 4) { // 已支付-待成团
+      } else if (data.orderStatus.code === 202) { // 已支付-待成团
         topTitle = '待成团'
         bottomBtnName = '再次购买'
         orderStatusDescName = ''
         this.setData({
           showImage: true
         })
-      } else if (data.orderStatus.code === 7) { // 已成团-待发货
+      } else if (data.orderStatus.code === 501) { // 已成团-待发货
         topTitle = '待发货'
         bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
@@ -157,7 +164,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlyReimburse: true
         })
-      } else if (data.orderStatus.code === 8) { // 商品待收货
+      } else if (data.orderStatus.code === 502) { // 商品待收货
         topTitle = '待收货'
         // bottomBtnName = '再次购买'
         bottomBtnName = '确认收货'
@@ -170,7 +177,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
-      } else if (data.orderStatus.code === 9) { // 商品已签收
+      } else if (data.orderStatus.code === 503) { // 商品已签收
         topTitle = '已签收'
         bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
@@ -182,7 +189,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
-      } else if (data.orderStatus.code === 10) { // 商品已回收
+      } else if (data.orderStatus.code === 512) { // 商品已回收
         topTitle = '已退货'
         bottomBtnName = '再次购买'
         orderStatusDescName = '您已退货，欢迎再次参团'
@@ -190,14 +197,14 @@ Page({
           showOrderStatusDescName: true,
           showComfortMoney: true,
         })
-      } else if (data.orderStatus.code === 11) { // 支付失败
+      } else if (data.orderStatus.code === 203) { // 支付失败
         topTitle = '待支付'
         bottomBtnName = '微信支付'
         orderStatusDescName = '支付失败，请重新支付'
         this.setData({
           showOrderStatusDescName: true,
         })
-      } else if (data.orderStatus.code === 12) { // 商品已出库
+      } else if (data.orderStatus.code === 12) { // 商品已出库 这个状态现在没有了
         topTitle = '已出库'
         bottomBtnName = '再次购买'
         orderStatusDescName = commonOrGoodOrder
@@ -222,8 +229,8 @@ Page({
         isCommonOrder: res.data.data.coproduct ? true : false,
         orderStatusDescName
       })
-      const orderSettlementObj = this.selectComponent('#orderSettlement')
-      orderSettlementObj?.countDownTime(data.groupOrder?.groupEndTime)
+      // const orderSettlementObj = this.selectComponent('#orderSettlement')
+      // orderSettlementObj?.countDownTime(data.groupOrder?.groupEndTime)
     }).catch(err => {
       wx.showToast({
         title: err.data.msg,
@@ -263,16 +270,16 @@ Page({
   clickPerationBtn(e) {
     const { orderStatusCode } = this.data
     // 根据订单状态进行相应操作
-    if (orderStatusCode === 0) { // 未支付
-      console.log('0/未支付', orderStatusCode)
+    if (orderStatusCode === 101) { // 未支付
+      console.log('101/未支付', orderStatusCode)
       // 调取微信支付弹窗
       this.getPayId()
-    } else if (orderStatusCode === 1 || orderStatusCode === 4) {
+    } else if (orderStatusCode === 204 || orderStatusCode === 202) {
       // console.log('1/已取消(超时未支付)', orderStatusCode)
       wx.switchTab({
         url: '/pages/classification/classification',
       })
-    } else if (orderStatusCode === 8) {
+    } else if (orderStatusCode === 502) {
       // 确认收货需要重新请求一下商品详情接口
       this.signFor()
     } else {
@@ -509,8 +516,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

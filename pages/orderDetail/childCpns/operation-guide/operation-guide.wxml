@@ -1,6 +1,6 @@
 <!--pages/orderDetail/childCpns/operation-guide/operation-guide.wxml-->
 <view class="container" data-code="{{currentStatus}}" bindtap="clickOperationBtn">
   <text>{{bottomBtnName}}</text>
-  <text wx:if="{{currentStatus === 0}}" class="container-countdown">{{countTime}}</text>
-  <text wx:if="{{currentStatus === 8}}" class="container-countdown">{{shippinTime}}</text>
+  <text wx:if="{{currentStatus === 101}}" class="container-countdown">{{countTime}}</text>
+  <text wx:if="{{(currentStatus === 502 || currentStatus === 501)}}" class="container-countdown">{{shippinTime}}</text>
 </view>

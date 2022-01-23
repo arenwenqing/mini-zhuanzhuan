@@ -70,10 +70,13 @@ Page({
       url: domain + `/mini/product/detail/${id}`,
       method: 'GET',
       success: (res) => {
-        res.data.data.price = (res.data.data.price / 100).toFixed(2)
+        let a = (res.data.data.price / 100).toFixed(2)
+        res.data.data.price = String(a).split('.')[0]
+        res.data.data.priceDot = String(a).split('.')[1]
+        res.data.data.marketPrice = (res.data.data.marketPrice / 100).toFixed(2)
         this.setData({
           detailData: res.data.data ? res.data.data : {},
-          carousel: res.data.data.photoAddress ? [res.data.data.photoAddress.shift()]: [],
+          carousel: res.data.data.headPhotoAddress ? res.data.data.headPhotoAddress: [],
           productId: res.data?.data?.productId
         })
         if (!this.interal) {
@@ -198,8 +201,8 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '有红包的盲盒团购-限时48小时领取',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share20211128.jpg',
+      title: '给你一个拿双倍现金补贴的机会',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }
