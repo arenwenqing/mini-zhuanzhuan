@@ -7,10 +7,6 @@ Page({
    */
   data: {
     list: [{
-      icon: '/pages/images/5.png',
-      text: '双倍红包券',
-      key: '1'
-    }, {
       icon: '/pages/images/3.png',
       text: '我的拼团',
       key: '2'
