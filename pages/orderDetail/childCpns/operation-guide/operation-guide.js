@@ -50,7 +50,8 @@ Component({
    */
   data: {
     countTime: '',
-    shippinTime: ''
+    shippinTime: '',
+    flag: false
   },
 
   /**
@@ -59,7 +60,14 @@ Component({
   methods: {
     // 按钮包括(微信支付、再拼一次)
     clickOperationBtn(e) {
-      this.triggerEvent('clickOperationBtn', {}, {})
+      this.triggerEvent('clickOperationBtn', {flag: this.data.flag}, {flag: this.data.flag})
+    },
+
+    // 超时未支付的单子
+    timeoutNoPay(mark) {
+      this.setData({
+        flag: mark
+      })
     },
 
     payDownTime(time) {

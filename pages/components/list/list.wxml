@@ -6,7 +6,7 @@
         <view class="goods-item-left">
           <view class="goods-img">
             <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image> 
-            <image wx:if="{{item.isBlindBox}}" class="goods-item-active" src="https://cdn.tuanzhzh.com/img-mark.png"></image>
+            <image wx:if="{{item.isBlindBox}}" class="goods-item-active" src="https://cdn.tuanzhzh.com/image/img-mark2.png"></image>
           </view>
           <view class="goods-item-name-price">
             <view class="goods-item-name">
@@ -22,7 +22,7 @@
               <view class="goods-item-price-value">
                 <text>￥</text>
                 <!--{{item.price}}-->
-                <text>{{item.pirce}}.</text>
+                <text>{{item.price}}.</text>
                 <text>{{item.priceDot}}</text>
                 <text>￥</text>
                 <text>{{item.marketPrice}}</text>

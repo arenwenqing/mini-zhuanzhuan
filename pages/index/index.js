@@ -35,8 +35,12 @@ Page({
   onLoad(options) {
     if (options.originUserId) {
       app.globalData.originUserId = options.originUserId
-    } else if (options.originExchangeCode) {
+    }
+    if (options.originExchangeCode) {
       app.globalData.originExchangeCode = options.originExchangeCode
+    }
+    if (options.originOrderId) {
+      app.globalData.originOrderId = options.originOrderId
     }
     app.globalData.originTimestamp = options.originTimestamp
     let query = wx.createSelectorQuery()
@@ -236,7 +240,7 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '给你一个拿双倍现金补贴的机会',
+      title: '亲~登录帮我翻个倍吧！',
       imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }

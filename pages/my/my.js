@@ -8,7 +8,7 @@ Page({
   data: {
     list: [{
       icon: '/pages/images/3.png',
-      text: '我的拼团',
+      text: '我的订单',
       key: '2'
     }, {
       icon: '/pages/images/2.png',
@@ -258,7 +258,7 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '给你一个拿双倍现金补贴的机会',
+      title: '亲~登录帮我翻个倍吧！',
       imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }

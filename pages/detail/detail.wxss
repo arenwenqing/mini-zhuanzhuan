@@ -7,6 +7,18 @@
   -webkit-line-clamp: 1;
  -webkit-box-orient: vertical;
 }
+.detail-swiper-view {
+  position: relative;
+}
+.detail-big-png {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  width: 750rpx;
+  height: 136rpx;
+
+}
 .detail-wrapper {
   background: #F7F7F7;
 }
@@ -197,6 +209,10 @@
 .detail-image-wrapper {
   margin-top: 16rpx;
   margin-bottom: 170rpx;
+}
+.detail-zhangheng {
+  height: 120rpx;
+  background: #fff;
 }
 .detail-image-item {
   border: none;

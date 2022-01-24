@@ -2,7 +2,7 @@
 <view class="detail-wrapper">
   <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar'></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
-  <view>
+  <view class="detail-swiper-view">
       <swiper class="detail-image-carousel" indicator-active-color='#FA2840' indicator-color="#c1c1c1" indicator-dots='true' autoplay='true' interval='3000'  duration='1000' circular='true' >
         <block wx:for="{{carousel}}" wx:key="index">
           <swiper-item>
@@ -10,6 +10,7 @@
           </swiper-item>
         </block>
       </swiper>
+      <image class="detail-big-png" wx:if="{{detailData.isBlindBox}}" src="https://cdn.tuanzhzh.com/image/huodong.png"></image>
     </view>
   <!-- <view class="detail-main-image-wrapper">
     <image src="{{detailData.photoAddress && detailData.photoAddress[0]}}" mode="scaleToFill" class="detail-main-image"></image>
@@ -86,9 +87,10 @@
     <block wx:for="{{detailData.detailPhotoAddress}}" wx:key="index">
       <image lazy-load="true" src="{{item}}" class="detail-image-item" mode="widthFix"></image>
     </block>
+    <view class="detail-zhangheng"></view>
   </view>
   <view class="detail-bottom">
-    <view class="detail-bottom-left" catchtap="immediateSpellGroup">立即拼团</view>
+    <view class="detail-bottom-left" catchtap="immediateSpellGroup">购买</view>
     <!-- <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view> -->
   </view>
   <!-- <luckBag></luckBag> -->

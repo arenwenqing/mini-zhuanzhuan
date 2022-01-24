@@ -4,7 +4,7 @@
   <view class="content-top">
     <!-- <view class="content-top-title">参团成功，拼团倒计时<text class="content-top-pin-coundown">{{groupEndTime}}</text></view>
     <text class="content-top-cont">请于{{orderData.payTimeout}}:00内付款</text> -->
-    <view class="content-top-title">购买成功，请于5:00内付款</view>
+    <view class="content-top-title">下单成功，请您于5分钟内付款</view>
   </view>
   <!-- 收货地址 -->
   <view class="content-address" bindtap="clickGoAddress">

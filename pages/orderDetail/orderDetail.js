@@ -33,7 +33,7 @@ Page({
     orderStatusCode: undefined, // 订单状态
     topTitle: '团赚赚', // 订单详情中顶部标题
     currentStatus: 0,
-    bottomBtnName: '再次购买',       // 订单详情底部操作按钮
+    bottomBtnName: '继续逛逛',       // 订单详情底部操作按钮
     orderStatusDescName: '',        // 订单状态提示文案
     showComfortMoney: false,        // 是否展示安慰红包
     showExpressInfo: false,         // 是否展示快递信息
@@ -101,9 +101,9 @@ Page({
     }).then(res => {
       const data = res.data.data
       // data.orderStatus.code = 502
-      const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '恭喜恭喜，您获得商品！' : '' //todo
+      const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '购买成功，正在为您安排发货' : '' //todo
       let topTitle = '团赚赚'
-      let bottomBtnName = '再次购买'
+      let bottomBtnName = '继续逛逛'
       let orderStatusDescName = ''
       if (data.orderStatus.code === 301) {
         this.setData({
@@ -113,6 +113,10 @@ Page({
       if (data.payDeadline !== -1 && data.orderStatus.code === 101) {
         app.globalData.payDeadline = data.payDeadline
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
+        if (data.payDeadline - new Date().getTime() <= 0) {
+          bottomBtnName = '继续逛逛'
+          bottomBtnComponentObj.timeoutNoPay(true)
+        }
         bottomBtnComponentObj.payDownTime(data.payDeadline)
       }
       if (data.confirmDeliveredDeadline != -1 && data.orderStatus.code === 502) {
@@ -121,20 +125,20 @@ Page({
         bottomBtnComponentObj.shippinTimeFun(data.confirmDeliveredDeadline)
       }
 
-      if (data.orderStatus.code === 101) { // 未支付-商品结算
+      if (data.orderStatus.code === 101 && data.payDeadline - new Date().getTime() > 0) { // 未支付-商品结算
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
         orderStatusDescName = ''
       } else if (data.orderStatus.code === 204) { // 已取消（超时未支付）-已取消
         topTitle = '已取消'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = '您已取消订单，欢迎再次购买'
         this.setData({
           showOrderStatusDescName: true
         })
       } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团 这个状态没有了
         topTitle = '未成团'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = '本团未成团，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true
@@ -148,14 +152,14 @@ Page({
         })
       } else if (data.orderStatus.code === 202) { // 已支付-待成团
         topTitle = '待成团'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = ''
         this.setData({
           showImage: true
         })
       } else if (data.orderStatus.code === 501) { // 已成团-待发货
         topTitle = '待发货'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
@@ -166,7 +170,7 @@ Page({
         })
       } else if (data.orderStatus.code === 502) { // 商品待收货
         topTitle = '待收货'
-        // bottomBtnName = '再次购买'
+        // bottomBtnName = '继续逛逛'
         bottomBtnName = '确认收货'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
@@ -179,7 +183,7 @@ Page({
         })
       } else if (data.orderStatus.code === 503) { // 商品已签收
         topTitle = '已签收'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showExpressInfo: true,
@@ -191,7 +195,7 @@ Page({
         })
       } else if (data.orderStatus.code === 512) { // 商品已回收
         topTitle = '已退货'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = '您已退货，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true,
@@ -206,7 +210,7 @@ Page({
         })
       } else if (data.orderStatus.code === 12) { // 商品已出库 这个状态现在没有了
         topTitle = '已出库'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
@@ -218,7 +222,7 @@ Page({
         })
       } else { // 其他
         topTitle = '团赚赚'
-        bottomBtnName = '再次购买'
+        bottomBtnName = '继续逛逛'
       }
       this.setData({
         orderData: data || {},
@@ -266,8 +270,14 @@ Page({
     this.getOrderDetail(this.data.orderId)
   },
 
-  // 点击微信支付/再次购买/确认收货
+  // 点击微信支付/继续逛逛/确认收货
   clickPerationBtn(e) {
+    if (e.detail.flag) {
+      wx.switchTab({
+        url: '/pages/classification/classification',
+      })
+      return
+    }
     const { orderStatusCode } = this.data
     // 根据订单状态进行相应操作
     if (orderStatusCode === 101) { // 未支付
@@ -516,9 +526,9 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return {
-      title: '给你一个拿双倍现金补贴的机会',
+      title: '亲~登录帮我翻个倍吧！',
       imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}`
     }
   }
 })

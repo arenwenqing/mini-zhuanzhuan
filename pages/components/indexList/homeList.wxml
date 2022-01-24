@@ -5,7 +5,7 @@
       <view class="list-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="list-item-img-wrapper">
           <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image>
-          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/img-mark.png'></image>
+          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image>
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
@@ -44,7 +44,7 @@
       <view class="list-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="list-item-img-wrapper">
           <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image>
-          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/img-mark.png'></image>
+          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image>
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
