@@ -10,13 +10,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
-    movies: [{
-      name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
-      value: 1
-    }, {
+    movies: [ {
       name: 'https://cdn.tuanzhzh.com/banner/activity-banner.png',
       value: 2
     }, {
+      name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
+      value: 1
+    },{
       name: 'https://cdn.tuanzhzh.com/banner/stop-banner.png',
       value: 3
     }],
@@ -241,7 +241,7 @@ Page({
     const currentTime = new Date().getTime()
     return {
       title: '亲~登录帮我翻个倍吧！',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }

@@ -59,8 +59,8 @@
         <text class="detail-time-num">{{hours}}</text>
         <text class="detail-time-mh">:</text>
         <text class="detail-time-num">{{minutes}}</text>
-        <text class="detail-time-mh">:</text>
-        <text class="detail-time-num">{{seconds}}</text>
+        <!-- <text class="detail-time-mh">:</text>
+        <text class="detail-time-num">{{seconds}}</text> -->
         <text class="detail-time-text2">结束</text>
       </view>
     </view>

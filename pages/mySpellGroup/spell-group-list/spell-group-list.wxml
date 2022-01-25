@@ -18,7 +18,7 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{item.orderStatus.code === 301}}"  class="conversion-wrapper conversion-wrapper-red">
+    <view wx:if="{{item.orderStatus.code === 301}}" data-order="{{item}}"  bindtap="lookOrderDetail"  class="conversion-wrapper conversion-wrapper-red">
       <image class="goods-item-image" src="https://cdn.tuanzhzh.com/red.png"></image>
       <view class="content-right content-right-red">
         <view class="title title-red">{{item.product.majorName}}</view>
@@ -31,7 +31,7 @@
         <view class="mark-order-status">
           <text class="order-status order-status-red">{{item.orderStatus.name}}</text>
         </view>
-        <image wx:if="{{item.doubleQuotaCount}}" class="goods-item-image-red" src="https://cdn.tuanzhzh.com/red-doulbe.png"></image>
+        <image wx:if="{{item.cashbackCount === 2}}" class="goods-item-image-red" src="https://cdn.tuanzhzh.com/red-doulbe.png"></image>
       </view>
     </view>
   </block>

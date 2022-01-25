@@ -31,7 +31,7 @@ Page({
     orderData: {}, // 订单数据
     addressInfo: {}, // 收货地址信息
     orderStatusCode: undefined, // 订单状态
-    topTitle: '团赚赚', // 订单详情中顶部标题
+    topTitle: '团团转', // 订单详情中顶部标题
     currentStatus: 0,
     bottomBtnName: '继续逛逛',       // 订单详情底部操作按钮
     orderStatusDescName: '',        // 订单状态提示文案
@@ -102,7 +102,7 @@ Page({
       const data = res.data.data
       // data.orderStatus.code = 502
       const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '购买成功，正在为您安排发货' : '' //todo
-      let topTitle = '团赚赚'
+      let topTitle = '团团转'
       let bottomBtnName = '继续逛逛'
       let orderStatusDescName = ''
       if (data.orderStatus.code === 301) {
@@ -221,7 +221,7 @@ Page({
           showImage: true
         })
       } else { // 其他
-        topTitle = '团赚赚'
+        topTitle = '团团转'
         bottomBtnName = '继续逛逛'
       }
       this.setData({
@@ -527,7 +527,7 @@ Page({
     const currentTime = new Date().getTime()
     return {
       title: '亲~登录帮我翻个倍吧！',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}`
     }
   }

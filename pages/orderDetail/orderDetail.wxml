@@ -71,10 +71,10 @@
         <view class="redpacke-show-explain">红包将于5分钟内到微信零钱</view>
       </view>
       <image wx:if="{{orderData.cashbackCount === 2}}" src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image>
-      <button type="default" open-type="share" class="share-btn-style">
-        <image src="https://cdn.tuanzhzh.com/double-btn.png" class="double-btn"></image>
+      <button wx:if="{{orderData.cashbackCount === 1}}" type="default" open-type="share" class="share-btn-style">
+        <image src="https://cdn.tuanzhzh.com/share/huxidouble.png" class="double-btn"></image>
       </button>
-      <text class="redpacke-share-sm">分享链接1小时内有效</text>
+      <text wx:if="{{orderData.cashbackCount === 1}}" class="redpacke-share-sm">分享链接1小时内有效</text>
     </view>
   
     <!-- 申请退货逻辑 -->

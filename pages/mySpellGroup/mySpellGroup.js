@@ -172,7 +172,7 @@ Page({
     const currentTime = new Date().getTime()
     return {
       title: '亲~登录帮我翻个倍吧！',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share-image.png',
+      imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
   }
