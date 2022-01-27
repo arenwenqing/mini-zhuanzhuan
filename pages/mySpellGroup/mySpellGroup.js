@@ -1,4 +1,5 @@
 // pages/mySpellGroup/mySpellGroup.js
+import { shareFun } from '../../utils/globalFun'
 const app = getApp()
 const domain = 'https://tuanzhzh.com' 
 Page({
@@ -170,10 +171,8 @@ Page({
    */
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
-    return {
-      title: '亲~登录帮我翻个倍吧！',
-      imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
+    return shareFun({
       path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
-    }
+    })
   }
 })

@@ -1,0 +1,17 @@
+<!--pages/components/loginBoot/loginBoot.wxml-->
+<view wx:if="{{showDialog}}" class="login-boot-wrapper">
+  <view class="boot-main">
+    <view class="boot-friend-img">
+    </view>
+    <view class="boot-friend-name">
+      <text>天下第一卷</text>
+    </view>
+    <view class="boot-main-text">
+      <view>帮Ta多拿<text class="boot-main-text-num">1.2元</text>红包！</view>
+    </view>
+    <view class="boot-bottom">
+      <view class="boot-bottom-cancel" bindtap="closeDialog">不管Ta</view>
+      <view class="boot-bottom-sure" bindtap="login">帮Ta一把</view>
+    </view>
+  </view>
+</view>

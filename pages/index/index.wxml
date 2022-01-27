@@ -38,4 +38,5 @@
     </view>
     <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
   </view>
+  <loginBoot show="{{showLoginBoot}}"></loginBoot>
 </view>

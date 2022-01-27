@@ -149,3 +149,13 @@ function uploadUserMessage(obj) {
     }
   })
 }
+
+// 分享
+export const shareFun = (obj) => {
+  return {
+    title: '亲~登录帮我翻个倍吧！',
+    imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
+    path: `/pages/index/index`,
+    ...obj
+  }
+}

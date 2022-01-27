@@ -1,0 +1,94 @@
+/* pages/components/loginBoot/loginBoot.wxss */
+.login-boot-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+}
+.boot-main {
+  position: absolute;
+  width: 600rpx;
+  height: 340rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  left: 50%;
+  top: 50%;
+  margin-left: -300rpx;
+  margin-top: -170rpx;
+}
+.boot-main-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #262424;
+  margin-top: 20rpx;
+}
+.boot-bottom {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  width: 600rpx;
+  height: 100rpx;
+  border-top: 1rpx solid #eee;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #262424;
+}
+.boot-bottom-cancel {
+  flex: 1;
+  height: 100rpx;
+  text-align: center;
+  border-right: 1rpx solid #eee;
+  line-height: 100rpx;
+}
+.boot-bottom-sure {
+  flex: 1;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+  border-bottom-right-radius: 20rpx;
+}
+.boot-friend-img {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  top: -40rpx;
+  left: 50%;
+  margin-left: -50rpx;
+  overflow: hidden;
+  background: url("https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJvMYQGvVhaClCsJlsy23TyhibgKSNNiatNgibYHy7MgMP99GUG4XFicuNwwboWoRemTOPy4q3QBf1ldw/132");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.boot-friend-img img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.boot-friend-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #262424;
+  margin-top: 70rpx;
+}
+.boot-main-text-num {
+  font-size: 40rpx;
+  color: #F8052B;
+}
