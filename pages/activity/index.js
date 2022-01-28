@@ -1,7 +1,7 @@
 // pages/activity/index.js
 let map = {
   1: 'https://cdn.tuanzhzh.com/banner/activity-detail.png',
-  2: 'https://cdn.tuanzhzh.com/banner/butie.png',
+  2: 'https://cdn.tuanzhzh.com/banner/activity2.png',
   3: 'https://cdn.tuanzhzh.com/banner/stop-detail.jpg'
 }
 Page({
