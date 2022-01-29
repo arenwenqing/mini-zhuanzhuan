@@ -26,7 +26,9 @@ Page({
     receiveDatas: [],
     listData: [],
     contentHeight: 0,
-    showLoginBoot: false
+    showLoginBoot: false,
+    shareOrderData: {},
+    showThanks: false
   },
   // 事件处理函数
   // bindViewTap() {
@@ -43,6 +45,12 @@ Page({
     }
     if (options.originOrderId) {
       app.globalData.originOrderId = options.originOrderId
+    }
+    // 从订单详情分享过来的切用户没有登录
+    if (options.doubleShare && !wx.getStorageSync('userId')) {
+      // 获取分享订单的详情
+      console.log('1111=', options.originOrderId)
+      this.getShareOrderDetail(options.originOrderId)
     }
     app.globalData.originTimestamp = options.originTimestamp
     let query = wx.createSelectorQuery()
@@ -61,7 +69,6 @@ Page({
     // this.getIndexBanner()
     // this.getNotice()
     this.getRedPackageMessage()
-    console.log('app=', app)
   },
 
   skipBannerDetail(e) {
@@ -84,6 +91,34 @@ Page({
       default:
         break;
     }
+  },
+
+  // 展示感谢语
+  onShowThank() {
+    this.setData({
+      showThanks: true
+    })
+  },
+
+  // 分享订单的详情
+  getShareOrderDetail(orderId) {
+    wx.request({
+      url: domain + `/mini/order/share/detail/${orderId}`,
+      data: {},
+      success: (res) => {
+        this.setData({
+          shareOrderData: res.data.data,
+          showLoginBoot: true
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
   },
 
   // 最新领红包信息

@@ -527,7 +527,7 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}`
+      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
     })
   }
 })

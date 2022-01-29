@@ -1,4 +1,4 @@
-// pages/components/loginBoot/loginBoot.js
+// pages/components/thanksDialog/thanksDialog.js
 import { getUserProfile } from '../../../utils/globalFun'
 Component({
   /**
@@ -16,12 +16,11 @@ Component({
   },
   observers: {
     "show": function (data) {
-       this.setData({
-          showDialog: data
-       })
+      this.setData({
+        showDialog: data
+      })
     },
     "shareOrderData": function (data) {
-      data.cashback = (data.cashback / 100).toFixed(2)
       this.setData({
         contentData: data
       })
@@ -33,7 +32,6 @@ Component({
    */
   data: {
     showDialog: false,
-    contentData: {}
   },
 
   /**
@@ -43,17 +41,6 @@ Component({
     closeDialog() {
       this.setData({
         showDialog: false
-      })
-    },
-    login() {
-      getUserProfile((data) => {
-        // 1新用户，0 老用户
-        if (data.isNewUser === 1) {
-          this.triggerEvent('showthank', {}, {})
-        }
-        this.setData({
-          showDialog: false
-        })
       })
     }
   }

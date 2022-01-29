@@ -1,4 +1,4 @@
-/* pages/components/loginBoot/loginBoot.wxss */
+/* pages/components/thanksDialog/thanksDialog.wxss */
 .login-boot-wrapper {
   position: fixed;
   width: 100vw;
@@ -23,6 +23,7 @@
 }
 .boot-main-text {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 30rpx;
@@ -69,9 +70,9 @@
   margin-left: -50rpx;
   overflow: hidden;
   /* background: url("https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJvMYQGvVhaClCsJlsy23TyhibgKSNNiatNgibYHy7MgMP99GUG4XFicuNwwboWoRemTOPy4q3QBf1ldw/132"); */
-  /* background-position: center;
+  background-position: center;
   background-size: cover;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 .boot-friend-img img {
   display: inline-block;

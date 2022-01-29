@@ -3,7 +3,8 @@
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
     "home-list": "/pages/components/indexList/homeList",
     "navigationBar": "/pages/components/navigationBar/navigationBar",
-    "loginBoot": "/pages/components/loginBoot/loginBoot"
+    "loginBoot": "/pages/components/loginBoot/loginBoot",
+    "thanks": "/pages/components/thanksDialog/thanksDialog"
   },
   "navigationStyle": "custom"
 }

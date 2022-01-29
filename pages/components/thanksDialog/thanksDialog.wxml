@@ -1,0 +1,17 @@
+<!--pages/components/thanksDialog/thanksDialog.wxml-->
+<view wx:if="{{showDialog}}" class="login-boot-wrapper">
+  <view class="boot-main">
+    <view class="boot-friend-img" style="{{'background: url('+contentData.wxAvatarUrl+'); background-position: center; background-size: cover; background-repeat: no-repeat;'}}">
+    </view>
+    <view class="boot-friend-name">
+      <text>{{contentData.wxNickName}}</text>
+    </view>
+    <view class="boot-main-text">
+      <view>您的朋友的奖励已翻倍</view>
+      <view>Ta送您一次奖励翻倍的机会！</view>
+    </view>
+    <view class="boot-bottom">
+      <view class="boot-bottom-sure" bindtap="closeDialog">收下</view>
+    </view>
+  </view>
+</view>

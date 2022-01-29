@@ -109,7 +109,7 @@ function getUserId(code, cb) {
         // wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()
-        cb && cb()
+        cb && cb(data)
         uploadUserMessage(JSON.parse(wx.getStorageSync('wxUser')))
         // this.getMessage()
       }

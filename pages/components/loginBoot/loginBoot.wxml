@@ -1,13 +1,13 @@
 <!--pages/components/loginBoot/loginBoot.wxml-->
 <view wx:if="{{showDialog}}" class="login-boot-wrapper">
   <view class="boot-main">
-    <view class="boot-friend-img">
+    <view class="boot-friend-img" style="{{'background: url('+contentData.wxAvatarUrl+'); background-position: center; background-size: cover; background-repeat: no-repeat; '}}">
     </view>
     <view class="boot-friend-name">
-      <text>天下第一卷</text>
+      <text>{{contentData.wxNickName}}</text>
     </view>
     <view class="boot-main-text">
-      <view>帮Ta多拿<text class="boot-main-text-num">1.2元</text>红包！</view>
+      <view>帮Ta多拿<text class="boot-main-text-num">{{contentData.cashback}}元</text>红包！</view>
     </view>
     <view class="boot-bottom">
       <view class="boot-bottom-cancel" bindtap="closeDialog">不管Ta</view>
