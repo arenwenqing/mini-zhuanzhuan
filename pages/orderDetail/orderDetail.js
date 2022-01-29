@@ -312,11 +312,20 @@ Page({
       orderId: this.data.orderData.orderId,
       receiveAddressId: wx.getStorageSync('addressId')
     }).then(res => {
-      this.startPay({
-        ...res.data.data,
-        timeStamp: res.data.data.timestamp,
-        nonceStr: res.data.data.nonce_str,
-      })
+      if (res.data.code !== 0) {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      } else {
+        this.startPay({
+          ...res.data.data,
+          timeStamp: res.data.data.timestamp,
+          nonceStr: res.data.data.nonce_str,
+        })
+      }
+      
     }).catch(err => {
       wx.showToast({
         title: err.data.msg,
