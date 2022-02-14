@@ -34,7 +34,7 @@
           <block wx:for="{{movies}}" wx:key="index">  
             <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
           </block>  
-      </view> 
+      </view>
     </view>
     <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
   </view>

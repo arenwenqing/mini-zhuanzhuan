@@ -7,47 +7,42 @@
   height: 240rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
 }
+.my-wrapper {
+  background: #F7F7F7;
+}
 .my-user-message {
   width: 750rpx;
   height: 902rpx;
-  background: #FFFFFF;
+  background: #F7F7F7;
   border-radius: 48px 48px 0px 0px;
-  margin-top: -88rpx;
-  position: relative;
+  /* margin-top: -88rpx; */
+  /* position: relative; */
 }
 .my-user-avatar{
-  position: absolute;
-  width: 168rpx;
-  height: 168rpx;
-  background: rgba(234, 234, 234, 0.19);
-  box-shadow: 0rpx 26rpx 28rpx 0rpx rgba(134, 134, 134, 0.1);
-  /* opacity: 0.19; */
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
-  left: 50%;
-  margin-left: -84rpx;
-  top: -78rpx;
+  background: rgba(234,234,234, 0.2);
+  box-shadow: 0px 26px 28px 0px rgba(134, 134, 134, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 20rpx 24rpx 28rpx;
 }
 .my-user-avatar-img {
   display: inline-block;
-  width: 150rpx;
-  height: 150rpx;
+  width: 108rpx;
+  height: 108rpx;
   border-radius: 50%;
 }
 .my-user-name {
   width: 426rpx;
-  font-size: 36rpx;
-  font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
-  color: #2B375E;
-  text-align: center;
-
-  /* margin-top: 118rpx auto 12rpx; */
-  padding-top: 118rpx;
-  padding-bottom: 12rpx;
-  margin:  0 auto;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 32rpx;
+  margin: 40rpx auto 0;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -159,4 +154,89 @@
   height: 52rpx;
   right: -22rpx;
   top: -28rpx;
+}
+.my-header {
+  height: 164rpx;
+  background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
+}
+.my-header-content {
+  display: flex;
+}
+.my-header-list-wrapper {
+  height: 188rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  position: relative;
+  top: -20rpx;
+}
+.list-wrapper-swiper {
+  height: 188rpx;
+}
+.my-swiper-item {
+  display: flex;
+  justify-content: center;
+}
+.my-swiper-item2 {
+  justify-content: flex-start;
+}
+.list-item {
+  width: 142rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.list-item::after {
+  content: '';
+  height: 72rpx;
+  width: 1rpx;
+  background: #E6E6E6;
+  position: absolute;
+  left: 140rpx;
+  top: 50rpx;
+}
+.list-item:last-child::after {
+  content: '';
+  height: 0rpx;
+  width: 0rpx;
+}
+.list-item image {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: -20rpx;
+}
+.list-item text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 24rpx;
+  margin-top: 20rpx;
+}
+/*用来包裹所有的小圆点  */
+.dots{  
+  width: 156rpx;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 50%;
+  margin-left: -78rpx;
+  justify-content: center;
+  bottom: 24rpx;
+}  
+/*未选中时的小圆点样式 */
+.dot{  
+  width: 8rpx;  
+  height: 8rpx;   
+  border-radius: 50%;
+  margin-right: 8rpx;
+  background-color: #FFB5A3;
+}  
+/*选中以后的小圆点样式  */
+.active{  
+  width: 8rpx;   
+  height: 8rpx;
+  background-color: #FA2840;
 }

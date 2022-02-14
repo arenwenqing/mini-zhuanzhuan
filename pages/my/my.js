@@ -27,6 +27,31 @@ Page({
       text: '隐私协议',
       key: '7'
     }],
+    listData: [[{
+      icon: '/pages/images/3.png',
+      text: '我的订单',
+      key: '2'
+    }, {
+      icon: '/pages/images/3.png',
+      text: '历史订单',
+      key: '3'
+    }, {
+      icon: '/pages/images/2.png',
+      text: '我的地址',
+      key: '4'
+    }, {
+      icon: '/pages/images/7.png',
+      text: '我的客服',
+      key: '5'
+    }, {
+      icon: '/pages/images/1.png',
+      text: '用户协议',
+      key: '6'
+    }], [{
+      icon: '/pages/images/6.png',
+      text: '隐私协议',
+      key: '7'
+    }]],
     showAvatar: false,
     userInfo: {},
     visibile: false,
@@ -39,7 +64,8 @@ Page({
     }, {
       text: '注册/登录'
     }],
-    deleteDialog: false
+    deleteDialog: false,
+    currentSwiper: 0,
   },
 
   /**
@@ -55,6 +81,12 @@ Page({
    */
   onReady: function () {
 
+  },
+
+  swiperChange(e) {
+    this.setData({
+      currentSwiper: e.detail.current
+    })
   },
 
   /**

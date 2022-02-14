@@ -1,17 +1,38 @@
 <!--pages/my/my.wxml-->
-<view>
+<view class="my-wrapper">
   <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
-  <view class="my-top-wrapper">
-    <!-- <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement> -->
+  <view class="my-header">
+    <view class="my-header-content">
+      <view class="my-user-avatar" catchtap="getUserProfile">
+        <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
+        <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
+      </view>
+      <view>
+        <text wx:if="{{showAvatar}}"  class="my-user-name">{{userInfo.nickName}}</text>
+        <text wx:else class="my-user-name" catchtap="getUserProfile">注册/登录</text>
+      </view>
+    </view>
+  </view>
+  <view class="my-header-list-wrapper">
+    <swiper class="list-wrapper-swiper" current='currentSwiper' bindchange="swiperChange"  interval='3000'  duration='1000' circular='true' >
+      <block wx:for="{{listData}}" wx:key="index">
+        <swiper-item class="my-swiper-item {{index === 1 ? 'my-swiper-item2' : ''}}">
+          <view class="list-item" wx:for="{{item}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+            <image src="{{itemName.icon}}" />
+            <text>{{itemName.text}}</text>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--重置小圆点的样式  -->
+    <view class="dots">  
+      <block wx:for="{{2}}" wx:key="index">  
+        <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
+      </block>  
+    </view>
   </view>
   <view class="my-user-message">
-    <view class="my-user-avatar" catchtap="getUserProfile">
-      <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
-      <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
-    </view>
-    <view wx:if="{{showAvatar}}"  class="my-user-name">{{userInfo.nickName}}</view>
-    <view wx:else class="my-user-name" catchtap="getUserProfile">注册/登录</view>
     <!-- <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text> -->
     <view class="my-user-item-wrapper">
       <view wx:if="{{tipShow}}" class="my-user-quan-tip">
@@ -29,7 +50,6 @@
           <view>
             <image src="{{item.icon}}" class="my-user-item-icon"></image>
             <text class="my-user-item-text">{{item.text}}</text>
-            <!-- <image wx:if="{{index === 0}}" src="/pages/images/red-tip.png" class="my-user-item-redtip"></image> -->
           </view>
           <image src='/pages/images/more.png' class="my-user-item-more"></image>
         </view>

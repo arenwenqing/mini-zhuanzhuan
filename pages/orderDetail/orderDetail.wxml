@@ -102,6 +102,8 @@
 
   <mp-dialog title="添加收货地址" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{addAddressDialog}}">
   </mp-dialog>
+  <mp-dialog title="{{payText}}" bindbuttontap="closePayTip" buttons="{{payArray}}" mask="true" mask-closable="false" show="{{payfailShow}}">
+  </mp-dialog>
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
 </view>

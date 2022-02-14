@@ -64,6 +64,7 @@ Page({
   },
 
   onShow: function () {
+    console.log(1111)
     this.getList()
     // banner先写死
     // this.getIndexBanner()

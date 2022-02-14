@@ -50,7 +50,14 @@ Page({
       text: '去添加'
     }],
     addAddressDialog: false,
-    getRedPackeNum: 0
+    getRedPackeNum: 0,
+    payfailShow: false,
+    payArray: [{
+      text: '取消'
+    }, {
+      text: '确定'
+    }],
+    payText: ''
   },
 
   /**
@@ -245,6 +252,12 @@ Page({
     })
   },
 
+  closePayTip () {
+    this.setData({
+      payfailShow: false
+    })
+  },
+
   /**
    * 添加地址确认
    */
@@ -313,10 +326,9 @@ Page({
       receiveAddressId: wx.getStorageSync('addressId')
     }).then(res => {
       if (res.data.code !== 0) {
-        wx.showToast({
-          title: err.data.msg,
-          icon: 'error',
-          duration: 2000
+        this.setData({
+          payfailShow: true,
+          payText: res.data.data.payMsg
         })
       } else {
         this.startPay({
