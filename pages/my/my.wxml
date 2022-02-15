@@ -32,8 +32,13 @@
       </block>  
     </view>
   </view>
-  <view class="my-user-message">
-    <!-- <text wx:if="{{showAvatar}}" class="my-user-tuan-num">已参{{groupPurchasedCount}}个团</text> -->
+  <view class="my-day-task">
+    <text class="my-task-mark"></text>
+    <text class="my-task-title">每日任务</text>
+    <view>还可以做<text class="my-task-num">7</text>次任务</view>
+  </view>
+  <every-day-task></every-day-task>
+  <!-- <view class="my-user-message">
     <view class="my-user-item-wrapper">
       <view wx:if="{{tipShow}}" class="my-user-quan-tip">
         <image src="/pages/images/guanbi.png" class="my-user-quan-guanbi" bindtap="closeTip" />
@@ -55,6 +60,6 @@
         </view>
       </block>
     </view>
-  </view>
+  </view> -->
   <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
 </view>

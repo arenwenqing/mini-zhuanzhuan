@@ -1,0 +1,138 @@
+/* pages/my/dayTask/dayTask.wxss */
+.my-every-day-item {
+  width: 710rpx;
+  height: 234rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  border: 1rpx solid #E5E5E5;
+  margin: 0 auto 12rpx;
+}
+.my-item-top {
+  height: 132rpx;
+  display: flex;
+}
+.my-item-content {
+  flex: 1;
+  margin-top: 20rpx;
+}
+.my-item-image {
+  display: inline-block;
+  width: 96rpx;
+  height: 96rpx;
+  background: #D8D8D8;
+  border-radius: 8rpx;
+  margin: 20rpx 24rpx 0 20rpx;
+}
+.my-item-title-price {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6rpx;
+}
+.my-item-title {
+  display: inline-block;
+  width: 380rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #262424;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.my-item-price {
+  font-size: 48rpx;
+  font-family: DINAlternate-Bold, DINAlternate;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 56rpx;
+  margin-right: 20rpx;
+}
+.my-item-price::before {
+  content: "￥";
+  font-size: 28rpx;
+  font-family: Helvetica;
+  color: #DD0A00;
+  line-height: 34rpx;
+}
+.my-item-num-status {
+  display: flex;
+  justify-content: space-between;
+}
+.my-item-num {
+  display: flex;
+}
+.my-item-num-index {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 34rpx;
+  margin-right: 24rpx;
+}
+.my-item-status {
+  width: 86rpx;
+  height: 32rpx;
+  background: #FFEEED;
+  border-radius: 4rpx;
+  border: 1rpx solid #F2E2E1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-item-status-value {
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF5951;
+}
+.my-item-list-num {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 34rpx;
+  margin-right: 20rpx;
+}
+.my-item-fenge {
+  width: 550rpx;
+  height: 1rpx;
+  background: #ECECEC;
+  margin-left: 140rpx;
+}
+.my-item-bottom {
+  display: flex;
+  height: 102rpx;
+  margin-top: 18rpx;
+  margin-left: 140rpx;
+}
+.my-item-bottom-list {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: #ECF0F8;
+  overflow: hidden;
+  margin-right: 24rpx;
+}
+.my-item-btn-share {
+  height: 64rpx !important;
+  position: relative;
+  left: -33rpx;
+  width: 133rpx !important;
+  top: 7rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #ECF0F8;
+  font-size: 20rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #3D5D9C;
+  line-height: 20rpx
+}
+.my-item-bottom-share-image {
+  display: inline-block;
+  width: 64rpx;
+  height: 64rpx;
+}

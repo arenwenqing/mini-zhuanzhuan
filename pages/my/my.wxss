@@ -9,6 +9,8 @@
 }
 .my-wrapper {
   background: #F7F7F7;
+  height: 100vh;
+  overflow: auto;
 }
 .my-user-message {
   width: 750rpx;
@@ -239,4 +241,32 @@
   width: 8rpx;   
   height: 8rpx;
   background-color: #FA2840;
+}
+.my-day-task {
+  margin: 34rpx auto 28rpx;
+}
+.my-task-mark{
+  width: 2rpx;
+  height: 28rpx;
+  border: 4rpx solid #FB3B47;
+  margin-left: 28rpx;
+}
+.my-task-title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+  margin: 0 16rpx;
+}
+.my-day-task view{
+  display: inline;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+}
+.my-task-num {
+  color: #FA2840;
 }
