@@ -57,7 +57,9 @@ Page({
     }, {
       text: '确定'
     }],
-    payText: ''
+    payText: '',
+    showReceiveDialog: false,
+    showTip: false
   },
 
   /**
@@ -249,6 +251,24 @@ Page({
         icon: 'error',
         duration: 2000
       })
+    })
+  },
+
+  /**
+   * 展示说明
+   */
+  showTipFun() {
+    this.setData({
+      showTip: true
+    })
+  },
+
+  /**
+   * 关闭说明
+   */
+  closeTip() {
+    this.setData({
+      showTip: false
     })
   },
 
@@ -477,6 +497,15 @@ Page({
           // }
         }
       }
+    })
+  },
+  
+  /**
+   * 点击直接拿走
+   */
+  receiveDialog() {
+    this.setData({
+      showReceiveDialog: true
     })
   },
 

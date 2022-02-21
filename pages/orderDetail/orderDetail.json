@@ -7,7 +7,8 @@
     "order-settlement-countdown": "/pages/orderDetail/childCpns/order-settlement-countdown/order-settlement-countdown",
     "order-express-info": "/pages/orderDetail/childCpns/order-express-info/order-express-info",
     "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode",
-    "mp-dialog": "weui-miniprogram/dialog/dialog"
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "receive-dialog": "/pages/orderDetail/childCpns/receiveDialog/receiveDialog"
   },
   "navigationStyle": "custom"
 }

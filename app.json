@@ -13,7 +13,8 @@
     "pages/orderDetail/orderDetail",
     "pages/userAgreement/userAgreement",
     "pages/privacyAgreement/privacyAgreement",
-    "pages/activity/index"
+    "pages/activity/index",
+    "pages/historyTask/historyTask"
   ],
   "window": {
     "backgroundTextStyle": "light",

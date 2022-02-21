@@ -18,7 +18,7 @@
     <swiper class="list-wrapper-swiper" current='currentSwiper' bindchange="swiperChange"  interval='3000'  duration='1000' circular='true' >
       <block wx:for="{{listData}}" wx:key="index">
         <swiper-item class="my-swiper-item {{index === 1 ? 'my-swiper-item2' : ''}}">
-          <view class="list-item" wx:for="{{item}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+          <view class="list-item"  wx:for="{{item}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx" bindtap="skipPage" data-id="{{itemName.key}}">
             <image src="{{itemName.icon}}" />
             <text>{{itemName.text}}</text>
           </view>

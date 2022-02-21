@@ -1,0 +1,46 @@
+<!--pages/historyTask/historyTask.wxml-->
+<view class="history-task-wrapper">
+  <mp-navigation-bar title='历史任务'  background='#FFFFFF' ext-class='my-page-navigation'></mp-navigation-bar>
+  <view class="history-task-top">
+    <view class="history-tag-wrapper">
+      <text wx:for="{{tagData}}" wx:key="index" data-value="{{item.id}}" data-index="{{item.id}}" class="tag-name {{activeIndex == item.id ? 'status-red' : ''}}" bindtap="clickStatus">{{item.text}}</text>
+    </view>
+    <view>
+      <picker mode="date" value="{{date}}" start="2022-01-01" end="2025-01-01" bindchange="bindDateChange">
+        <view class="picker">
+          <text class="history-time">{{date}}</text>
+          <image src="/pages/images/down-arrow-icon.png" class="down-arrow"></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view wx:if="{{true}}">
+    <scroll-view scroll-y="true" class="history-scoll-wrapper" bindscrolltolower="lower" bindscroll="scroll" lower-threshold="50">
+      <view wx:for="{{historyDataList}}" wx:key="index" class="history-list">
+        <image class="list-image" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" />
+        <view class="list-content">
+          <view class="list-content-top">
+            <text class="list-content-title">新疆最优阿克苏苹果一小箱</text>
+            <text class="list-content-price">83.99</text>
+          </view>
+          <view class="list-content-bottom">
+            <view class="list-content-num">
+              <text class="list-content-num-index">No.0003</text>
+              <view wx:if="{{false}}" class="list-content-status">
+                <text class="list-content-status-value">进行中</text>
+              </view>
+              <view wx:else class="list-content-status list-content-status2">
+                <text class="list-content-status-value list-content-status-value2">已结算</text>
+              </view>
+            </view>
+            <text class="list-content-list-num">已成6单</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else class="order-list-no">
+    <image src="/pages/images/no-order-list.png" class="no-order-icon"></image>
+    <text class="no-order-text">暂无任务</text>
+  </view>
+</view>

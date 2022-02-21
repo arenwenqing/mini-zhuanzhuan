@@ -2,6 +2,40 @@
 <view class="container">
   <mp-navigation-bar title="{{topTitle}}" color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
   <!-- 上部分模块 -->
+  <!--展示红包的相关逻辑-->
+  <view wx:if="{{ orderStatusCode === 301 }}" class="redpacke-show">
+      <view class="redpacke-show-img">
+        <image src="https://cdn.tuanzhzh.com/share/1%402x.png" class="red-image"></image>
+        <text class="redpacke-show-text">您获得{{getRedPackeNum}}元红包</text>
+        <text class="redpacke-show-text redpacke-show-text2">邀请好友下单</text>
+        <view class="redpacke-shaow-max">52.69</view>
+        <view class="redpacke-show-explain">最多可得红包</view>
+      </view>
+      <!-- <image wx:if="{{orderData.cashbackCount === 2}}" src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image> -->
+      <!-- <button wx:if="{{orderData.cashbackCount === 1}}" type="default" open-type="share" class="share-btn-style">
+        <image src="https://cdn.tuanzhzh.com/share/huxidouble.png" class="double-btn"></image>
+      </button>
+      <text wx:if="{{orderData.cashbackCount === 1}}" class="redpacke-share-sm">分享链接1小时内有效</text> -->
+      <view class="redpacke-btn-wrapper">
+        <view class="redpacke-btn-noshare" catchtap="receiveDialog">直接拿走</view>
+        <button  open-type="share" class="share-btn-style">
+          翻倍我的红包
+        </button>
+      </view>
+      <view class="redpacke-btn-instructions">
+        <text class="redpacke-instructions-text">直接拿走</text>
+        <view class="redpacke-tip-content" wx:if="{{showTip}}">
+          <view class="tip-item">1 每位用户每日最多领取10次红包。</view>
+          <view class="tip-item">2 红包领取时效为24小时，到期未领取的红包将被回收。</view>
+          <view class="tip-item">3 领取红包后，该红包将于5分钟内到达您的微信零钱，请注意查收。</view>
+          <view class="tip-item-last">本使用说明的最终解释权归团团转所有</view>
+          <image src="/pages/images/triangle2.png" class="redpacke-triangle"></image>
+          <image src='/pages/images/guanbi.png' class="redpacke-close" catchtap="closeTip"></image>
+        </view>
+        <image src='/pages/images/zhujie.png' class="redpacke-zhujie" catchtap="showTipFun" />
+        <text class="redpacke-instructions-text">每日结算时间23点</text>
+      </view>
+    </view>
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
     <!-- 获取安慰红包 注意：获得普通商品才展示，优质商品不展示 -->
@@ -58,24 +92,6 @@
     <view wx:if="{{showOrderStatusDescName}}" class="group-title-hint">
       <view>{{orderStatusDescName}}</view>
     </view>
-
-    <!--展示红包的相关逻辑-->
-    <view wx:if="{{ orderStatusCode === 301 }}" class="redpacke-show">
-      <view class="redpacke-show-img">
-        <image src="https://cdn.tuanzhzh.com/share/1%402x.png" class="red-image"></image>
-        <text class="redpacke-show-text">您获得红包</text>
-        <view class="redpacke-show-price">
-          <text>{{getRedPackeNum}}</text>
-          <text class="redpacke-price2">元</text>
-        </view>
-        <view class="redpacke-show-explain">红包将于5分钟内到微信零钱</view>
-      </view>
-      <image wx:if="{{orderData.cashbackCount === 2}}" src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image>
-      <button wx:if="{{orderData.cashbackCount === 1}}" type="default" open-type="share" class="share-btn-style">
-        <image src="https://cdn.tuanzhzh.com/share/huxidouble.png" class="double-btn"></image>
-      </button>
-      <text wx:if="{{orderData.cashbackCount === 1}}" class="redpacke-share-sm">分享链接1小时内有效</text>
-    </view>
   
     <!-- 申请退货逻辑 -->
     <view wx:if="{{showReimburseAndSalesReturn && orderStatusDescName !== '' }}" class="apply-refund">
@@ -106,4 +122,6 @@
   </mp-dialog>
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
+  <!-- 直接拿走弹窗 -->
+  <receive-dialog showDialog="{{showReceiveDialog}}"></receive-dialog>
 </view>

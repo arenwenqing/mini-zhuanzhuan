@@ -6,34 +6,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-      icon: '/pages/images/3.png',
-      text: '我的订单',
-      key: '2'
-    }, {
-      icon: '/pages/images/2.png',
-      text: '我的地址',
-      key: '4'
-    }, {
-      icon: '/pages/images/7.png',
-      text: '我的客服',
-      key: '5'
-    }, {
-      icon: '/pages/images/1.png',
-      text: '用户协议',
-      key: '6'
-    }, {
-      icon: '/pages/images/6.png',
-      text: '隐私协议',
-      key: '7'
-    }],
+    // list: [{
+    //   icon: '/pages/images/3.png',
+    //   text: '我的订单',
+    //   key: '2'
+    // }, {
+    //   icon: '/pages/images/2.png',
+    //   text: '我的地址',
+    //   key: '4'
+    // }, {
+    //   icon: '/pages/images/7.png',
+    //   text: '我的客服',
+    //   key: '5'
+    // }, {
+    //   icon: '/pages/images/1.png',
+    //   text: '用户协议',
+    //   key: '6'
+    // }, {
+    //   icon: '/pages/images/6.png',
+    //   text: '隐私协议',
+    //   key: '7'
+    // }],
     listData: [[{
       icon: '/pages/images/3.png',
       text: '我的订单',
       key: '2'
     }, {
       icon: '/pages/images/3.png',
-      text: '历史订单',
+      text: '历史任务',
       key: '3'
     }, {
       icon: '/pages/images/2.png',
@@ -124,68 +124,122 @@ Page({
   },
 
   /**
+   * 跳转页面
+   */
+  skipPage(e) {
+    let id = e.currentTarget.dataset.id
+    if (['2', '3', '4', '5'].includes(id)) {
+      if (!wx.getStorageSync('userId')) {
+        this.setData({
+          deleteDialog: true
+        })
+        return
+      }
+    }
+    switch (id) {
+      case '2':
+        // 我的订单
+        wx.navigateTo({
+          url: '/pages/mySpellGroup/mySpellGroup',
+        })
+        break;
+      case '3':
+        // 历史任务
+        wx.navigateTo({
+          url: '/pages/historyTask/historyTask',
+        })
+        break;
+      case '4':
+        // 我的地址
+        app.globalData.addressFrom = undefined
+        wx.navigateTo({
+          url: '/pages/shippinAddress/shippinAddress',
+        })
+        break;
+      case '5':
+        // 我的客服
+        this.setData({
+          visibile: true
+        })
+        break;
+      case '6':
+        // 用户协议
+        wx.navigateTo({
+          url: '/pages/userAgreement/userAgreement',
+        })
+        break;
+      default:
+        // 隐私协议
+        wx.navigateTo({
+          url: '/pages/privacyAgreement/privacyAgreement',
+        })
+        break;
+    }
+  },
+
+  /**
    * 方法
    */
   // 点击我的页面 item
-  onClickMyGoPage(e) {
-    const clickTarget = e.currentTarget.dataset.target
-    if (clickTarget.key === '1') {
-      // 双倍红包劵
-      this.setData({
-        tipShow: true
-      })
-    } else if (clickTarget.key === '2') { // 我的拼团
-      if (!wx.getStorageSync('userId')) {
-        this.setData({
-          deleteDialog: true
-        })
-        return
-      }
-      wx.navigateTo({
-        url: '/pages/mySpellGroup/mySpellGroup',
-      })
-    } else if (clickTarget.key === '3') { // 点击兑换码
-      if (!wx.getStorageSync('userId')) {
-        this.setData({
-          deleteDialog: true
-        })
-        return
-      }
-      wx.navigateTo({
-        url: '/pages/conversionCode/conversionCode',
-      })
-    } else if (clickTarget.key === '4') {
-      if (!wx.getStorageSync('userId')) {
-        this.setData({
-          deleteDialog: true
-        })
-        return
-      }
-      app.globalData.addressFrom = undefined
-      wx.navigateTo({
-        url: '/pages/shippinAddress/shippinAddress',
-      })
-    } else if (clickTarget.key === '5') {
-      if (!wx.getStorageSync('userId')) {
-        this.setData({
-          deleteDialog: true
-        })
-        return
-      }
-      // 我的客服
-      this.setData({
-        visibile: true
-      })
-    } else if (clickTarget.key === '6') { // 用户协议
-      wx.navigateTo({
-        url: '/pages/userAgreement/userAgreement',
-      })
-    } else if (clickTarget.key === '7') { // 隐私协议
-      wx.navigateTo({
-        url: '/pages/privacyAgreement/privacyAgreement',
-      })
-    }
-  },
+  // onClickMyGoPage(e) {
+  //   const clickTarget = e.currentTarget.dataset.target
+  //   if (clickTarget.key === '1') {
+  //     // 双倍红包劵
+  //     this.setData({
+  //       tipShow: true
+  //     })
+  //   } else if (clickTarget.key === '2') { // 我的拼团
+  //     if (!wx.getStorageSync('userId')) {
+  //       this.setData({
+  //         deleteDialog: true
+  //       })
+  //       return
+  //     }
+  //     wx.navigateTo({
+  //       url: '/pages/mySpellGroup/mySpellGroup',
+  //     })
+  //   } else if (clickTarget.key === '3') { // 点击兑换码
+  //     if (!wx.getStorageSync('userId')) {
+  //       this.setData({
+  //         deleteDialog: true
+  //       })
+  //       return
+  //     }
+  //     wx.navigateTo({
+  //       url: '/pages/conversionCode/conversionCode',
+  //     })
+  //   } else if (clickTarget.key === '4') {
+  //     if (!wx.getStorageSync('userId')) {
+  //       this.setData({
+  //         deleteDialog: true
+  //       })
+  //       return
+  //     }
+  //     app.globalData.addressFrom = undefined
+  //     wx.navigateTo({
+  //       url: '/pages/shippinAddress/shippinAddress',
+  //     })
+  //   } else if (clickTarget.key === '5') {
+  //     if (!wx.getStorageSync('userId')) {
+  //       this.setData({
+  //         deleteDialog: true
+  //       })
+  //       return
+  //     }
+  //     // 我的客服
+  //     this.setData({
+  //       visibile: true
+  //     })
+  //   } else if (clickTarget.key === '6') { // 用户协议
+  //     wx.navigateTo({
+  //       url: '/pages/userAgreement/userAgreement',
+  //     })
+  //   } else if (clickTarget.key === '7') { // 隐私协议
+  //     wx.navigateTo({
+  //       url: '/pages/privacyAgreement/privacyAgreement',
+  //     })
+  //   }
+  // },
 
   /**
    * 关闭提示框
