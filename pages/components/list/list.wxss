@@ -70,6 +70,7 @@
 .goods-item-price-value {
   display: flex;
   align-items: center;
+  margin-top: 40rpx;
   /* margin-bottom: 8rpx; */
 }
 .goods-item-price-value text:nth-child(1) {
@@ -93,6 +94,7 @@
   color: #DD0A00;
   line-height: 42rpx;
   margin-right: 46rpx;
+  margin-top: 17rpx;
 }
 .goods-item-price-value text:nth-child(4) {
   font-size: 28rpx;

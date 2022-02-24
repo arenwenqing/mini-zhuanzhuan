@@ -28,13 +28,13 @@ Page({
     //   key: '7'
     // }],
     listData: [[{
+      icon: '/pages/images/history-task-icon.png',
+      text: '历史任务',
+      key: '3'
+    },{
       icon: '/pages/images/3.png',
       text: '我的订单',
       key: '2'
-    }, {
-      icon: '/pages/images/3.png',
-      text: '历史任务',
-      key: '3'
     }, {
       icon: '/pages/images/2.png',
       text: '我的地址',
@@ -44,13 +44,13 @@ Page({
       text: '我的客服',
       key: '5'
     }, {
-      icon: '/pages/images/1.png',
-      text: '用户协议',
-      key: '6'
-    }], [{
       icon: '/pages/images/6.png',
       text: '隐私协议',
       key: '7'
+    }], [{
+      icon: '/pages/images/1.png',
+      text: '用户协议',
+      key: '6'
     }]],
     showAvatar: false,
     userInfo: {},
@@ -66,6 +66,7 @@ Page({
     }],
     deleteDialog: false,
     currentSwiper: 0,
+    showEveryDayTask: true
   },
 
   /**
@@ -80,7 +81,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   swiperChange(e) {
@@ -99,7 +100,8 @@ Page({
         getUserProfile(() => {
           this.setData({
             userInfo: JSON.parse(wx.getStorageSync('wxUser')),
-            showAvatar: true
+            showAvatar: true,
+            showEveryDayTask: true
           })
           this.getMessage()
         })
@@ -117,7 +119,8 @@ Page({
     getUserProfile(() => {
       this.setData({
         userInfo: JSON.parse(wx.getStorageSync('wxUser')),
-        showAvatar: true
+        showAvatar: true,
+        showEveryDayTask: true
       })
       this.getMessage()
     })
@@ -300,11 +303,13 @@ Page({
     if (wx.getStorageSync('wxUser')) {
       this.setData({
         showAvatar: true,
-        userInfo: JSON.parse(wx.getStorageSync('wxUser'))
+        userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+        showEveryDayTask: true
       })
     } else {
       this.setData({
-        showAvatar: false
+        showAvatar: false,
+        showEveryDayTask: false
       })
     }
     this.getMessage()

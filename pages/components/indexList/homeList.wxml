@@ -5,7 +5,7 @@
       <view class="list-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="list-item-img-wrapper">
           <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image>
-          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image>
+          <!-- <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image> -->
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
@@ -22,11 +22,11 @@
               <text class="current-price-style">{{item.price}}.</text>
               <text class="current-price-style">{{item.priceDot}}</text>
             </view>
-            <view class="current-price-text">
+            <!-- <view class="current-price-text">
               团团转价（{{item.discount}}折）
-            </view>
+            </view> -->
           </view>
-          <view class="price-right">
+          <!-- <view class="price-right">
             <view class="old-price-wrapper">
               <text class="old-price-style-dollar">￥</text>
               <text class="old-price-style">{{item.marketPrice}}</text>
@@ -34,7 +34,7 @@
             <view class="old-price-text">
               <text>市场价格</text>
             </view>
-          </view>
+          </view> -->
         </view>
       </view>
     </block>
@@ -44,7 +44,7 @@
       <view class="list-item" data-name="{{item.majorName}}" data-productid="{{item.productId}}" bindtap="skipDetail">
         <view class="list-item-img-wrapper">
           <image class="goods-item-image" src="{{item.headPhotoAddress[0]}}"></image>
-          <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image>
+          <!-- <image class="goods-red-mark" wx:if="{{item.isBlindBox}}" src='https://cdn.tuanzhzh.com/image/img-mark2.png'></image> -->
         </view>
         <view class="list-item-goods-title">
           <text class="goods-title">{{item.majorName}}</text>
@@ -61,11 +61,11 @@
               <text class="current-price-style">{{item.price}}.</text>
               <text class="current-price-style">{{item.priceDot}}</text>
             </view>
-            <view class="current-price-text">
+            <!-- <view class="current-price-text">
               团团转价（{{item.discount}}折）
-            </view>
+            </view> -->
           </view>
-          <view class="price-right">
+          <!-- <view class="price-right">
             <view class="old-price-wrapper">
               <text class="old-price-style-dollar">￥</text>
               <text class="old-price-style">{{item.marketPrice}}</text>
@@ -73,7 +73,7 @@
             <view class="old-price-text">
               <text>市场价格</text>
             </view>
-          </view>
+          </view> -->
         </view>
       </view>
     </block>

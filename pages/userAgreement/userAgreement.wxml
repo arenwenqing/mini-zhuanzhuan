@@ -45,14 +45,15 @@
     <view class="module">
       <view class="module-title module-title-rule">四．团团转电商规则</view>
       <view class="module-title-rule">1：团团转的所售商品，均以快递的形式为您发出。</view>
-      <view class="module-title-rule">2：团团转内活动的实际概率均以活动发布的公告为准，团团转不会以各种渠道或手段更改用户的实际概率，所有团团转内活动的最终解释权归团团转官方（北京啧优科技有限公司）所有。</view>
-      <view class="module-title-rule">3：团团转的所售商品，一般情况下会在72小时内发出，对于特殊情况（不支持发货的地点、快递爆仓导致的延误、法定节假日及其他未列明但影响货物流通的情况）请以快递公司和团团转的公告为准。</view>
+      <view class="module-title-rule">2：团团转会严格按照规则为您派发红包，具体规则请以团团转小程序公布的为准</view>
+      <view class="module-title-rule">3：团团转的所售商品，一般情况下会在72小时内发出，对于特殊情况（不支持发货的地点、快递爆仓导致的延误、法定节假日及其他未列明但影响货物流通的情况）请以快递公司和团团转的公告为准。。</view>
       <view class="module-title-rule">4：团团转的所售商品中，美妆护肤类、日用个护类、美食饮品类、贴身衣物类，出于安全的考虑，一经售出，无质量问题不退不换。</view>
-      <view class="module-title-rule">5：对于需要退换货的商品，请您联系客服并提供相关信息、资料或证据（开箱视频或其他），团团转会根据中华人民共和国之相关法律法规为您进行处理。</view>
-      <view class="module-title-rule">6：团团转不会擅自更改您购买的商品，如有错发、漏发商品，请您联系客服并提供相应的证据，团团转会为您进行处理。</view>
-      <view class="module-title-rule">7：团团转发布的优惠券，仅限于在团团转使用，不可交易、转增，不可兑换现金。</view>
-      <view class="module-title-rule">8：团团转提供给用户的兑换码均来自于第三方商家，赠品质量、费用或发货均以第三方商家为准；第三方商家对团团转电商平台无解释权和解答义务。</view>
-      <view class="module-title-rule">9：团团转依托微信支付进行收款、退款或其他活动补贴的发放，具体到账时间及支付规则以微信支付官方公布的规则为准。</view>
+      <view class="module-title-rule">5：“已出库”状态的意义为当前商品已进入快递打包程序并已通知快递揽收，出于安全和公平原则的考虑，自此阶段开始后，团团转不接受无故退款。</view>
+      <view class="module-title-rule">对于需要退换货的商品，请您联系客服并提供相关信息、资料或证据（开箱视频或其他），团团转会根据中华人民共和国之相关法律法规为您进行处理。</view>
+      <view class="module-title-rule">7：对于需要退款的商品，若商品当前状态在“已出库”之前，可以立即进行退款，但需要您先退回得到的红包。</view>
+      <view class="module-title-rule">8：团团转不会擅自更改您购买的商品，如有错发、漏发商品，请您联系客服并提供相应的证据，团团转会为您进行处理。</view>
+      <view class="module-title-rule">9：团团转发布的优惠券，仅限于在团团转使用，不可交易、转增，不可兑换现金。</view>
+      <view class="module-title-rule">10：团团转依托微信支付进行收款、退款或其他活动补贴的发放，具体到账时间及支付规则以微信支付官方公布的为准。</view>
     </view>
     <view class="module">
       <view class="module-title">五．用户隐私制度</view>
