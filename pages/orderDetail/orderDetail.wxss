@@ -192,11 +192,16 @@
   height: 600rpx;
   margin: 0 auto;
 }
+.redpacke-show-num-text {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  color: #FF0000;
+}
 .redpacke-show-text {
   position: absolute;
   display: inline-block;
   width: 402rpx;
-  font-size: 40rpx;
+  font-size: 32rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #BF5913;
@@ -207,7 +212,7 @@
   text-align: center;
 }
 .redpacke-show-text2 {
-  top: 141rpx;
+  top: 130rpx;
 }
 .double-red-image {
   position: absolute;
@@ -247,7 +252,8 @@
   line-height: 84rpx;
   left: 50%;
   margin-left: -82rpx;
-  top: 196rpx;
+  top: 234rpx;
+  text-align: center;
 }
 .redpacke-shaow-max::after {
   content: '元';
@@ -260,19 +266,32 @@
   top: 17rpx;
   margin-left: 10rpx;
 }
+.show-guid-image {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
 .redpacke-show-explain {
   position: absolute;
-  width: 120rpx;
-  height: 28rpx;
-  font-size: 20rpx;
+  width: 201rpx;
+  height: 46rpx;
+  background: #FF0000;
+  border-radius: 23px;
+  left: 50%;
+  margin-left: -89rpx;
+  top: 194rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.redpacke-show-explain text {
+  font-size: 24rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
-  color: #BF5913;
-  line-height: 28rpx;
-  left: 50%;
-  margin-left: -50rpx;
-  top: 273rpx;
-  text-align: center;
+  color: #F7D1B6;
 }
 .redpacke-btn-wrapper {
   position: absolute;

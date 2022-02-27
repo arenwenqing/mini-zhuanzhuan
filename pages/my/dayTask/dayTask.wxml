@@ -1,45 +1,30 @@
 <!--pages/my/dayTask/dayTask.wxml-->
 <view class="my-every-day-task-wrapper">
-  <view class="my-every-day-item">
+  <view class="my-every-day-item" wx:for="{{everyDayData.taskList ? everyDayData.taskList : []}}" wx:key="index">
     <view class="my-item-top">
-      <image src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-image"></image>
+      <image src="{{item.productHeadPhotoAddress}}" class="my-item-image"></image>
       <view class="my-item-content">
         <view class="my-item-title-price">
-          <text class="my-item-title">珂雰大瓶洗发露</text>
-          <text class="my-item-price">34.00</text>
-        </view>
-        <view class="my-item-num-status">
+          <view class="my-item-title">{{item.productName}}</view>
           <view class="my-item-num">
-            <text class="my-item-num-index">No.0003</text>
+            <text class="my-item-num-index">No.{{item.taskNum}}</text>
             <view class="my-item-status">
-              <text class="my-item-status-value">进行中</text>
+              <text class="my-item-status-value">{{item.taskStatus.name}}</text>
             </view>
           </view>
-          <text class="my-item-list-num">已成6单</text>
+        </view>
+        <view class="my-item-num-status">
+          <viwe class="my-item-current-redpakage">当前红包</viwe>
+          <viwe class="my-item-price">{{item.currentCashback}}</viwe>
+          <view class="my-item-list-num">已成{{item.taskOrderCount}}单</view>
         </view>
       </view>
     </view>
     <view class="my-item-fenge"></view>
     <view class="my-item-bottom">
-      <view class="my-item-bottom-list">
-        <image wx:if="true" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-bottom-share-image"></image>
-        <button wx:else="" open-type="share" class="my-item-btn-share">分享</button>
-      </view>
-      <view class="my-item-bottom-list">
-        <image wx:if="true" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-bottom-share-image"></image>
-        <button wx:else="" open-type="share" class="my-item-btn-share">分享</button>
-      </view>
-      <view class="my-item-bottom-list">
-        <image wx:if="true" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-bottom-share-image"></image>
-        <button wx:else="" open-type="share" class="my-item-btn-share">分享</button>
-      </view>
-      <view class="my-item-bottom-list">
-        <image wx:if="true" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-bottom-share-image"></image>
-        <button wx:else="" open-type="share" class="my-item-btn-share">分享</button>
-      </view>
-      <view class="my-item-bottom-list">
-        <image wx:if="true" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" class="my-item-bottom-share-image"></image>
-        <button wx:else="" open-type="share" class="my-item-btn-share">分享</button>
+      <view class="my-item-bottom-list" wx:for="{{[1,1,1,1,1]}}" wx:for-index="idx" wx:for-item="itemName">
+        <image wx:if="{{item.orderUserList[idx].wxAvatarUrl}}" src="{{item.orderUserList[idx].wxAvatarUrl}}" class="my-item-bottom-share-image"></image>
+        <button wx:else="" data-productId="{{item.productId}}" open-type="share" class="my-item-btn-share">分享</button>
       </view>
     </view>
   </view>

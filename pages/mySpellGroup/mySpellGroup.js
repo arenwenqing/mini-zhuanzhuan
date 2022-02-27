@@ -15,9 +15,6 @@ Page({
       text: '全部',
       value: -1
     }, {
-      text: '中红包',
-      value: 301
-    }, {
       text: '已取消',
       value: 204
     }, {
@@ -25,13 +22,16 @@ Page({
       value: 501
     }, {
       text: '待签收',
-      value: 502
+      value: 503
     }, {
       text: '已签收',
-      value: 503
+      value: 504
     }, {
       text: '已退货',
       value: 512
+    }, {
+      text: '已退款',
+      value: 521
     }],
     activeIndex: 0
   },

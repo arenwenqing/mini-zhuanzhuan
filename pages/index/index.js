@@ -12,12 +12,9 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     movies: [ {
-      name: 'https://cdn.tuanzhzh.com/banner/activity-banner.png',
+      name: 'https://cdn.tuanzhzh.com/banner/new-banner.png',
       value: 2
     }, {
-      name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
-      value: 1
-    },{
       name: 'https://cdn.tuanzhzh.com/banner/stop-banner.png',
       value: 3
     }],
@@ -30,6 +27,10 @@ Page({
     shareOrderData: {},
     showThanks: false
   },
+  // {
+  //   name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
+  //   value: 1
+  // },
   // 事件处理函数
   // bindViewTap() {
   //   wx.navigateTo({
@@ -49,8 +50,7 @@ Page({
     // 从订单详情分享过来的切用户没有登录
     if (options.doubleShare && !wx.getStorageSync('userId')) {
       // 获取分享订单的详情
-      console.log('1111=', options.originOrderId)
-      this.getShareOrderDetail(options.originOrderId)
+      // this.getShareOrderDetail(options.originOrderId)
     }
     app.globalData.originTimestamp = options.originTimestamp
     let query = wx.createSelectorQuery()

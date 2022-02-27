@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    showDialog: {
+    showRefundMoneyDialog: {
       type: Boolean,
       value: false
     },
@@ -14,7 +14,7 @@ Component({
     },
     orderData: {
       type: Object,
-      value: ''
+      value: {}
     }
   },
 
@@ -26,7 +26,7 @@ Component({
   },
 
   observers: {
-    showDialog: function(data) {
+    showRefundMoneyDialog: function(data) {
       this.setData({
         visible: data
       })
@@ -37,25 +37,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    //直接拿走
+    //继续退
     directlyTake: function () {
       wx.request({
-        url: domain + '/mini/order/cashback/settle',
+        url: domain + `/mini/order/refund/${this.properties.orderId}`,
         header: {
           openid: wx.getStorageSync('openid'),
           userid: wx.getStorageSync('userId')
         },
-        data: {
-          orderId: this.properties.orderId
-        },
         success: (res) => {
           wx.showToast({
-            title: '领取成功',
+            title: '退款成功',
             icon: 'success',
             duration: 2000
-          })
-          this.setData({
-            visible: false
           })
         },
         fail: (err) => {
@@ -66,6 +60,9 @@ Component({
           })
         }
       })
+      this.setData({
+        visible: false
+      })
     },
     closeDialog2: function() {
       this.setData({
@@ -73,10 +70,8 @@ Component({
       })
     },
     closeDialog: function() {
-      setTimeout(() => {
-        this.setData({
-          visible: false
-        })
+      this.setData({
+        visible: false
       })
     }
   }

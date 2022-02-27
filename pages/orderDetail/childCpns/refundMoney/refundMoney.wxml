@@ -1,0 +1,14 @@
+<!--pages/orderDetail/childCpns/refundMoney/refundMoney.wxml-->
+<view class="mask" wx:if="{{visible}}">
+  <view class="dialog-content">
+    <view class="dialog-content-main">
+      <view class="dialog-contet-top">您需要退回已派发的红包？</view>
+      <view class="dialog-contet-top2"><text>{{orderData.product.baseCashback}}</text>元</view>
+    </view>
+    <view class="dialog-content-bottom">
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false" catchtap="directlyTake">继续退</button>
+      <view class="dialog-btn-style-fenge"></view>
+      <button type="default" class="dialog-btn-style dialog-share" plain="false" catchtap="closeDialog">不退了</button>
+    </view>
+  </view>
+</view>

@@ -37,6 +37,17 @@
   height: 108rpx;
   border-radius: 50%;
 }
+.my-user-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.my-user-id {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 24rpx;
+}
 .my-user-name {
   width: 426rpx;
   font-size: 32rpx;
@@ -44,12 +55,16 @@
   font-weight: 400;
   color: #FFFFFF;
   line-height: 32rpx;
-  margin: 40rpx auto 0;
+  margin: 24rpx auto 0;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  margin-bottom: 24rpx;
+}
+.my-user-name2 {
+  margin-top: 51rpx;
 }
 .my-user-tuan-num {
   display: block;
@@ -163,6 +178,7 @@
 }
 .my-header-content {
   display: flex;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
 }
 .my-header-list-wrapper {
   height: 188rpx;

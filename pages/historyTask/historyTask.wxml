@@ -14,33 +14,35 @@
       </picker>
     </view>
   </view>
-  <view wx:if="{{true}}">
+  <view wx:if="{{showEmpty}}" class="order-list-no">
+    <image src="/pages/images/no-order-list.png" class="no-order-icon"></image>
+    <text class="no-order-text">暂无任务</text>
+  </view>
+  <view wx:else>
     <scroll-view scroll-y="true" class="history-scoll-wrapper" bindscrolltolower="lower" bindscroll="scroll" lower-threshold="50">
       <view wx:for="{{historyDataList}}" wx:key="index" class="history-list">
-        <image class="list-image" src="https://cdn.tuanzhzh.com/product/ec725f66610b4f81ba474fa469298bbf/main/梵飞丝星空免洗发膜柔顺滋润1.png" />
+        <image class="list-image" src="{{item.productHeadPhotoAddress}}" />
         <view class="list-content">
           <view class="list-content-top">
-            <text class="list-content-title">新疆最优阿克苏苹果一小箱</text>
-            <text class="list-content-price">83.99</text>
+            <text class="list-content-title">{{item.productName}}</text>
+            <text class="list-content-current-redpackge">当前红包</text>
+            <text class="list-content-price">{{item.currentCashback}}</text>
           </view>
           <view class="list-content-bottom">
             <view class="list-content-num">
-              <text class="list-content-num-index">No.0003</text>
+              <text class="list-content-num-index">No.{{item.taskNum}}</text>
               <view wx:if="{{false}}" class="list-content-status">
-                <text class="list-content-status-value">进行中</text>
+                <text class="list-content-status-value">{{item.taskStatus.name}}</text>
               </view>
               <view wx:else class="list-content-status list-content-status2">
-                <text class="list-content-status-value list-content-status-value2">已结算</text>
+                <text class="list-content-status-value list-content-status-value2">{{item.taskStatus.name}}</text>
               </view>
             </view>
-            <text class="list-content-list-num">已成6单</text>
+            <text class="list-content-list-num">已成{{item.taskOrderCount}}单</text>
           </view>
         </view>
       </view>
     </scroll-view>
   </view>
-  <view wx:else class="order-list-no">
-    <image src="/pages/images/no-order-list.png" class="no-order-icon"></image>
-    <text class="no-order-text">暂无任务</text>
-  </view>
+  
 </view>

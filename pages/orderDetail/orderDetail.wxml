@@ -1,21 +1,24 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <view class="container">
   <mp-navigation-bar title="{{topTitle}}" color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <!--引导页图片-->
+  <view wx:if="{{showGuid}}" catchtap="clickGuid">
+    <image wx:if="{{clickGuidNum === 1}}" src="https://cdn.tuanzhzh.com/image/guide1.png" class="show-guid-image" ></image>
+    <image wx:else src="https://cdn.tuanzhzh.com/image/guide%202.png" class="show-guid-image" ></image>
+  </view>
+
   <!-- 上部分模块 -->
   <!--展示红包的相关逻辑-->
-  <view wx:if="{{ orderStatusCode === 301 }}" class="redpacke-show">
+  <view wx:if="{{showRedPackageFlag}}" class="redpacke-show">
       <view class="redpacke-show-img">
         <image src="https://cdn.tuanzhzh.com/share/1%402x.png" class="red-image"></image>
-        <text class="redpacke-show-text">您获得{{getRedPackeNum}}元红包</text>
+        <view class="redpacke-show-text">您获得<text class="redpacke-show-num-text">{{orderData.product.baseCashback}}</text>元红包</view>
         <text class="redpacke-show-text redpacke-show-text2">邀请好友下单</text>
-        <view class="redpacke-shaow-max">52.69</view>
-        <view class="redpacke-show-explain">最多可得红包</view>
+        <view class="redpacke-show-explain">
+          <text>最多可得红包</text>
+        </view>
+        <view class="redpacke-shaow-max">{{orderData.product.finalCashback}}</view>
       </view>
-      <!-- <image wx:if="{{orderData.cashbackCount === 2}}" src="https://cdn.tuanzhzh.com/double-package.png" class="double-red-image"></image> -->
-      <!-- <button wx:if="{{orderData.cashbackCount === 1}}" type="default" open-type="share" class="share-btn-style">
-        <image src="https://cdn.tuanzhzh.com/share/huxidouble.png" class="double-btn"></image>
-      </button>
-      <text wx:if="{{orderData.cashbackCount === 1}}" class="redpacke-share-sm">分享链接1小时内有效</text> -->
       <view class="redpacke-btn-wrapper">
         <view class="redpacke-btn-noshare" catchtap="receiveDialog">直接拿走</view>
         <button  open-type="share" class="share-btn-style">
@@ -94,14 +97,13 @@
     </view>
   
     <!-- 申请退货逻辑 -->
-    <view wx:if="{{showReimburseAndSalesReturn && orderStatusDescName !== '' }}" class="apply-refund">
-      <text class="apply-refund-title">商品退货</text>
+    <view wx:if="{{showOnlyReimburse || showOnlySalesReturn}}" class="apply-refund">
+      <text class="apply-refund-title">{{ showOnlyReimburse ? '商品退款' : '商品退货'}}</text>
       <view class="refund-operation-btn">
-        <!-- <view class="reimburse"
-        wx:if="{{!showOnlySalesReturn}}"
-        wx:if="{{!showOnlyReimburse}}" // 退货的逻辑
-        catchtap="reimburse">申请退款</view> -->
-        <view class="sales-return" catchtap="salesReturn">申请退货</view>
+        <view class="reimburse"
+        wx:if="{{showOnlyReimburse}}"
+        catchtap="reimburse">申请退款</view>
+        <view wx:if="{{showOnlySalesReturn}}" class="sales-return" catchtap="salesReturn">申请退货</view>
       </view>
     </view>
   </view>
@@ -123,5 +125,7 @@
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
   <!-- 直接拿走弹窗 -->
-  <receive-dialog showDialog="{{showReceiveDialog}}"></receive-dialog>
+  <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}"></receive-dialog>
+  <!--退款弹窗-->
+  <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}"></refund-money>
 </view>

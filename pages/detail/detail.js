@@ -1,6 +1,7 @@
 // pages/detail/detail.js
-import { submitProductGetOrderId, getUserProfile, shareFun } from '../../utils/globalFun.js'
+import { submitProductGetOrderId, getUserProfile, shareFun, startTask } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
+let flag = false
 Page({
 
   /**
@@ -77,7 +78,8 @@ Page({
         this.setData({
           detailData: res.data.data ? res.data.data : {},
           carousel: res.data.data.headPhotoAddress ? res.data.data.headPhotoAddress: [],
-          productId: res.data?.data?.productId
+          productId: res.data?.data?.productId,
+          title: res.data?.data?.majorName
         })
         if (!this.interal) {
           this.interal = setInterval(() => {
@@ -164,7 +166,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 开启任务
+    if (flag && wx.getStorageSync('userId')) {
+      startTask(this.data.productId)
+      flag = false
+    }
   },
 
   /**
@@ -199,9 +205,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      path: `/pages/detail/detail?productId=${this.data.productId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     })
   }
 })

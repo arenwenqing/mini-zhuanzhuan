@@ -2,11 +2,11 @@
 <view class="mask" wx:if="{{visible}}">
   <view class="dialog-content">
     <view class="dialog-content-main">
-      <view class="dialog-contet-top">您确定只要<text>9.99</text>元么？</view>
-      <view class="dialog-contet-top2">最高可拿<text>99.99</text>元</view>
+      <view class="dialog-contet-top">您确定只要<text>{{orderData.product.baseCashback}}</text>元么？</view>
+      <view class="dialog-contet-top2">最高可拿<text>{{orderData.product.finalCashback}}</text>元</view>
     </view>
     <view class="dialog-content-bottom">
-      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">拿走</button>
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false" catchtap="directlyTake">拿走</button>
       <view class="dialog-btn-style-fenge"></view>
       <button type="default" open-type="share" class="dialog-btn-style dialog-share" plain="false" catchtap="closeDialog">翻倍我的红包</button>
     </view>

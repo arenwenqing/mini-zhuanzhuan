@@ -66,7 +66,8 @@ Page({
     }],
     deleteDialog: false,
     currentSwiper: 0,
-    showEveryDayTask: true
+    showEveryDayTask: true,
+    everyDayData: {}
   },
 
   /**
@@ -74,7 +75,7 @@ Page({
    */
   onLoad: function (options) {
     this.options = options
-    this.getNotice()
+    // this.getNotice()
   },
 
   /**
@@ -103,6 +104,7 @@ Page({
             showAvatar: true,
             showEveryDayTask: true
           })
+          this.getDayTask()
           this.getMessage()
         })
       }
@@ -110,6 +112,31 @@ Page({
         deleteDialog: false
       })
     },
+  // 获取每日任务
+  getDayTask() {
+    wx.request({
+      url: domain + '/mini/task/list/currentDay',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      success: (res) => {
+        res.data.data.taskList.forEach(item => {
+          item.currentCashback = Number(item.currentCashback / 100).toFixed(2)
+        })
+        this.setData({
+          everyDayData: res.data.data
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
 
   /**
    * 获取微信用户信息
@@ -122,6 +149,7 @@ Page({
         showAvatar: true,
         showEveryDayTask: true
       })
+      this.getDayTask()
       this.getMessage()
     })
   },
@@ -306,13 +334,14 @@ Page({
         userInfo: JSON.parse(wx.getStorageSync('wxUser')),
         showEveryDayTask: true
       })
+      this.getDayTask()
     } else {
       this.setData({
         showAvatar: false,
         showEveryDayTask: false
       })
     }
-    this.getMessage()
+    // this.getMessage()
   },
 
   /**
@@ -346,10 +375,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (option) {
     const currentTime = new Date().getTime()
+    let url = ''
+    if (!option.target) {
+      url = `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    } else {
+      url = `/pages/detail/detail?productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    }
     return shareFun({
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      path: url
     })
   }
 })

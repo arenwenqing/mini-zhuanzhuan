@@ -9,8 +9,11 @@
         <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
       </view>
       <view>
-        <text wx:if="{{showAvatar}}"  class="my-user-name">{{userInfo.nickName}}</text>
-        <text wx:else class="my-user-name" catchtap="getUserProfile">注册/登录</text>
+        <view wx:if="{{showAvatar}}" class="my-user-wrapper">
+          <text class="my-user-name">{{userInfo.nickName}}</text>
+          <text class="my-user-id">ID:1234567890</text>
+        </view>
+        <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
       </view>
     </view>
   </view>
@@ -36,9 +39,9 @@
     <view class="my-day-task">
       <text class="my-task-mark"></text>
       <text class="my-task-title">每日任务</text>
-      <view>还可以做<text class="my-task-num">7</text>次任务</view>
+      <view>还可以做<text class="my-task-num">{{everyDayData.leftTaskCount}}</text>次任务</view>
     </view>
-    <every-day-task></every-day-task>
+    <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
   </view>
   <!-- <view class="my-user-message">
     <view class="my-user-item-wrapper">

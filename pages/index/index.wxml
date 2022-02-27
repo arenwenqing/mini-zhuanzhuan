@@ -38,6 +38,6 @@
     </view>
     <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
   </view>
-  <loginBoot show="{{showLoginBoot}}" bindshowthank="onShowThank" shareOrderData="{{shareOrderData}}"></loginBoot>
-  <thanks show="{{showThanks}}" shareOrderData="{{shareOrderData}}"></thanks>
+  <!-- <loginBoot show="{{showLoginBoot}}" bindshowthank="onShowThank" shareOrderData="{{shareOrderData}}"></loginBoot>
+  <thanks show="{{showThanks}}" shareOrderData="{{shareOrderData}}"></thanks> -->
 </view>

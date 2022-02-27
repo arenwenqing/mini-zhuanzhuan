@@ -10,7 +10,7 @@
       </view>
       <view>
         <text class="order-current-status status">{{orderData.orderStatus.name}}</text>
-        <text class="order-current-status deliver-time">48小时发货</text>
+        <text class="order-current-status deliver-time">72小时发货</text>
       </view>
     </view>
   </view>

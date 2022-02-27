@@ -41,6 +41,7 @@ export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
       }
     }
   }).catch(err => {
+    console.error(err)
     wx.showToast({
       title: err.data.msg,
       icon: 'error',
@@ -68,6 +69,32 @@ export const getUserProfile = (cb) => {
       console.log(err)
     }
  })
+}
+
+export const startTask = (productId, orderId, cb) => {
+  wx.request({
+    url: domain + '/mini/task/add',
+    header: {
+      openid: wx.getStorageSync('openid'),
+      userid: wx.getStorageSync('userId')
+    },
+    data: {
+      productId: productId,
+      userId: wx.getStorageSync('userId'),
+      ...(orderId ? {orderId} : {})
+    },
+    success: (res) => {
+      console.log(res)
+      cb && cb()
+    },
+    fail: (err) => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
+    }
+  })
 }
 
 // 登录

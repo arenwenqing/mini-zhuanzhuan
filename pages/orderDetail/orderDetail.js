@@ -1,25 +1,29 @@
 // pages/orderDetail/orderDetail.js
 /**
  * orderStatus---code----订单状态
+ * 
+ * 
  * 101 0:未支付-商品结算
- * 204 1:已取消（超时未支付）-已取消
- * 2:已取消（成团人数不足）-未成团
  * 201 3:支付确认中
- * 202 4:已支付-待成团
- * 501 7:已成团-待发货
- * 502 8:商品待收货
- * 503 9:商品已签收
- * 512 10:商品已回收
+ * 202 4:已支付
  * 203 11:支付失败
- * 12:商品已出库
- * 301 红包已发放
+ * 204 1:已取消（超时未支付）-已取消
+ * 501 7:待发货
+ * 502 8:商品已出库
+ * 503 9:商品已签收
+ * 504 商品签收
  * 511 商品退货中
+ * 512 10:商品已退货
+ * 521 商品已退款
+  退款：待发货的状态展示
+  退货：已出库、待收货、已签收的状态展示
  */
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
-import { shareFun } from '../../utils/globalFun'
+import { shareFun, startTask } from '../../utils/globalFun'
 const domain = 'https://tuanzhzh.com'
 const app = getApp()
+let flag = false
 Page({
 
   /**
@@ -50,7 +54,6 @@ Page({
       text: '去添加'
     }],
     addAddressDialog: false,
-    getRedPackeNum: 0,
     payfailShow: false,
     payArray: [{
       text: '取消'
@@ -59,7 +62,11 @@ Page({
     }],
     payText: '',
     showReceiveDialog: false,
-    showTip: false
+    showTip: false,
+    showGuid: false,
+    clickGuidNum: 1,
+    showRedPackageFlag: false,
+    showRefundMoneyDialog: false
   },
 
   /**
@@ -110,14 +117,23 @@ Page({
       orderId
     }).then(res => {
       const data = res.data.data
+      data.product.baseCashback = Number(data.product.baseCashback / 100).toFixed(2)
+      data.product.finalCashback = Number(data.product.finalCashback / 100).toFixed(2)
       // data.orderStatus.code = 502
       const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '购买成功，正在为您安排发货' : '' //todo
       let topTitle = '团团转'
       let bottomBtnName = '继续逛逛'
       let orderStatusDescName = ''
-      if (data.orderStatus.code === 301) {
+      // if (data.orderStatus.code === 301) {
+      //   this.setData({
+      //     getRedPackeNum: data.cashback ? (data.cashback / 100).toFixed(2) : 0
+      //   })
+      // }
+      let showRedArray = [501, 502, 503, 504]
+      // 展示红包逻辑
+      if (showRedArray.includes(data.orderStatus.code)) {
         this.setData({
-          getRedPackeNum: data.cashback ? (data.cashback / 100).toFixed(2) : 0
+          showRedPackageFlag: true
         })
       }
       if (data.payDeadline !== -1 && data.orderStatus.code === 101) {
@@ -146,13 +162,6 @@ Page({
         this.setData({
           showOrderStatusDescName: true
         })
-      } else if (data.orderStatus.code === 2) { // 已取消（成团人数不足）-未成团 这个状态没有了
-        topTitle = '未成团'
-        bottomBtnName = '继续逛逛'
-        orderStatusDescName = '本团未成团，欢迎再次参团'
-        this.setData({
-          showOrderStatusDescName: true
-        })
       } else if (data.orderStatus.code === 201) { // 支付确认中
         topTitle = '商品结算'
         bottomBtnName = '微信支付'
@@ -160,14 +169,14 @@ Page({
         this.setData({
           showOrderStatusDescName: true
         })
-      } else if (data.orderStatus.code === 202) { // 已支付-待成团
+      } else if (data.orderStatus.code === 202) { // 已支付
         topTitle = '待成团'
         bottomBtnName = '继续逛逛'
         orderStatusDescName = ''
         this.setData({
           showImage: true
         })
-      } else if (data.orderStatus.code === 501) { // 已成团-待发货
+      } else if (data.orderStatus.code === 501) { // 待发货
         topTitle = '待发货'
         bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
@@ -178,7 +187,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlyReimburse: true
         })
-      } else if (data.orderStatus.code === 502) { // 商品待收货
+      } else if (data.orderStatus.code === 503) { // 商品待收货
         topTitle = '待收货'
         // bottomBtnName = '继续逛逛'
         bottomBtnName = '确认收货'
@@ -191,7 +200,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
-      } else if (data.orderStatus.code === 503) { // 商品已签收
+      } else if (data.orderStatus.code === 504) { // 商品已签收
         topTitle = '已签收'
         bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
@@ -203,7 +212,7 @@ Page({
           showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
-      } else if (data.orderStatus.code === 512) { // 商品已回收
+      } else if (data.orderStatus.code === 512) { // 商品已退货
         topTitle = '已退货'
         bottomBtnName = '继续逛逛'
         orderStatusDescName = '您已退货，欢迎再次参团'
@@ -218,7 +227,7 @@ Page({
         this.setData({
           showOrderStatusDescName: true,
         })
-      } else if (data.orderStatus.code === 12) { // 商品已出库 这个状态现在没有了
+      } else if (data.orderStatus.code === 502) { // 商品已出库
         topTitle = '已出库'
         bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
@@ -433,71 +442,76 @@ Page({
   // 申请退款
   reimburse() {
     const _this = this
-    wx.showModal({
-      title: `是否退款【${this.data.orderData?.product.majorName}】`,
-      cancelText: '申请退款',
-      confirmText: '不退了',
-      // content: '这是一个模态弹窗',
-      success (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-          wx.showModal({
-            title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
-            cancelText: '联系客服',
-            confirmText: '不退了',
-            // content: '这是一个模态弹窗',
-            success (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-                _this.setData({
-                  isVisibleCallServicer: true
-                })
-              }
-            }
-          })
-
-
-          // if (_this.data.isCommonOrder) { // 普通商品
-          //   API.reimburse({ orderId: _this.data.orderId }).then(res => {
-          //     if (res.data.code !== 0) { // 退款失败
-          //       wx.showToast({
-          //         title: res.data.msg,
-          //         icon: 'error',
-          //         duration: 2000
-          //       })
-          //     }
-          //   }).catch(err => {
-          //     wx.showToast({
-          //       title: err.data.msg,
-          //       icon: 'error',
-          //       duration: 2000
-          //     })
-          //   })
-          // } else { // 优质商品
-          //   wx.showModal({
-          //     title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
-          //     cancelText: '联系客服',
-          //     confirmText: '不退了',
-          //     // content: '这是一个模态弹窗',
-          //     success (res) {
-          //       if (res.confirm) {
-          //         console.log('用户点击确定')
-          //       } else if (res.cancel) {
-          //         console.log('用户点击取消')
-          //         _this.setData({
-          //           isVisibleCallServicer: true
-          //         })
-          //       }
-          //     }
-          //   })
-          // }
-        }
+    this.setData(
+      {
+        showRefundMoneyDialog: true
       }
-    })
+    )
+    // wx.showModal({
+    //   title: `是否退款【${this.data.orderData?.product.majorName}】`,
+    //   cancelText: '申请退款',
+    //   confirmText: '不退了',
+    //   // content: '这是一个模态弹窗',
+    //   success (res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定')
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //       wx.showModal({
+    //         title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
+    //         cancelText: '联系客服',
+    //         confirmText: '不退了',
+    //         // content: '这是一个模态弹窗',
+    //         success (res) {
+    //           if (res.confirm) {
+    //             console.log('用户点击确定')
+    //           } else if (res.cancel) {
+    //             console.log('用户点击取消')
+    //             _this.setData({
+    //               isVisibleCallServicer: true
+    //             })
+    //           }
+    //         }
+    //       })
+
+
+    //       // if (_this.data.isCommonOrder) { // 普通商品
+    //       //   API.reimburse({ orderId: _this.data.orderId }).then(res => {
+    //       //     if (res.data.code !== 0) { // 退款失败
+    //       //       wx.showToast({
+    //       //         title: res.data.msg,
+    //       //         icon: 'error',
+    //       //         duration: 2000
+    //       //       })
+    //       //     }
+    //       //   }).catch(err => {
+    //       //     wx.showToast({
+    //       //       title: err.data.msg,
+    //       //       icon: 'error',
+    //       //       duration: 2000
+    //       //     })
+    //       //   })
+    //       // } else { // 优质商品
+    //       //   wx.showModal({
+    //       //     title: `联系客服申请退款【${_this.data.orderData?.product.majorName}】`,
+    //       //     cancelText: '联系客服',
+    //       //     confirmText: '不退了',
+    //       //     // content: '这是一个模态弹窗',
+    //       //     success (res) {
+    //       //       if (res.confirm) {
+    //       //         console.log('用户点击确定')
+    //       //       } else if (res.cancel) {
+    //       //         console.log('用户点击取消')
+    //       //         _this.setData({
+    //       //           isVisibleCallServicer: true
+    //       //         })
+    //       //       }
+    //       //     }
+    //       //   })
+    //       // }
+    //     }
+    //   }
+    // })
   },
   
   /**
@@ -540,7 +554,27 @@ Page({
         })
       })
     }
-    // 如果有，根据addressId,重新获取新的地址
+    // 开启任务
+    if (flag) {
+      startTask(this.data.orderData.product.productId, this.data.orderId, () => {
+        this.setData({
+          showGuid: true
+        })
+      })
+      flag = false
+    }
+  },
+
+  clickGuid() {
+    if (this.data.clickGuidNum === 1) {
+      this.setData({
+        clickGuidNum: ++this.data.clickGuidNum
+      })
+    } else {
+      this.setData({
+        showGuid: false
+      })
+    }
   },
 
   /**
@@ -576,8 +610,9 @@ Page({
    */
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
+    flag = true
     return shareFun({
-      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
+      path: `/pages/detail/detail?productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
     })
   }
 })

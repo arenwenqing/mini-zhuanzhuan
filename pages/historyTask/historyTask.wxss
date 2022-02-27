@@ -79,6 +79,7 @@
   flex-direction: column;
 }
 .list-content-top {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,6 +88,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 5rpx;
 }
 .list-content-title {
   display: inline-block;
@@ -102,14 +104,26 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+.list-content-current-redpackge {
+  position: absolute;
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 28rpx;
+  right: 20rpx;
+  top: -5rpx;
+}
 
 .list-content-price {
-  font-size: 48rpx;
+  font-size: 36rpx;
   font-family: DINAlternate-Bold, DINAlternate;
   font-weight: bold;
   color: #DD0A00;
   line-height: 56rpx;
   margin-right: 20rpx;
+  position: relative;
+  top: 15rpx;
 }
 .list-content-price::before {
   content: "￥";

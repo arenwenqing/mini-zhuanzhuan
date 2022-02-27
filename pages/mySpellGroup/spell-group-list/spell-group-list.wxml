@@ -14,7 +14,7 @@
         </view>
         <view class="mark-order-status">
           <text class="order-status">{{item.orderStatus.name}}</text>
-          <text class="other-describe">48小时发货</text>
+          <text class="other-describe">72小时发货</text>
         </view>
       </view>
     </view>

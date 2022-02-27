@@ -12,6 +12,7 @@
   display: flex;
 }
 .my-item-content {
+  display: flex;
   flex: 1;
   margin-top: 20rpx;
 }
@@ -24,8 +25,7 @@
   margin: 20rpx 24rpx 0 20rpx;
 }
 .my-item-title-price {
-  display: flex;
-  justify-content: space-between;
+  width: 380rpx;
   margin-bottom: 6rpx;
 }
 .my-item-title {
@@ -41,14 +41,25 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  margin-bottom: 14rpx;
+}
+.my-item-current-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.my-item-current-redpakage {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 28rpx;
 }
 .my-item-price {
-  font-size: 48rpx;
+  font-size: 36rpx;
   font-family: DINAlternate-Bold, DINAlternate;
   font-weight: bold;
   color: #DD0A00;
-  line-height: 56rpx;
-  margin-right: 20rpx;
+  margin-top: -5rpx;
 }
 .my-item-price::before {
   content: "￥";
@@ -58,8 +69,12 @@
   line-height: 34rpx;
 }
 .my-item-num-status {
+  flex:1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20rpx;
+  margin-top: -6rpx;
 }
 .my-item-num {
   display: flex;
@@ -94,7 +109,8 @@
   font-weight: 400;
   color: #333333;
   line-height: 34rpx;
-  margin-right: 20rpx;
+  position: relative;
+  top: -6rpx;
 }
 .my-item-fenge {
   width: 550rpx;
