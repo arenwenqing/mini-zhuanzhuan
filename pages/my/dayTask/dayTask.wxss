@@ -88,7 +88,6 @@
   margin-right: 24rpx;
 }
 .my-item-status {
-  width: 86rpx;
   height: 32rpx;
   background: #FFEEED;
   border-radius: 4rpx;
@@ -96,6 +95,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10rpx;
 }
 .my-item-status-value {
   font-size: 22rpx;
@@ -135,8 +135,8 @@
 .my-item-btn-share {
   height: 64rpx !important;
   position: relative;
-  left: -33rpx;
-  width: 133rpx !important;
+  left: -39rpx;
+  width: 143rpx !important;
   top: 7rpx;
   overflow: hidden;
   border-radius: 50%;
@@ -145,7 +145,7 @@
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #3D5D9C;
-  line-height: 20rpx
+  line-height: 23rpx
 }
 .my-item-bottom-share-image {
   display: inline-block;

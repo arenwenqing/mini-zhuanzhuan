@@ -11,7 +11,7 @@
       <view>
         <view wx:if="{{showAvatar}}" class="my-user-wrapper">
           <text class="my-user-name">{{userInfo.nickName}}</text>
-          <text class="my-user-id">ID:1234567890</text>
+          <text class="my-user-id">ID:{{userNum}}</text>
         </view>
         <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
       </view>

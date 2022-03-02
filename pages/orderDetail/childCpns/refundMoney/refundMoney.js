@@ -46,11 +46,23 @@ Component({
           userid: wx.getStorageSync('userId')
         },
         success: (res) => {
-          wx.showToast({
-            title: '退款成功',
-            icon: 'success',
-            duration: 2000
-          })
+          // 红包还没有领可以正常退款
+          if (res.data.code === 0) {
+            wx.showToast({
+              title: '退款成功',
+              icon: 'success',
+              duration: 2000
+            })
+          } else if (res.data.code === 1) {
+            // 已经领取过红包需要支付回来才能退款
+            this.triggerEvent('payFun', res.data.data.payCashbackOrderId)
+          } else {
+            wx.showToast({
+              title: res.data.data.msg,
+              icon: 'error',
+              duration: 2000
+            })
+          }
         },
         fail: (err) => {
           wx.showToast({

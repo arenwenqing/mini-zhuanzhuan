@@ -21,15 +21,18 @@ Page({
       text: '随便看看'
     }, {
       text: '注册/登录'
-    }]
+    }],
+    originOrderId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.from = options.from
     this.setData({
-      title: options.name
+      title: options.name,
+      ...(options.originOrderId ? { originOrderId:  options.originOrderId} : {})
     })
     this.getDetail(options.productId)
   },
@@ -106,7 +109,7 @@ Page({
   },
   // 立即拼团
   immediateSpellGroup(e) {
-    submitProductGetOrderId(this.data.productId, 0, () => {
+    submitProductGetOrderId(this.data.productId, this.data.originOrderId, () => {
       this.setData({
         deleteDialog: true
       })
@@ -153,6 +156,15 @@ Page({
     this.setData({
       seconds: String(s).length > 1 ? s : `0${s}`
     })
+  },
+
+  // 点击返回触发
+  bindbackFun(e) {
+    if (this.from === 'share') {
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }
   },
 
   /**
@@ -208,7 +220,7 @@ Page({
     flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.productId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      path: `/pages/detail/detail?productId=${this.data.productId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
     })
   }
 })

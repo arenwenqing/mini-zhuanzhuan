@@ -20,17 +20,16 @@
         <view class="redpacke-shaow-max">{{orderData.product.finalCashback}}</view>
       </view>
       <view class="redpacke-btn-wrapper">
-        <view class="redpacke-btn-noshare" catchtap="receiveDialog">直接拿走</view>
-        <button  open-type="share" class="share-btn-style">
+        <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
+        <button  open-type="share" class="share-btn-style" disabled="{{ifCanClick}}">
           翻倍我的红包
         </button>
       </view>
       <view class="redpacke-btn-instructions">
         <text class="redpacke-instructions-text">直接拿走</text>
         <view class="redpacke-tip-content" wx:if="{{showTip}}">
-          <view class="tip-item">1 每位用户每日最多领取10次红包。</view>
-          <view class="tip-item">2 红包领取时效为24小时，到期未领取的红包将被回收。</view>
-          <view class="tip-item">3 领取红包后，该红包将于5分钟内到达您的微信零钱，请注意查收。</view>
+          <view class="tip-item">1 红包领取时效为24小时，到期未领取的红包将被回收。</view>
+          <view class="tip-item">2 领取红包后，该红包将于5分钟内到达您的微信零钱，请注意查收。</view>
           <view class="tip-item-last">本使用说明的最终解释权归团团转所有</view>
           <image src="/pages/images/triangle2.png" class="redpacke-triangle"></image>
           <image src='/pages/images/guanbi.png' class="redpacke-close" catchtap="closeTip"></image>
@@ -125,7 +124,7 @@
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
   <!-- 直接拿走弹窗 -->
-  <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}"></receive-dialog>
+  <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}" bind:takePackage="takePackage"></receive-dialog>
   <!--退款弹窗-->
-  <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}"></refund-money>
+  <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}" bind:payFun="getRefundMessage"></refund-money>
 </view>

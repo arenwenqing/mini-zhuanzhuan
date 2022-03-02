@@ -20,7 +20,7 @@
  */
 // import { getOrderDetail, getPayId } from './network'
 import API from './network'
-import { shareFun, startTask } from '../../utils/globalFun'
+import { shareFun, startTask, reloadUserMessage } from '../../utils/globalFun'
 const domain = 'https://tuanzhzh.com'
 const app = getApp()
 let flag = false
@@ -66,7 +66,9 @@ Page({
     showGuid: false,
     clickGuidNum: 1,
     showRedPackageFlag: false,
-    showRefundMoneyDialog: false
+    showRefundMoneyDialog: false,
+    ifCanClick: false,
+    directlyBtnStatus: false
   },
 
   /**
@@ -111,6 +113,10 @@ Page({
     })
   },
 
+  takePackage() {
+    this.getOrderDetail(this.data.orderId)
+  },
+
   // 获取订单详情
   getOrderDetail(orderId) {
     API.getOrderDetail({
@@ -129,6 +135,18 @@ Page({
       //     getRedPackeNum: data.cashback ? (data.cashback / 100).toFixed(2) : 0
       //   })
       // }
+      // 翻倍红包的按钮状态  1.已经领取了红包翻倍按钮置灰,直接拿走按钮置灰 2.任务已经开启直接领取按钮置灰
+      if (data.taskStatus === 1) {
+        this.setData({
+          ifCanClick: true,
+          directlyBtnStatus: true
+        })
+      }
+      if (data.taskStatus === 2) {
+        this.setData({
+          directlyBtnStatus: true
+        })
+      }
       let showRedArray = [501, 502, 503, 504]
       // 展示红包逻辑
       if (showRedArray.includes(data.orderStatus.code)) {
@@ -341,8 +359,32 @@ Page({
       })
     }
   },
+  
+  // 退款时获取用户信息
+  getRefundMessage(orderId) {
+    API.getRefundMessage(orderId.detail).then(res => {
+      if (res.data.code !== 0) {
+        this.setData({
+          payfailShow: true,
+          payText: res.data.data.payMsg
+        })
+      } else {
+        this.startPay({
+          ...res.data.data,
+          timeStamp: res.data.data.timestamp,
+          nonceStr: res.data.data.nonce_str,
+        })
+      }
+    }).catch(err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
+    })
+  },
 
-  // 支付
+  // 获取支付信息
   getPayId() {
     if (!wx.getStorageSync('addressId')) {
       this.setData({
@@ -556,10 +598,14 @@ Page({
     }
     // 开启任务
     if (flag) {
+      
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
-        this.setData({
-          showGuid: true
-        })
+        if (!wx.getStorageSync('poppupWindow')) {
+          this.setData({
+            showGuid: true
+          })
+          wx.setStorageSync('poppupWindow', true)
+        }
       })
       flag = false
     }
@@ -612,7 +658,7 @@ Page({
     const currentTime = new Date().getTime()
     flag = true
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
+      path: `/pages/detail/detail?from=share&productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
     })
   }
 })

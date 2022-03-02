@@ -8,6 +8,17 @@ class Apis {
     }, true)
   }
 
+  // 退款是获取支付信息
+  getRefundMessage(orderId) {
+    return request({
+      url: '/mini/order/pay/cashback',
+      method: 'POST',
+      data: {
+        orderId: orderId
+      }
+    }, true)
+  }
+
   // 调取微信支付
   getPayId({ orderId, receiveAddressId }) {
     return request({

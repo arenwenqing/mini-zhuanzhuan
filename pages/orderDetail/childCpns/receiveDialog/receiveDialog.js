@@ -57,6 +57,7 @@ Component({
           this.setData({
             visible: false
           })
+          this.triggerEvent('takePackage')
         },
         fail: (err) => {
           wx.showToast({
@@ -77,6 +78,7 @@ Component({
         this.setData({
           visible: false
         })
+        this.triggerEvent('takePackage')
       })
     }
   }

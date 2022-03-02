@@ -23,7 +23,7 @@
 .dialog-content-bottom {
   position: absolute;
   display: flex;
-  width: 600rpx;
+  width: 640rpx;
   height: 100rpx;
   bottom: 0;
   justify-content: center;
@@ -40,6 +40,7 @@
   border: none !important;
   height: 100rpx !important;
   line-height: 70rpx !important;
+  font-size: 28rpx !important;
 }
 .dialog-btn-style-fenge {
   height: 100rpx;

@@ -313,9 +313,9 @@
   line-height: 68rpx;
   font-size: 24rpx;
   font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
+  font-weight: 800;
   color: #A80C0C;
-  text-shadow: 0rpx 4rpx 16rpx #9D1507;
+  /* text-shadow: 0rpx 4rpx 16rpx #9D1507; */
   margin-right: 14rpx;
 }
 .double-btn {
@@ -340,7 +340,7 @@
   margin-left: -86rpx;
 }
 .share-btn-style {
-  width: 240rpx !important;
+  width: 250rpx !important;
   height: 68rpx;
   background: linear-gradient(360deg, #F4B759 0%, #FCED95 100%);
   box-shadow: 0rpx 4rpx 16rpx 0rpx #9D1507;
@@ -350,12 +350,15 @@
   align-items: center;
   font-size: 24rpx;
   font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
+  font-weight: 800;
   color: #A80C0C;
   line-height: 24rpx;
-  text-shadow: 0rpx 4rpx 16rpx #9D1507;
+  /* text-shadow: 0rpx 4rpx 16rpx #9D1507; */
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+.share-btn-style2 {
+  margin-right: 14rpx !important;
 }
 .redpacke-btn-text {
   font-size: 30rpx;
@@ -398,12 +401,12 @@
 .redpacke-tip-content {
   position: absolute;
   width: 686rpx;
-  height: 290rpx;
+  height: 250rpx;
   background: #EE7100;
   border-radius: 8rpx;
   left: 50%;
   margin-left: -370rpx;
-  top: -285rpx;
+  top: -255rpx;
 }
 .tip-item {
   width: 648rpx;
@@ -417,7 +420,7 @@
   margin: 0rpx 22rpx 30rpx 16rpx;
 }
 .tip-item:nth-child(1) {
-  margin-top: 24rpx;
+  margin-top: 43rpx;
 }
 .tip-item-last {
   font-size: 22rpx;

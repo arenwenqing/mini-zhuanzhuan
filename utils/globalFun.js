@@ -6,20 +6,27 @@ const domain = 'https://tuanzhzh.com'
 const app = getApp()
 // 提交订单获取订单id(orderid)
 // isUseRoll 是否用劵， 1用劵，0非用劵
-export const submitProductGetOrderId = (productId, isUseRoll, cb) => {
+export const submitProductGetOrderId = (productId, originOrderId, cb) => {
   if (!wx.getStorageSync('userId')) {
     cb && cb()
     return
   }
+  console.log({
+    productId,
+    // doubleQuotaCount: isUseRoll,
+    ...(originOrderId ? { originOrderId: originOrderId } : {}),
+    payUserId: wx.getStorageSync('userId') || '',
+    receiveAddressId: wx.getStorageSync('addressId') || ''
+  })
   API.sumbitProduct({
     productId,
     // doubleQuotaCount: isUseRoll,
+    ...(originOrderId ? { originOrderId: originOrderId } : {}),
     payUserId: wx.getStorageSync('userId') || '',
     receiveAddressId: wx.getStorageSync('addressId') || ''
   }).then(res => {
     const data = res.data.data
     if (data.submitSuccess) { // 提交订单成功
-      console.log('提交订单失败', data.submitMsg)
       const orderId = data?.order?.orderId || ''
       // 跳转订单详情页
       wx.navigateTo({
@@ -131,8 +138,10 @@ function getUserId(code, cb) {
     success: (res) => {
       if (res.data.data.userId) {
         const data = res.data.data
+        wx.setStorageSync('userNum', data.userNum)
         wx.setStorageSync('userId', data.userId)
         wx.setStorageSync('openid', data.openid)
+        wx.setStorageSync('isNewUser', data.isNewUser)
         // wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()
@@ -149,6 +158,10 @@ function getUserId(code, cb) {
       })
     }
   })
+}
+
+export const reloadUserMessage = () => {
+  getUserId(wx.getStorageSync('code'))
 }
 
 // 上传个人信息
@@ -180,8 +193,8 @@ function uploadUserMessage(obj) {
 // 分享
 export const shareFun = (obj) => {
   return {
-    title: '亲~登录帮我翻个倍吧！',
-    imageUrl: 'https://cdn.tuanzhzh.com/share/share3.png',
+    title: '动动手指，赚杯奶茶！',
+    imageUrl: 'https://cdn.tuanzhzh.com/share/new-share.png',
     path: `/pages/index/index`,
     ...obj
   }

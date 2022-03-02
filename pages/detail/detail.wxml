@@ -1,6 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <view class="detail-wrapper">
-  <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar'></mp-navigation-bar>
+  <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar' bindback="bindbackFun"></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
   <view class="detail-swiper-view">
       <swiper class="detail-image-carousel" indicator-active-color='#FA2840' indicator-color="#c1c1c1" indicator-dots='true' autoplay='true' interval='3000'  duration='1000' circular='true' >

@@ -54,6 +54,7 @@ Page({
     }]],
     showAvatar: false,
     userInfo: {},
+    userNum: '',
     visibile: false,
     tipShow: false,
     doubleNum: 0,
@@ -101,6 +102,7 @@ Page({
         getUserProfile(() => {
           this.setData({
             userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+            userNum: wx.getStorageSync('userNum'),
             showAvatar: true,
             showEveryDayTask: true
           })
@@ -146,6 +148,7 @@ Page({
     getUserProfile(() => {
       this.setData({
         userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+        userNum: wx.getStorageSync('userNum'),
         showAvatar: true,
         showEveryDayTask: true
       })
@@ -332,7 +335,8 @@ Page({
       this.setData({
         showAvatar: true,
         userInfo: JSON.parse(wx.getStorageSync('wxUser')),
-        showEveryDayTask: true
+        showEveryDayTask: true,
+        userNum: wx.getStorageSync('userNum')
       })
       this.getDayTask()
     } else {
