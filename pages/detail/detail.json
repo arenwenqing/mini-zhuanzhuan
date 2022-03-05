@@ -2,6 +2,7 @@
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
     "mp-dialog": "weui-miniprogram/dialog/dialog",
-    "dialog": "/pages/components/dialog/dialog"
+    "dialog": "/pages/components/dialog/dialog",
+    "zero-task-dialog": "/pages/components/zeroTaskPoupop/zeroTaskPoupop"
   }
 }

@@ -138,13 +138,18 @@ Page({
       // 翻倍红包的按钮状态  1.已经领取了红包翻倍按钮置灰,直接拿走按钮置灰 2.任务已经开启直接领取按钮置灰
       if (data.taskStatus === 1) {
         this.setData({
-          ifCanClick: true,
-          directlyBtnStatus: true
+          ifCanClick: true, // 翻倍我的红按钮
+          directlyBtnStatus: true // 直接拿走按钮
         })
       }
       if (data.taskStatus === 2) {
         this.setData({
           directlyBtnStatus: true
+        })
+      }
+      if ([502, 503, 504, 511, 512, 521].includes(data.orderStatus.code)) {
+        this.setData({
+          ifCanClick: true, // 翻倍我的红按钮
         })
       }
       let showRedArray = [501, 502, 503, 504]
@@ -596,9 +601,12 @@ Page({
         })
       })
     }
+    let currentTime = new Date().format('yyyy-MM-dd')
+    let currentTime2 = new Date(`${currentTime} 23:00:00`).getTime() // 当前23点的毫秒数
+    let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
+    let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
     // 开启任务
-    if (flag) {
-      
+    if (flag && currentTime4 < currentTime2) {
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
         if (!wx.getStorageSync('poppupWindow')) {
           this.setData({
@@ -649,6 +657,15 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  // 分享到朋友圈
+  onShareTimeline: function() {
+    const currentTime = new Date().getTime()
+    flag = true
+    return shareFun({
+      path: `/pages/detail/detail?from=share&productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
+    })
   },
 
   /**

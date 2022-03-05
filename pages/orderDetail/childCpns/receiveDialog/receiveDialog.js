@@ -49,15 +49,24 @@ Component({
           orderId: this.properties.orderId
         },
         success: (res) => {
-          wx.showToast({
-            title: '领取成功',
-            icon: 'success',
-            duration: 2000
-          })
-          this.setData({
-            visible: false
-          })
-          this.triggerEvent('takePackage')
+          console.log(res.data.data)
+          if (res.data.code === 0) {
+            wx.showToast({
+              title: '领取成功',
+              icon: 'success',
+              duration: 2000
+            })
+            this.setData({
+              visible: false
+            })
+            this.triggerEvent('takePackage')
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'error',
+              duration: 2000
+            })
+          }
         },
         fail: (err) => {
           wx.showToast({

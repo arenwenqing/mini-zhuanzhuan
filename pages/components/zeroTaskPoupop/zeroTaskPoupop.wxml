@@ -1,0 +1,13 @@
+<!--pages/components/zeroTaskPoupop/zeroTaskPoupop.wxml-->
+<view class="mask" wx:if="{{visible}}">
+  <view class="dialog-content">
+    <view class="dialog-content-main">
+      <text>您确定开启任务么?</text>
+    </view>
+    <view class="dialog-content-bottom">
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">取消</button>
+      <view class="dialog-btn-style-fenge"></view>
+      <button type="default" open-type="share" class="dialog-btn-style" plain="false" catchtap="closeDialog">确定</button>
+    </view>
+  </view>
+</view>

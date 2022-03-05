@@ -2,6 +2,7 @@
 <view class="detail-wrapper">
   <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar' bindback="bindbackFun"></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
+  <zero-task-dialog showDialog="{{sureStartTaskDialog}}"></zero-task-dialog>
   <view class="detail-swiper-view">
       <swiper class="detail-image-carousel" indicator-active-color='#FA2840' indicator-color="#c1c1c1" indicator-dots='true' autoplay='true' interval='3000'  duration='1000' circular='true' >
         <block wx:for="{{carousel}}" wx:key="index">
@@ -90,7 +91,8 @@
     <view class="detail-zhangheng"></view>
   </view>
   <view class="detail-bottom">
-    <view class="detail-bottom-left" catchtap="immediateSpellGroup">购买</view>
+    <view wx:if="{{isZero}}" class="detail-bottom-left" catchtap="showMakeTaskPoup">做任务</view>
+    <view wx:else class="detail-bottom-left" catchtap="immediateSpellGroup">购买</view>
     <!-- <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view> -->
   </view>
   <!-- <luckBag></luckBag> -->

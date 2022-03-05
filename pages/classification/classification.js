@@ -220,6 +220,14 @@ Page({
 
     },
 
+    // 分享到朋友圈
+    onShareTimeline: function() {
+        const currentTime = new Date().getTime()
+        return shareFun({
+            path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+        })
+    },
+
     /**
      * 用户点击右上角分享
      */

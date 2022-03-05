@@ -38,6 +38,10 @@ Page({
   //   })
   // },
   onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
     if (options.originUserId) {
       app.globalData.originUserId = options.originUserId
     }
@@ -269,6 +273,14 @@ Page({
   swiperChange(e) {
     this.setData({
       currentSwiper: e.detail.current
+    })
+  },
+
+  // 分享到朋友圈
+  onShareTimeline: function() {
+    const currentTime = new Date().getTime()
+    return shareFun({
+      path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     })
   },
 

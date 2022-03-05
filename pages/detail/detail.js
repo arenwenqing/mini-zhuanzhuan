@@ -17,12 +17,15 @@ Page({
     seconds: '00',
     showDialog: false,
     deleteDialog: false,
+    sureStartTaskDialog: false,
     buttonArray: [{
       text: '随便看看'
     }, {
       text: '注册/登录'
     }],
-    originOrderId: 0
+    originOrderId: 0,
+    isZero: wx.getStorageSync('isZero'),
+    zeroOrderId: ''
   },
 
   /**
@@ -98,6 +101,50 @@ Page({
         })
       },
       complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  // 做任务
+  showMakeTaskPoup() {
+    // 如果没有登录先登录
+    if (!wx.getStorageSync('userId')) {
+      this.setData({
+        deleteDialog: true
+      })
+    } else {
+      this.zeroSubmitProduct()
+    }
+  },
+
+  // 0代提交订单
+  zeroSubmitProduct() {
+    wx.showLoading({
+      title: '加载中'
+    })
+    wx.request({
+      url: domain + '/mini/order/submit',
+      method: 'POST',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        productId: this.data.productId,
+        payUserId: wx.getStorageSync('userId') || '',
+        receiveAddressId: wx.getStorageSync('addressId') || ''
+      },
+      success: res => {
+        this.setData({
+          zeroOrderId: res.data.data.order.orderId,
+          sureStartTaskDialog: true
+        })
+      },
+      fail: err => {
+        
+      },
+      complete: com => {
         wx.hideLoading()
       }
     })
@@ -179,8 +226,8 @@ Page({
    */
   onShow: function () {
     // 开启任务
-    if (flag && wx.getStorageSync('userId')) {
-      startTask(this.data.productId)
+    if (flag && this.data.zeroOrderId) {
+      startTask(this.data.productId, this.data.zeroOrderId)
       flag = false
     }
   },
@@ -213,6 +260,15 @@ Page({
 
   },
 
+  // 分享到朋友圈
+  onShareTimeline: function() {
+    flag = true
+    const currentTime = new Date().getTime()
+    return shareFun({
+      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
@@ -220,7 +276,7 @@ Page({
     flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.productId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
+      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
     })
   }
 })

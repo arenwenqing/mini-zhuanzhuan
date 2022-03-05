@@ -63,6 +63,10 @@ Page({
   onReachBottom: function () {
 
   },
+  // 分享到朋友圈
+  onShareTimeline: function() {
+    
+  },
 
   /**
    * 用户点击右上角分享

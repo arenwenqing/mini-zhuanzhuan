@@ -42,7 +42,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.20.2",
+  "libVersion": "2.22.1",
   "appid": "wxb48e40dbe585c7f2",
   "projectname": "miniprogram-tuantuan",
   "debugOptions": {

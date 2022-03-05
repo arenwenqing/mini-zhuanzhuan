@@ -11,13 +11,7 @@ export const submitProductGetOrderId = (productId, originOrderId, cb) => {
     cb && cb()
     return
   }
-  console.log({
-    productId,
-    // doubleQuotaCount: isUseRoll,
-    ...(originOrderId ? { originOrderId: originOrderId } : {}),
-    payUserId: wx.getStorageSync('userId') || '',
-    receiveAddressId: wx.getStorageSync('addressId') || ''
-  })
+
   API.sumbitProduct({
     productId,
     // doubleQuotaCount: isUseRoll,
@@ -141,7 +135,7 @@ function getUserId(code, cb) {
         wx.setStorageSync('userNum', data.userNum)
         wx.setStorageSync('userId', data.userId)
         wx.setStorageSync('openid', data.openid)
-        wx.setStorageSync('isNewUser', data.isNewUser)
+        wx.setStorageSync('isZero', data.isZero)
         // wx.setStorageSync('wxUser', JSON.stringify(res.data.data.wxUser))
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()

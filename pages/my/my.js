@@ -376,6 +376,20 @@ Page({
 
   },
 
+  // 分享到朋友圈
+  onShareTimeline: function() {
+    const currentTime = new Date().getTime()
+    let url = ''
+    if (!option.target) {
+      url = `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    } else {
+      url = `/pages/detail/detail?productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    }
+    return shareFun({
+      path: url
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
