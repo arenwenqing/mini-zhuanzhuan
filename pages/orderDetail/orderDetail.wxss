@@ -468,3 +468,13 @@
   top: 20rpx;
   right: 20rpx;
 }
+.tip-message-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tip-message-text {
+  font-size: 40rpx;
+  font-family: Helvetica;
+  color: #101010;
+}

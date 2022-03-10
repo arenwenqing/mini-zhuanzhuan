@@ -68,7 +68,9 @@ Page({
     showRedPackageFlag: false,
     showRefundMoneyDialog: false,
     ifCanClick: false,
-    directlyBtnStatus: false
+    directlyBtnStatus: false,
+    tipMessage: false,
+    tipMessageText: ''
   },
 
   /**
@@ -113,8 +115,14 @@ Page({
     })
   },
 
-  takePackage() {
+  // 直接拿走
+  takeMoney() {
     this.getOrderDetail(this.data.orderId)
+  },
+
+  takePackage() {
+    this.skipMypage()
+    // this.getOrderDetail(this.data.orderId)
   },
 
   // 获取订单详情
@@ -142,7 +150,7 @@ Page({
           directlyBtnStatus: true // 直接拿走按钮
         })
       }
-      if (data.taskStatus === 2) {
+      if (data.taskStatus === 2 || [511, 512, 521].includes(data.orderStatus.code)) {
         this.setData({
           directlyBtnStatus: true
         })
@@ -153,12 +161,34 @@ Page({
         })
       }
       let showRedArray = [501, 502, 503, 504]
+  
       // 展示红包逻辑
       if (showRedArray.includes(data.orderStatus.code)) {
         this.setData({
           showRedPackageFlag: true
         })
+      } else {
+        this.setData({
+          showRedPackageFlag: false
+        })
       }
+
+      // 展示退款，退货的提示文案
+      if ([511, 512, 521].includes(data.orderStatus.code)) {
+        const tempMap = {
+          511: '退货处理中，请稍候',
+          512: '商品已退货，欢迎下次购买',
+          521: '商品已退款，欢迎下次购买'
+        }
+        this.setData({
+          tipMessage: true,
+          tipMessageText: tempMap[data.orderStatus.code],
+          showOnlyReimburse: false,
+          showOnlySalesReturn: false
+        })
+      }
+
+
       if (data.payDeadline !== -1 && data.orderStatus.code === 101) {
         app.globalData.payDeadline = data.payDeadline
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
@@ -364,6 +394,11 @@ Page({
       })
     }
   },
+
+  // 退款成功，重新请求详情接口
+  reloadDetail() {
+    this.getOrderDetail(this.data.orderId)
+  },
   
   // 退款时获取用户信息
   getRefundMessage(orderId) {
@@ -489,11 +524,16 @@ Page({
   // 申请退款
   reimburse() {
     const _this = this
-    this.setData(
-      {
-        showRefundMoneyDialog: true
-      }
-    )
+    if (this.data.orderData.taskStatus !== 0) {
+      this.setData(
+        {
+          showRefundMoneyDialog: true
+        }
+      )
+    } else {
+      const refundMoney = this.selectComponent('#refundMoney')
+      refundMoney.directlyTake()
+    }
     // wx.showModal({
     //   title: `是否退款【${this.data.orderData?.product.majorName}】`,
     //   cancelText: '申请退款',
@@ -601,21 +641,28 @@ Page({
         })
       })
     }
+  },
+
+  // 点击翻倍我的红包
+  skipMypage() {
     let currentTime = new Date().format('yyyy-MM-dd')
     let currentTime2 = new Date(`${currentTime} 23:00:00`).getTime() // 当前23点的毫秒数
     let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
     let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
-    // 开启任务
-    if (flag && currentTime4 < currentTime2) {
+    // 开启任务currentTime4 < currentTime2
+    if (currentTime4 < currentTime2) {
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
-        if (!wx.getStorageSync('poppupWindow')) {
-          this.setData({
-            showGuid: true
-          })
-          wx.setStorageSync('poppupWindow', true)
-        }
+        // if (!wx.getStorageSync('poppupWindow')) {
+        //   this.setData({
+        //     showGuid: true
+        //   })
+        //   wx.setStorageSync('poppupWindow', true)
+        // }
+        wx.switchTab({
+          url: '/pages/my/my'
+        })
       })
-      flag = false
+      // flag = false
     }
   },
 
@@ -645,7 +692,7 @@ Page({
 
   },
 
-  /**
+  /**                                
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {

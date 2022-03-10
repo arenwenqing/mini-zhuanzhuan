@@ -39,6 +39,9 @@ Component({
   methods: {
     //继续退
     directlyTake: function () {
+      wx.showLoading({
+        title: '加载中',
+      })
       wx.request({
         url: domain + `/mini/order/refund/${this.properties.orderId}`,
         header: {
@@ -53,6 +56,10 @@ Component({
               icon: 'success',
               duration: 2000
             })
+            setTimeout(() => {
+              // 重新请求订单详情页接口
+              this.triggerEvent('reloadDetail', {})
+            }, 500);
           } else if (res.data.code === 1) {
             // 已经领取过红包需要支付回来才能退款
             this.triggerEvent('payFun', res.data.data.payCashbackOrderId)
@@ -70,6 +77,9 @@ Component({
             icon: 'error',
             duration: 2000
           })
+        },
+        complete: () => {
+          wx.hideLoading()
         }
       })
       this.setData({

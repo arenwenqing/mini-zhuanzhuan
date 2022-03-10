@@ -70,6 +70,13 @@
   color: #DD0A00;
   margin: 0 8rpx 0 8rpx;
 }
+.dialog-content-red {
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #DD0A00;
+  margin: 0 8rpx 0 8rpx;
+}
 .dialog-share {
   color: #576B95 !important;
 }

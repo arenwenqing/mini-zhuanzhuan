@@ -21,7 +21,7 @@
       </view>
       <view class="redpacke-btn-wrapper">
         <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
-        <button  open-type="share" class="share-btn-style" disabled="{{ifCanClick}}">
+        <button class="share-btn-style" disabled="{{ifCanClick}}" catchtap="skipMypage">
           翻倍我的红包
         </button>
       </view>
@@ -83,7 +83,9 @@
       addressInfo="{{addressInfo}}"
       id="orderSettlement"
     ></order-settlement-countdown>
-
+    <view wx:if="{{tipMessage}}" class="tip-message-wrapper">
+      <text class="tip-message-text">{{tipMessageText}}</text>
+    </view>
     <!-- 支付成功，拼团倒计时...剩余xx时间结束--待成团展示 -->
     <!-- <order-content-title
       wx:if="{{orderStatusCode === 4}}"
@@ -124,7 +126,7 @@
   <!-- 联系客服二维码弹窗 -->
   <wait-qr-code visibile="{{isVisibleCallServicer}}"></wait-qr-code>
   <!-- 直接拿走弹窗 -->
-  <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}" bind:takePackage="takePackage"></receive-dialog>
+  <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}" bind:takePackage="takePackage" bind:takeMoney="takeMoney"></receive-dialog>
   <!--退款弹窗-->
-  <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}" bind:payFun="getRefundMessage"></refund-money>
+  <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}" id="refundMoney" bind:payFun="getRefundMessage" bind:reloadDetail="reloadDetail"></refund-money>
 </view>

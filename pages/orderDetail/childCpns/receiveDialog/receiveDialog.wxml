@@ -8,7 +8,7 @@
     <view class="dialog-content-bottom">
       <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false" catchtap="directlyTake">拿走</button>
       <view class="dialog-btn-style-fenge"></view>
-      <button type="default" open-type="share" class="dialog-btn-style dialog-share" plain="false" catchtap="closeDialog">翻倍我的红包</button>
+      <button type="default" class="dialog-btn-style dialog-share" plain="false" catchtap="closeDialog">翻倍我的红包</button>
     </view>
   </view>
 </view>

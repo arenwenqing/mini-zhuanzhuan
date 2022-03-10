@@ -24,7 +24,7 @@ Page({
       text: '注册/登录'
     }],
     originOrderId: 0,
-    isZero: wx.getStorageSync('isZero'),
+    isZero: wx.getStorageSync('isZero') == 1,
     zeroOrderId: ''
   },
 

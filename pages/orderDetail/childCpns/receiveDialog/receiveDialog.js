@@ -59,7 +59,7 @@ Component({
             this.setData({
               visible: false
             })
-            this.triggerEvent('takePackage')
+            this.triggerEvent('takeMoney')
           } else {
             wx.showToast({
               title: res.data.msg,

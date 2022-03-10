@@ -396,10 +396,10 @@ Page({
   onShareAppMessage: function (option) {
     const currentTime = new Date().getTime()
     let url = ''
-    if (!option.target) {
+    if (option && !option.target) {
       url = `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     } else {
-      url = `/pages/detail/detail?productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      url = `/pages/detail/detail?from=share&originOrderId=${option.target.dataset.originorderid}&productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
     return shareFun({
       path: url
