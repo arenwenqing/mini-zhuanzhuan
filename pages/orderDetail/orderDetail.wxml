@@ -109,16 +109,6 @@
     </view>
   </view>
 
-  <!-- 底部操作按钮 -->
-  <operation-guide
-    id='bottomBtn'
-    class="bottom-operation-btn"
-    bottomBtnName="{{bottomBtnName}}"
-    bindclickOperationBtn="clickPerationBtn"
-    bindcountdown="onCountDown"
-    currentStatus="{{currentStatus}}"
-  />
-
   <mp-dialog title="添加收货地址" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{addAddressDialog}}">
   </mp-dialog>
   <mp-dialog title="{{payText}}" bindbuttontap="closePayTip" buttons="{{payArray}}" mask="true" mask-closable="false" show="{{payfailShow}}">
@@ -129,4 +119,14 @@
   <receive-dialog showDialog="{{showReceiveDialog}}" orderId="{{orderId}}" orderData="{{orderData}}" bind:takePackage="takePackage" bind:takeMoney="takeMoney"></receive-dialog>
   <!--退款弹窗-->
   <refund-money orderId="{{orderId}}" orderData="{{orderData}}" showRefundMoneyDialog="{{showRefundMoneyDialog}}" id="refundMoney" bind:payFun="getRefundMessage" bind:reloadDetail="reloadDetail"></refund-money>
+
+  <!-- 底部操作按钮 -->
+  <operation-guide
+    id='bottomBtn'
+    class="bottom-operation-btn"
+    bottomBtnName="{{bottomBtnName}}"
+    bindclickOperationBtn="clickPerationBtn"
+    bindcountdown="onCountDown"
+    currentStatus="{{currentStatus}}"
+  ></operation-guide>
 </view>

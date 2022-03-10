@@ -234,10 +234,10 @@ Page({
         bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
-          showOrderStatusDescName: true,
-          showImage: true,
-          showComfortMoney: true,
-          showReimburseAndSalesReturn: true,
+          // showOrderStatusDescName: true,
+          // showImage: true,
+          // showComfortMoney: true,
+          // showReimburseAndSalesReturn: true,
           showOnlyReimburse: true
         })
       } else if (data.orderStatus.code === 503) { // 商品待收货
@@ -247,10 +247,10 @@ Page({
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showExpressInfo: true,
-          showComfortMoney: true,
+          // showComfortMoney: true,
           showOrderStatusDescName: true,
           showImage: true,
-          showReimburseAndSalesReturn: true,
+          // showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
       } else if (data.orderStatus.code === 504) { // 商品已签收
@@ -259,10 +259,10 @@ Page({
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showExpressInfo: true,
-          showComfortMoney: true,
+          // showComfortMoney: true,
           showOrderStatusDescName: true,
           showImage: true,
-          showReimburseAndSalesReturn: true,
+          // showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true
         })
       } else if (data.orderStatus.code === 512) { // 商品已退货
@@ -271,7 +271,7 @@ Page({
         orderStatusDescName = '您已退货，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true,
-          showComfortMoney: true,
+          // showComfortMoney: true,
         })
       } else if (data.orderStatus.code === 203) { // 支付失败
         topTitle = '待支付'
@@ -286,9 +286,9 @@ Page({
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
-          showReimburseAndSalesReturn: true,
+          // showReimburseAndSalesReturn: true,
           showOnlySalesReturn: true,
-          showComfortMoney: true,
+          // showComfortMoney: true,
           showHaveOutbound: true,
           showImage: true
         })
@@ -645,12 +645,13 @@ Page({
 
   // 点击翻倍我的红包
   skipMypage() {
-    let currentTime = new Date().format('yyyy-MM-dd')
-    let currentTime2 = new Date(`${currentTime} 23:00:00`).getTime() // 当前23点的毫秒数
-    let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
+    let currentTime = new Date().format('yyyy/MM/dd')
+    let tempcurrentTime = `${currentTime} 23:00:00` 
+    let currentTime2 = new Date(tempcurrentTime).getTime() // 当前23点的毫秒数
+    // let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
     let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
     // 开启任务currentTime4 < currentTime2
-    if (true) {
+    if (currentTime4 < currentTime2) {
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
         // if (!wx.getStorageSync('poppupWindow')) {
         //   this.setData({

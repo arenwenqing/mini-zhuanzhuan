@@ -286,3 +286,11 @@
 .my-task-num {
   color: #FA2840;
 }
+.my-task-tip {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
