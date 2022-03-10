@@ -650,7 +650,7 @@ Page({
     let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
     let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
     // 开启任务currentTime4 < currentTime2
-    if (currentTime4 < currentTime2) {
+    if (true) {
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
         // if (!wx.getStorageSync('poppupWindow')) {
         //   this.setData({
