@@ -27,7 +27,9 @@ Page({
    */
   seach(e) {
     const value = e.detail.value.trim() ? e.detail.value.trim() : ''
-    this.searchList(value)
+    if (value.trim()) {
+      this.searchList(value)
+    }
   },
   // 搜索
   searchList(name) {

@@ -40,7 +40,7 @@
       <text class="my-task-mark"></text>
       <text class="my-task-title">每日任务</text>
       <view>还可以做<text class="my-task-num">{{everyDayData.leftTaskCount}}</text>次任务</view>
-      <text class="my-task-tip">任务每日23-24点结算并付款</text>
+      <text class="my-task-tip">次日4-9点结算并付款</text>
     </view>
     <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
   </view>

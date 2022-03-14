@@ -426,15 +426,16 @@ Page({
 
   // 获取支付信息
   getPayId() {
-    if (!wx.getStorageSync('addressId')) {
+    if (!wx.getStorageSync('addressId') && !wx.getStorageSync('choiceAddressId')) {
       this.setData({
         addAddressDialog: true
       })
       return
     }
+  
     API.getPayId({
       orderId: this.data.orderData.orderId,
-      receiveAddressId: wx.getStorageSync('addressId')
+      receiveAddressId: wx.getStorageSync('choiceAddressId') ? wx.getStorageSync('choiceAddressId') : wx.getStorageSync('addressId')
     }).then(res => {
       if (res.data.code !== 0) {
         this.setData({
@@ -442,6 +443,9 @@ Page({
           payText: res.data.data.payMsg
         })
       } else {
+        if (wx.getStorageSync('choiceAddressId')) {
+          wx.removeStorageSync('choiceAddressId')
+        }
         this.startPay({
           ...res.data.data,
           timeStamp: res.data.data.timestamp,
@@ -646,12 +650,12 @@ Page({
   // 点击翻倍我的红包
   skipMypage() {
     let currentTime = new Date().format('yyyy/MM/dd')
-    let tempcurrentTime = `${currentTime} 23:00:00` 
-    let currentTime2 = new Date(tempcurrentTime).getTime() // 当前23点的毫秒数
-    // let currentTime3 = new Date(`${currentTime} 23:59:59`).getTime() // 当前24点的毫秒数
+    let tempcurrentTime = `${currentTime} 04:00:00` 
+    let currentTime2 = new Date(tempcurrentTime).getTime() // 当前4点的毫秒数
+    let currentTime3 = new Date(`${currentTime} 05:00:00`).getTime() // 当前5点的毫秒数
     let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
     // 开启任务currentTime4 < currentTime2
-    if (currentTime4 < currentTime2) {
+    if (currentTime4 < currentTime2 || currentTime4 > currentTime3) {
       startTask(this.data.orderData.product.productId, this.data.orderId, () => {
         // if (!wx.getStorageSync('poppupWindow')) {
         //   this.setData({
@@ -664,6 +668,12 @@ Page({
         })
       })
       // flag = false
+    } else {
+      wx.showToast({
+        title: '现在不能做任务',
+        icon: 'error',
+        duration: 2000
+      })
     }
   },
 

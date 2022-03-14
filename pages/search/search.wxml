@@ -9,5 +9,8 @@
     <image src="../images/no-search-min.png" class="no-seach-icon"></image>
     <text class="no-seach-text">未找到该产品</text>
   </view>
-  <component-list datalist="{{searchData}}"></component-list>
+  <view wx:else>
+    <component-list datalist="{{searchData}}"></component-list>
+    <view class="search-holder"></view>
+  </view>
 </view>

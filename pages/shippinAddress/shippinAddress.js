@@ -98,6 +98,7 @@ Page({
     const addressObj = e.currentTarget.dataset.data
     // wx.setStorageSync('addressId', addressObj.addressId)
     app.globalData.choiceAddressId = addressObj.addressId
+    wx.setStorageSync('choiceAddressId', addressObj.addressId)
     wx.navigateBack({
       delta: 1
     })

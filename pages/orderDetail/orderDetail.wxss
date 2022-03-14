@@ -440,11 +440,11 @@
 }
 .redpacke-btn-instructions {
   position: absolute;
-  width: 300rpx;
+  width: 328rpx;
   left: 50%;
-  bottom: 78rpx;
+  bottom: 98rpx;
   text-align: center;
-  margin-left: -124rpx;
+  margin-left: -164rpx;
 }
 .redpacke-zhujie {
   width: 24rpx;

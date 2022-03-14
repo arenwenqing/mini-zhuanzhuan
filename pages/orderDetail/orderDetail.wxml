@@ -35,7 +35,7 @@
           <image src='/pages/images/guanbi.png' class="redpacke-close" catchtap="closeTip"></image>
         </view>
         <image src='/pages/images/zhujie.png' class="redpacke-zhujie" catchtap="showTipFun" />
-        <text class="redpacke-instructions-text">每日结算时间23点</text>
+        <text class="redpacke-instructions-text">每日结算时间4-9点</text>
       </view>
     </view>
   <view class="order-top">

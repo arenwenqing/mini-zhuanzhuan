@@ -14,7 +14,7 @@
     <menu menuList="{{menuList}}" bindclickMenuItem="clickMenuItem"></menu>
     <view class="right">
       <top-nav goodsTopType="{{goodsTopType}}" bindclickTopBar="clickTopBar"></top-nav>
-      <main-content datalist="{{listData}}"></main-content>
+      <main-content id="mainContent" datalist="{{listData}}"></main-content>
     </view>
   </view>
 </view>

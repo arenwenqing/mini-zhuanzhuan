@@ -102,17 +102,17 @@ Page({
                 this.setData({
                     listData: res.data.data ? res.data.data : []
                 })
-                 if (!this.interal) {
-                  this.interal = setInterval(() => {
-                    res.data.data.forEach(list => {
-                      this.transformHour(list.offlineTime - new Date().getTime())
-                      list.time = `${this.hours}时${this.minutes}分`
-                    })
-                    this.setData({
-                      listData: res.data.data ? res.data.data : []
-                    })
-                  }, 1000 * 60)
-                }
+            //     if (!this.interal) {
+            //     this.interal = setInterval(() => {
+            //     res.data.data.forEach(list => {
+            //         this.transformHour(list.offlineTime - new Date().getTime())
+            //         list.time = `${this.hours}时${this.minutes}分`
+            //     })
+            //     this.setData({
+            //         listData: res.data.data ? res.data.data : []
+            //     })
+            //     }, 1000 * 60)
+            // }
             },
             fail: (err) => {
                 wx.showToast({

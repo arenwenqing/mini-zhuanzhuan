@@ -22,7 +22,7 @@
     </view>
     <view class="my-item-fenge"></view>
     <view class="my-item-bottom">
-      <view class="my-item-bottom-list" wx:for="{{[1,1,1,1,1]}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+      <view class="my-item-bottom-list" wx:for="{{[1,1,1]}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
         <image wx:if="{{item.orderUserList[idx].wxAvatarUrl}}" src="{{item.orderUserList[idx].wxAvatarUrl}}" class="my-item-bottom-share-image"></image>
         <button wx:else="" data-productId="{{item.productId}}" data-originorderid="{{item.mainOrderId}}" open-type="share" class="my-item-btn-share">分享</button>
       </view>

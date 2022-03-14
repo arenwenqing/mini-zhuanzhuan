@@ -204,9 +204,26 @@ Page({
    * 更新地址
    */
   saveAddress() {
+    if (this.data.receivePeople.trim().length < 2) {
+      wx.showToast({
+        title: '姓名最少2个字',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     if (!this.data.cityObjValue.code || !this.data.provinceObjValue.code || !this.data.areaObjValue.code || !this.data.detailAddress || !this.data.receivePhone || !this.data.receivePeople) {
       wx.showToast({
         title: '请完善信息',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    // 校验手机号
+    if (this.data.receivePhone.length !== 11 || !(/^1[34578]\d{9}$/.test(this.data.receivePhone))) {
+      wx.showToast({
+        title: '手机号不合法',
         icon: 'error',
         duration: 2000
       })
