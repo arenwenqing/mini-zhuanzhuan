@@ -1,11 +1,18 @@
 /* pages/my/dayTask/dayTask.wxss */
 .my-every-day-item {
+  position: relative;
   width: 710rpx;
   height: 234rpx;
   background: #FFFFFF;
   border-radius: 10rpx;
   border: 1rpx solid #E5E5E5;
   margin: 0 auto 12rpx;
+}
+.item-done {
+  background: linear-gradient(180deg, #FFF7EE 0%, #FFE9E3 100%);
+  border-radius: 10rpx;
+  border: 4rpx solid;
+  border-image: linear-gradient(180deg, rgba(255, 146, 107, 1), rgba(250, 42, 59, 1)) 4 4;
 }
 .my-item-top {
   height: 132rpx;
@@ -55,11 +62,11 @@
   line-height: 28rpx;
 }
 .my-item-price {
-  font-size: 36rpx;
+  font-size: 48rpx;
   font-family: DINAlternate-Bold, DINAlternate;
   font-weight: bold;
   color: #DD0A00;
-  margin-top: -5rpx;
+  margin-top: 14rpx;
 }
 .my-item-price::before {
   content: "￥";
@@ -110,7 +117,8 @@
   color: #333333;
   line-height: 34rpx;
   position: relative;
-  top: -6rpx;
+  top: 44rpx;
+  right: 20rpx;
 }
 .my-item-fenge {
   width: 550rpx;
@@ -121,8 +129,11 @@
 .my-item-bottom {
   display: flex;
   height: 102rpx;
-  margin-top: 18rpx;
   margin-left: 140rpx;
+  justify-content: space-between;
+}
+.my-item-wrapper {
+  display: flex;
 }
 .my-item-bottom-list {
   width: 64rpx;
@@ -131,6 +142,7 @@
   background: #ECF0F8;
   overflow: hidden;
   margin-right: 24rpx;
+  margin-top: 18rpx;
 }
 .my-item-btn-share {
   height: 64rpx !important;
@@ -151,4 +163,20 @@
   display: inline-block;
   width: 64rpx;
   height: 64rpx;
+}
+.my-item-price-float {
+  height: 32rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #DD0A00;
+  line-height: 32rpx;
+}
+.task-done {
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  bottom: 12rpx;
+  right: 118rpx;
 }

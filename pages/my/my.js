@@ -125,6 +125,11 @@ Page({
       success: (res) => {
         res.data.data.taskList.forEach(item => {
           item.currentCashback = Number(item.currentCashback / 100).toFixed(2)
+          item.currentCashbackInt = String(item.currentCashback).split('.')[0]
+          item.currentCashbackFloat = String(item.currentCashback).split('.')[1]
+          if (item.orderUserList.length === 3) {
+            item.doneTask = true
+          }
         })
         this.setData({
           everyDayData: res.data.data

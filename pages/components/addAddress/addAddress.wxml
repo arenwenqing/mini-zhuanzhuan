@@ -1,0 +1,71 @@
+<!--pages/components/addAddress/addAddress.wxml-->
+<!--pages/addAddress/addAddress.wxml-->
+<view class="add-address-wrapper">
+  <mp-navigation-bar title='添加收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation' bindback='backPage'></mp-navigation-bar>
+  <view class="add-address-content">
+    <view class="add-address-content-wrapper">
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title add-address-title1">收货人</text>
+          <input class="weui-input" value="{{receivePeople}}" bindinput="receivePeopleChange" placeholder="请输入姓名" placeholder-class='add-address-placeholder-style' />
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title">联系电话</text>
+          <input class="weui-input address-value-style" value="{{receivePhone}}" bindinput="receivePhoneChange" placeholder-class='add-address-placeholder-style' type="idcard" placeholder="请输入电话"/>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title add-address-title2">
+            <text>省</text>
+            <text>份</text>
+          </view>
+          <picker class="weui-input weui-input-picker-style" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" mode="selector" range-key="name">
+            <text wx:if="{{!provinceObjValue.name}}" class="weui-input add-address-placeholder-style add-style2">请选择省份</text>
+            <text wx:else class="weui-input address-value-style add-address-placeholder-style add-style2">{{provinceObjValue.name}}</text>
+          </picker>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title  add-address-title2">
+            <text>市</text>
+            <text>级</text>
+          </view>
+          <view wx:if="{{!provinceObjValue.name}}" catchtap="checkProvince" class="weui-input add-address-placeholder-style add-style3">请选择市级</view>
+          <picker wx:else class="weui-input weui-input-picker-style" bindchange="cityLevelPickerChange" value="{{cityIndex}}" range="{{cityArray}}" mode="selector" range-key="name">
+            <text class="add-address-placeholder-style add-style2" wx:if="{{!cityObjValue.name}}">请选择市级</text>
+            <text class="address-value-style add-style2"  wx:else>{{cityObjValue.name}}</text>
+          </picker>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <view class="add-address-item-title  add-address-title2">
+            <text>地</text>
+            <text>区</text>
+          </view>
+          <view wx:if="{{!cityObjValue.name}}" catchtap="checkCity" class="weui-input add-address-placeholder-style add-style3">请选择地区</view>
+          <picker wx:else class="weui-input weui-input-picker-style" bindchange="areaLevelPickerChange" value="{{areaIndex}}" range="{{areaArray}}" mode="selector" range-key="name">
+            <text class="add-address-placeholder-style add-style2" wx:if="{{!areaObjValue.name}}">请选择地区</text>
+            <text class="address-value-style add-style2" wx:else>{{areaObjValue.name}}</text>
+          </picker>
+        </view>
+      </view>
+      <view class="add-address-content-item">
+        <view class="weui-cell weui-cell_input add-address-item-title-wrapper">
+          <text class="add-address-item-title">街道地址</text>
+          <input class="weui-input address-value-style" value="{{detailAddress}}" bindinput="detailAddressChange" placeholder-class='add-address-placeholder-style' placeholder="请输入地址" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="'add-address-default">
+    <text class="add-address-default-text">设置为默认地址</text>
+    <switch class="add-address-default-switch" checked="{{switchChecked}}" bindchange="switch1Change"/>
+  </view>
+  <view class="add-address-btn" catchtap="saveAddress">保存</view>
+</view>
+

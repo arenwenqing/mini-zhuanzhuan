@@ -16,7 +16,9 @@ Page({
     }],
     deleteDialog: false,
     addressObj: {},
-    fromSource: undefined
+    fromSource: undefined,
+    showAddAddress: false,
+    ifShowBackBtn: true
   },
 
   /**
@@ -188,11 +190,16 @@ Page({
    */
   addAddress(e) {
     const id = e.currentTarget.dataset.addressid
-    // wx.redirectTo({
+    // wx.navigateTo({
     //   url: `/pages/addAddress/addAddress?addressId=${id}&addressLength=${this.data.addressData.length}`,
     // })
-    wx.navigateTo({
-      url: `/pages/addAddress/addAddress?addressId=${id}&addressLength=${this.data.addressData.length}`,
+    this.setData({
+      showAddAddress: true,
+      ifShowBackBtn: false
+    })
+    this.selectComponent("#addAddressId").show({
+      addressId: id,
+      addressLength: this.data.addressData.length
     })
   },
 

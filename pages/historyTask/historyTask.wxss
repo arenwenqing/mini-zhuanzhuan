@@ -144,7 +144,6 @@
   margin-right: 24rpx;
 }
 .list-content-status {
-  width: 86rpx;
   height: 32rpx;
   background: #FFEEED;
   border-radius: 4rpx;
@@ -152,6 +151,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10rpx;
 }
 .list-content-status-value {
   font-size: 22rpx;

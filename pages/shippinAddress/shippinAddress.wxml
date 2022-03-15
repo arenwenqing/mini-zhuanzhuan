@@ -1,36 +1,41 @@
 <!--pages/shippinAddress/shippinAddress.wxml-->
 <view class="shipping-address-wrapper">
-  <mp-navigation-bar title='收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <mp-navigation-bar title='收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' back="{{ifShowBackBtn}}"></mp-navigation-bar>
   <mp-dialog title="是否删除地址？" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" ext-class='shipping-address-delete' mask="true" mask-closable="false" show="{{deleteDialog}}">
   </mp-dialog>
-  <view class="shipping-address-content">
-    <block wx:for="{{addressData}}" wx:key="index">
-      <view class="shipping-address-content-item">
-        <view class="shipping-address-content-left">
-          <image wx:if="{{addressData.length > 1 && !item.isDefault}}" class="address-delete-icon"  src='/pages/images/address-delete.png' data-datas="{{item}}" data-index="{{index}}" catchtap="deleteAddress" />
-        </view>
-        <view class="shipping-address-content-right" data-addressId="{{item.addressId}}" bindtap="addAddress">
-          <view class="shipping-address-content-right-item">
-            <text wx:if="{{item.isDefault}}" class="shipping-address-default">默认</text>
-            <view class="shipping-address-content-1">{{item.provinceName + item.cityName + item.districtName}}</view>
-            <view wx:if="{{!item.isDefault && !fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="setDefault">设为默认</view>
-            <view wx:if="{{fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="choiceAddress">选择地址</view>
+  <view wx:if="{{showAddAddress}}">
+    <add-address id="addAddressId"></add-address>
+  </view>
+  <view wx:else>
+    <view class="shipping-address-content">
+      <block wx:for="{{addressData}}" wx:key="index">
+        <view class="shipping-address-content-item">
+          <view class="shipping-address-content-left">
+            <image wx:if="{{addressData.length > 1 && !item.isDefault}}" class="address-delete-icon"  src='/pages/images/address-delete.png' data-datas="{{item}}" data-index="{{index}}" catchtap="deleteAddress" />
           </view>
-          <view class="shipping-address-content-right-item">
-            <view class="shipping-address-content-3">{{item.detail}}</view>
-            <image class="address-detail-icon" src='/pages/images/address-detail-icon.png' />
-          </view>
-          <view class="shipping-address-content-right-item">
-            <view>
-              <text class="shipping-address-content-4">{{item.receiveUsername}}</text>
-              <text class="shipping-address-content-4">{{ item.receivePhoneNum }}</text>
+          <view class="shipping-address-content-right" data-addressId="{{item.addressId}}" bindtap="addAddress">
+            <view class="shipping-address-content-right-item">
+              <text wx:if="{{item.isDefault}}" class="shipping-address-default">默认</text>
+              <view class="shipping-address-content-1">{{item.provinceName + item.cityName + item.districtName}}</view>
+              <view wx:if="{{!item.isDefault && !fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="setDefault">设为默认</view>
+              <view wx:if="{{fromSource}}" class="shipping-address-content-2" data-data="{{item}}" catchtap="choiceAddress">选择地址</view>
+            </view>
+            <view class="shipping-address-content-right-item">
+              <view class="shipping-address-content-3">{{item.detail}}</view>
+              <image class="address-detail-icon" src='/pages/images/address-detail-icon.png' />
+            </view>
+            <view class="shipping-address-content-right-item">
+              <view>
+                <text class="shipping-address-content-4">{{item.receiveUsername}}</text>
+                <text class="shipping-address-content-4">{{ item.receivePhoneNum }}</text>
+              </view>
             </view>
           </view>
         </view>
-      </view>
-    </block>
-  </view>
-  <view class="shipping-add-address-btn-wrapper">
-    <view class="shipping-add-address-btn" bindtap="addAddress">添加收货地址</view>
+      </block>
+    </view>
+    <view class="shipping-add-address-btn-wrapper">
+      <view class="shipping-add-address-btn" bindtap="addAddress">添加收货地址</view>
+    </view>
   </view>
 </view>
