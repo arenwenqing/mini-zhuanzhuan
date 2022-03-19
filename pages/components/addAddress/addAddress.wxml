@@ -66,6 +66,6 @@
     <text class="add-address-default-text">设置为默认地址</text>
     <switch class="add-address-default-switch" checked="{{switchChecked}}" bindchange="switch1Change"/>
   </view>
-  <view class="add-address-btn" catchtap="saveAddress">保存</view>
+  <view class="add-address-btn" catchtap="saveAddress">{{btnText}}</view>
 </view>
 

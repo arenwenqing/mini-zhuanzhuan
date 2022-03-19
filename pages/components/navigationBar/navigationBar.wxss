@@ -45,3 +45,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.back-icon {
+  display: inline-block;
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 34rpx;
+}

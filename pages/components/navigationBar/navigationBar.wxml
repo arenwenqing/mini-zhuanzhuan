@@ -9,8 +9,9 @@
     <view class="navigation-status" style="{{'height: ' + statusBarHeight}}"></view>
     <!--自定义导航栏-->
     <view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
+        <image wx:if="{{showBack}}" bindtap="backfun" src="/pages/images/back.png" class="back-icon" />
         <view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}">
-          团团转
+          {{titleName}}
         </view> 
         <view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>
     </view>    

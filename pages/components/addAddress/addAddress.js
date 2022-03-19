@@ -1,5 +1,6 @@
 // pages/components/addAddress/addAddress.js
-import { shareFun } from '../../../utils/globalFun'
+// import { shareFun } from '../../../utils/globalFun'
+const app = getApp()
 const domain = 'https://tuanzhzh.com'
 Component({
   /**
@@ -35,7 +36,8 @@ Component({
       name: '',
       code: ''
     },
-    addressLength: 0
+    addressLength: 0,
+    btnText: '保存'
   },
 
   /**
@@ -49,6 +51,15 @@ Component({
       wx.showLoading({
         title: '加载中'
       })
+      if (app.globalData.addressFrom === 'orderDetail') {
+        this.setData({
+          btnText: '保存并使用'
+        })
+      } else {
+        this.setData({
+          btnText: '保存'
+        })
+      }
       if (options.addressId !== 'undefined' && options.addressId) {
         // 调用获取地址详情的接口
         this.addressId = options.addressId
@@ -257,9 +268,20 @@ Component({
         },
         success: res => {
           wx.hideLoading()
-          wx.redirectTo({
-            url: `/pages/shippinAddress/shippinAddress`,
-          })
+          // app.globalData.addressFrom = 'orderDetail'
+          if (app.globalData.addressFrom === 'orderDetail') {
+            app.globalData.addressFrom = null
+            app.globalData.choiceAddressId = res.data.data[0]?.addressId
+            wx.setStorageSync('choiceAddressId', res.data.data[0]?.addressId)
+            wx.navigateBack({
+              delta: 1
+            })
+          } else {
+            this.triggerEvent('triggerEventFun')
+          }
+          // wx.redirectTo({
+          //   url: `/pages/shippinAddress/shippinAddress`,
+          // })
         },
         fail: err => {
           wx.hideLoading()

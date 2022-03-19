@@ -87,13 +87,16 @@
 }
 .shipping-add-address-btn-wrapper {
   position: fixed;
+  display: flex;
   height: 180rpx;
   background: #F7F7F7;
   width: 100vw;
   bottom: 0;
+  justify-content: center;
+  align-items: center;
 }
 .shipping-add-address-btn {
-  width: 662rpx;
+  width: 296rpx;
   height: 88rpx;
   background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
   box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255, 57, 57, 0.5);
@@ -104,14 +107,18 @@
   color: #FFFFFF;
   line-height: 88rpx;
   text-align: center;
-  margin: 0 auto;
 }
-.add-address-wrapper {
-  /* position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: #fff;
-  z-index: 999; */
+.shipping-go-index {
+  width: 296rpx;
+  height: 88rpx;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255, 57, 57, 0.5);
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 88rpx;
+  text-align: center;
+  margin-right: 40rpx;
 }

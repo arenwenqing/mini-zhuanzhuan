@@ -18,7 +18,7 @@ Page({
     addressObj: {},
     fromSource: undefined,
     showAddAddress: false,
-    ifShowBackBtn: true
+    title: '收货地址'
   },
 
   /**
@@ -195,11 +195,36 @@ Page({
     // })
     this.setData({
       showAddAddress: true,
-      ifShowBackBtn: false
+      title: '添加收货地址'
     })
     this.selectComponent("#addAddressId").show({
       addressId: id,
       addressLength: this.data.addressData.length
+    })
+  },
+
+  // 点击返回
+  backPage() {
+    if (this.data.showAddAddress) {
+      this.setData({
+        showAddAddress: false,
+        title: '收货地址'
+      })
+    }
+  },
+
+  triggerEventFun() {
+    this.setData({
+      showAddAddress: false,
+      title: '收货地址'
+    })
+    this.getUserDetail()
+  },
+
+  // 点击回到首页
+  goIndex() {
+    wx.switchTab({
+      url: '/pages/index/index',
     })
   },
 

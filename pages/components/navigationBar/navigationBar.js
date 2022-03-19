@@ -4,7 +4,18 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    titleName: {
+      type: String,
+      value: '团团转'
+    },
+    showBack: {
+      type: Boolean,
+      value: false
+    },
+    ifBack: {
+      type: Boolean,
+      value: true
+    }
   },
 
   /**
@@ -28,6 +39,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    backfun() {
+      if (this.properties.ifBack) {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        this.triggerEvent('triggerEventFun')
+      }
+    }
   }
 })

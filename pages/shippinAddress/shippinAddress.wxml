@@ -1,10 +1,12 @@
 <!--pages/shippinAddress/shippinAddress.wxml-->
 <view class="shipping-address-wrapper">
-  <mp-navigation-bar title='收货地址' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' back="{{ifShowBackBtn}}"></mp-navigation-bar>
+  <!-- <mp-navigation-bar title='{{title}}' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' back="{{false}}" bindback='backPage'>
+  </mp-navigation-bar> -->
+  <navigationBar bind:triggerEventFun="triggerEventFun" ifBack="{{!showAddAddress}}" showBack="{{true}}" titleName="{{title}}"></navigationBar>
   <mp-dialog title="是否删除地址？" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" ext-class='shipping-address-delete' mask="true" mask-closable="false" show="{{deleteDialog}}">
   </mp-dialog>
   <view wx:if="{{showAddAddress}}">
-    <add-address id="addAddressId"></add-address>
+    <add-address bind:triggerEventFun="triggerEventFun" id="addAddressId"></add-address>
   </view>
   <view wx:else>
     <view class="shipping-address-content">
@@ -35,6 +37,7 @@
       </block>
     </view>
     <view class="shipping-add-address-btn-wrapper">
+      <view class="shipping-go-index" bindtap="goIndex">回到首页</view>
       <view class="shipping-add-address-btn" bindtap="addAddress">添加收货地址</view>
     </view>
   </view>

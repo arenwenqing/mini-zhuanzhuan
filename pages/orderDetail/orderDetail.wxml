@@ -40,18 +40,6 @@
     </view>
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>
-    <!-- 获取安慰红包 注意：获得普通商品才展示，优质商品不展示 -->
-    <!-- <view wx:if="{{showComfortMoney && isCommonOrder}}" class="comfort-red-envelope {{ orderData.doubleQuotaCount === 1 ? '' : 'red-envelope-content' }}">
-      <image class="double-red-package" wx:if="{{orderData.doubleQuotaCount === 1}}" src='/pages/images/double-red.png'></image>
-      <view>
-        <view class="putong-anwei-redpacke {{rderData.doubleQuotaCount === 1 ? '' : 'redpacke-center'}}">
-          获得安慰红包
-          <text style="color: #eb392a;">{{orderData.cashback / 100}}</text>元
-          <image wx:if="{{orderData.doubleQuotaCount === 1}}" class="double-icon-class" src='/pages/images/double-icon.png'></image>
-        </view>
-        <viwe class="putong-price-description">已为您退还差价<text style="color: #eb392a;">{{orderData.coRefundAmount / 100}}</text>元</viwe>
-      </view>
-    </view> -->
     <!-- 订单已出库提示 -->
     <view wx:if="{{showHaveOutbound}}" class="order-outbound">
       您的订单已出库，正在打包中
