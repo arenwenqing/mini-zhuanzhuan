@@ -1,11 +1,6 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <view class="container">
   <mp-navigation-bar title="{{topTitle}}" color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
-  <!--引导页图片-->
-  <view wx:if="{{showGuid}}" catchtap="clickGuid">
-    <image wx:if="{{clickGuidNum === 1}}" src="https://cdn.tuanzhzh.com/image/guide1.png" class="show-guid-image" ></image>
-    <image wx:else src="https://cdn.tuanzhzh.com/image/guide%202.png" class="show-guid-image" ></image>
-  </view>
 
   <!-- 上部分模块 -->
   <!--展示红包的相关逻辑-->

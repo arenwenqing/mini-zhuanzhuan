@@ -21,11 +21,16 @@ Page({
     noticeData: [],
     currentSwiper: 0,
     receiveDatas: [],
-    listData: [],
+    listData: {
+      left: [],
+      right: []
+    },
     contentHeight: 0,
     showLoginBoot: false,
     shareOrderData: {},
-    showThanks: false
+    showThanks: false,
+    showMore: true,
+    page: 1,
   },
   // {
   //   name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
@@ -58,17 +63,16 @@ Page({
     }
     app.globalData.originTimestamp = options.originTimestamp
     let query = wx.createSelectorQuery()
-      query.select('.container-top').boundingClientRect(rect=>{
-        let height = rect.height;
-        console.log(height)
-        this.setData({
-          contentHeight: wx.getStorageSync('windowHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
-        })
-      }).exec()
+    query.select('.container-top').boundingClientRect(rect=>{
+      let height = rect.height;
+      console.log(height)
+      this.setData({
+        contentHeight: wx.getStorageSync('screenHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
+      })
+    }).exec()
   },
 
   onShow: function () {
-    console.log(1111)
     this.getList()
     // banner先写死
     // this.getIndexBanner()
@@ -166,7 +170,9 @@ Page({
         categoryId: '',
         inVogue: 1,
         productName: '',
-        containsSellOut: 0 // 是否包含售罄商品（0: 不包含，适用首页，1: 包含）
+        containsSellOut: 0, // 是否包含售罄商品（0: 不包含，适用首页，1: 包含）
+        pageSize: 10,
+        page: this.data.page,
       },
       success: (res) => {
         res.data.data && res.data.data.forEach(item => {
@@ -175,11 +181,12 @@ Page({
           item.priceDot = String(a).split('.')[1]
           item.marketPrice = (item.marketPrice / 100).toFixed(2)
         })
-        console.log(res.data.data)
-        // let s = []
-        // for (let i = 0; i < 10; i++) {
-        //   s = s.concat(res.data.data)
-        // }
+        if (res.data.data && !res.data.data.length) {
+          this.setData({
+            showMore: false
+          })
+          return
+        }
         const left = []
         const right= []
         res.data.data.forEach((item, i) => {
@@ -189,8 +196,12 @@ Page({
             left.push(item)
           }
         })
+        // const totalData = this.data.listData.left.concat(this.data.listData.right, res.data.data)
         this.setData({
-          listData: {left, right} // res.data.data ? res.data.data : []
+          listData: {
+            left: this.data.listData.left.concat([], left),
+            right: this.data.listData.right.concat([], right)
+          } // res.data.data ? res.data.data : []
         })
       },
       fail: (err) => {
@@ -199,7 +210,10 @@ Page({
           icon: 'error',
           duration: 2000
         })
-      }
+      },
+       complete: obj => {
+         wx.hideLoading()
+       }
     })
   },
 
@@ -220,6 +234,27 @@ Page({
         })
       }
     })
+  },
+
+  // 下拉加载更多
+  lower() {
+    if (this.data.showMore) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      this.setData({
+        page: this.data.page + 1
+      }, () => {
+        this.getList()
+      })
+    } else {
+      wx.showLoading({
+        title: '没有更多',
+      })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 500)
+    }
   },
 
   // 获取首页banner

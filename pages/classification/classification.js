@@ -10,15 +10,52 @@ Page({
         listData: [],
         menuList: [],
         goodsTopType: [],
-        currentTopId: ''
+        currentTopId: '',
+        contentHeight: 0,
+        showMore: true,
+        page: 1,
+        categoryId: '',
+        scrollTop: 0
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let query = wx.createSelectorQuery()
+        query.select('.search-input-wrapper').boundingClientRect(rect=>{
+        let height = rect.height;
+        this.setData({
+            contentHeight: wx.getStorageSync('screenHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
+        })
+        }).exec()
         this.getList()
         this.getCategory()
+    },
+
+    scoll(e) {
+        this.setData({
+            scrollTop: e.detail.scrollTop
+        })
+    },
+
+    // 下拉加载
+    lower() {
+        console.log('底部')
+        if (this.data.showMore) {
+            this.setData({
+                page: this.data.page + 1
+            }, () => {
+                this.getList()
+            })
+        } else {
+            wx.showLoading({
+              title: '没有更多',
+            })
+            setTimeout(() => {
+                wx.hideLoading()
+            }, 500)
+        }
     },
 
     /**
@@ -41,7 +78,14 @@ Page({
                     }, () => {
                         const { goodsTopType } = this.data
                         if (goodsTopType && goodsTopType.length) {
-                            this.getList(goodsTopType[0].id)
+                            this.setData({
+                                showMore: false,
+                                categoryId: goodsTopType[0].id,
+                                page: 1,
+                                listData: []
+                            }, () => {
+                                this.getList()
+                            })
                         } else {
                             this.setData({ listData:[] })
                         }
@@ -72,27 +116,29 @@ Page({
         })
     },
     // 获取爆款列表
-    getList (categoryId='') {
+    getList () {
         wx.showLoading({
             title: '加载中',
         })
         wx.request({
             url: domain + '/mini/product/list',
             data: {
-                categoryId: categoryId,
-                inVogue: categoryId ? -1 : 1,
-                productName: ''
+                categoryId: this.data.categoryId,
+                inVogue: this.data.categoryId ? -1 : 1,
+                productName: '',
+                page: this.data.page,
+                pageSize: 10
             },
             success: (res) => {
                 if (!res.data.data || !res.data.data.length) {
                     this.setData({
-                        listData: []
+                        showMore: false
                     })
                     return
                 }
                 res.data.data && res.data.data.forEach(item => {
                     this.transformHour(item.offlineTime - new Date().getTime())
-                    item.time = `${this.hours}时${this.minutes}分`
+                    // item.time = `${this.hours}时${this.minutes}分`
                     // item.price = (item.price / 100).toFixed(2)
                     const a = (item.price / 100).toFixed(2)
                     item.price = String(a).split('.')[0]
@@ -100,19 +146,8 @@ Page({
                     item.marketPrice = (item.marketPrice / 100).toFixed(2)
                 })
                 this.setData({
-                    listData: res.data.data ? res.data.data : []
+                    listData: this.data.listData.concat(res.data.data ? res.data.data : [])
                 })
-            //     if (!this.interal) {
-            //     this.interal = setInterval(() => {
-            //     res.data.data.forEach(list => {
-            //         this.transformHour(list.offlineTime - new Date().getTime())
-            //         list.time = `${this.hours}时${this.minutes}分`
-            //     })
-            //     this.setData({
-            //         listData: res.data.data ? res.data.data : []
-            //     })
-            //     }, 1000 * 60)
-            // }
             },
             fail: (err) => {
                 wx.showToast({
@@ -141,15 +176,38 @@ Page({
     clickMenuItem(e) {
         const receiveDetail = e.detail
         if (receiveDetail.name !== '爆款') {
-            this.getCategory(receiveDetail.id)
+            this.setData({
+                istData: [],
+                showMore: true,
+                scrollTop: 0,
+                page: 1
+            }, () => {
+                this.getCategory(receiveDetail.id)
+            })
         } else { // 爆款
-            this.getCategory()
+            this.setData({
+                categoryId: '',
+                listData: [],
+                showMore: true,
+                scrollTop: 0,
+                page: 1
+            }, () => {
+                this.getCategory()
+            })
         }
     },
     // 点击右侧上部bar
     clickTopBar(e) {
         const receiveDetail = e.detail
-        this.getList(receiveDetail.id)
+        this.setData({
+            categoryId: receiveDetail.id,
+            listData: [],
+            showMore: true,
+            scrollTop: 0,
+            page: 1
+        }, () => {
+            this.getList()
+        })
     },
 
     // 转化成小时

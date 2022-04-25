@@ -16,9 +16,15 @@ App({
     // })
     this.checkUpdateSystem()
     this.checkLogin()
+    wx.getSystemInfo().then(systemMessage => {
+      const tabbarHeight = ( systemMessage.screenHeight - systemMessage.windowHeight - systemMessage.statusBarHeight ) * systemMessage.pixelRatio
+      console.log(systemMessage)
+      wx.setStorageSync('tabbarHeight', tabbarHeight)
+      wx.setStorageSync('screenHeight', systemMessage.screenHeight)
+    })
     const { statusBarHeight, platform, windowHeight } = wx.getSystemInfoSync()
     const { top, height } = wx.getMenuButtonBoundingClientRect()
-    console.log(wx.getSystemInfoSync())
+    // console.log(wx.getSystemInfoSync())
     // 状态栏高度
     wx.setStorageSync('statusBarHeight', statusBarHeight)
     // 胶囊按钮高度 一般是32 如果获取不到就使用32

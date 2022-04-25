@@ -6,27 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // list: [{
-    //   icon: '/pages/images/3.png',
-    //   text: '我的订单',
-    //   key: '2'
-    // }, {
-    //   icon: '/pages/images/2.png',
-    //   text: '我的地址',
-    //   key: '4'
-    // }, {
-    //   icon: '/pages/images/7.png',
-    //   text: '我的客服',
-    //   key: '5'
-    // }, {
-    //   icon: '/pages/images/1.png',
-    //   text: '用户协议',
-    //   key: '6'
-    // }, {
-    //   icon: '/pages/images/6.png',
-    //   text: '隐私协议',
-    //   key: '7'
-    // }],
     listData: [[{
       icon: '/pages/images/history-task-icon.png',
       text: '历史任务',
@@ -68,7 +47,13 @@ Page({
     deleteDialog: false,
     currentSwiper: 0,
     showEveryDayTask: true,
-    everyDayData: {}
+    everyDayData: {},
+    showNoListImg: false,
+    moneyTotal: 0,
+    clickGuidNum: 1,
+    showGuid: false,
+    currentAvailableCashback: 0, //当前可提现红包金额
+    currentAllCashback: 0 // 当前红包总额
   },
 
   /**
@@ -107,6 +92,8 @@ Page({
             showEveryDayTask: true
           })
           this.getDayTask()
+          this.getMoneyTotal()
+          this.getCurrentRedPackageMessage()
           this.getMessage()
         })
       }
@@ -114,6 +101,31 @@ Page({
         deleteDialog: false
       })
     },
+  // 获取红包总额
+  getMoneyTotal() {
+    wx.request({
+      url: domain + '/mini/task/cashback/toSettle',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        userId: wx.getStorageSync('userId')
+      },
+      success: res => {
+        this.setData({
+          moneyTotal: (res.data.data.cashback / 100).toFixed(2)
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
   // 获取每日任务
   getDayTask() {
     wx.request({
@@ -132,7 +144,8 @@ Page({
           }
         })
         this.setData({
-          everyDayData: res.data.data
+          everyDayData: res.data.data,
+          showNoListImg: res.data.data.taskList.length > 0 ? false : true
         })
       },
       fail: (err) => {
@@ -158,8 +171,36 @@ Page({
         showEveryDayTask: true
       })
       this.getDayTask()
+      this.getMoneyTotal()
+      this.getCurrentRedPackageMessage()
       this.getMessage()
     })
+  },
+
+  // 引导页
+  guidPage() {
+    this.setData({
+      showGuid: true
+    })
+    wx.hideTabBar({
+      animation: true
+    })
+  },
+
+  clickGuid() {
+    if (this.data.clickGuidNum === 1) {
+      this.setData({
+        clickGuidNum: ++this.data.clickGuidNum
+      })
+    } else {
+      this.setData({
+        showGuid: false,
+        clickGuidNum: 1
+      })
+      wx.showTabBar({
+        animation: true
+      })
+    }
   },
 
   /**
@@ -217,68 +258,41 @@ Page({
   },
 
   /**
-   * 方法
+   * 跳转首页
    */
-  // 点击我的页面 item
-  // onClickMyGoPage(e) {
-  //   const clickTarget = e.currentTarget.dataset.target
-  //   if (clickTarget.key === '1') {
-  //     // 双倍红包劵
-  //     this.setData({
-  //       tipShow: true
-  //     })
-  //   } else if (clickTarget.key === '2') { // 我的拼团
-  //     if (!wx.getStorageSync('userId')) {
-  //       this.setData({
-  //         deleteDialog: true
-  //       })
-  //       return
-  //     }
-  //     wx.navigateTo({
-  //       url: '/pages/mySpellGroup/mySpellGroup',
-  //     })
-  //   } else if (clickTarget.key === '3') { // 点击兑换码
-  //     if (!wx.getStorageSync('userId')) {
-  //       this.setData({
-  //         deleteDialog: true
-  //       })
-  //       return
-  //     }
-  //     wx.navigateTo({
-  //       url: '/pages/conversionCode/conversionCode',
-  //     })
-  //   } else if (clickTarget.key === '4') {
-  //     if (!wx.getStorageSync('userId')) {
-  //       this.setData({
-  //         deleteDialog: true
-  //       })
-  //       return
-  //     }
-  //     app.globalData.addressFrom = undefined
-  //     wx.navigateTo({
-  //       url: '/pages/shippinAddress/shippinAddress',
-  //     })
-  //   } else if (clickTarget.key === '5') {
-  //     if (!wx.getStorageSync('userId')) {
-  //       this.setData({
-  //         deleteDialog: true
-  //       })
-  //       return
-  //     }
-  //     // 我的客服
-  //     this.setData({
-  //       visibile: true
-  //     })
-  //   } else if (clickTarget.key === '6') { // 用户协议
-  //     wx.navigateTo({
-  //       url: '/pages/userAgreement/userAgreement',
-  //     })
-  //   } else if (clickTarget.key === '7') { // 隐私协议
-  //     wx.navigateTo({
-  //       url: '/pages/privacyAgreement/privacyAgreement',
-  //     })
-  //   }
-  // },
+  toIndex() {
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+
+  // 获取当前红包的信息
+  getCurrentRedPackageMessage() {
+    wx.request({
+      url: domain + '/mini/cashback/currentInfo',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        userId: wx.getStorageSync('userId')
+      },
+      success: res => {
+        this.setData({
+          currentAvailableCashback: (res.data.data.currentAvailableCashback / 100).toFixed(2),
+          currentAllCashback: (res.data.data.currentAvailableCashback / 100).toFixed(2)
+        })
+        wx.setStorageSync('currentAvailableCashback', (res.data.data.currentAvailableCashback / 100).toFixed(2))
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
 
   /**
    * 关闭提示框
@@ -344,6 +358,8 @@ Page({
         userNum: wx.getStorageSync('userNum')
       })
       this.getDayTask()
+      this.getMoneyTotal()
+      this.getCurrentRedPackageMessage()
     } else {
       this.setData({
         showAvatar: false,
@@ -365,6 +381,15 @@ Page({
    */
   onUnload: function () {
 
+  },
+
+  /**
+   * 跳转提现列表
+   */
+  goWithDrawer () {
+    wx.navigateTo({
+      url: '/pages/withdrawalRedPackage/withdrawal',
+    })
   },
 
   /**
@@ -407,7 +432,8 @@ Page({
       url = `/pages/detail/detail?from=share&originOrderId=${option.target.dataset.originorderid}&productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
     return shareFun({
-      path: url
+      path: url,
+      ...(option.target ? {imageUrl: option.target.dataset.imgurl} : {})
     })
   }
 })

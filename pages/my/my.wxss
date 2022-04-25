@@ -173,19 +173,27 @@
   top: -28rpx;
 }
 .my-header {
-  height: 164rpx;
-  background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
+  width: 100%;
+  height: 320rpx;
+  background: url('https://cdn.tuanzhzh.com/system/custom/my-top-bg2.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* background: linear-gradient(86deg, #FF625C 0%, #F40026 100%); */
+}
+.my-header2 {
+  height: 300rpx;
 }
 .my-header-content {
   display: flex;
-  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+  padding-top: 16rpx;
+  /* background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%); */
 }
 .my-header-list-wrapper {
   height: 188rpx;
   background: #FFFFFF;
   border-radius: 24rpx;
   position: relative;
-  top: -20rpx;
+  margin-top: -130rpx;
 }
 .list-wrapper-swiper {
   height: 188rpx;
@@ -293,4 +301,134 @@
   color: #333333;
   line-height: 40rpx;
   margin-left: 20rpx;
+}
+.no-list-empty {
+  display: block;
+  width: 520rpx;
+  height: 380rpx;
+  margin: 30rpx auto 20rpx;
+}
+.no-list-text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #C0C0C0;
+  line-height: 32rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.no-list-btn {
+  width: 320rpx;
+  height: 88rpx;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+  border-radius: 44rpx;
+  margin:  0 auto;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 88rpx;
+  margin-bottom: 20rpx;
+}
+.no-list-task-instructions {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #F41B20;
+  line-height: 32rpx;
+  text-decoration: underline;
+  text-align: center;
+}
+/* .my-user-money-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 140rpx;
+  justify-content: center;
+  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
+}
+.my-user-money-total text:nth-child(1) {
+  font-size: 64rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 64rpx;
+}
+.my-user-money-total text:nth-child(1)::before {
+  content: "￥";
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 44rpx;
+  margin-right: 10rpx;
+} */
+/* .my-user-money-total text:nth-child(2) {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 24rpx;
+  margin-top: 10rpx;
+} */
+.show-guid-image {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.my-preload {
+  display: none;
+}
+.my-red-package-wrapper {
+  display: flex;
+  width: 710rpx;
+  height: 160rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 0 auto;
+  position: relative;
+  top: -150rpx;
+  align-items: center;
+}
+.my-red-package-wrapper-left, .my-red-package-wrapper-right {
+  flex: 1;
+}
+.my-red-package-inner-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-header-text1 {
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #DD0A00;
+  line-height: 44rpx;
+}
+.my-header-text2 {
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #DD0A00;
+  line-height: 48rpx;
+}
+.my-red-package-inner-bottom {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rpx;
+}
+.my-left-arrow {
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 2rpx;
 }

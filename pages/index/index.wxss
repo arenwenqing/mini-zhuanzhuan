@@ -21,6 +21,39 @@
   margin-top: -1rpx;
   padding: 0;
   font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.index-search-wrapper {
+  position: relative;
+}
+.index-search-icon {
+  position: absolute;
+  display: inline-block;
+  position: absolute;
+  width: 26rpx;
+  height: 26rpx;
+  left: 18rpx;
+  top: 21rpx;
+}
+.index-search-text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 24rpx;
+  position: relative;
+  top: 20rpx;
+  left: 53rpx;
+}
+.index-search {
+  width: 300rpx;
+  height: 60rpx;
+  background:rgba(255, 255, 255, 0.5);
+  border-radius: 36rpx;
+  border: 1rpx solid #DBDBDB;
+  margin-right: 22rpx;
 }
 .container-title {
   font-size: 34rpx;
@@ -99,7 +132,7 @@
   height: 60rpx;
   overflow: hidden;
   position: relative;
-  top: 25rpx;
+  left: 13rpx;
 }
 .container-receive-wrapper {
   height: 60rpx;

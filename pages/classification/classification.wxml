@@ -14,7 +14,9 @@
     <menu menuList="{{menuList}}" bindclickMenuItem="clickMenuItem"></menu>
     <view class="right">
       <top-nav goodsTopType="{{goodsTopType}}" bindclickTopBar="clickTopBar"></top-nav>
-      <main-content id="mainContent" datalist="{{listData}}"></main-content>
+      <scroll-view scroll-y="true" bindscrolltolower="lower" bindscroll="scoll" style="{{'height:' +  contentHeight}}" lower-threshold="50" scroll-top="{{scrollTop}}">
+        <main-content id="mainContent" datalist="{{listData}}"></main-content>
+      </scroll-view>
     </view>
   </view>
 </view>

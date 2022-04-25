@@ -35,7 +35,7 @@
   height: 750rpx;
 }
 .detail-name-price-wrapper {
-  height: 400rpx;
+  height: 300rpx;
   background: #fff;
 }
 .detai-name-price-content {
@@ -130,8 +130,8 @@
   margin: 8rpx 0 12rpx 0rpx
 }
 .detail-num {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
   font-size: 20rpx;
   font-family: PingFang-SC-Bold, PingFang-SC;
   font-weight: bold;
@@ -245,20 +245,6 @@
   text-align: center;
   line-height: 88rpx;
 }
-/* .detail-bottom-right {
-  width: 320rpx;
-  height: 88rpx;
-  background: linear-gradient(86deg, #FEAA32 0%, #FE8732 100%);
-  box-shadow: 0rpx 8rpx 16rpx 0rpx #FFC399;
-  border-radius: 44rpx;
-  font-size: 32rpx;
-  font-family: PingFang-SC-Bold, PingFang-SC;
-  font-weight: bold;
-  color: #FFFFFF;
-  line-height: 88rpx;
-  text-align: center;
-  margin-top: 16rpx;
-} */
 .goods-item-red-icon {
   display: inline-block;
   width: 60rpx;
@@ -270,4 +256,25 @@
   align-items: center;
   /* margin-top: 8rpx; */
   justify-content: flex-end;
+}
+.detail-goods-evaluation-wrapper {
+  display: flex;
+  align-items: center;
+}
+.detail-goods-evaluation-wrapper text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+.detail-goods-style {
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+}
+.detail-goods-star-wrapper {
+  display: flex;
+  align-items: center;
 }

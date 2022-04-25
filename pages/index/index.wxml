@@ -17,27 +17,35 @@
         </swiper>
       </view>
     </view>
-  </view>
-  <view style="{{'height: ' + contentHeight}}" class="home-content-wrapper">
-    <view class="home-content-top"></view>
-    <!--轮播图 indicator-dots='false'-->
-    <view class="swiper-wrapper">
-      <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
-        <block wx:for="{{movies}}" wx:key="index">
-          <swiper-item class="swiper-item-wrapper">
-            <image class="swiper-image" bindtap="skipBannerDetail" data-value="{{item.value}}" src='{{item.name}}' mode='aspectFill'></image> 
-          </swiper-item>
-        </block>
-      </swiper>
-      <!--重置小圆点的样式  -->
-      <view class="dots">  
-          <block wx:for="{{movies}}" wx:key="index">  
-            <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
-          </block>  
+    <view class="index-search-wrapper">
+      <image class="index-search-icon" src='../images/search.png' />
+      <view class="index-search" bindtap="goSearch" disabled="{{true}}" confirm-type="search" selection-start="60" placeholder-class='index-search-placeholder'>
+        <text class="index-search-text">搜索商品</text>
       </view>
     </view>
-    <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
   </view>
+  <scroll-view scroll-y="true" bindscrolltolower="lower" style="{{'height:' +  contentHeight}}" lower-threshold="50">
+    <view  class="home-content-wrapper">
+      <view class="home-content-top"></view>
+      <!--轮播图 indicator-dots='false'-->
+      <view class="swiper-wrapper">
+        <swiper  current='currentSwiper' indicator-active-color='#FA2840' autoplay='true' interval='3000'  duration='1000' circular='true' bindchange="swiperChange">
+          <block wx:for="{{movies}}" wx:key="index">
+            <swiper-item class="swiper-item-wrapper">
+              <image class="swiper-image" bindtap="skipBannerDetail" data-value="{{item.value}}" src='{{item.name}}' mode='aspectFill'></image> 
+            </swiper-item>
+          </block>
+        </swiper>
+        <!--重置小圆点的样式  -->
+        <view class="dots">  
+            <block wx:for="{{movies}}" wx:key="index">  
+              <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
+            </block>  
+        </view>
+      </view>
+      <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
+    </view>
+  </scroll-view>
   <!-- <loginBoot show="{{showLoginBoot}}" bindshowthank="onShowThank" shareOrderData="{{shareOrderData}}"></loginBoot>
   <thanks show="{{showThanks}}" shareOrderData="{{shareOrderData}}"></thanks> -->
 </view>

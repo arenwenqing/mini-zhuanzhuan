@@ -18,7 +18,8 @@ Page({
     addressObj: {},
     fromSource: undefined,
     showAddAddress: false,
-    title: '收货地址'
+    title: '收货地址',
+    showBigBtn: false
   },
 
   /**
@@ -41,6 +42,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      showBigBtn: app.globalData.addressFrom === 'orderDetail'
+    })
     this.getUserDetail()
     this.setData({
       fromSource: app.globalData.addressFrom

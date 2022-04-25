@@ -37,8 +37,11 @@
       </block>
     </view>
     <view class="shipping-add-address-btn-wrapper">
-      <view class="shipping-go-index" bindtap="goIndex">回到首页</view>
-      <view class="shipping-add-address-btn" bindtap="addAddress">添加收货地址</view>
+      <view wx:if="{{showBigBtn}}" class="shipping-add-address-btn shipping-add-address-btn2" bindtap="addAddress">添加收货地址</view>
+      <view wx:else class="shipping-add-address-btn-wrapper">
+        <view class="shipping-go-index" bindtap="goIndex">回到首页</view>
+        <view class="shipping-add-address-btn" bindtap="addAddress">添加收货地址</view>
+      </view>
     </view>
   </view>
 </view>

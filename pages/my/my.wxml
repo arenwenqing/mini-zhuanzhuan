@@ -1,7 +1,14 @@
 <!--pages/my/my.wxml-->
 <view class="my-wrapper">
-  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
+  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
+  <!--引导页图片-->
+  <image src="https://cdn.tuanzhzh.com/system/custom/yindao1.png" class="my-preload" />
+  <image src="https://cdn.tuanzhzh.com/system/custom/yindao2.png" class="my-preload" />
+  <view wx:if="{{showGuid}}" catchtap="clickGuid">
+    <image wx:if="{{clickGuidNum === 1}}" src="https://cdn.tuanzhzh.com/system/custom/yindao1.png" class="show-guid-image" ></image>
+    <image wx:else src="https://cdn.tuanzhzh.com/system/custom/yindao2.png" class="show-guid-image" ></image>
+  </view>
   <view class="my-header">
     <view class="my-header-content">
       <view class="my-user-avatar" catchtap="getUserProfile">
@@ -14,6 +21,31 @@
           <text class="my-user-id">ID:{{userNum}}</text>
         </view>
         <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
+      </view>
+    </view>
+    <!-- <view wx:if="{{showAvatar}}" class="my-user-money-total">
+      <text>{{moneyTotal}}</text>
+      <text>红包总额</text>
+    </view> -->
+  </view>
+  <view class="my-red-package-wrapper">
+    <view class="my-red-package-wrapper-left">
+      <view class="my-red-package-inner-top">
+        <text class="my-header-text1">￥</text>
+        <text wx:if="{{showAvatar}}" class="my-header-text2">{{currentAllCashback}}</text>
+        <text wx:else class="my-header-text2">--</text>
+      </view>
+      <view class="my-red-package-inner-bottom">红包总额</view>
+    </view>
+    <view class="my-red-package-wrapper-right">
+      <view class="my-red-package-inner-top">
+        <text class="my-header-text1">￥</text>
+        <text wx:if="{{showAvatar}}" class="my-header-text2">{{currentAvailableCashback}}</text>
+        <text wx:else class="my-header-text2">--</text>
+      </view>
+      <view class="my-red-package-inner-bottom" catchtap="goWithDrawer">
+        <text>可提现</text>
+        <image src="../images/my-left-arrow.png" class="my-left-arrow" />
       </view>
     </view>
   </view>
@@ -43,29 +75,12 @@
       <text class="my-task-tip">次日4-9点结算并付款</text>
     </view>
     <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
-  </view>
-  <!-- <view class="my-user-message">
-    <view class="my-user-item-wrapper">
-      <view wx:if="{{tipShow}}" class="my-user-quan-tip">
-        <image src="/pages/images/guanbi.png" class="my-user-quan-guanbi" bindtap="closeTip" />
-        <view class="my-user-quan-tip-wrapper">
-          <text class="my-user-quan-text">1 双倍红包券使用后，若获得红包，则红包金额翻倍；</text>
-          <text class="my-user-quan-text">2 双倍红包券为一次性优惠券，使用即生效，一经成团，无论结果均视为已使用；</text>
-          <text class="my-user-quan-text">3 双倍红包券使用后，可额外减少1名当前成团需要的人数;</text>
-          <text class="my-user-quan-text2">本使用说明的最终解释权归团团转所有</text>
-        </view>
-        <image class="my-user-quan-tip-triangle" src="/pages/images/triangle.png" />
-      </view>
-      <block wx:for="{{list}}" wx:key="index">
-        <view class="my-user-item" bindtap="onClickMyGoPage" data-target="{{item}}">
-          <view>
-            <image src="{{item.icon}}" class="my-user-item-icon"></image>
-            <text class="my-user-item-text">{{item.text}}</text>
-          </view>
-          <image src='/pages/images/more.png' class="my-user-item-more"></image>
-        </view>
-      </block>
+    <view wx:if="{{showNoListImg}}">
+      <image src="/pages/images/no-list-img.png" class="no-list-empty" />
+      <view class="no-list-text">暂无任务</view>
+      <view class="no-list-btn" bindtap="toIndex">去完成今日任务</view>
+      <view class="no-list-task-instructions" bindtap="guidPage">如何完成任务领大红包</view>
     </view>
-  </view> -->
+  </view>
   <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
 </view>

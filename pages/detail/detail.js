@@ -12,9 +12,9 @@ Page({
     carousel: [],
     title: '',
     productId: '',
-    hours: '00',
-    minutes: '00',
-    seconds: '00',
+    // hours: '00',
+    // minutes: '00',
+    // seconds: '00',
     showDialog: false,
     deleteDialog: false,
     sureStartTaskDialog: false,
@@ -25,7 +25,8 @@ Page({
     }],
     originOrderId: 0,
     isZero: wx.getStorageSync('isZero') == 1,
-    zeroOrderId: ''
+    zeroOrderId: '',
+    goodsStar: [1, 1, 1, 1, 1]
   },
 
   /**
@@ -81,17 +82,25 @@ Page({
         res.data.data.price = String(a).split('.')[0]
         res.data.data.priceDot = String(a).split('.')[1]
         res.data.data.marketPrice = (res.data.data.marketPrice / 100).toFixed(2)
+        if (!res.data.data.productEvaluation) {
+          res.data.data.productEvaluation = {
+            entiretyLevel: 4,
+            entiretyScore: 4
+          }
+        } else {
+          res.data.data.productEvaluation.entiretyLevel = parseInt(res.data.data.productEvaluation.entiretyLevel)
+        }
         this.setData({
           detailData: res.data.data ? res.data.data : {},
           carousel: res.data.data.headPhotoAddress ? res.data.data.headPhotoAddress: [],
           productId: res.data?.data?.productId,
           title: res.data?.data?.majorName
         })
-        if (!this.interal) {
-          this.interal = setInterval(() => {
-            this.transformHour(res.data.data.offlineTime - new Date().getTime())
-          }, 1000)
-        }
+        // if (!this.interal) {
+        //   this.interal = setInterval(() => {
+        //     this.transformHour(res.data.data.offlineTime - new Date().getTime())
+        //   }, 1000)
+        // }
       },
       fail: (err) => {
         wx.showToast({
@@ -265,7 +274,8 @@ Page({
     flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
+      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`,
+      imageUrl: this.data.carousel[0]
     })
   },
 
@@ -276,7 +286,8 @@ Page({
     flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`
+      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`,
+      imageUrl: this.data.carousel[0]
     })
   }
 })

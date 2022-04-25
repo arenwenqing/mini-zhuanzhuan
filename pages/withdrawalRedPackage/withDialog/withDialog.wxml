@@ -1,0 +1,25 @@
+<!--pages/components/dialog/dialog.wxml-->
+<view class="mask" wx:if="{{visible}}">
+  <view class="dialog-content">
+    <view class="dialog-content-main">
+      <text>可提现金额￥{{currentCashback}}</text>
+    </view>
+    <view class="dialog-with-drawer-fail">
+      <text>提现失败:{{erroMsg}}</text>
+    </view>
+    <view class="with-input-wrapper">
+      <text class="input-title">请输入提现金额</text>
+      <input 	placeholder-class='with-input-placeholder' placeholder="请输入提现金额" class="with-dialog-input" bindinput="inputValue" type="digit" />
+    </view>
+    <view class="with-dialog-drawer-tip">
+      <view>每日提现总额不超过1000元</view>
+      <view>单次提现限额为1~300元</view>
+      <view>每日提现次数不超过9次</view>
+    </view>
+    <view class="dialog-content-bottom">
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">取消</button>
+      <view class="dialog-btn-style-fenge"></view>
+      <button type="default" class="dialog-btn-style" plain="false" catchtap="closeDialog">确定</button>
+    </view>
+  </view>
+</view>

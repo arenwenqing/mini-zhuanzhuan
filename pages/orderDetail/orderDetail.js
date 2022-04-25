@@ -10,11 +10,12 @@
  * 204 1:已取消（超时未支付）-已取消
  * 501 7:待发货
  * 502 8:商品已出库
- * 503 9:商品已签收
+ * 503 9:商品待收货
  * 504 商品签收
  * 511 商品退货中
  * 512 10:商品已退货
  * 521 商品已退款
+ * 601 已评价
   退款：待发货的状态展示
   退货：已出库、待收货、已签收的状态展示
  */
@@ -385,7 +386,7 @@ Page({
       wx.switchTab({
         url: '/pages/classification/classification',
       })
-    } else if (orderStatusCode === 502) {
+    } else if (orderStatusCode === 503) {
       // 确认收货需要重新请求一下商品详情接口
       this.signFor()
     } else {
@@ -732,8 +733,10 @@ Page({
   onShareAppMessage: function () {
     const currentTime = new Date().getTime()
     flag = true
+    // orderData.product.headPhotoAddress[0]
     return shareFun({
-      path: `/pages/detail/detail?from=share&productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`
+      path: `/pages/detail/detail?from=share&productId=${this.data.orderData.product.productId}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&originOrderId=${this.data.orderId}&doubleShare=${this.data.orderData.cashbackCount}`,
+      imageUrl: this.data.orderData.product.headPhotoAddress[0]
     })
   }
 })

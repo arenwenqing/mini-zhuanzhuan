@@ -1,0 +1,42 @@
+<!--pages/withdrawalRedPackage/withdrawal.wxml-->
+<view class="with-drawer-wrapper">
+  <mp-navigation-bar title='红包金额' color='#fff' background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)'></mp-navigation-bar>
+  <view class="with-drawer-top-wrapper" id='with-drawer-top-id'>
+    <view class="with-drawer-top-top">
+      <view class="with-top-top-left">
+        <text>可提现金（元）</text>
+        <image src='../images/with-tip.png' class="with-tip" catchtap="showTip" />
+        <view class="{{ showTip ? 'with-tip-wrapper' : 'hidden'}}">
+          <image src='../images/with-tip-triangle.png' class="with-tip-triangle"></image>
+          <image src='../images/guanbi.png' class="with-tip-close" catchtap="closeTip" />
+          <view class="with-tip-wrapper-content">
+            <view class="with-tip-item-content">1 当您推广的用户完成评价后，您获得的红包即可体现。</view>
+            <view class="with-tip-item-content">2 您每笔提现最少1元。</view>
+            <view class="with-tip-item-content">3 您每日最多可提现3次，每次提现上限300元，每日提现总 额900元。</view>
+            <view class="with-tip-item-content">4 您获得的红包请自行缴纳个人所得税。</view>
+            <view class="with-tip-bottom-content">
+              <text>本使用说明的最终解释权归团团转所有</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="with-top-top-right" catchtap="withDrawer">
+        立即提现
+      </view>
+    </view>
+    <view class="with-drawer-top-bottom">{{currentCashback}}</view>
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="lower" style="{{'height:' +  contentHeight}}" lower-threshold="0">
+    <view class="with-item" wx:for="{{listData}}" wx:key="index">
+      <view class="with-item-top">
+        <text class="with-item-time">{{item.withdrawTime}}</text>
+        <view class="with-item-number">
+          <text>￥</text>
+          <text>{{item.withdrawAmount}}</text>
+        </view>
+      </view>
+      <view class="with-item-bottom">{{item.withdrawStatus.name}}</view>
+    </view>
+  </scroll-view>
+  <with-dialog showDialog="{{showDialog}}"></with-dialog>
+</view>
