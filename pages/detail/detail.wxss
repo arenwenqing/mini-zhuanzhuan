@@ -73,11 +73,12 @@
   margin-right: 8rpx;
 }
 .detail-current-price text:nth-child(4) {
-  font-size: 20rpx;
+  font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #DD0A00;
-  line-height: 28rpx;
+  color: #E00100;
+  line-height: 24rpx;
+  margin-left: 20rpx;
 }
 .detail-old-price  text:nth-child(1) {
   font-size: 28rpx;

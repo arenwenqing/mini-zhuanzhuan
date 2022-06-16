@@ -2,10 +2,10 @@
 <view class="mask" wx:if="{{visible}}">
   <view class="dialog-content">
     <view class="dialog-content-main">
-      <text>可提现金额￥{{currentCashback}}</text>
+      <text>可提现金额￥{{withNumber}}</text>
     </view>
     <view class="dialog-with-drawer-fail">
-      <text>提现失败:{{erroMsg}}</text>
+      <text wx:if="{{failText}}">提现失败:{{erroMsg}}</text>
     </view>
     <view class="with-input-wrapper">
       <text class="input-title">请输入提现金额</text>

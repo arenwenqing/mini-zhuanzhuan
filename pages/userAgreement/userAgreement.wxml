@@ -56,11 +56,29 @@
       <view class="module-title-rule">10：团团转依托微信支付进行收款、退款或其他活动补贴的发放，具体到账时间及支付规则以微信支付官方公布的为准。</view>
     </view>
     <view class="module">
-      <view class="module-title">五．用户隐私制度</view>
+      <view class="module-title">五．团团转电商推广规则</view>
+      <view class="module-title-rule">1：以赚取佣金为目的参与团团转电商推广的用户被称为“团长”（以下简称为“团长”）。</view>
+      <view class="module-title-rule">2：团长是一种特殊身份，而非特殊用户类别，成为团长的用户，可同时拥有团长和普通用
+户两种身份，并可自由选择切换。</view>
+      <view class="module-title-rule">3：团长身份分为三个大级别，从低至高依次为“团长”、“大团长”、“超级团长”，“大
+团长”和“超级团长”还会根据团队规模划分为“I 级”、“II 级”、“III 级”，划分规则
+以团团转官方说明为准。</view>
+      <view class="module-title-rule">4：团长获得佣金的计算方式以团团转官方说明为准。</view>
+      <view class="module-title-rule">5：由于团团转使用微信支付做为资金结算方，所以团长获得的佣金，仅可以自行提现至绑
+定的本人的微信零钱账户，每日提现次数与数额以团团转官方说明为准。</view>
+      <view class="module-title-rule">6：团长在提现时，请自觉遵守中华人民共和国之相关法律法规，及微信支付官方公布的相
+关支付规则。</view>
+      <view class="module-title-rule">7：团长提现自身获得的佣金后，请遵守所在地之相关法律法规与政策，及时完成自身个人
+所得税的缴纳。</view>
+      <view class="module-title-rule">8：若团长自获得佣金的次日起至三年期满仍未提现佣金，则视为放弃佣金所有权，团团转
+将不在保留该佣金。</view>
+    </view>
+    <view class="module">
+      <view class="module-title">六．用户隐私制度</view>
       <view>团团转将对您所提交的或者获取的信息予以保护。</view>
     </view>
     <view class="module">
-      <view class="module-title">六．通知与送达</view>
+      <view class="module-title">七．通知与送达</view>
       <view>您知悉并认可，团团转可视情况通过下列任意一种或几种方式向您通知重要信息：</view>
       <view>（1）向您注册时所提交的微信发送消息；</view>
       <view>（2）向您注册时所提交的手机号码发送电子信息；</view>
@@ -70,7 +88,7 @@
       </view>
     </view>
     <view class="module">
-      <view class="module-title">七．不可抗力或其他免责事由</view>
+      <view class="module-title">八．不可抗力或其他免责事由</view>
       <view>不论在何种情况下，团团转对由于信息网络设备维护、信息网络连接故障、电脑、通讯或其他系统的故障、电力故障、罢工、劳动争议、暴乱、起义、骚乱、火灾、洪水、风暴、爆炸、战争、政府行为、司法行政机关的命令、其他不可抗力或第三方的不作为而造成的不能服务或延迟服务不承担责任。</view>
       <view>由此给您造成的损失，团团转在法律允许的范围内免责。</view>
       <view>其他免责事由：您理解并同意，在法律允许的范围内，团团转对以下事由所导致的服务中断或终止不承担责任：</view>
@@ -81,11 +99,11 @@
       <view>（5）其他团团转无法控制或合理预见的情形。</view>
     </view>
     <view class="module">
-      <view class="module-title">八.法律适用和管辖</view>
+      <view class="module-title">九.法律适用和管辖</view>
       <view>本服务条款的订立、履行、解释以及因此而发生的一切争议，均适用中华人民共和国（为本服务条款目的，不含港、澳、台地区）的法律。就本服务条款所发生的一切争议，均应通过友好协商解决；如协商不成，任何一方均可向北京啧优科技有限公司在地人民法院提起诉讼。</view>
     </view>
     <view class="module">
-      <view class="module-title">九．意见及反馈</view>
+      <view class="module-title">十．意见及反馈</view>
       <view>如果您对我们的服务协议有任何疑问，您可通过团团转小程序内的客服模块联系我们。</view>
     </view>
   </view>

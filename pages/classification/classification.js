@@ -22,6 +22,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.hideShareMenu()
         let query = wx.createSelectorQuery()
         query.select('.search-input-wrapper').boundingClientRect(rect=>{
         let height = rect.height;
@@ -29,7 +30,7 @@ Page({
             contentHeight: wx.getStorageSync('screenHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
         })
         }).exec()
-        this.getList()
+        // this.getList()
         this.getCategory()
     },
 
@@ -69,7 +70,11 @@ Page({
         wx.request({
             url: domain + '/mini/product/category/list',
             data: {
-                parentId: parentId,
+              parentId: parentId,
+            },
+            header: {
+              openid: wx.getStorageSync('openid'),
+              userid: wx.getStorageSync('userId')
             },
             success: (res) => {
                 if (parentId) { // 分类右侧数据
@@ -123,11 +128,15 @@ Page({
         wx.request({
             url: domain + '/mini/product/list',
             data: {
-                categoryId: this.data.categoryId,
-                inVogue: this.data.categoryId ? -1 : 1,
-                productName: '',
-                page: this.data.page,
-                pageSize: 10
+              categoryId: this.data.categoryId,
+              inVogue: this.data.categoryId ? -1 : 1,
+              productName: '',
+              page: this.data.page,
+              pageSize: 10
+            },
+            header: {
+              openid: wx.getStorageSync('openid'),
+              userid: wx.getStorageSync('userId')
             },
             success: (res) => {
                 if (!res.data.data || !res.data.data.length) {
@@ -246,8 +255,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        // this.getList()
-        // this.getCategory()
     },
 
     /**

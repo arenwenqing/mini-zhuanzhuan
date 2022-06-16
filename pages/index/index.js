@@ -1,6 +1,6 @@
 // index.js
 // 获取应用实例
-import { shareFun } from '../../utils/globalFun'
+import { shareFun, fetchData } from '../../utils/globalFun'
 const app = getApp()
 const domain = 'https://tuanzhzh.com'
 Page({
@@ -12,7 +12,7 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     movies: [ {
-      name: 'https://cdn.tuanzhzh.com/banner/new-banner.png',
+      name: 'https://cdn.tuanzhzh.com/banner/three-people-banner.png',
       value: 2
     }, {
       name: 'https://cdn.tuanzhzh.com/banner/stop-banner.png',
@@ -31,6 +31,11 @@ Page({
     showThanks: false,
     showMore: true,
     page: 1,
+    showBottomTip: false,
+    scrollTop: 0,
+    triggered: false,
+    zoneData: [],
+    identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
   },
   // {
   //   name: 'https://cdn.tuanzhzh.com/banner/chunjie-banner.png',
@@ -43,10 +48,12 @@ Page({
   //   })
   // },
   onLoad(options) {
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage', 'shareTimeline']
-    })
+    wx.hideShareMenu()
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    //   menus: ['shareAppMessage', 'shareTimeline']
+    // })
+    this.getList()
     if (options.originUserId) {
       app.globalData.originUserId = options.originUserId
     }
@@ -65,19 +72,22 @@ Page({
     let query = wx.createSelectorQuery()
     query.select('.container-top').boundingClientRect(rect=>{
       let height = rect.height;
-      console.log(height)
       this.setData({
-        contentHeight: wx.getStorageSync('screenHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
+        contentHeight: wx.getStorageSync('windowHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
       })
     }).exec()
   },
 
   onShow: function () {
-    this.getList()
     // banner先写死
     // this.getIndexBanner()
     // this.getNotice()
+    this.setData({
+      identity: wx.getStorageSync('identity') || 1
+    })
     this.getRedPackageMessage()
+    // 获取专区信息
+    this.getTheZone()
   },
 
   skipBannerDetail(e) {
@@ -102,6 +112,15 @@ Page({
     }
   },
 
+ // 专区信息
+  getTheZone(){
+    fetchData('/mini/homepage/specialSection/list', {}, 'GET', (data) => {
+      this.setData({
+        zoneData: data.data
+      })
+    })
+  },
+
   // 展示感谢语
   onShowThank() {
     this.setData({
@@ -114,6 +133,10 @@ Page({
     wx.request({
       url: domain + `/mini/order/share/detail/${orderId}`,
       data: {},
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         this.setData({
           shareOrderData: res.data.data,
@@ -136,6 +159,10 @@ Page({
       url: domain + '/mini/homepage/latestCashbackList',
       data: {
         num: 10
+      },
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
       },
       success: (res) => {
         res.data.data.forEach(item => {
@@ -174,8 +201,13 @@ Page({
         pageSize: 10,
         page: this.data.page,
       },
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         res.data.data && res.data.data.forEach(item => {
+          item.maxCommission = ((item.price * 0.15) / 100).toFixed(2)
           const a = (item.price / 100).toFixed(2)
           item.price = String(a).split('.')[0]
           item.priceDot = String(a).split('.')[1]
@@ -191,8 +223,14 @@ Page({
         const right= []
         res.data.data.forEach((item, i) => {
           if (i % 2) {
+            if (this.data.page === 1) {
+              item.index = i + 1
+            }
             right.push(item)
           } else {
+            if (this.data.page === 1) {
+              item.index = i + 1
+            }
             left.push(item)
           }
         })
@@ -221,6 +259,10 @@ Page({
   getNotice () {
     wx.request({
       url: domain + '/mini/system/notice',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         this.setData({
           noticeData: res.data.data ? res.data.data : []
@@ -248,13 +290,31 @@ Page({
         this.getList()
       })
     } else {
-      wx.showLoading({
-        title: '没有更多',
+      this.setData({
+        showBottomTip: true
       })
-      setTimeout(() => {
-        wx.hideLoading()
-      }, 500)
+      // wx.showLoading({
+      //   title: '没有更多',
+      // })
+      // setTimeout(() => {
+      //   wx.hideLoading()
+      // }, 500)
     }
+  },
+
+  goTop() {
+    this.setData({
+      scrollTop: 0,
+      showBottomTip: false
+    })
+  },
+
+  onPullFresh() {
+    setTimeout(() => {
+      this.setData({
+        triggered: false
+      })
+    }, 1000)
   },
 
   // 获取首页banner
@@ -266,6 +326,10 @@ Page({
         this.setData({
           movies: res.data.data ? res.data.data : []
         })
+      },
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
       },
       fail: (err) => {
         wx.showToast({
@@ -283,27 +347,11 @@ Page({
     })
   },
 
-  // getUserProfile(e) {
-  //   // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-  //   wx.getUserProfile({
-  //     desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-  //     success: (res) => {
-  //       app.globalData.userInfo = res.userInfo
-  //       this.setData({
-  //         userInfo: res.userInfo,
-  //         hasUserInfo: true
-  //       })
-  //     }
-  //   })
-  // },
-  // getUserInfo(e) {
-  //   // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-  //   console.log(e)
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  // },
+  goVenueZone(e) {
+    wx.navigateTo({
+      url: `/pages/venueZone/venueZone?venueId=${e.currentTarget.dataset.id}&sectionId=${e.currentTarget.dataset.sectionid}`,
+    })
+  },
 
   swiperChange(e) {
     this.setData({

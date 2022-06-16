@@ -1,6 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' ext-class='index-top-bar'></mp-navigation-bar> -->
   <navigationBar></navigationBar>
   <view class="container-top">
     <view class="container-search-wrapper">
@@ -18,13 +17,24 @@
       </view>
     </view>
     <view class="index-search-wrapper">
-      <image class="index-search-icon" src='../images/search.png' />
+      <image class="index-search-icon" src='../images/search-index-icon.png' />
       <view class="index-search" bindtap="goSearch" disabled="{{true}}" confirm-type="search" selection-start="60" placeholder-class='index-search-placeholder'>
         <text class="index-search-text">搜索商品</text>
       </view>
     </view>
   </view>
-  <scroll-view scroll-y="true" bindscrolltolower="lower" style="{{'height:' +  contentHeight}}" lower-threshold="50">
+  <scroll-view
+    scroll-y="true"
+    bindscrolltolower="lower"
+    style="{{'height:' +  contentHeight}}"
+    lower-threshold="60"
+    scroll-top="{{scrollTop}}"
+    scroll-with-animation="{{true}}"
+    scroll-anchoring="{{true}}"
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onPullFresh"
+    refresher-triggered="{{triggered}}"
+  >
     <view  class="home-content-wrapper">
       <view class="home-content-top"></view>
       <!--轮播图 indicator-dots='false'-->
@@ -36,16 +46,66 @@
             </swiper-item>
           </block>
         </swiper>
-        <!--重置小圆点的样式  -->
         <view class="dots">  
             <block wx:for="{{movies}}" wx:key="index">  
               <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
             </block>  
         </view>
       </view>
-      <home-list dataObj="{{listData}}" class="home-list-component-style"></home-list>
+      <view class="venue-goods-wrapper venue-goods-top">
+        <view class="venue-goods-top-left" data-id="1" data-sectionId="{{zoneData[0].sectionId}}" bindtap="goVenueZone">
+          <image src='https://cdn.tuanzhzh.com/image/pinpaizhekou.png' class="venue-bg-style"></image>
+          <view class="venue-goods-title-wrapper">
+            <view class="venue-goods-title-icon"></view>
+            <text class="venue-goods-title">{{zoneData[0].sectionName}}</text>
+          </view>
+          <view class="venue-goods-list">
+            <view class="venue-goods-list-item" wx:for="{{zoneData[0].productList}}"  wx:key="index">
+              <image src='{{item.headPhotoAddress[0]}}'></image>
+              <!-- <view class="venue-mark-icon-style">
+                <text>最低三折</text>
+              </view> -->
+            </view>
+          </view>
+        </view>
+        <view class="venue-goods-top-right" data-id="2" data-sectionId="{{zoneData[1].sectionId}}" bindtap="goVenueZone">
+          <image src='https://cdn.tuanzhzh.com/image/lasanmianyi.png' class="venue-bg-style"></image>
+          <view class="venue-goods-title-wrapper">
+            <view class="venue-goods-title-icon2"></view>
+            <text class="venue-goods-title">{{zoneData[1].sectionName}}</text>
+          </view>
+          <view class="venue-goods-list">
+            <view class="venue-goods-list-item" wx:for="{{zoneData[1].productList}}"  wx:key="index">
+              <image src='{{item.headPhotoAddress[0]}}'></image>
+              <!-- <view class="venue-mark-icon-style">
+                <text>最低三折</text>
+              </view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="venue-goods-wrapper venue-goods-bottom" data-id="3" data-sectionId="{{zoneData[2].sectionId}}" bindtap="goVenueZone">
+        <image src='https://cdn.tuanzhzh.com/image/red-fanli.png' class="venue-bg-style"></image>
+        <view class="venue-goods-title-wrapper">
+          <view class="venue-goods-title-icon3"></view>
+          <text class="venue-goods-title">{{zoneData[2].sectionName}}</text>
+        </view>
+        <view class="venue-goods-list">
+          <view class="venue-goods-list-item" wx:for="{{zoneData[2].productList}}"  wx:key="index">
+            <image src='{{item.headPhotoAddress[0]}}'></image>
+            <!-- <view class="venue-mark-icon-style">
+              <text>最低三折</text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+      <home-list dataObj="{{listData}}" identity="{{identity}}" class="home-list-component-style"></home-list>
+      <view class="bottom-loading-tip {{showBottomTip ? '' : 'hide'}}">
+        <text>-已到头啦-</text>
+      </view>
     </view>
   </scroll-view>
-  <!-- <loginBoot show="{{showLoginBoot}}" bindshowthank="onShowThank" shareOrderData="{{shareOrderData}}"></loginBoot>
-  <thanks show="{{showThanks}}" shareOrderData="{{shareOrderData}}"></thanks> -->
+  <view class="back-top-style {{showBottomTip ? '' : 'hide'}}" bindtap="goTop">
+    <image src='https://cdn.tuanzhzh.com/image/go-top.png'></image>
+  </view>
 </view>

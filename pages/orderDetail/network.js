@@ -8,6 +8,17 @@ class Apis {
     }, true)
   }
 
+  // 提交评价
+  submitEvaluation(obj) {
+    return request({
+      url: '/mini/order/evaluation/submit',
+      method: 'POST',
+      data: {
+        ...obj
+      }
+    })
+  }
+
   // 退款是获取支付信息
   getRefundMessage(orderId) {
     return request({

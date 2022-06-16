@@ -1,0 +1,116 @@
+.mask {
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5000;
+  justify-content: center;
+  align-items: center;
+}
+.dialog-content {
+  position: relative;
+  height: 410rpx;
+  width: 600rpx;
+  border-radius: 16rpx;
+  background-color: #fff;
+}
+.dialog-content-bottom {
+  position: absolute;
+  display: flex;
+  width: 600rpx;
+  height: 100rpx;
+  bottom: 0;
+  justify-content: center;
+  border-top: 1rpx solid #eee;
+}
+.dialog-content-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64rpx;
+}
+.dialog-btn-style {
+  border: none !important;
+  height: 100rpx !important;
+  line-height: 70rpx !important;
+}
+.dialog-btn-style-sure {
+  font-weight: 500;
+  color: #576B95 !important;
+}
+.dialog-btn-style-fenge {
+  height: 100rpx;
+  width: 1rpx;
+  background-color: #eee;
+}
+.dialog-content-parent-pic {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.dialog-content-parent-name {
+  width: 400rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 32rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.dialog-content-parent-mark {
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/super-tuan-mark.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12rpx;
+}
+.dialog-content-parent-mark2 {
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/tuan-mark.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12rpx;
+}
+.dialog-content-parent-mark text {
+  font-size: 20rpx;
+  margin-left: 18rpx;
+  color: #B62D00;
+}
+.dialog-content-parent-mark2 text {
+  font-size: 20rpx;
+  margin-left: 18rpx;
+  color: #5C687F;
+}
+.dialog-content-text-explain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28rpx 0 60rpx 0;
+}
+.dialog-content-text-explain text {
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #353535;
+  line-height: 48rpx;
+  /* margin-left: 60rpx; */
+}

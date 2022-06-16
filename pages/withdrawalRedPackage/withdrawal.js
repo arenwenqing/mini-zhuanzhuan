@@ -8,15 +8,14 @@ Page({
   data: {
     contentHeight: 0,
     showTip: false,
-    listData: [1,1,1,1,1,1,1,1],
-    currentCashback: wx.getStorageSync('currentAvailableCashback')
+    listData: [],
+    currentCashback: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let query = wx.createSelectorQuery()
     query.select('.with-drawer-top-wrapper').boundingClientRect(rect=>{
       let height = rect.height;
@@ -37,6 +36,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      currentCashback: wx.getStorageSync('currentAvailableCashback')
+    })
     this.withdrawList()
   },
 
@@ -52,7 +54,7 @@ Page({
         userId: wx.getStorageSync('userId')
       },
       success: res => {
-        res.data.data && res.data.data.forEarch(item => {
+        res.data.data && res.data.data.forEach(item => {
           item.withdrawTime = formatTime(new Date(item.withdrawTime))
           item.withdrawAmount = (item.withdrawAmount / 100).toFixed(2)
         })

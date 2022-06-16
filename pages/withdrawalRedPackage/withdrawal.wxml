@@ -38,5 +38,5 @@
       <view class="with-item-bottom">{{item.withdrawStatus.name}}</view>
     </view>
   </scroll-view>
-  <with-dialog showDialog="{{showDialog}}"></with-dialog>
+  <with-dialog showDialog="{{showDialog}}" withNumber="{{currentCashback}}"></with-dialog>
 </view>

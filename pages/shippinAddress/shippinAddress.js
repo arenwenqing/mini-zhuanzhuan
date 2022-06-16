@@ -66,6 +66,10 @@ Page({
     wx.showLoading('加载中')
     wx.request({
       url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: res => {
         let tempArray = res.data.data.addressList
         const index = tempArray.findIndex(item => item.isDefault)
@@ -118,6 +122,10 @@ Page({
     addressObj.isDefault = true
     wx.request({
       url: domain + '/mini/user/submit',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       method: 'POST',
       data: {
         userId: wx.getStorageSync('userId'),

@@ -71,7 +71,13 @@ Page({
     ifCanClick: false,
     directlyBtnStatus: false,
     tipMessage: false,
-    tipMessageText: ''
+    tipMessageText: '',
+    goodsStar: [1, 1, 1, 1, 1],
+    goodsEvaluation: 0, // 商品评价
+    shoppingExperience: 0, // 购物体验评价
+    experienceEvaluation: 0, // 使用体验评价
+    evaluationText: '',
+    ifShowEvaluationText: false // 是否显示评价相关的文案
   },
 
   /**
@@ -92,6 +98,10 @@ Page({
   signFor() {
     wx.request({
       url: domain + `/mini/order/confirmDelivered/${wx.getStorageSync('orderId')}`,
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         if (res.data.code === 0) {
           this.getOrderDetail(wx.getStorageSync('orderId'))
@@ -126,6 +136,80 @@ Page({
     // this.getOrderDetail(this.data.orderId)
   },
 
+  // 点击小星星
+  goodsEvaluationClick(e) {
+    if (rderData.orderStatus.code === 601) return
+    switch (e.target.dataset.type) {
+      case 'goodsEvaluation':
+        if (this.data.goodsEvaluation === e.target.dataset.index * 1) {
+          this.setData({
+            goodsEvaluation: e.target.dataset.index * 1 - 1
+          })
+        } else {
+          this.setData({
+            goodsEvaluation: e.target.dataset.index * 1
+          })
+        }
+        break;
+      case 'shoppingEvaluation':
+        if (this.data.shoppingExperience === e.target.dataset.index * 1) {
+          this.setData({
+            shoppingExperience: e.target.dataset.index * 1 - 1
+          })
+        } else {
+          this.setData({
+            shoppingExperience: e.target.dataset.index * 1
+          })
+        }
+        break;
+      case 'logisticsEvaluation':
+        if (this.data.experienceEvaluation === e.target.dataset.index * 1) {
+          this.setData({
+            experienceEvaluation: e.target.dataset.index * 1 - 1
+          })
+        } else {
+          this.setData({
+            experienceEvaluation: e.target.dataset.index * 1
+          })
+        }
+        break;
+      default:
+        break;
+    }
+  },
+
+  //提交评价
+  submitEvaluation() {
+    API.submitEvaluation({
+      orderId: this.data.orderId,
+      productId: this.data.orderData.product.productId,
+      productLevel: this.data.goodsEvaluation ,
+      usedLevel: this.data.experienceEvaluation,
+      experienceLevel:this.data.shoppingExperience
+    }).then(res => {
+      if (res.data.code === 0) {
+        wx.showToast({
+          title: '评价成功',
+          icon: 'success',
+          duration: 2000
+        })
+        this.getOrderDetail(this.data.orderId)
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    }).catch(err => {
+      wx.showToast({
+        title: err.data.msg,
+        icon: 'error',
+        duration: 2000
+      })
+    })
+  },
+
   // 获取订单详情
   getOrderDetail(orderId) {
     API.getOrderDetail({
@@ -134,16 +218,33 @@ Page({
       const data = res.data.data
       data.product.baseCashback = Number(data.product.baseCashback / 100).toFixed(2)
       data.product.finalCashback = Number(data.product.finalCashback / 100).toFixed(2)
-      // data.orderStatus.code = 502
+      // TODO 需要注释掉
+      // data.orderStatus.code = 503
+      // data.orderEvaluation.productLevel = 5
+      // data.orderEvaluation.experienceLevel = 3
+      // data.orderEvaluation.usedLevel = 2
+
       const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '购买成功，正在为您安排发货' : '' //todo
       let topTitle = '团团转'
       let bottomBtnName = '继续逛逛'
       let orderStatusDescName = ''
-      // if (data.orderStatus.code === 301) {
-      //   this.setData({
-      //     getRedPackeNum: data.cashback ? (data.cashback / 100).toFixed(2) : 0
-      //   })
-      // }
+      
+      if ([504, 503, 601].includes(data.orderStatus.code)) {
+        const textMap = {
+          503: '您的订单已发货，请注意签收',
+          504: '签收啦！记得好评呀~亲~',
+          601: '感谢评价呀~亲~'
+        }
+        this.setData({
+          evaluationText: textMap[data.orderStatus.code],
+          ifShowEvaluationText: true
+        })
+      } else {
+        this.setData({
+          ifShowEvaluationText: false
+        })
+      }
+
       // 翻倍红包的按钮状态  1.已经领取了红包翻倍按钮置灰,直接拿走按钮置灰 2.任务已经开启直接领取按钮置灰
       if (data.taskStatus === 1) {
         this.setData({
@@ -235,10 +336,6 @@ Page({
         bottomBtnName = '继续逛逛'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
-          // showOrderStatusDescName: true,
-          // showImage: true,
-          // showComfortMoney: true,
-          // showReimburseAndSalesReturn: true,
           showOnlyReimburse: true
         })
       } else if (data.orderStatus.code === 503) { // 商品待收货
@@ -292,6 +389,14 @@ Page({
           // showComfortMoney: true,
           showHaveOutbound: true,
           showImage: true
+        })
+      } else if (data.orderStatus.code === 601) {
+        topTitle = '已评价'
+        this.setData({
+          showOnlySalesReturn: true,
+          goodsEvaluation: data.orderEvaluation.productLevel || 0, // 商品评价
+          shoppingExperience: data.orderEvaluation.experienceLevel || 0, // 购物体验评价
+          experienceEvaluation: data.orderEvaluation.usedLevel || 0, // 使用体验评价
         })
       } else { // 其他
         topTitle = '团团转'

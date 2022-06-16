@@ -4,7 +4,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding-top: 55rpx;
+  /* padding-top: 55rpx; */
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -107,6 +107,7 @@
   width: 316rpx;
   margin: 0 auto 16rpx;
   display: flex;
+  justify-content: space-between;
 }
 .price-left {
   margin-right: 16rpx;
@@ -171,4 +172,57 @@
 .old-price-wrapper {
   margin-top: 30rpx;
   margin-bottom: 10rpx;
+}
+.price-right {
+  margin-top: 25rpx;
+}
+.price-right text {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 28rpx;
+  text-shadow: 0rpx 0rpx 16rpx rgba(255, 49, 49, 0.06);
+}
+.top-mark-icon {
+  position: absolute;
+  width: 96rpx;
+  height: 36rpx;
+  background: url('https://cdn.tuanzhzh.com/image/top-mark-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 8rpx;
+  left: -3rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-mark-icon text {
+  font-size: 20rpx;
+  font-family: PingFang-SC-Heavy, PingFang-SC;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 28rpx;
+}
+.goods-item-bottom-tuan-zhang {
+  width: 348rpx;
+  height: 64rpx;
+  position: absolute;
+  top: 290rpx;
+}
+.goods-item-bottom-tuan-zhang image {
+  width: 348rpx;
+  height: 64rpx;
+}
+.goods-item-bottom-tuan-zhang text {
+  position: absolute;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2B28;
+  line-height: 34rpx;
+  text-shadow: 0rpx 0rpx 16rpx rgba(255, 49, 49, 0.06);
+  right: 72rpx;
+  top: 25rpx;
 }

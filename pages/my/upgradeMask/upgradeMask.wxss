@@ -1,0 +1,39 @@
+.upgrade-mask-wrapper {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+.upgrade-mask-content {
+  display: flex;
+  width: 560rpx;
+  height: 188rpx;
+  background: url('https://cdn.tuanzhzh.com/image/big-super-tuan-zhang.png.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  align-items: center;
+  justify-content: center;
+}
+.upgrade-mask-content text {
+  font-size: 64rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #B61300;
+  margin-left: 110rpx;
+  line-height: 72rpx;
+}
+.upgrade-mask-text {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 44rpx;
+  margin-top: 52rpx;
+  text-align: center;
+}

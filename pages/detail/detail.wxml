@@ -23,7 +23,8 @@
           <text>{{detailData.price}}.</text>
           <!-- <text>{{detailData.price}}</text> -->
           <text>{{detailData.priceDot}}</text>
-          <!-- <text>团团转价（{{detailData.discount}}折）</text> -->
+          <text wx:if="{{identity === 1}}">最终优惠价格{{detailData.preferentialPrice}}元</text>
+          <text wx:else>最高佣金{{detailData.maxCommission}}元</text>
         </view>
         <!-- <view class="detail-old-price">
           <text>￥</text>
@@ -76,7 +77,7 @@
     <view class="detail-zhangheng"></view>
   </view>
   <view class="detail-bottom">
-    <view wx:if="{{isZero}}" class="detail-bottom-left" catchtap="showMakeTaskPoup">做任务</view>
+    <view wx:if="{{identity === 2 && !showBuy}}" class="detail-bottom-left" catchtap="showMakeTaskPoup">做任务</view>
     <view wx:else class="detail-bottom-left" catchtap="immediateSpellGroup">购买</view>
     <!-- <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view> -->
   </view>

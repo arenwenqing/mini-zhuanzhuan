@@ -15,7 +15,8 @@
     "pages/privacyAgreement/privacyAgreement",
     "pages/activity/index",
     "pages/historyTask/historyTask",
-    "pages/withdrawalRedPackage/withdrawal"
+    "pages/withdrawalRedPackage/withdrawal",
+    "pages/venueZone/venueZone"
   ],
   "window": {
     "backgroundTextStyle": "light",

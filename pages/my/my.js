@@ -1,4 +1,4 @@
-import { getUserProfile, shareFun } from '../../utils/globalFun'
+import { getUserProfile, shareFun, fetchData} from '../../utils/globalFun'
 const domain = 'https://tuanzhzh.com'
 const app = getApp()
 Page({
@@ -31,6 +31,27 @@ Page({
       text: '用户协议',
       key: '6'
     }]],
+    listDataTuanZhang: [[{
+      icon: '/pages/images/my-task.png',
+      text: '我的任务',
+      key: '8'
+    }, {
+      icon: '/pages/images/zhao-mu-tuan.png',
+      text: '招募团长',
+      key: '9'
+    }, {
+      icon: '/pages/images/7.png',
+      text: '我的客服',
+      key: '5'
+    }, {
+      icon: '/pages/images/1.png',
+      text: '用户协议',
+      key: '6'
+    }, {
+      icon: '/pages/images/6.png',
+      text: '隐私协议',
+      key: '7'
+    }]],
     showAvatar: false,
     userInfo: {},
     userNum: '',
@@ -53,14 +74,35 @@ Page({
     clickGuidNum: 1,
     showGuid: false,
     currentAvailableCashback: 0, //当前可提现红包金额
-    currentAllCashback: 0 // 当前红包总额
+    currentAllCashback: 0, // 当前红包总额
+    topValue: -wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - 5,
+    identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
+    switchIcon: ['/pages/images/qie-tuan-zhang.png', '/pages/images/qie-tuan-yuan.png'],
+    myTaskVisible: false,
+    upgradeMask: false,
+    showMentorDialog: false,
+    parentUserId: '',
+    userTuanInfo: {},
+    levelText: {
+      1: 'I',
+      2: 'II',
+      3: 'III'
+    },
+    showSwitch: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.options = options
+    if (options.parentUserId) {
+      this.setData({
+        showMentorDialog: true,
+        parentUserId: options.parentUserId
+      })
+    }
     // this.getNotice()
   },
 
@@ -76,6 +118,34 @@ Page({
       currentSwiper: e.detail.current
     })
   },
+
+  identitySwitch() {
+    if (this.data.identity === 1) {
+      wx.setStorageSync('identity', 2)
+      this.setData({
+        identity: 2
+      })
+      // this.updatePhaseResult()
+    } else {
+      wx.setStorageSync('identity', 1)
+      this.setData({
+        identity: 1
+      })
+    }
+  },
+
+  // 切换团长时去检查升阶结果
+  // updatePhaseResult() {
+  //   fetchData('/mini/user/identityPosition/promoteResult', {}, 'GET', (res) => {
+  //     if (res.data.promoteSuccess) {
+  //       this.setData({
+  //         upgradeMask: res.data.promoteSuccess
+  //       })
+  //     }
+  //   }, err => {
+  //     console.error(err)
+  //   })
+  // },
 
   /**
      * 关闭删除确认
@@ -170,6 +240,7 @@ Page({
         showAvatar: true,
         showEveryDayTask: true
       })
+      this.getUserInfo()
       this.getDayTask()
       this.getMoneyTotal()
       this.getCurrentRedPackageMessage()
@@ -248,6 +319,16 @@ Page({
           url: '/pages/userAgreement/userAgreement',
         })
         break;
+      case '8':
+        wx.hideTabBar({
+          animation: true
+        })
+        this.setData({
+          myTaskVisible: true
+        })
+        break;
+      case '9':
+        break;
       default:
         // 隐私协议
         wx.navigateTo({
@@ -279,10 +360,10 @@ Page({
       },
       success: res => {
         this.setData({
-          currentAvailableCashback: (res.data.data.currentAvailableCashback / 100).toFixed(2),
-          currentAllCashback: (res.data.data.currentAvailableCashback / 100).toFixed(2)
+          currentAvailableCashback: (res.data.data?.currentAvailableCashback / 100 || 0).toFixed(2),
+          currentAllCashback: (res.data.data?.currentAllCashback / 100 || 0).toFixed(2)
         })
-        wx.setStorageSync('currentAvailableCashback', (res.data.data.currentAvailableCashback / 100).toFixed(2))
+        wx.setStorageSync('currentAvailableCashback', (res.data.data?.currentAvailableCashback / 100 || 0).toFixed(2))
       },
       fail: (err) => {
         wx.showToast({
@@ -303,10 +384,22 @@ Page({
     })
   },
 
+  // 复制ID
+  copyId(e) {
+    console.log(e)
+    wx.setClipboardData({
+      data: String(e.currentTarget.dataset.id)
+    })
+  },
+
   // 获得系统公告列表
   getNotice () {
     wx.request({
       url: domain + '/mini/system/notice',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         this.setData({
           noticeData: res.data.data ? res.data.data : []
@@ -326,10 +419,14 @@ Page({
   getMessage() {
     wx.request({
       url: domain + `/mini/user/detail/${wx.getStorageSync('userId')}`,
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: res => {
         // let tempArray = res.data.data?.addressList
         this.setData({
-          doubleNum: res.data.data?.doubleQuotaList.length,
+          doubleNum: res.data.data?.doubleQuotaList?.length,
           groupPurchasedCount: res.data.data?.groupPurchasedCount
         })
       },
@@ -357,6 +454,7 @@ Page({
         showEveryDayTask: true,
         userNum: wx.getStorageSync('userNum')
       })
+      this.getUserInfo()
       this.getDayTask()
       this.getMoneyTotal()
       this.getCurrentRedPackageMessage()
@@ -367,6 +465,20 @@ Page({
       })
     }
     // this.getMessage()
+  },
+
+  // 获取用户信息
+  getUserInfo() {
+    fetchData(`/mini/user/detail/${wx.getStorageSync('userId')}`, {
+    }, 'GET', res => {
+      console.log('res.data.identity=', res.data.identity)
+      this.setData({
+        showSwitch: res.data.identity ? true : false,
+        userTuanInfo: res.data.identity
+      })
+    }, err => {
+      console.error(err)
+    })
   },
 
   /**
@@ -387,9 +499,13 @@ Page({
    * 跳转提现列表
    */
   goWithDrawer () {
-    wx.navigateTo({
-      url: '/pages/withdrawalRedPackage/withdrawal',
-    })
+    if (!wx.getStorageSync('wxUser')) {
+      this.getUserProfile()
+    } else {
+      wx.navigateTo({
+        url: '/pages/withdrawalRedPackage/withdrawal',
+      })
+    }
   },
 
   /**
@@ -426,14 +542,17 @@ Page({
   onShareAppMessage: function (option) {
     const currentTime = new Date().getTime()
     let url = ''
+    console.log('userId==', wx.getStorageSync('userId'))
     if (option && !option.target) {
-      url = `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      url = `/pages/my/my?parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     } else {
-      url = `/pages/detail/detail?from=share&originOrderId=${option.target.dataset.originorderid}&productId=${option.target.dataset.productid}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      url = `/pages/my/my?from=share&parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
     }
     return shareFun({
       path: url,
-      ...(option.target ? {imageUrl: option.target.dataset.imgurl} : {})
+      ...(option.target ? {imageUrl: option.target.dataset.imgurl} : {}),
+      imageUrl: 'https://cdn.tuanzhzh.com/banner/recruiting.png',
+      title: '一起来组团' 
     })
   }
 })

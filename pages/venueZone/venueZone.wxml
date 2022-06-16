@@ -1,0 +1,74 @@
+<!--index.wxml background="#fff" background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)'-->
+<view class="container">
+  <view class="container-conent-top-style"></view>
+  <mp-navigation-bar title="团团转"  color='#fff' back='true' bindback="bindbackFun"></mp-navigation-bar>
+  <view class="container-top">
+    <view class="container-search-wrapper">
+      <view class="container-receive-wrapper">
+        <swiper class="receive-swiper" autoplay='true' interval='3000'  duration='1000' circular='true' vertical='true' >
+          <block wx:for="{{receiveDatas}}" wx:key="index">
+            <swiper-item>
+              <view class="receive-item">
+                <text class="receive-name">{{ item.payUsername }}</text>
+                <text class="receive-text">刚刚领取了{{ item.cashback }}元</text>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <view class="index-search-wrapper">
+      <image class="index-search-icon" src='../images/search-index-icon.png' />
+      <view class="index-search" bindtap="goSearch" disabled="{{true}}" confirm-type="search" selection-start="60" placeholder-class='index-search-placeholder'>
+        <text class="index-search-text">搜索商品</text>
+      </view>
+    </view>
+  </view>
+  
+  <scroll-view
+    scroll-y="true"
+    bindscrolltolower="lower"
+    style="{{'height:' +  contentHeight}}"
+    lower-threshold="60"
+    scroll-top="{{scrollTop}}"
+    scroll-with-animation="{{true}}"
+    scroll-anchoring="{{true}}"
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onPullFresh"
+    refresher-default-style="none"
+    refresher-triggered="{{triggered}}"
+  >
+  
+  <view slot="refresher" class="container-conent-top-style2">
+  </view>
+  <!-- <view slot="refresher" class="container-conent-top-style2"
+  ></view> -->
+    <view  class="home-content-wrapper">
+      <view class="home-content-top"></view>
+      <view class="venue-goods-wrapper {{showTopConent.bgClass}}">
+        <image src="{{showTopConent.bgPictureUrl}}" class="venue-bg-style"></image>
+        <view class="venue-goods-title-wrapper">
+          <view class="{{showTopConent.titleIconClass}}"></view>
+          <text class="venue-goods-title">{{showTopConent.title}}</text>
+        </view>
+        <view class="venue-goods-list">
+          <block wx:for="{{topListData}}" wx:key="index">
+            <view class="venue-goods-list-item" catchtap="skipDetail" data-name="{{item.majorName}}" data-productid="{{item.productId}}">
+              <image src='{{item.headPhotoAddress[0]}}'></image>
+              <view class="venue-mark-icon-style">
+                <text>￥{{item.price}}.{{item.priceDot}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <home-list dataObj="{{listData}}" identity="{{identity}}" class="home-list-component-style"></home-list>
+      <view class="bottom-loading-tip {{showBottomTip ? '' : 'hide'}}">
+        <text>-已到头啦-</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="back-top-style {{showBottomTip ? '' : 'hide'}}" bindtap="goTop">
+    <image src='https://cdn.tuanzhzh.com/image/go-top.png'></image>
+  </view>
+</view>

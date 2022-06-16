@@ -15,23 +15,32 @@ Page({
       text: '全部',
       value: -1
     }, {
-      text: '已取消',
-      value: 204
+      text: '待支付',
+      value: 101
     }, {
       text: '待发货',
       value: 501
     }, {
-      text: '待签收',
+      text: '已出库',
+      value: 502
+    }, {
+      text: '待收货',
       value: 503
     }, {
       text: '已签收',
       value: 504
     }, {
-      text: '已退货',
-      value: 512
+      text: '已评价',
+      value: 601
     }, {
+      text: '已取消',
+      value: 204
+    },  {
       text: '已退款',
       value: 521
+    }, {
+      text: '已退货',
+      value: 512
     }],
     activeIndex: 0
   },

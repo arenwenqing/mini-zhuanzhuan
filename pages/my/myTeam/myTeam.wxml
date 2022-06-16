@@ -1,0 +1,61 @@
+
+<view class="my-team-wrapper">
+  <view class="my-day-task">
+    <text class="my-task-mark"></text>
+    <text class="my-task-title">我的团队</text>
+    <!--everyDayData.leftTaskCount-->
+    <!-- <view>任务有效期<text class="my-task-num">{{7}}</text>天</view> -->
+    <image class="my-team-zhujie" src='/pages/images/team-zhujie.png' catchtap="showTipFun"></image>
+    <view wx:if="{{showTip}}" class="my-team-zhujie-instructions">
+      <view class="my-team-zhujie-content">
+        <image src="/pages/images/guanbi.png" class="my-team-icon" catchtap="closeTip"></image>
+        <text>1.每个卡片代表了一位您的直接下级；</text>
+        <text>2.卡片中的级别为此下级此时的级别；</text>
+        <text>3.卡片中的管理奖金比例为您可以从此下级身上获取的管理奖金比例；</text>
+        <text>4.若您的下级为超级团长，将为其标红展示；</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{!memberList.length}}" class="my-team-no">
+    <image class="my-team-no-pic" src="https://cdn.tuanzhzh.com/image/no-team.png"></image>
+    <text>暂无团队，快去招募团长</text>
+  </view>
+  <view wx:else>
+    <block wx:for="{{memberList}}" wx:key="index">
+      <view wx:if="{{item.user.identity.identityPosition.code === 3}}" class="my-team-item">
+        <view class="my-team-item-img">
+          <image src='{{item.user.wxUser.avatarUrl}}'></image>
+          <view class="my-team-item-img-mark">{{item.user.identity.identityPosition.name}}{{item.user.identity.level}}</view>
+        </view>
+        <view class="my-team-item-content">
+          <view class="my-team-item-top">
+            <text>{{item.user.wxUser.nickName}}</text>
+            <text>本周已成{{item.currentPeriodOrderCount}}单</text>
+          </view>
+          <view class="my-team-item-bottom">
+            <text>管理奖金比例{{item.manageBonusRatio}}%</text>
+            <!-- <text>管理奖金{{item.manageBonusAmount}}元</text> -->
+          </view>
+        </view>
+      </view>
+      <view wx:else class="my-team-item big-tuang-team-item">
+      <view class="my-team-item-img">
+        <image src='{{item.user.wxUser.avatarUrl}}'></image>
+        <view wx:if="{{item.user.identity.level === 2}}" class="my-team-item-img-mark big-tuan-zhang">{{item.user.identity.identityPosition.name}}{{levelData[item.user.identity.level]}}</view>
+        <view wx:else class="my-team-item-img-mark big-tuan-zhang">{{item.user.identity.identityPosition.name}}</view>
+      </view>
+      <view class="my-team-item-content">
+        <view class="my-team-item-top">
+          <text>{{item.user.wxUser.nickName}}</text>
+          <!-- <text>本周已成{{item.currentPeriodOrderCount}}单</text> -->
+        </view>
+        <view class="my-team-item-bottom">
+          <text>本周已成{{item.currentPeriodOrderCount}}单</text>
+          <!-- <text>管理奖金比例{{item.manageBonusRatio}}%</text> -->
+          <!-- <text>管理奖金{{item.manageBonusAmount}}元</text> -->
+        </view>
+      </view>
+    </view>
+    </block>
+  </view>
+</view>

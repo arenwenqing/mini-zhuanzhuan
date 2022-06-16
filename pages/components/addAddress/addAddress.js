@@ -83,6 +83,10 @@ Component({
         data: {
           addressId: id
         },
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
+        },
         success: res => {
           const detailData = res.data.data
           this.setData({
@@ -125,6 +129,10 @@ Component({
         url: domain + '/mini/system/district/list',
         data: {
           parentCode
+        },
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
         },
         success: (res) => {
           if (!parentCode && level === 1) {
@@ -248,6 +256,10 @@ Component({
       wx.request({
         url: domain + '/mini/user/address/upload',
         method: 'POST',
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
+        },
         data: {
           addressList: [{
             addressId: this.addressId !== 'undefined' ? this.addressId : '',

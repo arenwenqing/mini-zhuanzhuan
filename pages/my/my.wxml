@@ -1,6 +1,7 @@
 <!--pages/my/my.wxml-->
 <view class="my-wrapper">
-  <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)' ext-class='my-page-navigation'></mp-navigation-bar>
+  <mp-navigation-bar title="团团转"  color='#fff' back='{{false}}'></mp-navigation-bar>
+  <!-- <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)' ext-class='my-page-navigation'></mp-navigation-bar> -->
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
   <!--引导页图片-->
   <image src="https://cdn.tuanzhzh.com/system/custom/yindao1.png" class="my-preload" />
@@ -9,7 +10,8 @@
     <image wx:if="{{clickGuidNum === 1}}" src="https://cdn.tuanzhzh.com/system/custom/yindao1.png" class="show-guid-image" ></image>
     <image wx:else src="https://cdn.tuanzhzh.com/system/custom/yindao2.png" class="show-guid-image" ></image>
   </view>
-  <view class="my-header">
+  <view class="my-top-content-style {{identity === 1 ? '' : 'my-top-content-style2'}}" style="{{'margin-top: ' + (topValue) + 'px'}}">
+    <view class="my-header" style="{{'padding-top: ' + (topValue * -1) + 'px'}}">
     <view class="my-header-content">
       <view class="my-user-avatar" catchtap="getUserProfile">
         <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
@@ -17,8 +19,30 @@
       </view>
       <view>
         <view wx:if="{{showAvatar}}" class="my-user-wrapper">
-          <text class="my-user-name">{{userInfo.nickName}}</text>
-          <text class="my-user-id">ID:{{userNum}}</text>
+          <view class="my-user-name">
+            <view class="my-user-name-text">{{userInfo.nickName}}</view>
+            <view wx:if="{{showSwitch}}" class="switch-identities">
+              <image src="{{switchIcon[identity - 1]}}" class="switch-ident-icon"></image>
+              <text class="identities-style {{identity === 1 ? '' : 'identities-style2'}}" catchtap="identitySwitch">{{identity === 1 ? '切换团长' : '切换团员'}}</text>
+            </view>
+          </view>
+          <view class="my-user-id">
+            <text class="user-id-style">ID:{{userNum}}</text>
+            <text class="id-copy" catchtap="copyId" data-id="{{userNum}}">复制</text>
+          </view>
+          <view wx:if="{{identity === 2 && userTuanInfo}}" class="tuan-zhang-view">
+            <view wx:if="{{userTuanInfo.identityPosition.code !== 1}}" class="tuan-zhang-vip-icon">
+              <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
+              <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
+            </view>
+            <view wx:else class="tuan-zhang-vip-icon2">
+              <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
+              <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
+            </view>
+            <view class="tuan-zhang-text">
+              <text>{{userTuanInfo.employType.name}}</text>
+            </view>
+          </view>
         </view>
         <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
       </view>
@@ -49,38 +73,56 @@
       </view>
     </view>
   </view>
+  </view>
   <view class="my-header-list-wrapper">
     <swiper class="list-wrapper-swiper" current='currentSwiper' bindchange="swiperChange"  interval='3000'  duration='1000' circular='true' >
-      <block wx:for="{{listData}}" wx:key="index">
+      <block wx:for="{{identity === 1 ? listData : listDataTuanZhang}}" wx:key="index">
         <swiper-item class="my-swiper-item {{index === 1 ? 'my-swiper-item2' : ''}}">
-          <view class="list-item"  wx:for="{{item}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx" bindtap="skipPage" data-id="{{itemName.key}}">
-            <image src="{{itemName.icon}}" />
-            <text>{{itemName.text}}</text>
-          </view>
+          <block wx:for="{{item}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+            <view wx:if="{{itemName.key !== '9'}}" class="list-item" bindtap="skipPage" data-id="{{itemName.key}}">
+              <image src="{{itemName.icon}}" />
+              <text>{{itemName.text}}</text>
+            </view>
+            <view wx:else class="list-item">
+              <button open-type="share" class="list-item">
+                <image src="{{itemName.icon}}" />
+                <text>{{itemName.text}}</text>
+              </button>
+            </view>
+          </block>
         </swiper-item>
       </block>
     </swiper>
     <!--重置小圆点的样式  -->
-    <view class="dots">  
+    <view wx:if="{{identity === 1}}" class="dots">  
       <block wx:for="{{2}}" wx:key="index">  
         <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>  
       </block>  
     </view>
   </view>
   <view wx:if="{{showEveryDayTask}}">
-    <view class="my-day-task">
-      <text class="my-task-mark"></text>
-      <text class="my-task-title">每日任务</text>
-      <view>还可以做<text class="my-task-num">{{everyDayData.leftTaskCount}}</text>次任务</view>
-      <text class="my-task-tip">次日4-9点结算并付款</text>
+    <view wx:if="{{identity === 1}}">
+      <view class="my-day-task">
+        <text class="my-task-mark"></text>
+        <text class="my-task-title">每日任务</text>
+        <!--everyDayData.leftTaskCount-->
+        <view>任务有效期<text class="my-task-num">{{7}}</text>天</view>
+        <text class="my-task-tip">您推广的订单在评价后将为您结算红包</text>
+      </view>
+      <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
+      <view wx:if="{{showNoListImg}}">
+        <image src="/pages/images/no-list-img.png" class="no-list-empty" />
+        <view class="no-list-text">暂无任务</view>
+        <view class="no-list-btn" bindtap="toIndex">去完成今日任务</view>
+        <view class="no-list-task-instructions" bindtap="guidPage">如何完成任务领大红包</view>
+      </view>
     </view>
-    <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
-    <view wx:if="{{showNoListImg}}">
-      <image src="/pages/images/no-list-img.png" class="no-list-empty" />
-      <view class="no-list-text">暂无任务</view>
-      <view class="no-list-btn" bindtap="toIndex">去完成今日任务</view>
-      <view class="no-list-task-instructions" bindtap="guidPage">如何完成任务领大红包</view>
+    <view wx:else>
+      <my-team identity="{{identity}}"></my-team>
     </view>
   </view>
+  <my-task myTaskVisible="{{myTaskVisible}}"></my-task>
   <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
+  <upgrade-mask visible="{{upgradeMask}}"></upgrade-mask>
+  <mentor-dialog showDialog="{{showMentorDialog}}" parentUserId="{{parentUserId}}" bind:reloadShow="onShow"></mentor-dialog>
 </view>

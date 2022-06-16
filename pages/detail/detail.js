@@ -26,16 +26,20 @@ Page({
     originOrderId: 0,
     isZero: wx.getStorageSync('isZero') == 1,
     zeroOrderId: '',
-    goodsStar: [1, 1, 1, 1, 1]
+    goodsStar: [1, 1, 1, 1, 1],
+    identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
+    showBuy: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.from = options.from
     this.setData({
       title: options.name,
+      showBuy: options.showBuy,
       ...(options.originOrderId ? { originOrderId:  options.originOrderId} : {})
     })
     this.getDetail(options.productId)
@@ -77,7 +81,13 @@ Page({
     wx.request({
       url: domain + `/mini/product/detail/${id}`,
       method: 'GET',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
+        res.data.data.maxCommission = ((res.data.data.price * 0.15) / 100).toFixed(2)
+        res.data.data.preferentialPrice = ((res.data.data.price - res.data.data.baseCashback) / 100).toFixed(2)
         let a = (res.data.data.price / 100).toFixed(2)
         res.data.data.price = String(a).split('.')[0]
         res.data.data.priceDot = String(a).split('.')[1]
@@ -234,6 +244,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      identity: wx.getStorageSync('identity') || 1
+    })
     // 开启任务
     if (flag && this.data.zeroOrderId) {
       startTask(this.data.productId, this.data.zeroOrderId)
@@ -286,8 +299,9 @@ Page({
     flag = true
     const currentTime = new Date().getTime()
     return shareFun({
-      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share`,
-      imageUrl: this.data.carousel[0]
+      path: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`,
+      imageUrl: this.data.carousel[0],
+      title: this.data.title
     })
   }
 })

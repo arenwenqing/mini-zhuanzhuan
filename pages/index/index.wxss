@@ -1,4 +1,7 @@
 /**index.wxss**/
+.hide {
+  display: none !important;
+}
 .my-page-navigation {
   z-index: 333;
   position: relative;
@@ -35,7 +38,7 @@
   width: 26rpx;
   height: 26rpx;
   left: 18rpx;
-  top: 21rpx;
+  top: 19rpx;
 }
 .index-search-text {
   font-size: 24rpx;
@@ -52,7 +55,7 @@
   height: 60rpx;
   background:rgba(255, 255, 255, 0.5);
   border-radius: 36rpx;
-  border: 1rpx solid #DBDBDB;
+  /* border: 1rpx solid #DBDBDB; */
   margin-right: 22rpx;
 }
 .container-title {
@@ -204,4 +207,141 @@
   bottom: 0;
   width: 100%;
   background: #fff;
+}
+.venue-goods-wrapper {
+  width: 710rpx;
+  height: 236rpx;
+  border-radius: 12rpx;
+  margin: 0 auto;
+}
+.venue-goods-bottom {
+  position: relative;
+  background: linear-gradient(180deg, #FFC9C9 0%, #FFEFEF 100%);
+  margin-bottom: 20rpx;
+}
+.venue-goods-top {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 56rpx;
+  margin-bottom: 20rpx;
+}
+.venue-goods-top-left {
+  position: relative;
+  width: 348rpx;
+  height: 236rpx;
+  background: linear-gradient(180deg, #FFE0B8 0%, #FFF5E9 100%);
+  border-radius: 12rpx;
+}
+.venue-goods-top-right{
+  position: relative;
+  width: 348rpx;
+  height: 236rpx;
+  background: linear-gradient(180deg, #CFECAB 0%, #E5F1D5 100%);
+  border-radius: 12rpx;
+}
+.venue-bg-style {
+  position: absolute;
+  width: 160rpx;
+  height: 160rpx;
+  top: 0;
+  right: 0;
+}
+.venue-goods-title-wrapper {
+  display: flex;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+.venue-goods-title-icon {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #FFC06B 0%, #FF6F12 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-title {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #000000;
+  line-height: 32rpx;
+  margin-left: 8rpx;
+}
+.venue-goods-title-icon2 {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #7CC43D 0%, #53B231 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-title-icon3 {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #FF706B 0%, #F8052B 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-list {
+  display: flex;
+  justify-content: space-around;
+  margin: 0px 10rpx;
+}
+.venue-goods-list-item {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+  overflow: hidden;
+  border-radius: 12rpx;
+}
+.venue-goods-list-item image {
+  width: 100%;
+  height: 100%;
+}
+.venue-mark-icon-style {
+  position: absolute;
+  width: 88rpx;
+  height: 32rpx;
+  bottom: 0;
+  left: 50%;
+  margin-left: -44rpx;
+  background: url('https://cdn.tuanzhzh.com/image/venue-mark-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.venue-mark-icon-style text {
+  font-size: 16rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-left: 9rpx;
+}
+.bottom-loading-tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90rpx;
+}
+.bottom-loading-tip text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #808080;
+  line-height: 32rpx;
+}
+.back-top-style {
+  position: fixed;
+  width: 72rpx;
+  height: 72rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0px 8px 16px 0px rgba(129, 5, 0, 0.16);
+  right: 16rpx;
+  bottom: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-top-style image {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
 }

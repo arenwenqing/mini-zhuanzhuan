@@ -38,33 +38,58 @@
   border-radius: 50%;
 }
 .my-user-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 .my-user-id {
+}
+.user-id-style {
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #FFFFFF;
   line-height: 24rpx;
+  margin-right: 10rpx;
+}
+.id-copy {
+  display: inline-block;
+  width: 60rpx;
+  height: 32rpx;
+  border-radius: 4rpx;
+  opacity: 0.8;
+  border: 1rpx solid #FFFFFF;
+  text-align: center;
+
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 32rpx;
 }
 .my-user-name {
-  width: 426rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 560rpx;
+  margin-bottom: 24rpx;
+}
+.my-user-name-text {
   font-size: 32rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #FFFFFF;
   line-height: 32rpx;
-  margin: 24rpx auto 0;
+  /* margin: 24rpx auto 0; */
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  margin-bottom: 24rpx;
 }
 .my-user-name2 {
-  margin-top: 51rpx;
+  margin-top: 36rpx;
+  color: #fff;
 }
 .my-user-tuan-num {
   display: block;
@@ -173,12 +198,8 @@
   top: -28rpx;
 }
 .my-header {
+  position: relative;
   width: 100%;
-  height: 320rpx;
-  background: url('https://cdn.tuanzhzh.com/system/custom/my-top-bg2.png') no-repeat;
-  background-position: center;
-  background-size: cover;
-  /* background: linear-gradient(86deg, #FF625C 0%, #F40026 100%); */
 }
 .my-header2 {
   height: 300rpx;
@@ -186,14 +207,16 @@
 .my-header-content {
   display: flex;
   padding-top: 16rpx;
-  /* background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%); */
 }
 .my-header-list-wrapper {
+  width: 710rpx;
   height: 188rpx;
   background: #FFFFFF;
   border-radius: 24rpx;
   position: relative;
-  margin-top: -130rpx;
+  margin: 0 auto;
+  margin-top: -60rpx;
+  /* margin-top: -130rpx; */
 }
 .list-wrapper-swiper {
   height: 188rpx;
@@ -206,12 +229,13 @@
   justify-content: flex-start;
 }
 .list-item {
-  width: 142rpx;
+  width: 142rpx !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  background: #fff;
 }
 .list-item::after {
   content: '';
@@ -234,6 +258,8 @@
   margin-top: -20rpx;
 }
 .list-item text {
+  display: inline-block;
+  width: 96rpx;
   font-size: 24rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
@@ -340,38 +366,7 @@
   text-decoration: underline;
   text-align: center;
 }
-/* .my-user-money-total {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 140rpx;
-  justify-content: center;
-  background: linear-gradient(86deg, #FF706B 0%, #F8052B 100%);
-}
-.my-user-money-total text:nth-child(1) {
-  font-size: 64rpx;
-  font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-  line-height: 64rpx;
-}
-.my-user-money-total text:nth-child(1)::before {
-  content: "￥";
-  font-size: 32rpx;
-  font-family: PingFangSC-Semibold, PingFang SC;
-  font-weight: 600;
-  color: #FFFFFF;
-  line-height: 44rpx;
-  margin-right: 10rpx;
-} */
-/* .my-user-money-total text:nth-child(2) {
-  font-size: 20rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 24rpx;
-  margin-top: 10rpx;
-} */
+
 .show-guid-image {
   position: fixed;
   height: 100vh;
@@ -384,14 +379,13 @@
   display: none;
 }
 .my-red-package-wrapper {
+  position: relative;
   display: flex;
   width: 710rpx;
   height: 160rpx;
   background: #FFFFFF;
   border-radius: 24rpx;
-  margin: 0 auto;
-  position: relative;
-  top: -150rpx;
+  margin: 90rpx auto 24rpx;
   align-items: center;
 }
 .my-red-package-wrapper-left, .my-red-package-wrapper-right {
@@ -431,4 +425,108 @@
   width: 24rpx;
   height: 24rpx;
   margin-top: 2rpx;
+}
+.switch-identities {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140rpx;
+  height: 48rpx;
+  background: #FFFFFF;
+  border-radius: 38px;
+}
+.identities-style {
+  font-size: 20rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #DD0A00;
+  line-height: 24rpx;
+}
+.identities-style2 {
+  color: #CA8331;
+}
+
+
+.my-top-content-style {
+  width: 750rpx;
+  height: 670rpx;
+  background: url('https://cdn.tuanzhzh.com/image/top_bg%402x.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.my-top-content-style2 {
+  width: 750rpx;
+  height: 670rpx;
+  background: url('https://cdn.tuanzhzh.com/image/top_bg_vip%402x.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.switch-ident-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+}
+.tuan-zhang-vip-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/super-tuan-zhang.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tuan-zhang-vip-icon2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/tuan-mark.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tuan-zhang-vip-icon text {
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #B62D00;
+  line-height: 16rpx;
+  margin-left: 25rpx;
+}
+.tuan-zhang-vip-icon2 text {
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #5C687F;
+  line-height: 16rpx;
+  margin-left: 25rpx;
+}
+.tuan-zhang-view {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: -70rpx;
+}
+.tuan-zhang-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rpx;
+  height: 32rpx;
+  background: #FFFFFF;
+  border-radius: 4rpx;
+  border: 2rpx solid #fff;
+  margin-left: 30rpx;
+}
+.tuan-zhang-text text {
+  font-size: 22rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #AF3800;
+  line-height: 32rpx;
 }

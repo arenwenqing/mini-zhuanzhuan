@@ -1,0 +1,27 @@
+<!--pages/components/dialog/dialog.wxml-->
+<view class="mask" wx:if="{{controlShowDialog}}">
+  <view class="dialog-content">
+    <view class="dialog-content-main">
+      <image class="dialog-content-parent-pic" src='{{parentUserInfo.avatarUrl}}'></image>
+      <view>
+        <view class="dialog-content-parent-name">{{parentUserInfo.nickName}}</view>
+        <view wx:if="{{parentUserInfo.identityPosition}}">
+          <view wx:if="{{parentUserInfo.identityPosition.code !== 1}}" class="dialog-content-parent-mark">
+            <text>{{parentUserInfo.identityPosition.name}}{{levelText[parentUserInfo.level]}}</text>
+          </view>
+          <view wx:else class="dialog-content-parent-mark2">
+            <text>{{parentUserInfo.identityPosition.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="dialog-content-text-explain">
+      <text>邀请您加入Ta的团队</text>
+    </view>
+    <view class="dialog-content-bottom">
+      <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false">不同意</button>
+      <view class="dialog-btn-style-fenge"></view>
+      <button type="default" class="dialog-btn-style dialog-btn-style-sure" plain="false" catchtap="sure">同意</button>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
 // pages/components/dialog/dialog.js
+const domain = 'https://tuanzhzh.com'
 Component({
   /**
    * 组件的属性列表
@@ -7,6 +8,10 @@ Component({
     showDialog: {
       type: Boolean,
       value: false
+    },
+    withNumber: {
+      type: String,
+      value: 0
     }
   },
 
@@ -17,13 +22,16 @@ Component({
     visible: false,
     numberValue: 0,
     erroMsg: '',
-    currentCashback: wx.getStorageSync('currentAvailableCashback')
+    // currentCashback: wx.getStorageSync('currentAvailableCashback'),
+    failText: false
   },
 
   observers: {
     showDialog: function(data) {
       this.setData({
-        visible: data
+        visible: data,
+        failText: false,
+        numberValue: 0
       })
     }
   },
@@ -43,20 +51,29 @@ Component({
       })
     },
     closeDialog: function() {
+      if (!this.data.numberValue) {
+        wx.showToast({
+          title: '请输入提现金额',
+          icon: 'error'
+        })
+        return
+      }
       wx.request({
         url: domain + '/mini/cashback/withdraw/submit',
         header: {
           openid: wx.getStorageSync('openid'),
           userid: wx.getStorageSync('userId')
         },
+        method: 'POST',
         data: {
           userId: wx.getStorageSync('userId'),
-          withdrawAmount: this.numberValue * 1 * 100
+          withdrawAmount: this.data.numberValue * 1 * 100
         },
         success: res => {
           if (res.data.code === -1) {
             this.setData({
-              erroMsg: res.data.msg
+              erroMsg: res.data.msg,
+              failText: true,
             })
           }
           if (res.data.code === 0) {
@@ -67,6 +84,14 @@ Component({
             })
             this.setData({
               visible: false
+            })
+          }
+        },
+        complete: (res) => {
+          if (res.data.status === 500) {
+            this.setData({
+              erroMsg: res.data.error,
+              failText: true,
             })
           }
         },

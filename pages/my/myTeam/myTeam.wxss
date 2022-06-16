@@ -1,0 +1,170 @@
+/* pages/my/myTeam/myTeam.wxss */
+.my-team-wrapper .my-day-task {
+  position: relative;
+  margin: 34rpx auto 28rpx;
+}
+.my-team-zhujie-instructions {
+  position: absolute;
+  width: 686rpx;
+  height: 250rpx;
+  background: #DB964B;
+  border-radius: 8rpx;
+  left: 50%;
+  margin-left: -343rpx;
+  top: -258rpx;
+}
+.my-team-icon {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  right: -5rpx;
+  top: -7rpx;
+}
+.my-team-zhujie-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  margin: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 34rpx;
+}
+.my-team-zhujie-content text {
+  margin-bottom: 10rpx;
+}
+.my-task-mark {
+  width: 2rpx;
+  height: 28rpx;
+  border: 4rpx solid #FB3B47;
+  margin-left: 28rpx;
+}
+.my-task-title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+  margin: 0 16rpx;
+}
+.my-team-zhujie {
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 8rpx;
+  vertical-align: middle;
+}
+.my-team-item {
+  width: 710rpx;
+  height: 136rpx;
+  background: linear-gradient(180deg, #FFF7EE 0%, #FFE9E3 100%);
+  border-radius: 10rpx;
+  border: 2rpx solid transparent;
+  border-image: linear-gradient(180deg, rgba(255, 146, 107, 1), rgba(250, 42, 59, 1)) 2 2;
+  margin: 0 auto;
+  clip-path: inset(0rpx 0rpx round 6rpx);
+}
+
+.big-tuang-team-item {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+}
+
+.my-team-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.my-team-item-img {
+  position: relative;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 0 24rpx 0 20rpx;
+}
+.my-team-item-img-mark {
+  position: absolute;
+  width: 96rpx;
+  height: 24rpx;
+  background: linear-gradient(86deg, #FFAB6B 0%, #FF5E12 100%);
+  bottom: 0;
+  text-align: center;
+
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 25rpx;
+}
+.big-tuan-zhang {
+  background: linear-gradient(86deg, #E5B989 0%, #DA9347 100%);
+}
+.tuan-zhang-item {
+  background: linear-gradient(86deg, #C1C7D7 0%, #848792 100%);
+}
+.my-team-item-img image {
+  width: 100%;
+  height: 100%;
+}
+.my-team-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.my-team-item-top text:nth-child(1) {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #262424;
+  line-height: 40rpx;
+}
+
+.my-team-item-top text:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #E00100;
+  line-height: 34rpx;
+  margin-right: 20rpx;
+}
+
+.my-team-item-bottom text:nth-child(1) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 34rpx;
+}
+
+.my-team-item-bottom text:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999393;
+  line-height: 34rpx;
+  margin-left: 48rpx;
+}
+.my-team-item-content {
+  flex: 1;
+}
+.my-team-no {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.my-team-no-pic {
+  width: 520rpx;
+  height: 380rpx;
+  margin: 66rpx 0 20rpx 0;
+}
+.my-team-no text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #C0C0C0;
+  line-height: 32rpx;
+}

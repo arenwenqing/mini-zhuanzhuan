@@ -30,7 +30,7 @@
           <image src='/pages/images/guanbi.png' class="redpacke-close" catchtap="closeTip"></image>
         </view>
         <image src='/pages/images/zhujie.png' class="redpacke-zhujie" catchtap="showTipFun" />
-        <text class="redpacke-instructions-text">每日结算时间4-9点</text>
+        <text class="redpacke-instructions-text"></text>
       </view>
     </view>
   <view class="order-top">
@@ -57,6 +57,40 @@
     <!-- 订单编号、订单金额、包装规格 -->
     <order-reference orderData="{{orderData}}"></order-reference>
   </view>
+  <!--商品评价-->
+  <view wx:if="{{orderData.orderStatus.code === 504 || orderData.orderStatus.code === 601}}" class="goods-evaluation-wrapper">
+      <view class="evaluation-title">商品评价</view>
+      <view class="evaluation-level evaluation-level-first">
+        <text class="evaluation-level-title">商品评价</text>
+        <view wx:for="{{goodsStar}}" wx:key="index">
+          <image wx:if="{{goodsEvaluation >= index + 1}}" src='../images/big-star.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-index="{{index + 1}}" data-type="goodsEvaluation"  />
+          <image wx:else src='../images/star-gray.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-type="goodsEvaluation" data-index="{{index + 1}}"  />
+        </view>
+      </view>
+      <view class="evaluation-level">
+        <text class="evaluation-level-title">购物体验</text>
+         <view wx:for="{{goodsStar}}" wx:key="index">
+          <image wx:if="{{shoppingExperience >= index + 1}}" src='../images/big-star.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-index="{{index + 1}}" data-type="shoppingEvaluation" />
+          <image wx:else src='../images/star-gray.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-type="shoppingEvaluation" data-index="{{index + 1}}"  />
+        </view>
+      </view>
+      <view class="evaluation-level">
+        <text class="evaluation-level-title">使用评价</text>
+         <view wx:for="{{goodsStar}}" wx:key="index">
+          <image wx:if="{{experienceEvaluation >= index + 1}}" src='../images/big-star.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-index="{{index + 1}}" data-type="logisticsEvaluation"  />
+          <image wx:else src='../images/star-gray.png' class="evaluation-goods-start-style" catchtap="goodsEvaluationClick" data-type="logisticsEvaluation" data-index="{{index + 1}}"  />
+        </view>
+      </view>
+      <view class="evaluation-bottom-style">
+        <text class="evaluation-bottom-left-text">签收24小时候将自动评价</text>
+        <view wx:if="{{orderData.orderStatus.code === 504}}" class="evaluation-bottom-right-btn">
+          <text class="evaluation-bottom-right-btn-text" catchtap="submitEvaluation">提交评价</text>
+        </view>
+        <view wx:else class="evaluation-bottom-right-btn2">
+          <text class="evaluation-bottom-right-btn-text">提交评价</text>
+        </view>
+      </view>
+    </view>
   <!-- 下部分模块 -->
   <view class="order-content">
     <!-- 商品结算页-参团成功，拼团倒计时 code:0 展示-->
@@ -78,16 +112,18 @@
     <!-- 拼团标题提示(根据不同状态展示不同标题提示) -->
     <view wx:if="{{showOrderStatusDescName}}" class="group-title-hint">
       <view>{{orderStatusDescName}}</view>
-    </view>
-  
+    </view>  
     <!-- 申请退货逻辑 -->
-    <view wx:if="{{showOnlyReimburse || showOnlySalesReturn}}" class="apply-refund">
-      <text class="apply-refund-title">{{ showOnlyReimburse ? '商品退款' : '商品退货'}}</text>
-      <view class="refund-operation-btn">
-        <view class="reimburse"
-        wx:if="{{showOnlyReimburse}}"
-        catchtap="reimburse">申请退款</view>
-        <view wx:if="{{showOnlySalesReturn}}" class="sales-return" catchtap="salesReturn">申请退货</view>
+    <view wx:if="{{showOnlyReimburse || showOnlySalesReturn}}">
+      <view wx:if="{{ifShowEvaluationText}}" class="receiveing-title">{{evaluationText}}</view>
+      <view class="apply-refund">
+        <text class="apply-refund-title">{{ showOnlyReimburse ? '商品退款' : '商品退货'}}</text>
+        <view class="refund-operation-btn">
+          <view class="reimburse"
+          wx:if="{{showOnlyReimburse}}"
+          catchtap="reimburse">申请退款</view>
+          <view wx:if="{{showOnlySalesReturn}}" class="sales-return" catchtap="salesReturn">申请退货</view>
+        </view>
       </view>
     </view>
   </view>

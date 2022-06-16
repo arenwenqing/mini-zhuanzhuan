@@ -2,5 +2,5 @@
 <view class="container" data-code="{{currentStatus}}" bindtap="clickOperationBtn">
   <text>{{bottomBtnName}}</text>
   <text wx:if="{{!flag && currentStatus === 101}}" class="container-countdown">{{countTime}}</text>
-  <text wx:if="{{!flag && currentStatus === 502}}" class="container-countdown">{{shippinTime}}</text>
+  <text wx:if="{{!flag && currentStatus === 503}}" class="container-countdown">{{shippinTime}}</text>
 </view>

@@ -46,6 +46,10 @@ Page({
           noticeData: res.data.data ? res.data.data : []
         })
       },
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       fail: (err) => {
         wx.showToast({
           title: err.data.msg,
@@ -64,6 +68,10 @@ Page({
     wx.request({
       url: domain + `/mini/user/detail/${userId}`,
       method: 'GET',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       success: (res) => {
         let isEndGetTime = false
         res.data.data.exchangeCodeList && res.data.data.exchangeCodeList.forEach(item => {

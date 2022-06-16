@@ -10,6 +10,17 @@ Component({
         left: [],
         right: []
       }
+    },
+    identity: {
+      type: Number,
+      value: 1
+    }
+  },
+  observers: {
+    'identity': function(val) {
+      this.setData({
+        ifShowCommission: val === 2
+      })
     }
   },
 
@@ -17,6 +28,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    ifShowCommission: false
   },
 
   /**

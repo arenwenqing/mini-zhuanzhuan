@@ -1,0 +1,305 @@
+.my-task-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.my-task-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 750rpx;
+  height: 706rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx 24rpx 0rpx 0rpx;
+}
+.my-task-title {
+  position: relative;
+  display: flex;
+  height: 86rpx;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid#E6E6E6;
+}
+.my-task-title-name {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+}
+.my-task-close-icon {
+  position: absolute;
+  width: 48rpx;
+  height: 48rpx;
+  right: 16rpx;
+  top: 22rpx;
+}
+.my-task-user-info {
+  display: flex;
+  align-items: center;
+  margin-top: 52rpx;
+}
+.my-task-user-pic-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+  background: rgba(234,234,234, 0.2);
+  margin: 0 20rpx 0 28rpx;
+}
+.my-task-user-picture {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+}
+.my-task-user-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.my-task-user-name-title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 32rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 12rpx;
+}
+.my-task-tuan-mark {
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/tuan-mark.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #556178;
+}
+.my-task-tuan-mark2 {
+  width: 152rpx;
+  height: 58rpx;
+  background: url('https://cdn.tuanzhzh.com/image/super-tuan-mark.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #763903;
+}
+.my-task-tuan-mark text {
+  margin-left: 30rpx;
+}
+.my-task-tuan-mark2 text {
+  margin-left: 30rpx;
+}
+.my-task-commission-wrapper {
+  position: relative;
+  margin-top: 48rpx;
+}
+.my-task-commission-proportion {
+  font-size: 20rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: #8E8E8E;
+  line-height: 20rpx;
+  margin: 0 0 4rpx 34rpx;
+}
+.my-task-shaft-wrapper {
+  width: 686rpx;
+  margin: 0 auto;
+}
+.my-task-shaft {
+  display: flex;
+  align-items: center;
+  width: 686rpx;
+  height: 8rpx;
+  background: #DDDDDD;
+  border-radius: 8rpx 200rpx 200rpx 8rpx;
+}
+.my-task-shaft-red {
+  width: 600rpx;
+  max-width: 600rpx !important;
+  height: 4rpx;
+  background: #FD3810;
+  border-radius: 8rpx 200rpx 200rpx 8rpx;
+}
+.my-task-shaft-big-heart-node {
+  position: absolute;
+  height: 64rpx;
+  width: 64rpx;
+  top: -18rpx;
+}
+.my-task-shaft-percentage {
+  display: flex;
+  width: 686rpx;
+  justify-content: space-around;
+  margin-bottom: 8rpx;
+}
+.my-task-shaft-percentage text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 28rpx;
+}
+.my-task-shaft-node-wrapper {
+  position: absolute;
+  width: 686rpx;
+  display: flex;
+  top: 51rpx;
+}
+.my-task-shaft-node {
+  position: absolute;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: #DDDDDD;
+}
+.my-task-shaft-heart-node {
+  position: absolute;
+  width: 24rpx;
+  height: 24rpx;
+}
+.my-task-singular-num {
+  margin: 16rpx 0 0 0rpx;
+  font-size: 20rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: #8E8E8E;
+  line-height: 20rpx;
+}
+.my-task-shaft-node-wrapper2 {
+  top: 110rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FD3810;
+}
+.my-task-singular-node {
+  position: absolute;
+}
+.my-task-singular-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 82rpx;
+}
+.my-task-singular-done text:nth-child(1) {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #262424;
+}
+.my-task-singular-done text:nth-child(2) {
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #000000;
+}
+.my-task-commission-current {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.my-task-commission-item1 {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #262424;
+}
+.my-task-commission-item2 {
+  display: inline-block;
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  background: #EEEEEE;
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #B8B8B8;
+  text-align: center;
+  margin-left: 21rpx;
+}
+.my-task-commission-item3 {
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #000000;
+  position: relative;
+  left: 24rpx;
+}
+.my-task-singular-done-num {
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FF0000 !important;
+  margin-left: 14rpx;
+}
+.my-task-bottom-show-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.my-task-bottom-baoji-left {
+  margin-right: 20rpx;
+}
+.my-task-bottom-baoji-wrapper {
+  width: 98rpx;
+  height: 98rpx;
+  margin: 30rpx 34rpx 0 34rpx;
+}
+.my-task-bottom-baoji {
+  width: 98rpx;
+  height: 98rpx;
+}
+.my-task-commission-tip {
+  position: absolute;
+  width: 686rpx;
+  height: 430rpx;
+  background: #DB964B;
+  border-radius: 8rpx;
+  top: -430rpx;
+  left: 50%;
+  margin-left: -343rpx;
+}
+.tip-item {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+.my-task-commission-tip-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx;
+}
+.my-task-commission-icon {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  right: -16rpx;
+  top: -13rpx;
+}

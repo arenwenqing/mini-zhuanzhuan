@@ -1,0 +1,81 @@
+<!--pages/my/myTask/myTask.wxml-->
+<view class="my-task-wrapper" wx:if="{{myTaskVisible}}">
+  <view class="my-task-bottom">
+    <view class="my-task-title">
+      <text class="my-task-title-name">我的任务</text>
+      <image src="/pages/images/my-task-close.png" class="my-task-close-icon" catchtap="closeMyTask"></image>
+    </view>
+    <view class="my-task-user-info">
+      <view class="my-task-user-pic-wrapper">
+        <image class="my-task-user-picture" src='{{teamLeaderInfo.user.wxUser.avatarUrl}}'></image>
+      </view>
+      <view class="my-task-user-name-wrapper">
+        <text class="my-task-user-name-title">{{teamLeaderInfo.user.wxUser.nickName}}</text>
+        <view wx:if="{{teamLeaderInfo.user.identity.identityPosition.code === 1 }}" class="my-task-tuan-mark">
+          <text>{{teamLeaderInfo.user.identity.identityPosition.name}}</text>
+        </view>
+        <view wx:else class="my-task-tuan-mark2">
+          <text>{{teamLeaderInfo.user.identity.identityPosition.name}}{{levelText[teamLeaderInfo.user.identity.level]}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="my-task-commission-wrapper">
+      <view class="my-task-commission-proportion">佣金比：</view>
+      <view class="my-task-shaft-wrapper">
+        <view class="my-task-shaft-percentage">
+          <text wx:for="{{teamLeaderInfo.commissionRatioAxisData}}" wx:key="index">{{item}}%</text>
+        </view>
+        <view class="my-task-shaft">
+          <view style="{{'width:' + teamLeaderInfo.currentPeriodOrderCount * 23 + 'rpx' }}" class="my-task-shaft-red"></view>
+        </view>
+        <view class="my-task-shaft-node-wrapper">
+          <block wx:for="{{teamLeaderInfo.orderCountAxisData}}" wx:key="index">
+            <view wx:if="{{teamLeaderInfo.currentPeriodOrderCount < item}}" class="my-task-shaft-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * index + 'rpx'}}"></view>
+            <block wx:else>
+              <image wx:if="{{teamLeaderInfo.currentPeriodOrderCount >= item && index !== teamLeaderInfo.orderCountAxisData.length - 1}}" src="/pages/images/small-heart.png" class="my-task-shaft-heart-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * index + 'rpx'}}"></image>
+              <image wx:else src="/pages/images/big-heart.png" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * index + 'rpx'}}" class="my-task-shaft-big-heart-node"></image>
+            </block>
+          </block>
+          <!-- <view wx:if="{{true}}" class="my-task-shaft-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * 0 + 'rpx'}}"></view>
+          <image wx:else src="/pages/images/small-heart.png" class="my-task-shaft-heart-node"></image>
+          <view class="my-task-shaft-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * 1 + 'rpx'}}"></view>
+          <view wx:if="{{false}}" class="my-task-shaft-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * 2 + 'rpx'}}"></view>
+          <image wx:else src="/pages/images/big-heart.png" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * 2 + 'rpx'}}" class="my-task-shaft-big-heart-node"></image> -->
+        </view>
+        <view class="my-task-singular-num">单数：</view>
+        <view class="my-task-shaft-node-wrapper my-task-shaft-node-wrapper2">
+          <block wx:for="{{teamLeaderInfo.orderCountAxisData}}" wx:key="index">
+            <view class="my-task-singular-node" style="{{'left:' + (686 / teamLeaderInfo.commissionRatioAxisData.length) * index + 'rpx'}}">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="my-task-bottom-show-content">
+        <view class="my-task-bottom-baoji-left">
+          <view class="my-task-singular-done">
+          <text>您本周已完成的订单数：</text>
+          <text wx:if="{{teamLeaderInfo.currentPeriodOrderCount}}" class="my-task-singular-done-num">{{teamLeaderInfo.currentPeriodOrderCount}}单</text>
+          <text wx:else>0单</text>
+        </view>
+        <view class="my-task-commission-current">
+          <view class="my-task-commission-tip" wx:if="{{showTip}}">
+            <view class="my-task-commission-tip-content">
+              <image src="/pages/images/guanbi.png" class="my-task-commission-icon" catchtap="showTipFun"></image>
+              <text class="tip-item">1.每个自然周为一个任务周期，新周期的凌晨将重置订单数量、佣金比例；</text>
+              <text class="tip-item">2.佣金比例为浮动制度，每周期完成10单(含)以内，比例为售价的5%，完成11~20单(含)以内，比例为售价的10%，21单及以上，比例为售价的15%；</text>
+              <text class="tip-item">3.佣金计算为当前周期的所有订单，佣金将于新周期的凌晨执行核算与结算，多退少补</text>
+              <text class="tip-item">4.您推广的订单发生退款或退货时，将对应减少您已获得的佣金；</text>
+            </view>
+          </view>
+          <text class="my-task-commission-item1">您当前的佣金比例：</text>
+          <text class="my-task-commission-item2" catchtap="showTipFun">?</text>
+          <text class="my-task-commission-item3" wx:if="{{teamLeaderInfo.currentPeriodCommissionRatio}}" class="my-task-singular-done-num">{{teamLeaderInfo.currentPeriodCommissionRatio}}%</text>
+          <text class="my-task-commission-item3" wx:else>0%</text>
+        </view>
+        </view>
+        <view class="my-task-bottom-baoji-wrapper">
+          <image wx:if="{{teamLeaderInfo.keepLevel}}" src="https://cdn.tuanzhzh.com/image/baoji.png" class="my-task-bottom-baoji"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

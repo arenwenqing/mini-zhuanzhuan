@@ -38,6 +38,10 @@ Page({
     })
     wx.request({
       url: domain + `/mini/product/list`,
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
       data: {
         categoryId: '',
         inVogue: this.data.inVogue,

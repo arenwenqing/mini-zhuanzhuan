@@ -5,6 +5,10 @@
     "component-announcement": "/pages/components/announcement/announcement",
     "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode",
     "mp-dialog": "weui-miniprogram/dialog/dialog",
-    "every-day-task": "/pages/my/dayTask/dayTask"
+    "every-day-task": "/pages/my/dayTask/dayTask",
+    "my-team": "/pages/my/myTeam/myTeam",
+    "my-task": "/pages/my/myTask/myTask",
+    "upgrade-mask": "/pages/my/upgradeMask/upgradeMask",
+    "mentor-dialog": "/pages/my/mentorDialog/mentorDialog"
   }
 }

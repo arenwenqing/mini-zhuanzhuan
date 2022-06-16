@@ -1,0 +1,406 @@
+/**index.wxss**/
+.hide {
+  display: none !important;
+}
+.my-page-navigation {
+  z-index: 333;
+  position: relative;
+}
+
+.container {
+  background: linear-gradient(180deg, #FFF8EF 0%, #FFDCD3 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+.container-conent-top-style {
+  position: absolute;
+  width: 750rpx;
+  height: 256rpx;
+  top: 0;
+  left: 0;
+  background: url('https://cdn.tuanzhzh.com/image/top_bg_top.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container-conent-top-style2 {
+  position: relative;
+  width: 750rpx;
+  height: 600rpx;
+  top: 300rpx;
+  left: 0;
+  background: url('https://cdn.tuanzhzh.com/image/top_bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container-top {
+  width: 100vw;
+  /* height: 110rpx; */
+  /* background: linear-gradient(86deg, #FF625C 0%, #F40026 100%); */
+  border: none;
+  /* margin-top: -1rpx; */
+  padding: 0;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 23rpx;
+}
+.index-search-wrapper {
+  position: relative;
+}
+.index-search-icon {
+  position: absolute;
+  display: inline-block;
+  position: absolute;
+  width: 26rpx;
+  height: 26rpx;
+  left: 18rpx;
+  top: 19rpx;
+}
+.index-search-text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 24rpx;
+  position: relative;
+  top: 20rpx;
+  left: 53rpx;
+}
+.index-search {
+  width: 300rpx;
+  height: 60rpx;
+  background:rgba(255, 255, 255, 0.5);
+  border-radius: 36rpx;
+  /* border: 1rpx solid #DBDBDB; */
+  margin-right: 22rpx;
+}
+.container-title {
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  display: inline-block;
+  margin-top: 70rpx;
+}
+
+.swiper-wrapper {
+  width: 710rpx;
+  margin: 0 auto;
+  /* margin-top: -121rpx; */
+  height: auto;
+  position: relative;
+  height: 276rpx;
+  border-radius: 24rpx;
+  border: none;
+}
+.swiper-item-wrapper {
+  width: 710rpx;
+  height: 276rpx;
+  border-radius: 24rpx;
+}
+
+.swiper-image {
+  display: block;
+  width: 710rpx;
+  height: 276rpx;
+  border-radius: 24rpx;
+  box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(61, 3, 0, 0.37);
+}
+.home-content-wrapper {
+  position: relative;
+  overflow: auto;
+}
+/* .home-content-top {
+  width: 750rpx;
+  height: 200rpx;
+  background: linear-gradient(86deg, #FF625C 0%, #F40026 100%);
+  border: none;
+  margin-top: -1rpx;
+  position: absolute;
+} */
+
+/*用来包裹所有的小圆点  */
+.dots{  
+  width: 156rpx;
+  height: 36rpx; 
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 320rpx;
+  bottom: -50rpx;
+}  
+/*未选中时的小圆点样式 */
+.dot{  
+  width: 12rpx;  
+  height: 12rpx;   
+  border-radius: 50%;
+  margin-right: 12rpx;
+  background-color: #FFB5A3;
+}  
+/*选中以后的小圆点样式  */
+.active{  
+  width: 12rpx;   
+  height: 12rpx;
+  background-color: #FA2840;
+}
+.container-search-wrapper {
+  width: 710rpx;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  overflow: hidden;
+  position: relative;
+  left: 13rpx;
+}
+.container-receive-wrapper {
+  height: 60rpx;
+  width: 365rpx;
+}
+.receive-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.receive-swiper {
+  height: 70rpx !important;
+}
+
+.receive-image {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+}
+.receive-name {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #fff;
+  line-height: 34rpx;
+  display: inline-block;
+  margin: 0 16rpx 0 8rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 160rpx;
+  overflow: hidden;
+}
+.receive-text {
+  display: inline-block;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #fff;
+  line-height: 34rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 200rpx;
+  overflow: hidden;
+}
+.container-serch-content {
+  display: flex;
+  width: 300rpx;
+  height: 57rpx;
+  background: #FFFFFF;
+  border-radius: 36rpx;
+  border: 1rpx solid #DBDBDB;
+  align-items: center;
+}
+.search-icon {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  margin: 14rpx 8rpx 14rpx 20rpx;
+}
+.search-placholder {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #B1B1B1;
+}
+.tabbar-map-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+.venue-goods-wrapper {
+  width: 710rpx;
+  height: 248rpx;
+  position: relative;
+  border-radius: 12rpx;
+  margin: 0 auto 28rpx;
+}
+.venue-goods-bottom-1 {
+  background: linear-gradient(180deg, #FFE0B8 0%, #FFF5E9 100%);
+}
+.venue-goods-bottom-2 {
+  background: linear-gradient(180deg, #CFECAB 0%, #F0FBE1 100%);
+}
+.venue-goods-bottom-3 {
+  background: linear-gradient(180deg, #FFC9C9 0%, #FFEFEF 100%);
+}
+.venue-bg-style {
+  position: absolute;
+  width: 160rpx;
+  height: 160rpx;
+  top: 0;
+  right: 0;
+}
+.venue-goods-title-wrapper {
+  display: flex;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+.venue-goods-title-icon {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #FFC06B 0%, #FF6F12 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-title {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #000000;
+  line-height: 32rpx;
+  margin-left: 8rpx;
+}
+.venue-goods-title-icon2 {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #7CC43D 0%, #53B231 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-title-icon3 {
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #FF706B 0%, #F8052B 100%);
+  border-radius: 4rpx;
+}
+.venue-goods-list {
+  display: flex;
+  justify-content: space-around;
+  margin: 0px 16rpx;
+}
+.venue-goods-list-item {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  border-radius: 12rpx;
+}
+.venue-goods-list-item image {
+  width: 100%;
+  height: 100%;
+}
+.venue-mark-icon-style {
+  position: absolute;
+  width: 124rpx;
+  height: 38rpx;
+  background: #FE2432;
+  border-radius: 16rpx;
+  left: 50%;
+  margin-left: -52rpx;
+  bottom: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.venue-mark-icon-style text {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 16rpx;
+}
+.bottom-loading-tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90rpx;
+  padding-bottom: 50rpx;
+}
+.bottom-loading-tip text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #808080;
+  line-height: 32rpx;
+}
+.back-top-style {
+  position: fixed;
+  width: 72rpx;
+  height: 72rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0px 8px 16px 0px rgba(129, 5, 0, 0.16);
+  right: 16rpx;
+  bottom: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-top-style image {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.stage {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  left: 50%;
+  margin-left: -100rpx;
+  top: -50rpx;
+  width: 200rpx;
+  height: 40rpx;
+}
+@keyframes dotFlashing {
+  0% {
+      background-color: #333
+  }
+
+  100% {
+      background-color: #ebe6ff
+  }
+}
+.dot-flashing {
+  position: relative;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background-color: #333;
+  color: #333;
+  /* animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: .5s; */
+}
+.dot-flashing::before {
+  left: -35rpx;
+  /* animation: dotFlashing 1s infinite alternate;
+  animation-delay: 0s; */
+}
+.dot-flashing::after {
+  left: -35rpx;
+}
+.dot-flashing::before, .dot-flashing::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #333;
+  color: #333;
+}

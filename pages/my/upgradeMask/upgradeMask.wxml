@@ -1,0 +1,9 @@
+<!--pages/my/upgradeMask/upgradeMask.wxml-->
+<view class="upgrade-mask-wrapper" wx:if="{{visible}}" catchtap="closeMask">
+  <view>
+    <view class="upgrade-mask-content">
+      <text>超级团长I</text>
+    </view>
+    <view class="upgrade-mask-text">升阶成功！新的考核开启</view>
+  </view>
+</view>

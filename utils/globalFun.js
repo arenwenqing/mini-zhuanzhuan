@@ -130,6 +130,7 @@ function getUserId(code, cb) {
       ...(app.globalData.originTimestamp ? { originTimestamp: app.globalData.originTimestamp } : {})
     },
     success: (res) => {
+      console.log('res===', res)
       if (res.data.data.userId) {
         const data = res.data.data
         wx.setStorageSync('userNum', data.userNum)
@@ -145,6 +146,7 @@ function getUserId(code, cb) {
       }
     },
     fail: (err) => {
+      console.log('err====', err)
       wx.showToast({
         title: err.data.msg,
         icon: 'error',
@@ -192,4 +194,22 @@ export const shareFun = (obj) => {
     path: `/pages/index/index`,
     ...obj
   }
+}
+
+export function fetchData (url, data, method, callback, errCallback) {
+  wx.request({
+    url: domain + url,
+    header: {
+      openid: wx.getStorageSync('openid'),
+      userid: wx.getStorageSync('userId')
+    },
+    method: method || 'GET',
+    data: data,
+    success: (res) => {
+      callback && callback(res.data)
+    },
+    fail: (err) => {
+      errCallback && errCallback(err)
+    }
+  })
 }

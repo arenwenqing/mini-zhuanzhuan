@@ -17,6 +17,6 @@
 }
 .container-countdown {
   margin-left: 10rpx;
-  width: 84rpx;
+  /* width: 84rpx; */
   display: inline-block;
 }
