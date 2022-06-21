@@ -6,18 +6,18 @@
 .my-team-zhujie-instructions {
   position: absolute;
   width: 686rpx;
-  height: 250rpx;
+  height: 190rpx;
   background: #DB964B;
   border-radius: 8rpx;
   left: 50%;
   margin-left: -343rpx;
-  top: -258rpx;
+  top: -186rpx;
 }
 .my-team-icon {
   position: absolute;
   width: 30rpx;
   height: 30rpx;
-  right: -5rpx;
+  right: -182rpx;
   top: -7rpx;
 }
 .my-team-zhujie-content {
@@ -32,7 +32,7 @@
   line-height: 34rpx;
 }
 .my-team-zhujie-content text {
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }
 .my-task-mark {
   width: 2rpx;

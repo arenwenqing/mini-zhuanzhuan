@@ -447,6 +447,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const that = this
+    wx.checkSession({
+      success (res){
+        console.log(res)
+      },
+      fail() {
+        try {
+          wx.clearStorageSync()
+          wx.clearStorage()
+        } catch (error) {
+          wx.showToast({
+            title: error.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
+      complete() {
+        that.judgeUserLogin()
+      }
+    })
+  },
+
+  // 判断用户登录
+  judgeUserLogin() {
     if (wx.getStorageSync('wxUser')) {
       this.setData({
         showAvatar: true,
@@ -464,17 +489,15 @@ Page({
         showEveryDayTask: false
       })
     }
-    // this.getMessage()
   },
 
   // 获取用户信息
   getUserInfo() {
     fetchData(`/mini/user/detail/${wx.getStorageSync('userId')}`, {
     }, 'GET', res => {
-      console.log('res.data.identity=', res.data.identity)
       this.setData({
         showSwitch: res.data.identity ? true : false,
-        userTuanInfo: res.data.identity
+        userTuanInfo: res.data.identity ? res.data.identity : {}
       })
     }, err => {
       console.error(err)

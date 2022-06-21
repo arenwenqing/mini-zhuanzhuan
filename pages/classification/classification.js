@@ -27,7 +27,7 @@ Page({
         query.select('.search-input-wrapper').boundingClientRect(rect=>{
         let height = rect.height;
         this.setData({
-            contentHeight: wx.getStorageSync('screenHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - height +'px',
+            contentHeight: wx.getStorageSync('windowHeight') - wx.getStorageSync('statusBarHeight') - wx.getStorageSync('navigationBarHeight') - 22 - height +'px',
         })
         }).exec()
         // this.getList()

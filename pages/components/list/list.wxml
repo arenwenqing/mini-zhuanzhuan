@@ -14,7 +14,7 @@
               <text class="goods-item-name-num">库存{{item.stock}}</text>
               <view class="list-item-tags">
                 <view class="tag-item" wx:for="{{item.productLabelList}}" wx:key="index" wx:for-item="itemData">
-                  <text class="tag-item-text">{{itemData}}</text>
+                  <text class="tag-item-text" style="background: {{itemData.labelColor}};">{{itemData.labelName}}</text>
                 </view>
               </view>
             </view>

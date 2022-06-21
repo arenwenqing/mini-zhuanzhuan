@@ -205,11 +205,12 @@ Page({
           })
           return
         }
-        if (res.data.data.length <= 4) {
+        if (res.data.data.length <= 4 && this.data.page === 1) {
           this.setData({
             topListData: res.data.data
           })
-        } else {
+        }
+        if (res.data.data.length > 4 && this.data.page === 1) {
           this.setData({
             topListData: res.data.data.slice(0, 4)
           })

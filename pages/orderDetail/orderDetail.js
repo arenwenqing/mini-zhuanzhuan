@@ -77,7 +77,7 @@ Page({
     shoppingExperience: 0, // 购物体验评价
     experienceEvaluation: 0, // 使用体验评价
     evaluationText: '',
-    ifShowEvaluationText: false // 是否显示评价相关的文案
+    ifShowEvaluationText: false, // 是否显示评价相关的文案
   },
 
   /**
@@ -138,7 +138,7 @@ Page({
 
   // 点击小星星
   goodsEvaluationClick(e) {
-    if (rderData.orderStatus.code === 601) return
+    if (this.data.orderData.orderStatus.code === 601) return
     switch (e.target.dataset.type) {
       case 'goodsEvaluation':
         if (this.data.goodsEvaluation === e.target.dataset.index * 1) {
@@ -455,9 +455,14 @@ Page({
     } else {
       console.log('点击了确定')
       // this.deleteAddressOption(this.data.addressObj)
+      app.globalData.addressFrom = 'orderDetail'
+      // const id = e.currentTarget.dataset.addressid
       wx.navigateTo({
-        url: '/pages/addAddress/addAddress?from=orderDetail',
+        url: '/pages/shippinAddress/shippinAddress',
       })
+      // wx.navigateTo({
+      //   url: '/pages/addAddress/addAddress?from=orderDetail',
+      // })
     }
     this.setData({
       addAddressDialog: false
