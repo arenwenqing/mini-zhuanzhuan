@@ -2,7 +2,7 @@
 let map = {
   1: 'https://cdn.tuanzhzh.com/banner/activity-detail.png',
   2: 'https://cdn.tuanzhzh.com/banner/three-people-luodi.png',
-  3: 'https://cdn.tuanzhzh.com/banner/stop-detail.jpg'
+  3: 'https://cdn.tuanzhzh.com/banner/stop-delivery-detail.png'
 }
 Page({
 

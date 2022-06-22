@@ -15,7 +15,7 @@ Page({
       name: 'https://cdn.tuanzhzh.com/banner/three-people-banner.png',
       value: 2
     }, {
-      name: 'https://cdn.tuanzhzh.com/banner/stop-banner.png',
+      name: 'https://cdn.tuanzhzh.com/banner/stop-delivery-banner.png',
       value: 3
     }],
     noticeData: [],
