@@ -235,10 +235,12 @@ export function bindHead (uerId, tltUserId) {
           tltUserId
         },
         success: (res) => {
-          callback && callback(res.data)
+          console.log('绑定接口成功')
+          console.log('res===', res)
         },
         fail: (err) => {
-          errCallback && errCallback(err)
+          console.log('err==', err)
+          console.log('绑定接口失败')
         },
         complete: () => {
           console.log('执行绑定')

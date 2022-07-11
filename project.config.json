@@ -47,6 +47,10 @@
   "libVersion": "2.22.1",
   "appid": "wxb48e40dbe585c7f2",
   "projectname": "miniprogram-tuantuan",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
   "condition": {
     "search": {
       "list": []
@@ -66,9 +70,5 @@
     "miniprogram": {
       "list": []
     }
-  },
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
   }
 }
