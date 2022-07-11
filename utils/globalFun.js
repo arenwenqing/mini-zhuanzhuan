@@ -142,6 +142,8 @@ function getUserId(code, cb) {
         // this.sessionGet()
         cb && cb(data)
         uploadUserMessage(JSON.parse(wx.getStorageSync('wxUser')))
+        // 登录的时候调用绑定接口
+        bindHead(data.userId, wx.getStorageSync('tltUserId'))
         // this.getMessage()
       }
     },
@@ -212,4 +214,35 @@ export function fetchData (url, data, method, callback, errCallback) {
       errCallback && errCallback(err)
     }
   })
+}
+
+export function bindHead (uerId, tltUserId) {
+  /**
+     * 判断要不要执行强绑定团长
+     * 如果用户在打开链接时已经登录且链接中携带originUserId，调用强绑定接口
+     */
+    let userId = uerId || wx.getStorageSync('userId')
+    if (userId && tltUserId) {
+      wx.request({
+        url: domain + '/mini/user/bindTeamLeader',
+        header: {
+          openid: wx.getStorageSync('openid'),
+          userid: wx.getStorageSync('userId')
+        },
+        method: 'GET',
+        data: {
+          userId: uerId,
+          tltUserId
+        },
+        success: (res) => {
+          callback && callback(res.data)
+        },
+        fail: (err) => {
+          errCallback && errCallback(err)
+        },
+        complete: () => {
+          console.log('执行绑定')
+        }
+      })
+    }
 }

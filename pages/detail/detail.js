@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-import { submitProductGetOrderId, getUserProfile, shareFun, startTask } from '../../utils/globalFun.js'
+import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
 let flag = false
 Page({
@@ -43,6 +43,10 @@ Page({
       ...(options.originOrderId ? { originOrderId:  options.originOrderId} : {})
     })
     this.getDetail(options.productId)
+    if (options.originUserId && !wx.getStorageSync('tltUserId')) {
+      wx.setStorageSync('tltUserId', options.originUserId)
+    }
+    bindHead('', options.originUserId)
   },
 
   /**
