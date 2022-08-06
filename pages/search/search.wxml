@@ -1,6 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="search-wrapper">
-  <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <!-- <mp-navigation-bar title='团团转' color='#fff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar> -->
+  <navigationBar ifBack="{{true}}" showBack="{{true}}" titleName="团团转" bgNavigationStatus="linear-gradient(86deg, #FF706B 0%, #F8052B 100%)"></navigationBar>
   <view class="search-input-wrapper">
     <image src='../images/search.png' class="seach-input-icon"></image>
     <input bindconfirm="seach" confirm-type="search" class="search-input" selection-start="60" placeholder-class='placeholder-class-style' focus="cursor" placeholder="请输入要查找的商品"/>

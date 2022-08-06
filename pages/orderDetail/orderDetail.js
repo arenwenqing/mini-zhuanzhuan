@@ -767,16 +767,10 @@ Page({
     let currentTime4 = this.data.orderData.orderTime // 订单生成时的毫秒数
     // 开启任务currentTime4 < currentTime2
     if (currentTime4 < currentTime2 || currentTime4 > currentTime3) {
-      startTask(this.data.orderData.product.productId, this.data.orderId, () => {
-        // if (!wx.getStorageSync('poppupWindow')) {
-        //   this.setData({
-        //     showGuid: true
-        //   })
-        //   wx.setStorageSync('poppupWindow', true)
-        // }
-        wx.switchTab({
-          url: '/pages/my/my'
-        })
+      startTask(this.data.orderData.product.productId, this.data.orderId, false, () => {
+        // wx.switchTab({
+        //   url: '/pages/my/my'
+        // })
       })
       // flag = false
     } else {
@@ -840,7 +834,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (options) {
     const currentTime = new Date().getTime()
     flag = true
     // orderData.product.headPhotoAddress[0]

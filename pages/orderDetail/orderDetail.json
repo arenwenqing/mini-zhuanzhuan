@@ -9,7 +9,8 @@
     "wait-qr-code": "/pages/components/waiterQrCode/waiterQrCode",
     "mp-dialog": "weui-miniprogram/dialog/dialog",
     "receive-dialog": "/pages/orderDetail/childCpns/receiveDialog/receiveDialog",
-    "refund-money": "/pages/orderDetail/childCpns/refundMoney/refundMoney"
+    "refund-money": "/pages/orderDetail/childCpns/refundMoney/refundMoney",
+    "navigationBar": "/pages/components/navigationBar/navigationBar"
   },
   "navigationStyle": "custom"
 }

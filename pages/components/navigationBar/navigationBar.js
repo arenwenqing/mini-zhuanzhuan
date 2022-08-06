@@ -15,6 +15,22 @@ Component({
     ifBack: {
       type: Boolean,
       value: true
+    },
+    bgNavigationStatus: {
+      type: String,
+      value: ''
+    },
+    titleColor: {
+      type: String,
+      value: ''
+    },
+    blackBack: {
+      type: Boolean,
+      value: false
+    },
+    customBack: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -40,12 +56,12 @@ Component({
    */
   methods: {
     backfun() {
-      if (this.properties.ifBack) {
+      if (this.properties.ifBack && !this.properties.customBack) {
         wx.navigateBack({
           delta: 1
         })
       } else {
-        this.triggerEvent('triggerEventFun')
+        this.triggerEvent('back')
       }
     }
   }

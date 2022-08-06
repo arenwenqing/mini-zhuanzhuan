@@ -234,6 +234,10 @@ Page({
       wx.switchTab({
         url: '../index/index',
       })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
     }
   },
 
@@ -253,7 +257,7 @@ Page({
     })
     // 开启任务
     if (flag && this.data.zeroOrderId) {
-      startTask(this.data.productId, this.data.zeroOrderId)
+      startTask(this.data.productId, this.data.zeroOrderId, true)
       flag = false
     }
   },

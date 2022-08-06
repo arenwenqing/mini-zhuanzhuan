@@ -6,11 +6,15 @@
 <!--navigationBar.wxml-->
 <view class="navigation-container" style="{{'height: ' + navigationBarAndStatusBarHeight}}">
     <!--空白来占位状态栏-->
-    <view class="navigation-status" style="{{'height: ' + statusBarHeight}}"></view>
+    <view class="navigation-status" style="{{'height: ' + statusBarHeight + ';' + 'background:' + bgNavigationStatus}}"></view>
     <!--自定义导航栏-->
-    <view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
-        <image wx:if="{{showBack}}" bindtap="backfun" src="/pages/images/back.png" class="back-icon" />
-        <view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}">
+    <view class="navigation-bar" style="{{'height:' + navigationBarHeight + ';' + 'background:' + bgNavigationStatus}}">
+        <!-- <image wx:if="{{showBack}}" bindtap="backfun" src="/pages/images/back.png" class="back-icon" /> -->
+        <view wx:if="{{showBack}}" bindtap="backfun" class="navigation-back-wrapper">
+          <image wx:if="{{blackBack}}" src="/pages/images/black_back.png" class="back-icon" />
+          <image wx:else src="/pages/images/back.png" class="back-icon" />
+        </view>
+        <view class="navigation-buttons" style="{{'height:' + menuButtonHeight + ';' + 'color:' + titleColor }}">
           {{titleName}}
         </view> 
         <view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>

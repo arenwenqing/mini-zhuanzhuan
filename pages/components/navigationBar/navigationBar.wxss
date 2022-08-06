@@ -9,7 +9,7 @@
   z-index: 99;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .navigation-bar {
   position: relative;
@@ -45,10 +45,19 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.navigation-back-wrapper {
+  display: inline-block;
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  left: 34rpx;
+}
 .back-icon {
   display: inline-block;
   width: 45rpx;
   height: 45rpx;
   position: absolute;
-  left: 34rpx;
+  left: 0rpx;
+  top: 50%;
+  margin-top: -22.5rpx;
 }

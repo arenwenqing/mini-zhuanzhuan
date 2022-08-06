@@ -1,6 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view class="detail-wrapper">
-  <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar' bindback="bindbackFun"></mp-navigation-bar>
+  <navigationBar showBack="{{true}}" titleName="{{title}}" bgNavigationStatus="#fff" titleColor="black" blackBack="{{true}}" customBack="{{true}}" bind:back="bindbackFun"></navigationBar>
+  <!-- <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar' bindback="bindbackFun"></mp-navigation-bar> -->
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
   <zero-task-dialog showDialog="{{sureStartTaskDialog}}"></zero-task-dialog>
   <view class="detail-swiper-view">

@@ -1,6 +1,7 @@
 <!--pages/historyTask/historyTask.wxml-->
 <view class="history-task-wrapper">
-  <mp-navigation-bar title='历史任务'  background='#FFFFFF' ext-class='my-page-navigation'></mp-navigation-bar>
+  <!-- <mp-navigation-bar title='历史任务'  background='#FFFFFF' ext-class='my-page-navigation'></mp-navigation-bar> -->
+  <navigationBar showBack="{{true}}" titleName="历史任务" bgNavigationStatus="#fff" titleColor="black" blackBack="{{true}}"></navigationBar>
   <view class="history-task-top">
     <view class="history-tag-wrapper">
       <text wx:for="{{tagData}}" wx:key="index" data-value="{{item.id}}" data-index="{{item.id}}" class="tag-name {{activeIndex == item.id ? 'status-red' : ''}}" bindtap="clickStatus">{{item.text}}</text>

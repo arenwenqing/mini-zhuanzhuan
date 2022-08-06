@@ -72,7 +72,7 @@ export const getUserProfile = (cb) => {
  })
 }
 
-export const startTask = (productId, orderId, cb) => {
+export const startTask = (productId, orderId, flag, cb) => {
   wx.request({
     url: domain + '/mini/task/add',
     header: {
@@ -82,6 +82,7 @@ export const startTask = (productId, orderId, cb) => {
     data: {
       productId: productId,
       userId: wx.getStorageSync('userId'),
+      ...(flag ? { fromTL: true} : {}),
       ...(orderId ? {orderId} : {})
     },
     success: (res) => {

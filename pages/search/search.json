@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
-    "component-list": "/pages/components/list/list"
+    "component-list": "/pages/components/list/list",
+    "navigationBar": "/pages/components/navigationBar/navigationBar"
   }
 }

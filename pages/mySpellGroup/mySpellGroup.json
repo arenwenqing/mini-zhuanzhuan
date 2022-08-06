@@ -2,7 +2,8 @@
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
     "component-announcement": "/pages/components/announcement/announcement",
-    "spell-group-list": "/pages/mySpellGroup/spell-group-list/spell-group-list"
+    "spell-group-list": "/pages/mySpellGroup/spell-group-list/spell-group-list",
+    "navigationBar": "/pages/components/navigationBar/navigationBar"
   },
   "navigationStyle": "custom",
   "navigationBarTextStyle": "black"

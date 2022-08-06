@@ -84,7 +84,7 @@ Page({
                         const { goodsTopType } = this.data
                         if (goodsTopType && goodsTopType.length) {
                             this.setData({
-                                showMore: false,
+                                // showMore: false,
                                 categoryId: goodsTopType[0].id,
                                 page: 1,
                                 listData: []

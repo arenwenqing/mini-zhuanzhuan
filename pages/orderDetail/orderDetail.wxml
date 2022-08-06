@@ -1,6 +1,8 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <view class="container">
-  <mp-navigation-bar title="{{topTitle}}" color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar>
+  <!-- <mp-navigation-bar title="{{topTitle}}" color='#ffffff' background='linear-gradient(86deg, #FF706B 0%, #F8052B 100%)'></mp-navigation-bar> -->
+
+  <navigationBar ifBack="{{true}}" showBack="{{true}}" titleName="{{topTitle}}" bgNavigationStatus="linear-gradient(86deg, #FF706B 0%, #F8052B 100%)"></navigationBar>
 
   <!-- 上部分模块 -->
   <!--展示红包的相关逻辑-->
@@ -16,7 +18,7 @@
       </view>
       <view class="redpacke-btn-wrapper">
         <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
-        <button class="share-btn-style" disabled="{{ifCanClick}}" catchtap="skipMypage">
+        <button class="share-btn-style" disabled="{{ifCanClick}}" catchtap="skipMypage" open-type="share">
           翻倍我的红包
         </button>
       </view>

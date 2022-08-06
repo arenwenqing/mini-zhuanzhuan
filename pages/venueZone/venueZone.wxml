@@ -1,7 +1,8 @@
 <!--index.wxml background="#fff" background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)'-->
 <view class="container">
   <view class="container-conent-top-style"></view>
-  <mp-navigation-bar title="团团转"  color='#fff' back='true' bindback="bindbackFun"></mp-navigation-bar>
+  <!-- <mp-navigation-bar title="团团转"  color='#fff' back='true' bindback="bindbackFun"></mp-navigation-bar> -->
+  <navigationBar ifBack="{{true}}" showBack="{{true}}" titleName="团团转" bgNavigationStatus="rgba(0,0,0,0)"></navigationBar>
   <view class="container-top">
     <view class="container-search-wrapper">
       <view class="container-receive-wrapper">

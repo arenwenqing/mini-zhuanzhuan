@@ -1,6 +1,7 @@
 <!--pages/mySpellGroup/mySpellGroup.wxml-->
 <view class="container">
-  <mp-navigation-bar title='我的订单' color='#000000' background='#FFFFFF'></mp-navigation-bar>
+  <!-- <mp-navigation-bar title='我的订单' color='#000000' background='#FFFFFF'></mp-navigation-bar> -->
+  <navigationBar showBack="{{true}}" titleName="我的订单" bgNavigationStatus="#fff" titleColor="black" blackBack="{{true}}"></navigationBar>
   <view class="my-top-wrapper">
     <!-- <component-announcement noticeData="{{noticeData}}" centerStyle="true"></component-announcement> -->
   </view>

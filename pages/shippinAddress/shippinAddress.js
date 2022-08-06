@@ -227,6 +227,7 @@ Page({
       showAddAddress: false,
       title: '收货地址'
     })
+    console.log('过来了')
     this.getUserDetail()
   },
 
