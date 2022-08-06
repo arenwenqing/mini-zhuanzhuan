@@ -232,15 +232,18 @@ export function bindHead (uerId, tltUserId) {
         },
         method: 'GET',
         data: {
-          userId: uerId,
+          userId: userId,
           tltUserId
         },
         success: (res) => {
-          console.log('绑定接口成功')
-          console.log('res===', res)
+          console.log('res=', res)
+          if (res.data.data) {
+            console.log('绑定接口成功')
+          }
+          console.log('绑定接口失败')
         },
         fail: (err) => {
-          console.log('err==', err)
+          console.log('err=', err)
           console.log('绑定接口失败')
         },
         complete: () => {
