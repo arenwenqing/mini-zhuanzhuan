@@ -565,17 +565,29 @@ Page({
   onShareAppMessage: function (option) {
     const currentTime = new Date().getTime()
     let url = ''
-    console.log('userId==', wx.getStorageSync('userId'))
-    if (option && !option.target) {
-      url = `/pages/my/my?parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    let sharObj = {}
+    // if (option && !option.target) {
+    //   url = `/pages/my/my?parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    // } else {
+    //   url = `/pages/my/my?from=share&parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    // }
+
+    if (option.target.dataset.imgurl) {
+      const obj = option.target.dataset
+      sharObj = {
+        path: `/pages/detail/detail?productId=${obj.productid}&originOrderId=${obj.originorderid}&name=${obj.productName}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`,
+        imageUrl: obj.imgurl,
+        title: obj.productname
+      }
     } else {
-      url = `/pages/my/my?from=share&parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+      sharObj = {
+        path: `/pages/my/my?from=share&parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`,
+        imageUrl: 'https://cdn.tuanzhzh.com/banner/recruiting.png',
+        title: '一起来组团' 
+      }
     }
     return shareFun({
-      path: url,
-      ...(option.target ? {imageUrl: option.target.dataset.imgurl} : {}),
-      imageUrl: 'https://cdn.tuanzhzh.com/banner/recruiting.png',
-      title: '一起来组团' 
+      ...sharObj
     })
   }
 })

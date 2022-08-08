@@ -223,6 +223,8 @@ export function bindHead (uerId, tltUserId) {
      * 如果用户在打开链接时已经登录且链接中携带originUserId，调用强绑定接口
      */
     let userId = uerId || wx.getStorageSync('userId')
+    console.log('userId=====', uerId || wx.getStorageSync('userId'))
+    console.log('tlUserId===', tltUserId)
     if (userId && tltUserId) {
       wx.request({
         url: domain + '/mini/user/bindTeamLeader',
@@ -233,12 +235,13 @@ export function bindHead (uerId, tltUserId) {
         method: 'GET',
         data: {
           userId: userId,
-          tltUserId
+          tlUserId: tltUserId
         },
         success: (res) => {
-          console.log('res=', res)
+          console.log('res=', res.data.data)
           if (res.data.data) {
             console.log('绑定接口成功')
+            return
           }
           console.log('绑定接口失败')
         },

@@ -37,6 +37,7 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu()
     this.from = options.from
+    console.log('showBuy=', options.showBuy)
     this.setData({
       title: options.name,
       showBuy: options.showBuy,
@@ -177,7 +178,7 @@ Page({
   useCouponsSpellGroup(e) {
     submitProductGetOrderId(this.data.productId, 1, this.showDialog.bind(this))
   },
-  // 立即拼团
+  // 点击购买
   immediateSpellGroup(e) {
     submitProductGetOrderId(this.data.productId, this.data.originOrderId, () => {
       this.setData({
