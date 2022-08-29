@@ -14,7 +14,9 @@
         <view class="redpacke-show-explain">
           <text>最多可得红包</text>
         </view>
-        <view class="redpacke-shaow-max">{{orderData.product.finalCashback}}</view>
+        <view class="redpacke-shaow-max">
+          <text class="redpacke-shaow-max-text">{{orderData.product.finalCashback}}</text>
+        </view>
       </view>
       <view class="redpacke-btn-wrapper">
         <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
@@ -42,8 +44,8 @@
       您的订单已出库，正在打包中
     </view>
     
-    <!--订单的地址信息展示-->
-    <view wx:if="{{orderStatusDescName !== ''}}" class="detail-address-message">
+    <!--订单的地址信息展示 wx:if="{{orderStatusDescName !== ''}}"-->
+    <view wx:if="{{orderData.receiveAddress}}"  class="detail-address-message">
       <view class="detail-address-item">
         {{orderData.receiveAddress.provinceName + orderData.receiveAddress.cityName +  orderData.receiveAddress.districtName + orderData.receiveAddress.detail}}
       </view>

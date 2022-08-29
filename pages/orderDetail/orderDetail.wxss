@@ -244,7 +244,7 @@
 }
 .redpacke-shaow-max {
   position: absolute;
-  width: 164rpx;
+  /* width: 164rpx; */
   font-size: 60rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
@@ -253,9 +253,11 @@
   left: 50%;
   margin-left: -82rpx;
   top: 234rpx;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
 }
-.redpacke-shaow-max::after {
+.redpacke-shaow-max-text::after {
   content: '元';
   position: absolute;
   font-size: 36rpx;
