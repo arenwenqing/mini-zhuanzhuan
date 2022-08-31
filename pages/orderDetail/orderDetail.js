@@ -39,7 +39,7 @@ Page({
     orderStatusCode: undefined, // 订单状态
     topTitle: '团团转', // 订单详情中顶部标题
     currentStatus: 0,
-    bottomBtnName: '继续逛逛',       // 订单详情底部操作按钮
+    bottomBtnName: '回到首页',       // 订单详情底部操作按钮
     orderStatusDescName: '',        // 订单状态提示文案
     showComfortMoney: false,        // 是否展示安慰红包
     showExpressInfo: false,         // 是否展示快递信息
@@ -84,6 +84,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
     if (options?.orderId) {
       this.setData({
         orderId: options.orderId
@@ -226,7 +227,7 @@ Page({
 
       const commonOrGoodOrder = (data.orderStatus.code === 501 || data.orderStatus.code === 502) ? '购买成功，正在为您安排发货' : '' //todo
       let topTitle = '团团转'
-      let bottomBtnName = '继续逛逛'
+      let bottomBtnName = '回到首页'
       let orderStatusDescName = ''
       
       if ([504, 503, 601].includes(data.orderStatus.code)) {
@@ -295,7 +296,7 @@ Page({
         app.globalData.payDeadline = data.payDeadline
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
         if (data.payDeadline - new Date().getTime() <= 0) {
-          bottomBtnName = '继续逛逛'
+          bottomBtnName = '回到首页'
           bottomBtnComponentObj.timeoutNoPay(true)
         }
         bottomBtnComponentObj.payDownTime(data.payDeadline)
@@ -312,7 +313,7 @@ Page({
         orderStatusDescName = ''
       } else if (data.orderStatus.code === 204) { // 已取消（超时未支付）-已取消
         topTitle = '已取消'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = '您已取消订单，欢迎再次购买'
         this.setData({
           showOrderStatusDescName: true
@@ -326,21 +327,21 @@ Page({
         })
       } else if (data.orderStatus.code === 202) { // 已支付
         topTitle = '待成团'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = ''
         this.setData({
           showImage: true
         })
       } else if (data.orderStatus.code === 501) { // 待发货
         topTitle = '待发货'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOnlyReimburse: true
         })
       } else if (data.orderStatus.code === 503) { // 商品待收货
         topTitle = '待收货'
-        // bottomBtnName = '继续逛逛'
+        // bottomBtnName = '回到首页'
         bottomBtnName = '确认收货'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
@@ -353,7 +354,7 @@ Page({
         })
       } else if (data.orderStatus.code === 504) { // 商品已签收
         topTitle = '已签收'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showExpressInfo: true,
@@ -365,7 +366,7 @@ Page({
         })
       } else if (data.orderStatus.code === 512) { // 商品已退货
         topTitle = '已退货'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = '您已退货，欢迎再次参团'
         this.setData({
           showOrderStatusDescName: true,
@@ -380,7 +381,7 @@ Page({
         })
       } else if (data.orderStatus.code === 502) { // 商品已出库
         topTitle = '已出库'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
         orderStatusDescName = commonOrGoodOrder
         this.setData({
           showOrderStatusDescName: true,
@@ -400,7 +401,7 @@ Page({
         })
       } else { // 其他
         topTitle = '团团转'
-        bottomBtnName = '继续逛逛'
+        bottomBtnName = '回到首页'
       }
       this.setData({
         orderData: data || {},
@@ -477,11 +478,11 @@ Page({
     this.getOrderDetail(this.data.orderId)
   },
 
-  // 点击微信支付/继续逛逛/确认收货
+  // 点击微信支付/回到首页/确认收货
   clickPerationBtn(e) {
     if (e.detail.flag) {
       wx.switchTab({
-        url: '/pages/classification/classification',
+        url: '/pages/index/index',
       })
       return
     }
@@ -494,14 +495,14 @@ Page({
     } else if (orderStatusCode === 204 || orderStatusCode === 202) {
       // console.log('1/已取消(超时未支付)', orderStatusCode)
       wx.switchTab({
-        url: '/pages/classification/classification',
+        url: '/pages/index/index',
       })
     } else if (orderStatusCode === 503) {
       // 确认收货需要重新请求一下商品详情接口
       this.signFor()
     } else {
       wx.switchTab({
-        url: '/pages/classification/classification',
+        url: '/pages/index/index',
       })
     }
   },

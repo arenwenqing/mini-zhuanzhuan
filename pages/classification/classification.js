@@ -35,9 +35,9 @@ Page({
     },
 
     scoll(e) {
-        this.setData({
-            scrollTop: e.detail.scrollTop
-        })
+      this.setData({
+        scrollTop: e.detail.scrollTop
+      })
     },
 
     // 下拉加载
@@ -65,7 +65,7 @@ Page({
     // 获得商品分类
     getCategory (parentId='') {
         wx.showLoading({
-            title: '加载中',
+          title: '加载中',
         })
         wx.request({
             url: domain + '/mini/product/category/list',
@@ -85,7 +85,7 @@ Page({
                         if (goodsTopType && goodsTopType.length) {
                             this.setData({
                                 // showMore: false,
-                                categoryId: goodsTopType[0].id,
+                                categoryId: parentId, // goodsTopType[0].id,
                                 page: 1,
                                 listData: []
                             }, () => {
@@ -189,9 +189,10 @@ Page({
                 istData: [],
                 showMore: true,
                 scrollTop: 0,
+                listData: [],
                 page: 1
             }, () => {
-                this.getCategory(receiveDetail.id)
+              this.getCategory(receiveDetail.id)
             })
         } else { // 爆款
             this.setData({
