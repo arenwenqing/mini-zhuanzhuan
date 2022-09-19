@@ -1,5 +1,5 @@
 <!--pages/detail/detail.wxml-->
-<view class="detail-wrapper">
+<view class="{{ showPage ? 'detail-wrapper' : 'hide'}}">
   <navigationBar showBack="{{true}}" titleName="{{title}}" bgNavigationStatus="#fff" titleColor="black" blackBack="{{true}}" customBack="{{true}}" bind:back="bindbackFun"></navigationBar>
   <!-- <mp-navigation-bar title="{{title}}" background="#fff" back='true' ext-class='detail-top-bar' bindback="bindbackFun"></mp-navigation-bar> -->
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
@@ -17,14 +17,16 @@
     <image src="{{detailData.photoAddress && detailData.photoAddress[0]}}" mode="scaleToFill" class="detail-main-image"></image>
   </view> -->
   <view class="detail-name-price-wrapper">
+    <image class="share-icon" catchtap="showShare" src="https://cdn.tuanzhzh.com/image/wechat-share-icon.png" />
     <view class="detai-name-price-content">
       <view class="detail-price">
         <view class="detail-current-price">
           <text>￥</text>
-          <text>{{detailData.price}}.</text>
-          <!-- <text>{{detailData.price}}</text> -->
-          <text>{{detailData.priceDot}}</text>
-          <text wx:if="{{identity === 1}}">最终优惠价格{{detailData.preferentialPrice}}元</text>
+          <text wx:if="{{identity === 1}}">{{detailData.marketPrice}}.</text>
+          <text wx:else>{{detailData.price}}.</text>
+          <text wx:if="{{identity === 1}}">{{detailData.marketPriceDot}}</text>
+          <text wx:else>{{detailData.priceDot}}</text>
+          <text wx:if="{{identity === 1}}">返现前价格{{detailData.price + '.' + detailData.priceDot}}元</text>
           <text wx:else>最高佣金{{detailData.maxCommission}}元</text>
         </view>
         <!-- <view class="detail-old-price">
@@ -84,4 +86,10 @@
   </view>
   <!-- <luckBag></luckBag> -->
   <dialog showDialog="{{showDialog}}"></dialog>
+  <sharePoster
+    visible="{{visible}}"
+    detailData="{{detailData}}"
+    identityInfo="{{identityInfo}}"
+    erCode="{{erCode}}"
+  ></sharePoster>
 </view>

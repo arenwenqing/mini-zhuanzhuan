@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead } from '../../utils/globalFun.js'
+import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead, fetchData } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
 let flag = false
 Page({
@@ -28,7 +28,24 @@ Page({
     zeroOrderId: '',
     goodsStar: [1, 1, 1, 1, 1],
     identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
-    showBuy: false
+    showBuy: false,
+    visible: false,
+    erCode: '',
+    identityInfo: {},
+    showPage: false,
+  },
+
+  /**
+   * 处理地址参数
+   */
+  dealWithUrl(str) {
+    const obj = {}
+    str = str.split("&")
+    for(let i = 0;i < str.length; i++){
+      let arr = str[i].split("=")
+      obj[arr[0]] = arr[1]
+    }
+    return obj
   },
 
   /**
@@ -36,6 +53,20 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu()
+    if (options.scene) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      const obj = this.dealWithUrl(decodeURIComponent(options.scene)) || {}
+      // 根据地址中携带的qrCodeId去读取详情页需要的参数
+      this.getQrCodeInfo(obj.qrId)
+    } else {
+      this.optionDetail(options)
+    }
+  },
+
+  // 处理刚进入详情页的逻辑
+  optionDetail(options) {
     this.from = options.from
     console.log('showBuy=', options.showBuy)
     this.setData({
@@ -50,6 +81,15 @@ Page({
     bindHead('', options.originUserId)
   },
 
+  // 根据qrCodeId去读取详情页需要的参数
+  getQrCodeInfo(qrCodeId) {
+    fetchData(`/mini/playbill/share/qrCodeInfo/get`, {
+      qrCodeId
+    }, 'GET', res => {
+      this.optionDetail(res.data.paramMap ? res.data.paramMap : {})
+    })
+  },
+
   /**
    * 关闭删除确认
    */
@@ -58,10 +98,66 @@ Page({
       console.log('点击了取消')
     } else {
       // this.deleteAddressOption(this.data.addressObj)
-      getUserProfile()
+      getUserProfile(() => {
+        wx.showToast({
+          title: '登录成功',
+        })
+      })
     }
     this.setData({
       deleteDialog: false
+    })
+  },
+
+  // 展示分享海报
+  showShare: function() {
+    if (!wx.getStorageSync('userId')) {
+      getUserProfile(() => {
+        wx.showToast({
+          title: '登录成功',
+        })
+      })
+      return
+    }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    this.getUserInfo()
+    // this.setData({
+    //   visible: true
+    // })
+  },
+
+  // 生成分享二维码
+  createErCode() {
+    const currentTime = new Date().getTime()
+    fetchData(`/mini/playbill/share/genUrl`, {
+      userId: wx.getStorageSync('userId'),
+      redirectUrl: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`
+    }, 'GET', res => {
+      wx.hideLoading()
+      this.setData({
+        visible: true,
+        erCode: res.data || ''
+      })
+    }, err => {
+      wx.hideLoading()
+    })
+  },
+
+  // 获取用户信息
+  getUserInfo() {
+    fetchData(`/mini/user/detail/${wx.getStorageSync('userId')}`, {
+    }, 'GET', res => {
+      const identity = res.data.identity ? res.data.identity : {}
+      this.setData({
+        identityInfo: identity
+      })
+      this.createErCode()
+    }, err => {
+      wx.hideLoading()
+      console.error(err)
     })
   },
 
@@ -91,12 +187,15 @@ Page({
         userid: wx.getStorageSync('userId')
       },
       success: (res) => {
-        res.data.data.maxCommission = ((res.data.data.price * 0.15) / 100).toFixed(2)
+        res.data.data.maxCommission = ((res.data.data.maxCommission) / 100).toFixed(2)
         res.data.data.preferentialPrice = ((res.data.data.price - res.data.data.baseCashback) / 100).toFixed(2)
         let a = (res.data.data.price / 100).toFixed(2)
+        let newPrice = res.data.data.preferentialPrice
         res.data.data.price = String(a).split('.')[0]
         res.data.data.priceDot = String(a).split('.')[1]
-        res.data.data.marketPrice = (res.data.data.marketPrice / 100).toFixed(2)
+        res.data.data.marketPrice = String(newPrice).split('.')[0]
+        res.data.data.marketPriceDot = String(newPrice).split('.')[1]
+        res.data.data.redCashBack = (res.data.data.baseCashback / 100).toFixed(2)
         if (!res.data.data.productEvaluation) {
           res.data.data.productEvaluation = {
             entiretyLevel: 4,
@@ -125,6 +224,9 @@ Page({
         })
       },
       complete: () => {
+        this.setData({
+          showPage: true
+        })
         wx.hideLoading()
       }
     })

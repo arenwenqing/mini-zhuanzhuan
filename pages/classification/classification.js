@@ -15,7 +15,8 @@ Page({
         showMore: true,
         page: 1,
         categoryId: '',
-        scrollTop: 0
+        scrollTop: 0,
+        identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
     },
 
     /**
@@ -150,9 +151,12 @@ Page({
                     // item.time = `${this.hours}时${this.minutes}分`
                     // item.price = (item.price / 100).toFixed(2)
                     const a = (item.price / 100).toFixed(2)
+                    const newPrice = ((item.price - item.baseCashback) / 100).toFixed(2)
                     item.price = String(a).split('.')[0]
                     item.priceDot = String(a).split('.')[1]
                     item.marketPrice = (item.marketPrice / 100).toFixed(2)
+                    item.preferentialPrice = String(newPrice).split('.')[0]
+                    item.preferentialPriceDot = String(newPrice).split('.')[1]
                 })
                 this.setData({
                     listData: this.data.listData.concat(res.data.data ? res.data.data : [])
@@ -256,6 +260,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+      this.setData({
+        identity: wx.getStorageSync('identity') || 1
+      })
     },
 
     /**

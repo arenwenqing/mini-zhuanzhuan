@@ -11,7 +11,7 @@
     <text class="no-seach-text">未找到该产品</text>
   </view>
   <view wx:else class="">
-    <component-list datalist="{{searchData}}"></component-list>
+    <component-list datalist="{{searchData}}" identity="{{identity}}"></component-list>
     <!-- <view class="search-holder"></view> -->
   </view>
 </view>

@@ -88,7 +88,7 @@ Page({
       2: 'II',
       3: 'III'
     },
-    showSwitch: false
+    showSwitch: false,
   },
 
   /**

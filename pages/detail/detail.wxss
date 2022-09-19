@@ -1,4 +1,7 @@
 /* pages/detail/detail.wxss */
+.hide {
+  display: none !important;
+}
 .detail-wrapper .detail-top-bar .weui-navigation-bar__center text {
   width: 380rpx;
   text-overflow: ellipsis;
@@ -35,8 +38,16 @@
   height: 750rpx;
 }
 .detail-name-price-wrapper {
+  position: relative;
   height: 300rpx;
   background: #fff;
+}
+.share-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 72rpx;
+  top: 24rpx;
+  right: 28rpx;
 }
 .detai-name-price-content {
   padding: 24rpx 34rpx 32rpx 24rpx;

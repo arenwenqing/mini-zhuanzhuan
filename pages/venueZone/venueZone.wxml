@@ -57,7 +57,8 @@
             <view class="venue-goods-list-item" catchtap="skipDetail" data-name="{{item.majorName}}" data-productid="{{item.productId}}">
               <image src='{{item.headPhotoAddress[0]}}'></image>
               <view class="venue-mark-icon-style">
-                <text>￥{{item.price}}.{{item.priceDot}}</text>
+                <text wx:if="{{identity === 2}}">￥{{item.price}}.{{item.priceDot}}</text>
+                <text wx:else>￥{{item.preferentialPrice}}.{{item.preferentialPriceDot}}</text>
               </view>
             </view>
           </block>

@@ -1,0 +1,278 @@
+.share-poster-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.share-poster-bottom {
+  position: absolute;
+  width: 750rpx;
+  height: 324rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx 24rpx 0rpx 0rpx;
+  bottom: 0rpx;
+  animation: bottomShow  linear 0.1s;
+  display: flex;
+  justify-content: space-evenly;
+}
+.share-bottom-close-icon {
+  position: absolute;
+  top: 24rpx;
+  left: 24rpx;
+  width: 52rpx;
+  height: 52rpx;
+}
+.share-poster-item-wrapper {
+  text-align: center;
+  margin-top: 40rpx;
+}
+.share-poster-item {
+  width: 120rpx;
+  height: 120rpx;
+  background: #E00100;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.share-poster-item-icon {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+}
+.share-poster-item-text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  display: block;
+  margin-top: 20rpx;
+}
+.share-swiper-wrapper {
+  width: 750rpx;
+  height: 1000rpx;
+  margin: 212rpx auto 0;
+}
+.share-poster-swiper {
+  height: 100%;
+}
+.share-banner-img {
+  display: block;
+  width: 640rpx;
+  height: 640rpx;
+}
+.share-swiper-banner-container {
+  width: 100%;
+  height: 1000rpx;
+}
+.share-banner-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.share-banner-box{
+  width: 640rpx;
+  height: 100%;
+}
+.share-swiper-content {
+  position: relative;
+  background: #fff;
+  height: 360rpx;
+  width: 640rpx;
+}
+.share-poster-title {
+  display: inline-block;
+  width: 564rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #262424;
+  margin: 32rpx 44rpx 0 32rpx;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.share-poster-detail-current-price {
+  margin-left: 32rpx;
+  margin-top: -16rpx;
+}
+.share-poster-detail-current-price text:nth-child(1) {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 50rpx;
+}
+.share-poster-detail-current-price text:nth-child(2) {
+  font-size: 60rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 84rpx;
+}
+.share-poster-detail-current-price text:nth-child(3) {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #DD0A00;
+  line-height: 50rpx;
+  margin-right: 8rpx;
+}
+
+.share-poster-return-money-wrapper {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #E00100;
+  line-height: 24rpx;
+  margin-left: 32rpx;
+}
+.share-poster-return-money-wrapper text:nth-child(1) {
+  margin-right: 5rpx;
+}
+.share-poster-head-wrapper {
+  display: flex;
+  margin-left: 32rpx;
+  align-items: center;
+}
+.share-poster-head {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #EAEAEA;
+  box-shadow: 0rpx 26rpx 28rpx 0rpx rgba(134,134,134,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.share-poster-head-img {
+  display: inline-block;
+  height: 57rpx;
+  width: 57rpx;
+  border-radius: 50%;
+}
+
+.share-poster-tuan-zhang-vip-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/super-tuan-zhang.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.share-poster-tuan-zhang-vip-icon2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 142rpx;
+  height: 48rpx;
+  background: url('https://cdn.tuanzhzh.com/image/tuan-mark.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.share-poster-tuan-zhang-vip-icon text {
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #B62D00;
+  line-height: 16rpx;
+  margin-left: 25rpx;
+}
+.share-poster-tuan-zhang-vip-icon2 text {
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #5C687F;
+  line-height: 16rpx;
+  margin-left: 25rpx;
+}
+.share-poseter-level {
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+.share-poster-user-name {
+  width: 300rpx;
+  font-size: 24rpx;
+  height: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  margin: -6rpx 0 0 32rpx;
+  overflow: hidden;
+}
+.share-poster-ercode-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 32rpx;
+  bottom: 24rpx;
+}
+.share-poster-ercode {
+  width: 170rpx;
+  height: 170rpx;
+  margin-bottom: 22rpx;
+  margin-left: 12rpx;
+} 
+.share-poster-ercode-wrapper text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #666666;
+  line-height: 24rpx;
+}
+.share-poseter-create-btn {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.share-medal-icon {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+}
+.share-poster-share-btn {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.share-poser-wechat-icon {
+  margin-left: 38rpx;
+}
+
+@keyframes bottomShow {
+	0% {
+    -webkit-transform: translateY(324rpx);
+    transform: translateY(324rpx);
+  }
+	100% {
+    -webkit-transform: translateY(0rpx);
+    transform: translateY(0rpx);
+  }
+}

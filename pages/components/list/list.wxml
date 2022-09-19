@@ -22,8 +22,10 @@
               <view class="goods-item-price-value">
                 <text>￥</text>
                 <!--{{item.price}}-->
-                <text>{{item.price}}.</text>
-                <text>{{item.priceDot}}</text>
+                <text wx:if="{{identity === 2}}">{{item.price}}.</text>
+                <text wx:else>{{item.preferentialPrice}}.</text>
+                <text wx:if="{{identity === 2}}">{{item.priceDot}}</text>
+                <text wx:else>{{item.preferentialPriceDot}}</text>
                 <!-- <text>￥</text>
                 <text>{{item.marketPrice}}</text> -->
               </view>

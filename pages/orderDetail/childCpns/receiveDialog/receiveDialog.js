@@ -1,4 +1,5 @@
 const domain = 'https://tuanzhzh.com'
+let flag = false
 Component({
   /**
    * 组件的属性列表
@@ -39,6 +40,9 @@ Component({
   methods: {
     //直接拿走
     directlyTake: function () {
+      // 控制快速重复点击
+      if (flag) return
+      flag = true
       wx.request({
         url: domain + '/mini/order/cashback/settle',
         header: {
@@ -74,6 +78,9 @@ Component({
             icon: 'error',
             duration: 2000
           })
+        },
+        complete: (res) => {
+          flag = false
         }
       })
     },

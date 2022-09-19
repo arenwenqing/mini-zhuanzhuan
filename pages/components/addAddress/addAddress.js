@@ -244,7 +244,7 @@ Component({
         return
       }
       // 校验手机号
-      if (this.data.receivePhone.length !== 11 || !(/^1[34578]\d{9}$/.test(this.data.receivePhone))) {
+      if (this.data.receivePhone.length !== 11 || !(/^1[345789]\d{9}$/.test(this.data.receivePhone))) {
         wx.showToast({
           title: '手机号不合法',
           icon: 'error',

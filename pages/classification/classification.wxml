@@ -20,7 +20,7 @@
         bindscroll="scoll"
         style="{{'height:' +  contentHeight}}" lower-threshold="50"
       ><!--scroll-top="{{scrollTop}}"-->
-        <main-content id="mainContent" datalist="{{listData}}"></main-content>
+        <main-content id="mainContent" datalist="{{listData}}" identity="{{identity}}"></main-content>
       </scroll-view>
     </view>
   </view>

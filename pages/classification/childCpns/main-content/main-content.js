@@ -7,6 +7,10 @@ Component({
     datalist: {
       type: Array,
       value: []
+    },
+    identity: {
+      type: Number,
+      value: 1
     }
   },
 
@@ -21,17 +25,17 @@ Component({
       text: '随便看看'
     }, {
       text: '注册/登录'
-    }]
+    }],
   },
 
   observers: {
     datalist: function(data) {
       if (data.length) {
         this.setData({
-          listData: data
+          listData: data,
         })
       }
-    },
+    }
   },
 
   /**

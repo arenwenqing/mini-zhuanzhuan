@@ -7,7 +7,14 @@ Page({
    */
   data: {
     inVogue: 1,
-    searchData: []
+    searchData: [],
+    identity: wx.getStorageSync('identity') || 1, // 1: 团员 2: 团长
+  },
+
+  onShow: function() {
+    this.setData({
+      identity: wx.getStorageSync('identity') || 1
+    })
   },
 
   /**
@@ -51,9 +58,12 @@ Page({
       success: (res) => {
         res.data.data && res.data.data.forEach(item => {
           const a = (item.price / 100).toFixed(2)
+          const newPrice = ((item.price - item.baseCashback) / 100).toFixed(2)
           item.price = String(a).split('.')[0]
           item.priceDot = String(a).split('.')[1]
           item.marketPrice = (item.marketPrice / 100).toFixed(2)
+          item.preferentialPrice = String(newPrice).split('.')[0]
+          item.preferentialPriceDot = String(newPrice).split('.')[1]
         })
         this.setData({
           searchData: res.data.data ? res.data.data : []

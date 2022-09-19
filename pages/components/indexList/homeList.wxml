@@ -24,10 +24,15 @@
         </view>
         <view class="list-item-price">
           <view class="price-left">
-            <view>
+            <view wx:if="{{ifShowCommission}}">
               <text class="current-price-style">￥</text>
               <text class="current-price-style">{{item.price}}.</text>
               <text class="current-price-style">{{item.priceDot}}</text>
+            </view>
+            <view wx:else>
+              <text class="current-price-style">￥</text>
+              <text class="current-price-style">{{item.preferentialPrice}}.</text>
+              <text class="current-price-style">{{item.preferentialPriceDot}}</text>
             </view>
             <!-- <view class="current-price-text">
               团团转价（{{item.discount}}折）
@@ -71,10 +76,15 @@
         </view>
         <view class="list-item-price">
           <view class="price-left">
-            <view>
+            <view wx:if="{{ifShowCommission}}">
               <text class="current-price-style">￥</text>
               <text class="current-price-style">{{item.price}}.</text>
               <text class="current-price-style">{{item.priceDot}}</text>
+            </view>
+            <view wx:else>
+              <text class="current-price-style">￥</text>
+              <text class="current-price-style">{{item.preferentialPrice}}.</text>
+              <text class="current-price-style">{{item.preferentialPriceDot}}</text>
             </view>
             <!-- <view class="current-price-text">
               团团转价（{{item.discount}}折）

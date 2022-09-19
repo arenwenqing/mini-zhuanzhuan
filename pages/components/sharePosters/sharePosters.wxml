@@ -1,0 +1,62 @@
+<!--pages/components/sharePosters/sharePosters.wxml-->
+<view wx:if="{{visible}}" class="share-poster-wrapper">
+  <view class="share-swiper-wrapper">
+    <swiper class="share-swiper-banner-container" circular="true" previous-margin="40rpx" next-margin="40rpx" current="{{currentBannerIndex}}" bindchange="handleChangeBanner">
+      <block wx:for="{{detailData.headPhotoAddress}}" wx:key="this">
+        <swiper-item class="share-banner-item">
+          <view class="share-banner-box" animation="{{currentBannerIndex == index ? animationSelected : animationNoSelected}}">
+            <image src="{{item}}" class="share-banner-img"></image>
+            <view class="share-swiper-content">
+              <view class="share-poster-title">{{detailData.majorName}}</view>
+              <view class="share-poster-detail-current-price">
+                <text>￥</text>
+                <text>{{detailData.price}}.</text>
+                <!-- <text>{{detailData.price}}</text> -->
+                <text>{{detailData.priceDot}}</text>
+              </view>
+              <view class="share-poster-return-money-wrapper">
+                <text>红包返现</text>
+                <text>￥{{detailData.redCashBack}}</text>
+              </view>
+              <view class="share-poster-head-wrapper">
+                <view class="share-poster-head">
+                  <image src="{{userHeader.avatarUrl}}" class="share-poster-head-img" />
+                </view>
+                <view class="share-poseter-level">
+                  <image class="share-medal-icon" src="{{medalMap[userTuanInfo.identityPosition.code][userTuanInfo.level]}}" />
+                </view>
+              </view>
+              <view class="share-poster-user-name">{{userHeader.nickName}}</view>
+              <view class="share-poster-ercode-wrapper">
+                <image class="share-poster-ercode" src="{{erCode}}" />
+                <text>微信扫码或长按识别</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="share-poster-bottom">
+    <image class="share-bottom-close-icon" src="https://cdn.tuanzhzh.com/image/share-bottom-close.png" catchtap="closeShare" />
+    <view class="share-poster-item-wrapper">
+      <view class="share-poster-item">
+        <button open-type="share" class="share-poster-share-btn">
+          <image class="share-poster-item-icon share-poser-wechat-icon" src="https://cdn.tuanzhzh.com/image/wechat-share.png" />
+        </button>
+      </view>
+      <text class="share-poster-item-text">发送朋友</text>
+    </view>
+    <view class="share-poster-item-wrapper">
+      <view class="share-poster-item">
+        <!-- <image class="share-poster-item-icon" src="https://cdn.tuanzhzh.com/image/dowload-icon.png" /> -->
+        <poster id="poster" class="share-poster-item" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+          <button class="share-poseter-create-btn">
+            <image class="share-poster-item-icon" src="https://cdn.tuanzhzh.com/image/dowload-icon.png" /> 
+          </button>
+        </poster>
+      </view>
+      <text class="share-poster-item-text">保存海报</text>
+    </view>
+  </view>
+</view>

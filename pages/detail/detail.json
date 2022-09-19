@@ -4,6 +4,7 @@
     "mp-dialog": "weui-miniprogram/dialog/dialog",
     "dialog": "/pages/components/dialog/dialog",
     "zero-task-dialog": "/pages/components/zeroTaskPoupop/zeroTaskPoupop",
-    "navigationBar": "/pages/components/navigationBar/navigationBar"
+    "navigationBar": "/pages/components/navigationBar/navigationBar",
+    "sharePoster": "/pages/components/sharePosters/sharePosters"
   }
 }
