@@ -265,6 +265,9 @@
 .share-poser-wechat-icon {
   margin-left: 38rpx;
 }
+.share-poster-placeholder {
+  height: 89rpx;
+}
 
 @keyframes bottomShow {
 	0% {

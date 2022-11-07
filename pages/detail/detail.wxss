@@ -257,6 +257,9 @@
   text-align: center;
   line-height: 88rpx;
 }
+.detail-bottom-buy-btn {
+  width: 498rpx;
+}
 .goods-item-red-icon {
   display: inline-block;
   width: 60rpx;
@@ -289,4 +292,25 @@
 .detail-goods-star-wrapper {
   display: flex;
   align-items: center;
+}
+.detail-bottom-btn-wrapper {
+  display: flex;
+}
+.detai-bottom-home-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 60rpx;
+}
+.detail-home-icon {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: 21rpx;
+}
+.detail-home-icon-text {
+  font-size: 20prx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF5951;
 }

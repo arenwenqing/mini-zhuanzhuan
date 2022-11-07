@@ -21,17 +21,15 @@ Component({
       type: String,
       value: ''
     },
-    imageData: {
-      type: Array,
-      value: []
-    },
+    fromSource: {
+      type: String,
+      value: 'detail'
+    }
   },
 
   observers: {
     visible: function(data) {
       if (data) {
-        // this.createErCode()
-        // this.getUserInfo()
         const identityInfo = Object.keys(this.data.identityInfo).length ? this.data.identityInfo : {
           identityPosition: {
             code: 0
@@ -84,7 +82,7 @@ Component({
               height: 80,
               text: {
                 text:  this.data.detailData.majorName,
-                fontSize: 28,
+                fontSize: this.data.fromSource === 'detail' ? 28 : 34,
                 color: '#262424',
                 lineHeight: 35,
                 lineNum: 2,
@@ -93,8 +91,8 @@ Component({
                 fontWeight: '600'
               }
             }],
-            texts: [{
-              // ￥符合
+            texts: this.data.fromSource === 'detail' ? [{
+              // ￥符号
               x: 32,
               y: 802,
               text: '￥',
@@ -147,7 +145,29 @@ Component({
               fontSize: 24,
               fontWeight: 500,
               color: '#666666',
-            }],
+            }] : [
+              {
+                // 用户名
+                x: 32,
+                y: 960,
+                width: 340,
+                text: JSON.parse(wx.getStorageSync('wxUser') || '{}').nickName,
+                lineNum: 1,
+                fontSize: 24,
+                fontWeight: 400,
+                color: '#000000',
+              }, {
+                // 二维码文案
+                x: 410,
+                y: 960,
+                width: 390,
+                text: '微信扫码或长按识别',
+                lineNum: 1,
+                fontSize: 24,
+                fontWeight: 500,
+                color: '#666666',
+              }
+            ],
           }
         })
         this.enlarge()
@@ -271,7 +291,7 @@ Component({
             height: 80,
             text: {
               text: this.data.detailData.majorName,
-              fontSize: 28,
+              fontSize: this.data.fromSource === 'detail' ? 28 : 34,
               color: '#262424',
               lineHeight: 35,
               lineNum: 2,
@@ -280,7 +300,7 @@ Component({
               fontWeight: '600'
             }
           }],
-          texts: [{
+          texts: this.data.fromSource === 'detail' ? [{
             // ￥符合
             x: 32,
             y: 802,
@@ -334,6 +354,26 @@ Component({
             fontSize: 24,
             fontWeight: 500,
             color: '#666666',
+          }] : [{
+            // 用户名
+            x: 32,
+            y: 960,
+            width: 340,
+            text: JSON.parse(wx.getStorageSync('wxUser')).nickName,
+            lineNum: 1,
+            fontSize: 24,
+            fontWeight: 400,
+            color: '#000000',
+          }, {
+            // 二维码文案
+            x: 410,
+            y: 960,
+            width: 390,
+            text: '微信扫码或长按识别',
+            lineNum: 1,
+            fontSize: 24,
+            fontWeight: 500,
+            color: '#666666',
           }],
         }
       })
@@ -368,6 +408,9 @@ Component({
     },
 
     closeShare() {
+      wx.showTabBar({
+        animation: true,
+      })
       this.setData({
         visible: false
       })

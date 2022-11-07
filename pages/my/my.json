@@ -9,6 +9,7 @@
     "my-team": "/pages/my/myTeam/myTeam",
     "my-task": "/pages/my/myTask/myTask",
     "upgrade-mask": "/pages/my/upgradeMask/upgradeMask",
-    "mentor-dialog": "/pages/my/mentorDialog/mentorDialog"
+    "mentor-dialog": "/pages/my/mentorDialog/mentorDialog",
+    "sharePoster": "/pages/components/sharePosters/sharePosters"
   }
 }

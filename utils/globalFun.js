@@ -199,6 +199,19 @@ export const shareFun = (obj) => {
   }
 }
 
+/**
+   * 处理地址参数
+   */
+export function dealWithUrl(str) {
+  const obj = {}
+  str = str.split("&")
+  for(let i = 0;i < str.length; i++){
+    let arr = str[i].split("=")
+    obj[arr[0]] = arr[1]
+  }
+  return obj
+}
+
 export function fetchData (url, data, method, callback, errCallback) {
   wx.request({
     url: domain + url,

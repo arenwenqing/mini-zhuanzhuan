@@ -31,28 +31,23 @@
             <text class="id-copy" catchtap="copyId" data-id="{{userNum}}">复制</text>
           </view>
           <view wx:if="{{identity === 2 && userTuanInfo}}" class="tuan-zhang-view">
-            <view wx:if="{{userTuanInfo.identityPosition.code !== 1}}" class="tuan-zhang-vip-icon">
+            <image class="share-medal-icon" src="{{medalMap[userTuanInfo.identityPosition.code][userTuanInfo.level]}}" />
+            <!-- <view wx:if="{{userTuanInfo.identityPosition.code !== 1}}" class="tuan-zhang-vip-icon">
               <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
               <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
             </view>
             <view wx:else class="tuan-zhang-vip-icon2">
               <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
               <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
-            </view>
-            <!-- <view class="tuan-zhang-text">
-              <text>正式</text>
             </view> -->
           </view>
         </view>
         <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
       </view>
     </view>
-    <!-- <view wx:if="{{showAvatar}}" class="my-user-money-total">
-      <text>{{moneyTotal}}</text>
-      <text>红包总额</text>
-    </view> -->
   </view>
   <view class="my-red-package-wrapper">
+    <image catchtap="shareHandler" class="my-page-share-icon" src="https://cdn.tuanzhzh.com/image/my-page-wechat-icon.png" />
     <view class="my-red-package-wrapper-left">
       <view class="my-red-package-inner-top">
         <text class="my-header-text1">￥</text>
@@ -125,4 +120,11 @@
   <wait-qr-code visibile="{{visibile}}"></wait-qr-code>
   <upgrade-mask visible="{{upgradeMask}}"></upgrade-mask>
   <mentor-dialog showDialog="{{showMentorDialog}}" parentUserId="{{parentUserId}}" bind:reloadShow="onShow"></mentor-dialog>
+  <sharePoster
+    visible="{{showSharePoster}}"
+    detailData="{{detailData}}"
+    identityInfo="{{userTuanInfo}}"
+    erCode="{{erCode}}"
+    fromSource="my"
+  ></sharePoster>
 </view>

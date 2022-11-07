@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead, fetchData } from '../../utils/globalFun.js'
+import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead, fetchData, dealWithUrl } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
 let flag = false
 Page({
@@ -36,19 +36,6 @@ Page({
   },
 
   /**
-   * 处理地址参数
-   */
-  dealWithUrl(str) {
-    const obj = {}
-    str = str.split("&")
-    for(let i = 0;i < str.length; i++){
-      let arr = str[i].split("=")
-      obj[arr[0]] = arr[1]
-    }
-    return obj
-  },
-
-  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -57,7 +44,7 @@ Page({
       wx.showLoading({
         title: '加载中',
       })
-      const obj = this.dealWithUrl(decodeURIComponent(options.scene)) || {}
+      const obj = dealWithUrl(decodeURIComponent(options.scene)) || {}
       // 根据地址中携带的qrCodeId去读取详情页需要的参数
       this.getQrCodeInfo(obj.qrId)
     } else {
@@ -86,6 +73,7 @@ Page({
     fetchData(`/mini/playbill/share/qrCodeInfo/get`, {
       qrCodeId
     }, 'GET', res => {
+      res.data.paramMap.originUserId = res.data.paramMap.tlUserId
       this.optionDetail(res.data.paramMap ? res.data.paramMap : {})
     })
   },
@@ -342,6 +330,13 @@ Page({
         delta: 1
       })
     }
+  },
+
+  // 返回首页
+  backIndexPage () {
+    wx.switchTab({
+      url: '../index/index',
+    })
   },
 
   /**

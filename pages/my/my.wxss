@@ -530,3 +530,16 @@
   color: #AF3800;
   line-height: 32rpx;
 }
+.my-page-share-icon {
+  position: absolute;
+  display: inline-block;
+  width: 72rpx;
+  height: 72rpx;
+  right: 20rpx;
+  top: -106rpx;
+}
+.share-medal-icon {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+}

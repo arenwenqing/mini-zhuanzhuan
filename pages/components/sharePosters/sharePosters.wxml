@@ -8,16 +8,17 @@
             <image src="{{item}}" class="share-banner-img"></image>
             <view class="share-swiper-content">
               <view class="share-poster-title">{{detailData.majorName}}</view>
-              <view class="share-poster-detail-current-price">
+              <view wx:if="{{ fromSource === 'detail' }}" class="share-poster-detail-current-price">
                 <text>￥</text>
                 <text>{{detailData.price}}.</text>
                 <!-- <text>{{detailData.price}}</text> -->
                 <text>{{detailData.priceDot}}</text>
               </view>
-              <view class="share-poster-return-money-wrapper">
+              <view wx:if="{{ fromSource === 'detail' }}" class="share-poster-return-money-wrapper">
                 <text>红包返现</text>
                 <text>￥{{detailData.redCashBack}}</text>
               </view>
+              <view wx:else class="share-poster-placeholder"></view>
               <view class="share-poster-head-wrapper">
                 <view class="share-poster-head">
                   <image src="{{userHeader.avatarUrl}}" class="share-poster-head-img" />
@@ -41,7 +42,7 @@
     <image class="share-bottom-close-icon" src="https://cdn.tuanzhzh.com/image/share-bottom-close.png" catchtap="closeShare" />
     <view class="share-poster-item-wrapper">
       <view class="share-poster-item">
-        <button open-type="share" class="share-poster-share-btn">
+        <button open-type="share" class="share-poster-share-btn" data-myImageUrl='https://cdn.tuanzhzh.com/image/poster-img1.png' data-title='单单有红包，提现没套路'>
           <image class="share-poster-item-icon share-poser-wechat-icon" src="https://cdn.tuanzhzh.com/image/wechat-share.png" />
         </button>
       </view>

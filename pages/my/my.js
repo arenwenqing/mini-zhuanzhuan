@@ -89,6 +89,34 @@ Page({
       3: 'III'
     },
     showSwitch: false,
+    showSharePoster: false,
+    detailData: {
+      headPhotoAddress: [
+        'https://cdn.tuanzhzh.com/image/poster-img1.png',
+        'https://cdn.tuanzhzh.com/image/poster-img2.png',
+        'https://cdn.tuanzhzh.com/image/poster-img3.png'
+      ],
+      majorName: '单单有红包，提现没套路',
+      priceDot: '',
+      price: ''
+    },
+    medalMap: {
+      1: {
+        1: 'https://cdn.tuanzhzh.com/image/tuan-one.png',
+        2: 'https://cdn.tuanzhzh.com/image/tuan-two.png',
+        3: 'https://cdn.tuanzhzh.com/image/tuan-three.png'
+      },
+      2: {
+        1: 'https://cdn.tuanzhzh.com/image/big-tuan-one.png',
+        2: 'https://cdn.tuanzhzh.com/image/big-tuan-two.png',
+        3: 'https://cdn.tuanzhzh.com/image/big-tuan-two.png'
+      },
+      3: {
+        1: 'https://cdn.tuanzhzh.com/image/super-tuan-one.png',
+        2: 'https://cdn.tuanzhzh.com/image/super-tuan-two.png',
+        3: 'https://cdn.tuanzhzh.com/image/super-tuan-three.png'
+      }
+    },
   },
 
   /**
@@ -134,18 +162,6 @@ Page({
     }
   },
 
-  // 切换团长时去检查升阶结果
-  // updatePhaseResult() {
-  //   fetchData('/mini/user/identityPosition/promoteResult', {}, 'GET', (res) => {
-  //     if (res.data.promoteSuccess) {
-  //       this.setData({
-  //         upgradeMask: res.data.promoteSuccess
-  //       })
-  //     }
-  //   }, err => {
-  //     console.error(err)
-  //   })
-  // },
 
   /**
      * 关闭删除确认
@@ -492,15 +508,51 @@ Page({
   },
 
   // 获取用户信息
-  getUserInfo() {
+  getUserInfo(cb) {
     fetchData(`/mini/user/detail/${wx.getStorageSync('userId')}`, {
     }, 'GET', res => {
       this.setData({
         showSwitch: res.data.identity ? true : false,
         userTuanInfo: res.data.identity ? res.data.identity : {}
+      }, () => {
+        cb && cb()
       })
     }, err => {
       console.error(err)
+    })
+  },
+
+  // 生成分享二维码
+  createErCode() {
+    const currentTime = new Date().getTime()
+    fetchData(`/mini/playbill/share/genUrl`, {
+      userId: wx.getStorageSync('userId'),
+      redirectUrl: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
+    }, 'GET', res => {
+      wx.hideLoading()
+      wx.hideTabBar({
+        animation: true,
+      })
+      this.setData({
+        showSharePoster: true,
+        erCode: res.data || ''
+      })
+    }, err => {
+      wx.hideLoading()
+    })
+  },
+
+  // 点击微信小图标，生成分享海报
+  shareHandler() {
+    if (!wx.getStorageSync('wxUser')) {
+      this.getUserProfile()
+      return
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.getUserInfo(() => {
+      this.createErCode()
     })
   },
 
@@ -566,18 +618,19 @@ Page({
     const currentTime = new Date().getTime()
     let url = ''
     let sharObj = {}
-    // if (option && !option.target) {
-    //   url = `/pages/my/my?parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
-    // } else {
-    //   url = `/pages/my/my?from=share&parentUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`
-    // }
-
     if (option.target.dataset.imgurl) {
       const obj = option.target.dataset
       sharObj = {
         path: `/pages/detail/detail?productId=${obj.productid}&originOrderId=${obj.originorderid}&name=${obj.productName}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`,
         imageUrl: obj.imgurl,
         title: obj.productname
+      }
+    } else if (option.target.dataset.myimageurl) {
+      const obj = option.target.dataset
+      sharObj = {
+        path: `/pages/index/index?originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}`,
+        imageUrl: obj.myimageurl,
+        title: obj.title
       }
     } else {
       sharObj = {

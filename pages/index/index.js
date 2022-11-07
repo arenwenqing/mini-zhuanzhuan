@@ -1,6 +1,6 @@
 // index.js
 // 获取应用实例
-import { shareFun, fetchData } from '../../utils/globalFun'
+import { shareFun, fetchData, dealWithUrl, bindHead } from '../../utils/globalFun'
 const app = getApp()
 const domain = 'https://tuanzhzh.com'
 Page({
@@ -48,11 +48,12 @@ Page({
   //   })
   // },
   onLoad(options) {
-    wx.hideShareMenu()
-    // wx.showShareMenu({
-    //   withShareTicket: true,
-    //   menus: ['shareAppMessage', 'shareTimeline']
-    // })
+    // wx.hideShareMenu()
+    if (options.scene) {
+      const obj = dealWithUrl(decodeURIComponent(options.scene)) || {}
+      // 根据地址中携带的qrCodeId去读取详情页需要的参数
+      this.getQrCodeInfo(obj.qrId)
+    }
     this.getList()
     if (options.originUserId) {
       app.globalData.originUserId = options.originUserId
@@ -88,6 +89,15 @@ Page({
     this.getRedPackageMessage()
     // 获取专区信息
     this.getTheZone()
+  },
+
+   // 根据qrCodeId去读取详情页需要的参数
+  getQrCodeInfo(qrCodeId) {
+    fetchData(`/mini/playbill/share/qrCodeInfo/get`, {
+      qrCodeId
+    }, 'GET', res => {
+      bindHead('', res.data.paramMap.tlUserId)
+    })
   },
 
   skipBannerDetail(e) {

@@ -81,7 +81,14 @@
   </view>
   <view class="detail-bottom">
     <view wx:if="{{identity === 2 && !showBuy}}" class="detail-bottom-left" catchtap="showMakeTaskPoup">做任务</view>
-    <view wx:else class="detail-bottom-left" catchtap="immediateSpellGroup">购买</view>
+    <view wx:else class="detail-bottom-btn-wrapper">
+      <view class="detai-bottom-home-icon-wrapper" catchtap="backIndexPage">
+        <image class="detail-home-icon" src="https://cdn.tuanzhzh.com/image/home-icon.png" />
+        <text class="detail-home-icon-text">返回首页</text>
+      </view>
+      <view class="detail-bottom-left detail-bottom-buy-btn" catchtap="immediateSpellGroup">购买</view>
+    </view>
+    
     <!-- <view class="detail-bottom-right" catchtap="useCouponsSpellGroup">用劵拼团</view> -->
   </view>
   <!-- <luckBag></luckBag> -->
@@ -91,5 +98,6 @@
     detailData="{{detailData}}"
     identityInfo="{{identityInfo}}"
     erCode="{{erCode}}"
+    fromSource="detail"
   ></sharePoster>
 </view>
