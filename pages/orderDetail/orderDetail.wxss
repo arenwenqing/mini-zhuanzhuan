@@ -242,30 +242,46 @@
   color: #FF0000;
   margin-left: 8rpx;
 }
-.redpacke-shaow-max {
+.style2 {
   position: absolute;
-  /* width: 164rpx; */
-  font-size: 60rpx;
+  font-size: 40rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #FF0000;
   line-height: 84rpx;
   left: 50%;
-  margin-left: -82rpx;
-  top: 234rpx;
-  /* text-align: center; */
+  margin-left: -162rpx;
+  top: 184rpx;
   display: flex;
   justify-content: center;
 }
+.redpacke-text-one {
+  font-size: 40rpx;
+  padding-right: 10rpx;
+}
+.redpacke-shaow-max {
+  position: absolute;
+  font-size: 70rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FF0000;
+  line-height: 84rpx;
+  left: 50%;
+  margin-left: -158rpx;
+  top: 104rpx;
+  display: flex;
+  justify-content: center;
+}
+
 .redpacke-shaow-max-text::after {
   content: '元';
   position: absolute;
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #FF0000;
   line-height: 50rpx;
-  top: 17rpx;
+  top: 28rpx;
   margin-left: 10rpx;
 }
 

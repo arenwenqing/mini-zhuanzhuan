@@ -48,12 +48,12 @@
   background-color: #eee;
 }
 .dialog-contet-top {
-  font-size: 34rpx;
+  font-size: 38rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #353535;
   line-height: 48rpx;
-  margin: 60rpx auto 24rpx;
+  margin: 100rpx auto 24rpx;
 }
 .dialog-contet-top text {
   color: #DD0A00;

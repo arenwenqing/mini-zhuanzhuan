@@ -1,4 +1,5 @@
-import { getUserProfile, shareFun, fetchData} from '../../utils/globalFun'
+import { shareFun, fetchData} from '../../utils/globalFun'
+// getUserProfile
 const domain = 'https://tuanzhzh.com'
 const app = getApp()
 Page({
@@ -6,11 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listData: [[{
-      icon: '/pages/images/history-task-icon.png',
-      text: '历史任务',
-      key: '3'
-    },{
+    orderListData: [],
+    background: 'transparent',  // 初始背景色
+    color: '#fff',          // 初始文字颜色
+    listData: [[
+    //   {
+    //   icon: '/pages/images/history-task-icon.png',
+    //   text: '历史任务',
+    //   key: '3'
+    // },
+    {
       icon: '/pages/images/3.png',
       text: '我的订单',
       key: '2'
@@ -31,11 +37,13 @@ Page({
       text: '用户协议',
       key: '6'
     }]],
-    listDataTuanZhang: [[{
-      icon: '/pages/images/my-task.png',
-      text: '我的任务',
-      key: '8'
-    }, {
+    listDataTuanZhang: [[
+    //   {
+    //   icon: '/pages/images/my-task.png',
+    //   text: '我的任务',
+    //   key: '8'
+    // },
+    {
       icon: '/pages/images/zhao-mu-tuan.png',
       text: '招募团长',
       key: '9'
@@ -55,6 +63,8 @@ Page({
     showAvatar: false,
     userInfo: {},
     userNum: '',
+    nickName: wx.getStorageSync('nickname'),
+    avatarUrl: wx.getStorageSync('avatarUrl'),
     visibile: false,
     tipShow: false,
     doubleNum: 0,
@@ -141,6 +151,19 @@ Page({
     
   },
 
+  /**
+   * 监听页面滚动
+   * @param {*} e 
+   */
+  onScroll(e) {
+    const scrollTop = e.detail.scrollTop || 0;
+    const opacity = Math.min(scrollTop / 100, 1);  // 0-100px之间渐变
+    this.setData({
+      background: `rgba(234, 41, 41, ${opacity})`,
+      // color: scrollTop > 50 ? '#FF5951' : '#ffffff'
+    })
+  },
+
   swiperChange(e) {
     this.setData({
       currentSwiper: e.detail.current
@@ -170,18 +193,19 @@ Page({
       if (param.detail.index == 0) {
         console.log('点击了取消')
       } else {
-        getUserProfile(() => {
-          this.setData({
-            userInfo: JSON.parse(wx.getStorageSync('wxUser')),
-            userNum: wx.getStorageSync('userNum'),
-            showAvatar: true,
-            showEveryDayTask: true
-          })
-          this.getDayTask()
-          this.getMoneyTotal()
-          this.getCurrentRedPackageMessage()
-          this.getMessage()
-        })
+        this.skipLogin()
+        // getUserProfile(() => {
+        //   this.setData({
+        //     userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+        //     userNum: wx.getStorageSync('userNum'),
+        //     showAvatar: true,
+        //     showEveryDayTask: true
+        //   })
+        //   this.getDayTask()
+        //   this.getMoneyTotal()
+        //   this.getCurrentRedPackageMessage()
+        //   this.getMessage()
+        // })
       }
       this.setData({
         deleteDialog: false
@@ -245,23 +269,38 @@ Page({
   },
 
   /**
+   * 跳转登录
+   * @param {*} e 
+   */
+  skipLogin() {
+    wx.navigateTo({
+      url: '/pages/login/login?from=my',
+    })
+  },
+
+  /**
    * 获取微信用户信息
    */
   getUserProfile(e) {
+    console.log('=========', this.data.showAvatar)
+    console.log("-----------", wx.getStorageSync('avatarUrl'))
     if (this.data.showAvatar) return
-    getUserProfile(() => {
-      this.setData({
-        userInfo: JSON.parse(wx.getStorageSync('wxUser')),
-        userNum: wx.getStorageSync('userNum'),
-        showAvatar: true,
-        showEveryDayTask: true
-      })
-      this.getUserInfo()
-      this.getDayTask()
-      this.getMoneyTotal()
-      this.getCurrentRedPackageMessage()
-      this.getMessage()
+    this.setData({
+      userInfo: JSON.parse(wx.getStorageSync('wxUser')),
+      userNum: wx.getStorageSync('userNum'),
+      showAvatar: true,
+      showEveryDayTask: true,
+      avatarUrl: wx.getStorageSync('avatarUrl'),
+      nickName: wx.getStorageSync('nickname')
     })
+    this.getUserInfo()
+    // 调用获取每日任务接口
+    // this.getDayTask()
+    // 获取我的订单
+    this.getOrderList('', -1)
+    this.getMoneyTotal()
+    this.getCurrentRedPackageMessage()
+    this.getMessage()
   },
 
   // 引导页
@@ -288,6 +327,47 @@ Page({
         animation: true
       })
     }
+  },
+
+  /**
+   * 
+   * @param {*} productName  商品的名字
+   * @param {*} code 订单状态码，全部订单传-1
+   */
+  getOrderList (productName, code) {
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: domain + '/mini/order/list',
+      method: 'POST',
+      header: {
+        openid: wx.getStorageSync('openid'),
+        userid: wx.getStorageSync('userId')
+      },
+      data: {
+        productName: productName || '',
+        orderStatus: code
+      },
+      success: (res) => {
+        res.data.data?.forEach(item => {
+          item.orderPrice = (item.orderPrice / 100).toFixed(2)
+        })
+        this.setData({
+          orderListData: res.data.data || []
+        })
+      },
+      fail: (err) => {
+          wx.showToast({
+          title: err.data.msg,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
@@ -464,6 +544,10 @@ Page({
    */
   onShow: function () {
     const that = this
+    if (app.globalData.from === 'my') {
+      app.globalData.from = ''
+      this.getUserProfile()
+    }
     wx.checkSession({
       success (res){
         console.log(res)
@@ -493,10 +577,15 @@ Page({
         showAvatar: true,
         userInfo: JSON.parse(wx.getStorageSync('wxUser')),
         showEveryDayTask: true,
-        userNum: wx.getStorageSync('userNum')
+        userNum: wx.getStorageSync('userNum'),
+        nickName: wx.getStorageSync('nickname'),
+        avatarUrl: wx.getStorageSync('avatarUrl'),
       })
       this.getUserInfo()
-      this.getDayTask()
+      // 获取每日任务
+      // this.getDayTask()
+      // 获取我的订单
+      this.getOrderList('', -1)
       this.getMoneyTotal()
       this.getCurrentRedPackageMessage()
     } else {
@@ -545,7 +634,8 @@ Page({
   // 点击微信小图标，生成分享海报
   shareHandler() {
     if (!wx.getStorageSync('wxUser')) {
-      this.getUserProfile()
+      // this.getUserProfile()
+      this.skipLogin()
       return
     }
     wx.showLoading({

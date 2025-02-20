@@ -1,8 +1,9 @@
 <!--pages/components/waiterQrCode/waiterQrCode.wxml-->
 <view wx:if="{{visibile}}" class="waiter-qr-code-wrapper">
   <view class="waiter-qr-content">
-    <image show-menu-by-longpress="true" src='https://cdn.tuanzhzh.com/system/custom/WechatIMG1192.png' class="wait-qr-code" />
-    <text class="waiter-qr-code-text">请长按图片保存，使用微信扫一扫联系团团转客服</text>
+    <image show-menu-by-longpress="true" src='https://cdn.tuanzhzh.com/kefu-code.png' class="wait-qr-code" />
+    <view class="waiter-qr-code-text">请扫描二维码联系客服</view>
+    <view class="waiter-qr-code-text code2">工作时间9:00~20:00</view>
     <image src="/pages/images/guanbi.png" class="waiter-qr-code-close" bindtap="closeQrCode" />
   </view>
 </view>

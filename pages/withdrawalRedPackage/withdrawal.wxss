@@ -103,10 +103,10 @@
   top: 48rpx;
 }
 .with-tip-wrapper-content {
-  margin: 24rpx 22rpx 0 16rpx;
+  margin: 39rpx 22rpx 0 16rpx;
 }
 .with-tip-item-content {
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
 }
 .with-tip-triangle {
   display: inline-block;
@@ -121,8 +121,8 @@
   position: absolute;
   width: 48rpx;
   height: 48rpx;
-  right: 12rpx;
-  top: 13rpx;
+  right: 3rpx;
+  top: 6rpx;
 }
 .hidden {
   display: none !important;

@@ -9,22 +9,31 @@
   <view wx:if="{{showRedPackageFlag}}" class="redpacke-show">
       <view class="redpacke-show-img">
         <image src="https://cdn.tuanzhzh.com/share/1%402x.png" class="red-image"></image>
-        <view class="redpacke-show-text">您获得<text class="redpacke-show-num-text">{{orderData.product.baseCashback}}</text>元红包</view>
-        <text class="redpacke-show-text redpacke-show-text2">邀请好友下单</text>
-        <view class="redpacke-show-explain">
+        <!-- <view class="redpacke-show-text">您获得<text class="redpacke-show-num-text">{{orderData.product.baseCashback}}</text>元红包</view> -->
+        <!-- <text class="redpacke-show-text redpacke-show-text2">邀请好友下单</text> -->
+        <!-- <view class="redpacke-show-explain">
           <text>最多可得红包</text>
-        </view>
+        </view> -->
         <view class="redpacke-shaow-max">
-          <text class="redpacke-shaow-max-text">{{orderData.product.finalCashback}}</text>
+          <text class="redpacke-text-one">获得</text>
+          <text class="redpacke-shaow-max-text">{{orderData.cashback}}</text>
+        </view>
+        <view class="style2">
+          <text>邀请朋友下单拿更多</text>
         </view>
       </view>
       <view class="redpacke-btn-wrapper">
-        <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
-        <button class="share-btn-style" disabled="{{ifCanClick}}" catchtap="skipMypage" open-type="share">
-          翻倍我的红包
+        <button class="share-btn-style" open-type="share">
+          分享拿红包
         </button>
       </view>
-      <view class="redpacke-btn-instructions">
+      <!-- <view class="redpacke-btn-wrapper">
+        <button class="share-btn-style share-btn-style2" disabled="{{directlyBtnStatus}}" catchtap="receiveDialog">直接拿走</button>
+        <button class="share-btn-style" disabled="{{ifCanClick}}" catchtap="skipMypage" open-type="share">
+          邀请朋友
+        </button>
+      </view> -->
+      <!-- <view class="redpacke-btn-instructions">
         <text class="redpacke-instructions-text">直接拿走</text>
         <view class="redpacke-tip-content" wx:if="{{showTip}}">
           <view class="tip-item">1 红包领取时效为24小时，到期未领取的红包将被回收。</view>
@@ -35,7 +44,7 @@
         </view>
         <image src='/pages/images/zhujie.png' class="redpacke-zhujie" catchtap="showTipFun" />
         <text class="redpacke-instructions-text"></text>
-      </view>
+      </view> -->
     </view>
   <view class="order-top">
     <order-top-intro orderData="{{orderData}}"></order-top-intro>

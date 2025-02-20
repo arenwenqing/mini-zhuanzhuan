@@ -2,6 +2,7 @@
 import { submitProductGetOrderId, getUserProfile, shareFun, startTask, bindHead, fetchData, dealWithUrl } from '../../utils/globalFun.js'
 const domain = 'https://tuanzhzh.com'
 let flag = false
+const app = getApp()
 Page({
 
   /**
@@ -55,12 +56,16 @@ Page({
   // 处理刚进入详情页的逻辑
   optionDetail(options) {
     this.from = options.from
-    console.log('showBuy=', options.showBuy)
+    console.log('options=', options)
     this.setData({
       title: options.name,
       showBuy: options.showBuy,
       ...(options.originOrderId ? { originOrderId:  options.originOrderId} : {})
     })
+    // 保存一下分享者的userId
+    if (options.originUserId) {
+      wx.setStorageSync('originUserId', options.originUserId)
+    }
     this.getDetail(options.productId)
     if (options.originUserId && !wx.getStorageSync('tltUserId')) {
       wx.setStorageSync('tltUserId', options.originUserId)
@@ -79,18 +84,24 @@ Page({
   },
 
   /**
+   * 跳转登录
+   * @param {*} e 
+   */
+  skipLogin() {
+    wx.navigateTo({
+      url: '/pages/login/login?from=detail',
+    })
+  },
+
+  /**
    * 关闭删除确认
    */
   closeAddressTip(param) {
     if (param.detail.index == 0) {
       console.log('点击了取消')
     } else {
-      // this.deleteAddressOption(this.data.addressObj)
-      getUserProfile(() => {
-        wx.showToast({
-          title: '登录成功',
-        })
-      })
+      this.skipLogin()
+      
     }
     this.setData({
       deleteDialog: false
@@ -100,11 +111,7 @@ Page({
   // 展示分享海报
   showShare: function() {
     if (!wx.getStorageSync('userId')) {
-      getUserProfile(() => {
-        wx.showToast({
-          title: '登录成功',
-        })
-      })
+      this.skipLogin()
       return
     }
     wx.showLoading({
@@ -120,9 +127,16 @@ Page({
   // 生成分享二维码
   createErCode() {
     const currentTime = new Date().getTime()
+    const currentIdentity = wx.getStorageSync('identity')
+    let temp = ''
+    if (currentIdentity === 1) {
+      temp = `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originTimestamp=${currentTime}&from=share&showBuy=true`
+    } else {
+      temp = `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`
+    }
     fetchData(`/mini/playbill/share/genUrl`, {
       userId: wx.getStorageSync('userId'),
-      redirectUrl: `/pages/detail/detail?productId=${this.data.productId}&originOrderId=${this.data.zeroOrderId}&name=${this.data.title}&originUserId=${wx.getStorageSync('userId')}&originTimestamp=${currentTime}&from=share&showBuy=true`
+      redirectUrl: temp
     }, 'GET', res => {
       wx.hideLoading()
       this.setData({
@@ -217,6 +231,14 @@ Page({
         })
         wx.hideLoading()
       }
+    })
+  },
+
+  // 图片预览
+  showPreviewimage(e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.current,
+      urls: e.currentTarget.dataset.source || [],
     })
   },
 
@@ -350,6 +372,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (app.globalData.from === 'detail') {
+      app.globalData.from = ''
+      return wx.showToast({
+        title: '登录成功',
+      })
+    }
     this.setData({
       identity: wx.getStorageSync('identity') || 1
     })

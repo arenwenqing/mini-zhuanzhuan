@@ -16,7 +16,8 @@
     "pages/activity/index",
     "pages/historyTask/historyTask",
     "pages/withdrawalRedPackage/withdrawal",
-    "pages/venueZone/venueZone"
+    "pages/venueZone/venueZone",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

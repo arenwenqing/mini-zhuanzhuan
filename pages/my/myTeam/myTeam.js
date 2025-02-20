@@ -13,18 +13,34 @@ Component({
 
   observers: {
     "identity": function(val) {
-      if (val === 2) {
-        fetchData('/mini/team/detail', {userId: wx.getStorageSync('userId')}, 'GET', res => {
-          res.data && res.data.memberList.forEach(element => {
-            element.manageBonusAmount = (element.manageBonusAmount / 100).toFixed(2)
-          });
+      if(val === 2) {
+        fetchData('/mini/task/list/currentPeriod/teamLeader',  {userId: wx.getStorageSync('userId')}, 'GET', res => {
+          const tempData = res.data || {}
+          if (Object.keys(tempData).length) {
+            // 佣金比例，分-->元
+            tempData.currentPeriodCommissionAmount = (tempData.currentPeriodCommissionAmount / 100).toFixed(2)
+          }
           this.setData({
-            memberList: res.data ? res.data.memberList : []
+            teamLeaderInfo: tempData
+          }, () => {
+            console.log('teamLeaderInfo===', this.data.teamLeaderInfo)
           })
         }, err => {
           console.error(err)
         })
       }
+      // if (val === 2) {
+      //   fetchData('/mini/team/detail', {userId: wx.getStorageSync('userId')}, 'GET', res => {
+      //     res.data && res.data.memberList.forEach(element => {
+      //       element.manageBonusAmount = (element.manageBonusAmount / 100).toFixed(2)
+      //     });
+      //     this.setData({
+      //       memberList: res.data ? res.data.memberList : []
+      //     })
+      //   }, err => {
+      //     console.error(err)
+      //   })
+      // }
     }
   },
 
@@ -34,6 +50,7 @@ Component({
    */
   data: {
     memberList: [],
+    teamLeaderInfo: {},
     levelData: {
       1: 'I',
       2: 'II',

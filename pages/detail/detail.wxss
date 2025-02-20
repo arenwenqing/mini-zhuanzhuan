@@ -223,8 +223,11 @@
   margin-top: 16rpx;
   margin-bottom: 170rpx;
 }
+.detai-image-bottom-place {
+  height: 0.4rpx;
+}
 .detail-zhangheng {
-  height: 120rpx;
+  /* height: 120rpx; */
   background: #fff;
 }
 .detail-image-item {

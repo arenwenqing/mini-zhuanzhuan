@@ -1,6 +1,12 @@
 <!--pages/my/my.wxml-->
+
 <view class="my-wrapper">
-  <mp-navigation-bar title="团团转"  color='#fff' back='{{false}}'></mp-navigation-bar>
+  <scroll-view 
+    scroll-y 
+    bindscroll="onScroll" 
+    style="height: 100vh;"
+  >
+  <mp-navigation-bar title="团团转" background="{{background}}" color="{{color}}" back='{{false}}'></mp-navigation-bar>
   <!-- <mp-navigation-bar back="{{false}}" title='团团转' color='#fff' background='linear-gradient(86deg, #FF625C 0%, #F40026 100%)' ext-class='my-page-navigation'></mp-navigation-bar> -->
   <mp-dialog title="您还未登录" bindbuttontap="closeAddressTip" buttons="{{buttonArray}}" mask="true" mask-closable="false" show="{{deleteDialog}}"></mp-dialog>
   <!--引导页图片-->
@@ -14,16 +20,16 @@
     <view class="my-header" style="{{'padding-top: ' + (topValue * -1) + 'px'}}">
     <view class="my-header-content">
       <view class="my-user-avatar" catchtap="getUserProfile">
-        <image wx:if="{{showAvatar}}" src="{{userInfo.avatarUrl}}" class="my-user-avatar-img"></image>
+        <image wx:if="{{showAvatar}}" src="{{avatarUrl}}" class="my-user-avatar-img"></image>
         <image wx:else src="/pages/images/avatar.png" class="my-user-avatar-img"></image>
       </view>
       <view>
         <view wx:if="{{showAvatar}}" class="my-user-wrapper">
           <view class="my-user-name">
-            <view class="my-user-name-text">{{userInfo.nickName}}</view>
+            <view class="my-user-name-text">{{nickName}}</view>
             <view wx:if="{{showSwitch}}" class="switch-identities">
               <image src="{{switchIcon[identity - 1]}}" class="switch-ident-icon"></image>
-              <text class="identities-style {{identity === 1 ? '' : 'identities-style2'}}" catchtap="identitySwitch">{{identity === 1 ? '切换团长' : '切换团员'}}</text>
+              <text  class="identities-style {{identity === 1 ? '' : 'identities-style2'}}" catchtap="identitySwitch">{{identity === 1 ? '切换团长' : '切换团员'}}</text>
             </view>
           </view>
           <view class="my-user-id">
@@ -32,22 +38,18 @@
           </view>
           <view wx:if="{{identity === 2 && userTuanInfo}}" class="tuan-zhang-view">
             <image class="share-medal-icon" src="{{medalMap[userTuanInfo.identityPosition.code][userTuanInfo.level]}}" />
-            <!-- <view wx:if="{{userTuanInfo.identityPosition.code !== 1}}" class="tuan-zhang-vip-icon">
-              <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
-              <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
-            </view>
-            <view wx:else class="tuan-zhang-vip-icon2">
-              <text wx:if="{{userTuanInfo.identityPosition.code > 1}}">{{userTuanInfo.identityPosition.name}}{{levelText[userTuanInfo.level]}}</text>
-              <text wx:else>{{userTuanInfo.identityPosition.name}}</text>
-            </view> -->
           </view>
         </view>
-        <text wx:else class="my-user-name my-user-name2" catchtap="getUserProfile">注册/登录</text>
+        <!-- <view wx:else>
+          <button class="my-user-name my-user-name2" bind:chooseavatar="onChooseAvatar" open-type="chooseAvatar" >注册/登录</button>
+          <input type="nickname" class="weui-input" placeholder="请输入昵称"/>
+        </view> -->
+        <text wx:else class="my-user-name my-user-name2" catchtap="skipLogin">注册/登录</text>
       </view>
     </view>
   </view>
   <view class="my-red-package-wrapper">
-    <image catchtap="shareHandler" class="my-page-share-icon" src="https://cdn.tuanzhzh.com/image/my-page-wechat-icon.png" />
+    <image wx:if="{{identity === 2}}" catchtap="shareHandler" class="my-page-share-icon" src="https://cdn.tuanzhzh.com/image/my-page-wechat-icon.png" />
     <view class="my-red-package-wrapper-left">
       <view class="my-red-package-inner-top">
         <text class="my-header-text1">￥</text>
@@ -99,18 +101,25 @@
     <view wx:if="{{identity === 1}}">
       <view class="my-day-task">
         <text class="my-task-mark"></text>
-        <text class="my-task-title">每日任务</text>
+        <text class="my-task-title">我的订单</text>
         <!--everyDayData.leftTaskCount-->
-        <view>任务有效期<text class="my-task-num">{{7}}</text>天</view>
-        <text class="my-task-tip">您推广的订单在评价后将为您结算红包</text>
+        <!-- <view>任务有效期<text class="my-task-num">{{7}}</text>天</view>
+        <text class="my-task-tip">您推广的订单在评价后将为您结算红包</text> -->
       </view>
-      <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
+      <view wx:if="{{orderListData && orderListData.length}}" class="spell-group-list">
+        <spell-group-list orderListData="{{orderListData}}"></spell-group-list>
+      </view>
+      <view wx:else class="order-list-no">
+        <image src="../images/no-order-list.png" class="no-order-icon"></image>
+        <text class="no-order-text">暂无订单</text>
+      </view>
+      <!-- <every-day-task everyDayData="{{everyDayData}}"></every-day-task>
       <view wx:if="{{showNoListImg}}">
         <image src="/pages/images/no-list-img.png" class="no-list-empty" />
         <view class="no-list-text">暂无任务</view>
-        <view class="no-list-btn" bindtap="toIndex">去完成今日任务</view>
+        <view class="no-list-btn" bindtap="toIndex">开团拿红包</view>
         <view class="no-list-task-instructions" bindtap="guidPage">如何完成任务领大红包</view>
-      </view>
+      </view> -->
     </view>
     <view wx:else>
       <my-team identity="{{identity}}"></my-team>
@@ -127,4 +136,5 @@
     erCode="{{erCode}}"
     fromSource="my"
   ></sharePoster>
+  </scroll-view>
 </view>

@@ -129,7 +129,11 @@ Page({
       method: 'POST',
       data: {
         userId: wx.getStorageSync('userId'),
-        wxUser: JSON.parse(wx.getStorageSync('wxUser')),
+        wxUser: JSON.parse({
+          ...JSON.parse(wx.getStorageSync('wxUser')),
+          nickName: wx.getStorageSync('nickname'),
+          avatarUrl: wx.getStorageSync('avatarUrl')
+        }),
         addressList: [addressObj]
       },
       success: res => {

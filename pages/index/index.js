@@ -12,11 +12,8 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     movies: [ {
-      name: 'https://cdn.tuanzhzh.com/banner/three-people-banner.png',
+      name: 'https://cdn.tuanzhzh.com/banner/new-banner-20250220.png',
       value: 2
-    }, {
-      name: 'https://cdn.tuanzhzh.com/banner/stop-delivery-banner.png',
-      value: 3
     }],
     noticeData: [],
     currentSwiper: 0,
@@ -47,7 +44,16 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
+
   onLoad(options) {
+    // 来自h5的支付
+    if (options.from === 'h5') {
+      app.globalData.payInfo = {
+        keyType: options.keyType,
+        keyCount: options.keyCount,
+        userId: options.userId
+      }
+    }
     // wx.hideShareMenu()
     if (options.scene) {
       const obj = dealWithUrl(decodeURIComponent(options.scene)) || {}
@@ -79,7 +85,81 @@ Page({
     }).exec()
   },
 
-  onShow: function () {
+  getPayParam(data) {
+    const that = this
+    wx.request({
+      url: 'https://mystery.tuanzhzh.com/api/mystery/key/deposit/prepare/wx/mini',
+      method: 'POST',
+      header: {
+        // openid: wx.getStorageSync('openid'),
+        userid: data.userId
+      },
+      data: {
+        userId: data.userId,
+        openid: wx.getStorageSync('openid'),
+        keyInfo: {
+          keyType: data.keyType * 1,
+          keyCount: data.keyCount * 1,
+        }
+      },
+      success: function(res) {
+        const tempData = res.data.data.preparePayResult
+        that.startPay({
+          timeStamp: tempData.timestamp,
+          nonceStr: tempData.nonce_str,
+          package: tempData.package,
+          paySign: tempData.paySign,
+          signType: tempData.signType
+        })
+      },
+      fail: function(err) {
+        console.log(err)
+      },
+      complete: res => {
+        if (isLoading) {
+          wx.hideLoading()
+        }
+      }
+    })
+  },
+
+  // 微信支付弹窗
+  startPay(data) {
+    const _this = this
+    wx.requestPayment({
+      ...data,
+      success (res) {
+        wx.showLoading({
+          title: '加载中',
+        })
+        if (app.globalData.payInfo.userId) {
+          app.globalData.payInfo = {}
+        }
+      },
+      fail (res) {
+        wx.showModal({
+          title: '支付失败',
+          confirmText: '重新支付',
+          // content: '这是一个模态弹窗',
+          success (res) {
+            if (res.confirm) {
+              _this.startPay(data)
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })       
+      }
+    })
+  },
+
+  onShow: function (options) {
+    console.log(options)
+    console.log(app.globalData.payInfo)
+    console.log("options======", options)
+    if (app.globalData.payInfo.userId) {
+      this.getPayParam(app.globalData.payInfo)
+    }
     // banner先写死
     // this.getIndexBanner()
     // this.getNotice()
@@ -235,6 +315,9 @@ Page({
         const left = []
         const right= []
         res.data.data.forEach((item, i) => {
+          if(!item.purchasedCount) {
+            item.purchasedCount = 0
+          }
           if (i % 2) {
             if (this.data.page === 1) {
               item.index = i + 1

@@ -2,7 +2,7 @@
 const domain = 'https://tuanzhzh.com'
 import './utils/protoExtension'
 App({
-  onLaunch() {
+  onLaunch(options) {
     // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -76,6 +76,15 @@ App({
     })
   },
 
+  onHide() {
+    console.log('触发关闭')
+    wx.removeStorageSync('originUserId')
+  },
+
+  onUnload() {
+    console.log('触发销毁')
+  },
+
   // 检查系统更新
   checkUpdateSystem() {
     if (wx.canIUse('getUpdateManager')) {
@@ -116,6 +125,7 @@ App({
   globalData: {
     userInfo: null,
     userId: '',
-    openid: ''
+    openid: '',
+    payInfo: {}
   }
 })

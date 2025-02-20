@@ -2,8 +2,8 @@
 <view class="mask" wx:if="{{visible}}">
   <view class="dialog-content">
     <view class="dialog-content-main">
-      <view class="dialog-contet-top">您确定只要<text>{{orderData.product.baseCashback}}</text>元么？</view>
-      <view class="dialog-contet-top2">最高可拿<text>{{orderData.product.finalCashback}}</text>元</view>
+      <view class="dialog-contet-top">您确定只要<text>{{orderData.cashback}}</text>元么？</view>
+      <!-- <view class="dialog-contet-top2">最高可拿<text>{{orderData.product.cashback}}</text>元</view> -->
     </view>
     <view class="dialog-content-bottom">
       <button catchtap="closeDialog2" type="default" class="dialog-btn-style"  plain="false" catchtap="directlyTake">拿走</button>

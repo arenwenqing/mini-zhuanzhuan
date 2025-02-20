@@ -10,7 +10,7 @@
           <image src='../images/with-tip-triangle.png' class="with-tip-triangle"></image>
           <image src='../images/guanbi.png' class="with-tip-close" catchtap="closeTip" />
           <view class="with-tip-wrapper-content">
-            <view class="with-tip-item-content">1 当您推广的用户完成评价后，您获得的红包即可体现。</view>
+            <view class="with-tip-item-content">1 在推广的订单确认签收后的15天时，您获得的红包即可提现。</view>
             <view class="with-tip-item-content">2 您每笔提现最少1元。</view>
             <view class="with-tip-item-content">3 您每日最多可提现3次，每次提现上限300元，每日提现总 额900元。</view>
             <view class="with-tip-item-content">4 您获得的红包请自行缴纳个人所得税。</view>

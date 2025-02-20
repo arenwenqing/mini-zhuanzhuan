@@ -11,13 +11,14 @@ export const submitProductGetOrderId = (productId, originOrderId, cb) => {
     cb && cb()
     return
   }
-
+  const tempOriginUserId = wx.getStorageSync('originUserId')
   API.sumbitProduct({
     productId,
     // doubleQuotaCount: isUseRoll,
-    ...(originOrderId ? { originOrderId: originOrderId } : {}),
+    // ...(originOrderId ? { originOrderId: originOrderId } : {}),
     payUserId: wx.getStorageSync('userId') || '',
-    receiveAddressId: wx.getStorageSync('addressId') || ''
+    receiveAddressId: wx.getStorageSync('addressId') || '',
+    ...(tempOriginUserId ? { originUserId: tempOriginUserId } : {})
   }).then(res => {
     const data = res.data.data
     if (data.submitSuccess) { // 提交订单成功
@@ -61,7 +62,7 @@ export const getUserProfile = (cb) => {
     wx.hideLoading()
   }, 500)
   wx.getUserProfile({
-    desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    desc: '用于展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     success: (res) => {
       wx.setStorageSync('wxUser', JSON.stringify(res.userInfo))
       login(cb)
@@ -142,7 +143,11 @@ function getUserId(code, cb) {
         wx.setStorageSync('addressId', data?.addressList?.find(e => e.isDefault === true)?.addressId || '')
         // this.sessionGet()
         cb && cb(data)
-        uploadUserMessage(JSON.parse(wx.getStorageSync('wxUser')))
+        uploadUserMessage({
+          ...JSON.parse(wx.getStorageSync('wxUser')),
+          nickName: wx.getStorageSync('nickname'),
+          avatarUrl: wx.getStorageSync('avatarUrl')
+        })
         // 登录的时候调用绑定接口
         bindHead(data.userId, wx.getStorageSync('tltUserId'))
         // this.getMessage()

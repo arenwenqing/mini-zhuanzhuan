@@ -2,22 +2,33 @@
 <view class="my-team-wrapper">
   <view class="my-day-task">
     <text class="my-task-mark"></text>
-    <text class="my-task-title">我的团队</text>
-    <!--everyDayData.leftTaskCount-->
-    <!-- <view>任务有效期<text class="my-task-num">{{7}}</text>天</view> -->
-    <image class="my-team-zhujie" src='/pages/images/team-zhujie.png' catchtap="showTipFun"></image>
-    <view wx:if="{{showTip}}" class="my-team-zhujie-instructions">
+    <text class="my-task-title">我的成绩</text>
+    <!-- <view wx:if="{{showTip}}" class="my-team-zhujie-instructions">
       <view class="my-team-zhujie-content">
         <image src="/pages/images/guanbi.png" class="my-team-icon" catchtap="closeTip"></image>
         <text>1.每个卡片代表了一位您的直接下级；</text>
         <text>2.卡片中的级别为此下级此时的级别；</text>
         <text>3.若您的下级为超级团长，将为其标红展示；</text>
       </view>
+    </view> -->
+  </view>
+  <view class="my-achievement">
+    <view class="my-achievemnt-item">
+      <text class="item-left">您本周成功订单</text>
+      <text class="item-right">{{teamLeaderInfo.currentPeriodOrderCount || 0}}</text>
+    </view>
+    <view class="my-achievemnt-item">
+      <text class="item-left">您本周获得的佣金</text>
+      <text class="item-right">{{teamLeaderInfo.currentPeriodCommissionAmount || 0}}</text>
+    </view>
+    <view class="my-achievemnt-item">
+      <text class="item-left">您当前的佣金比例</text>
+      <text class="item-right">{{teamLeaderInfo.currentPeriodCommissionRatio}}%</text>
     </view>
   </view>
-  <view wx:if="{{!memberList.length}}" class="my-team-no">
+  <!-- <view wx:if="{{!memberList.length}}" class="my-team-no">
     <image class="my-team-no-pic" src="https://cdn.tuanzhzh.com/image/no-team.png"></image>
-    <text>暂无团队，快去招募团长</text>
+    <text>暂无成绩，你需要小伙伴们的帮助</text>
   </view>
   <view wx:else>
     <block wx:for="{{memberList}}" wx:key="index">
@@ -33,7 +44,6 @@
           </view>
           <view class="my-team-item-bottom">
             <text>管理奖金比例{{item.manageBonusRatio}}%</text>
-            <!-- <text>管理奖金{{item.manageBonusAmount}}元</text> -->
           </view>
         </view>
       </view>
@@ -46,15 +56,12 @@
       <view class="my-team-item-content">
         <view class="my-team-item-top">
           <text>{{item.user.wxUser.nickName}}</text>
-          <!-- <text>本周已成{{item.currentPeriodOrderCount}}单</text> -->
         </view>
         <view class="my-team-item-bottom">
           <text>本周已成{{item.currentPeriodOrderCount}}单</text>
-          <!-- <text>管理奖金比例{{item.manageBonusRatio}}%</text> -->
-          <!-- <text>管理奖金{{item.manageBonusAmount}}元</text> -->
         </view>
       </view>
     </view>
     </block>
-  </view>
+  </view> -->
 </view>

@@ -8,7 +8,15 @@
       <swiper class="detail-image-carousel" indicator-active-color='#FA2840' indicator-color="#c1c1c1" indicator-dots='true' autoplay='true' interval='3000'  duration='1000' circular='true' >
         <block wx:for="{{carousel}}" wx:key="index">
           <swiper-item>
-            <image src="{{item}}" mode="scaleToFill" class="detail-main-image"></image>
+            <image
+              src="{{item}}"
+              mode="scaleToFill"
+              class="detail-main-image"
+              data-current="{{item}}"
+              data-source="{{carousel}}"
+              catch:tap="showPreviewimage"
+            >
+            </image>
           </swiper-item>
         </block>
       </swiper>
@@ -75,10 +83,20 @@
   </view>
   <view class="detail-image-wrapper">
     <block wx:for="{{detailData.detailPhotoAddress}}" wx:key="index">
-      <image lazy-load="true" src="{{item}}" class="detail-image-item" mode="widthFix"></image>
+      <image
+        lazy-load="true"
+        src="{{item}}"
+        class="detail-image-item"
+        catchtap="showPreviewimage"
+        mode="widthFix"
+        data-current="{{item}}"
+        data-source="{{detailData.detailPhotoAddress}}"
+      >
+      </image>
     </block>
     <view class="detail-zhangheng"></view>
   </view>
+  <view class="detai-image-bottom-place"></view>
   <view class="detail-bottom">
     <view wx:if="{{identity === 2 && !showBuy}}" class="detail-bottom-left" catchtap="showMakeTaskPoup">做任务</view>
     <view wx:else class="detail-bottom-btn-wrapper">

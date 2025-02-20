@@ -219,6 +219,7 @@ Page({
       const data = res.data.data
       data.product.baseCashback = Number(data.product.baseCashback / 100).toFixed(2)
       data.product.finalCashback = Number(data.product.finalCashback / 100).toFixed(2)
+      data.cashback = Number(data.cashback / 100).toFixed(2)
       // TODO 需要注释掉
       // data.orderStatus.code = 503
       // data.orderEvaluation.productLevel = 5
@@ -306,7 +307,6 @@ Page({
         const bottomBtnComponentObj = this.selectComponent('#bottomBtn')
         bottomBtnComponentObj.shippinTimeFun(data.confirmDeliveredDeadline)
       }
-
       if (data.orderStatus.code === 101 && data.payDeadline - new Date().getTime() > 0) { // 未支付-商品结算
         topTitle = '商品结算'
         bottomBtnName = '微信支付'

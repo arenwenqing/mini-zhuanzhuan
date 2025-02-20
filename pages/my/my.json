@@ -1,5 +1,7 @@
 {
   "component": true,
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
   "usingComponents": {
     "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
     "component-announcement": "/pages/components/announcement/announcement",
@@ -10,6 +12,7 @@
     "my-task": "/pages/my/myTask/myTask",
     "upgrade-mask": "/pages/my/upgradeMask/upgradeMask",
     "mentor-dialog": "/pages/my/mentorDialog/mentorDialog",
-    "sharePoster": "/pages/components/sharePosters/sharePosters"
+    "sharePoster": "/pages/components/sharePosters/sharePosters",
+    "spell-group-list": "/pages/mySpellGroup/spell-group-list/spell-group-list"
   }
 }
